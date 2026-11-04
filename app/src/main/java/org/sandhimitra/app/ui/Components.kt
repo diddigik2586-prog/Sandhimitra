@@ -29,15 +29,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sandhimitra.app.R
 
-/** Global header: supplied Sanskrit wordmark PNG on the left, centre intentionally empty, Menu button on the right. */
+/** Global header: small logo at the top-left corner, the Sanskrit wordmark centred, Menu button on the right. */
 @Composable
 fun GlobalHeader(onMenu: () -> Unit) {
     val t = LocalTokens.current
     Column(Modifier.fillMaxWidth().background(t.card)) {
-        Row(Modifier.fillMaxWidth().statusBarsPadding().height(60.dp).padding(horizontal = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-            Wordmark(Modifier.height(42.dp))
-            Spacer(Modifier.weight(1f))
-            IconButton(onClick = onMenu, modifier = Modifier.semantics { contentDescription = "Menu" }) {
+        Box(Modifier.fillMaxWidth().statusBarsPadding().height(60.dp).padding(horizontal = 12.dp)) {
+            Image(painterResource(R.drawable.header_icon), contentDescription = null, contentScale = ContentScale.Fit,
+                modifier = Modifier.align(Alignment.CenterStart).size(40.dp).clip(RoundedCornerShape(9.dp)))
+            Wordmark(Modifier.align(Alignment.Center).height(38.dp))
+            IconButton(onClick = onMenu, modifier = Modifier.align(Alignment.CenterEnd).semantics { contentDescription = "Menu" }) {
                 Icon(Icons.Default.Menu, contentDescription = null, tint = t.primary, modifier = Modifier.size(30.dp))
             }
         }
@@ -45,14 +46,12 @@ fun GlobalHeader(onMenu: () -> Unit) {
     }
 }
 
-/** The exact supplied PNG; on the dark theme it sits on a white plate because the artwork has an opaque white background. */
+/** The supplied wordmark artwork with its white background removed; it takes the theme's contrast colour (original navy on light, light tone on dark). */
 @Composable
 fun Wordmark(modifier: Modifier = Modifier) {
     val t = LocalTokens.current
-    val img = @Composable {
-        Image(painterResource(R.drawable.sanskrit_wordmark), contentDescription = "सन्धिमित्रम्", contentScale = ContentScale.Fit, modifier = modifier.aspectRatio(2172f / 724f))
-    }
-    if (t.dark) Box(Modifier.clip(RoundedCornerShape(8.dp)).background(Color.White)) { img() } else img()
+    Image(painterResource(R.drawable.sanskrit_wordmark_transparent), contentDescription = "सन्धिमित्रम्", contentScale = ContentScale.Fit,
+        colorFilter = if (t.dark) androidx.compose.ui.graphics.ColorFilter.tint(t.text) else null, modifier = modifier.aspectRatio(2137f / 709f))
 }
 
 @Composable

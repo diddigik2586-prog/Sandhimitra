@@ -147,12 +147,16 @@ fun YojanaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
     }
 
     Page(onMenu, onBack, tr("yojana")) {
-        parts.forEachIndexed { i, v ->
+        Row(verticalAlignment = Alignment.Bottom) {
+            Box(Modifier.weight(1f)) { EngineField(tr("part1"), parts[0], { parts[0] = it }, readOnly = false, onFocus = {}) }
+            Sx("+", size = 26.sp, weight = FontWeight.Bold, color = t.accent, modifier = Modifier.padding(start = 8.dp, end = 8.dp, bottom = 22.dp))
+            Box(Modifier.weight(1f)) { EngineField(tr("part2"), parts[1], { parts[1] = it }, readOnly = false, onFocus = {}) }
+        }
+        for (i in 2 until parts.size) {
             Row(verticalAlignment = Alignment.Bottom) {
-                Box(Modifier.weight(1f)) {
-                    EngineField(if (i == 0) tr("part1") else if (i == 1) tr("part2") else "${tr("part_n")} ${i + 1}", v, { parts[i] = it }, readOnly = false, onFocus = {})
-                }
-                if (i >= 2) Sx("✕", size = 20.sp, color = t.bad, modifier = Modifier.padding(start = 8.dp, bottom = 22.dp).clickable { parts.removeAt(i) })
+                Sx("+", size = 26.sp, weight = FontWeight.Bold, color = t.accent, modifier = Modifier.padding(end = 8.dp, bottom = 22.dp))
+                Box(Modifier.weight(1f)) { EngineField("${tr("part_n")} ${i + 1}", parts[i], { parts[i] = it }, readOnly = false, onFocus = {}) }
+                Sx("✕", size = 20.sp, color = t.bad, modifier = Modifier.padding(start = 8.dp, bottom = 22.dp).clickable { parts.removeAt(i) })
             }
         }
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.padding(bottom = 6.dp)) {
@@ -270,20 +274,14 @@ private fun SplitCard(s: Split) {
 fun RegistryScreen(onMenu: () -> Unit, onBack: () -> Unit) {
     val lang = LocalLang.current; val t = LocalTokens.current
     Page(onMenu, onBack, tr("registry")) {
-        Sx("${Rules.all.size} ${tr("rule_count")}. ${tr("registry_note")}", size = 13.sp, color = t.muted, modifier = Modifier.padding(bottom = 8.dp))
         Category.values().forEach { c ->
             SectionTitle(S.t(catKey(c), lang))
             Rules.all.filter { it.category == c }.forEach { r ->
                 CardBox(Modifier.fillMaxWidth().padding(bottom = 8.dp)) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Sx("${r.id}  ${Script.render(r.name, lang)}", weight = FontWeight.SemiBold, color = t.primary, modifier = Modifier.weight(1f))
-                        StatusChip(if (r.verified) Status.VERIFIED else Status.PROVISIONAL)
-                    }
+                    Sx(Script.render(r.name, lang), weight = FontWeight.SemiBold, color = t.primary)
                     Sx("${Script.render(r.sutraDeva, lang)} (${r.ref})", size = 14.sp)
-                    if (lang == "en") Sx("${lab("scope")}${r.scope}", size = 12.sp, color = t.muted)
                 }
             }
         }
     }
 }
-

@@ -86,6 +86,10 @@ class SandhiEngineTest {
         val r = splits("संहितापाठः"); assertTrue(r.analyses.any { d(it.left) == "संहिता" && d(it.right) == "पाठः" && it.status == Status.VERIFIED })
         assertEquals("संहिता", d(r.analyses.first().left))
     }
+    @Test fun kannadaInputNoChangeOnly() {
+        val r = splits("ಸಂಹಿತಾಪಾಠಃ")
+        assertEquals(listOf("संहिता+पाठः"), r.analyses.map { d(it.left) + "+" + d(it.right) })
+    }
     // ---------- multi-part
     @Test fun threeParts() { val r = engine.joinAll(listOf("देव", "इन्द्र", "आसनम्")); assertTrue(r.alts.any { d(it.surface) == "देवेन्द्रासनम्" }) }
 

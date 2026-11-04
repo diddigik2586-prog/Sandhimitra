@@ -9,3 +9,5 @@
 **Other:** release keystore password is the default `sandhimitra-release` — generate your own for publication. Room was replaced by plain SQLite to reduce dependencies.
 
 **Sample build 1.0.1-sample:** in-app keyboard and the lexicon page were removed at the author's request (the engine still uses the bundled word list internally to check components; the About page credits it). Practice answers are optional reveal-only. Status label 'Provisional' is displayed as 'Possible' and means the analysis is grammatically valid but a component is only heuristically recognised (e.g. a verb form). Still not hardware-tested.
+
+**Wordmark:** at the author's request the header/splash wordmark is a derived transparent version of the supplied PNG (white background removed, artwork unchanged; original kept in original_assets/images). The header centre is no longer empty and carries the wordmark; the icon sits at the left.

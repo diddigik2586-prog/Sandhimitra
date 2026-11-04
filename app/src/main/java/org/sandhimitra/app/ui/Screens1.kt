@@ -34,11 +34,9 @@ fun SplashScreen(onDone: () -> Unit) {
     LaunchedEffect(Unit) { started = true; delay(5000); onDone() }
     Column(Modifier.fillMaxSize().background(t.bg).systemBarsPadding().padding(horizontal = 32.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.weight(1f))
-        Image(painterResource(R.drawable.launcher_icon_full), null, Modifier.size(150.dp).clip(RoundedCornerShape(30.dp)), contentScale = ContentScale.Fit)
+        Image(painterResource(R.drawable.header_icon), null, Modifier.size(150.dp).clip(RoundedCornerShape(30.dp)), contentScale = ContentScale.Fit)
         Spacer(Modifier.height(28.dp))
-        Box(Modifier.clip(RoundedCornerShape(12.dp)).background(Color.White).padding(horizontal = 12.dp, vertical = 6.dp)) {
-            Image(painterResource(R.drawable.sanskrit_wordmark), "सन्धिमित्रम्", Modifier.fillMaxWidth(0.75f).aspectRatio(2172f / 724f), contentScale = ContentScale.Fit)
-        }
+        Wordmark(Modifier.fillMaxWidth(0.8f))
         Spacer(Modifier.height(36.dp))
         LinearProgressIndicator(progress = { p }, modifier = Modifier.fillMaxWidth(0.7f).height(6.dp).clip(RoundedCornerShape(3.dp)), color = t.primary, trackColor = t.outline)
         Spacer(Modifier.weight(1f))

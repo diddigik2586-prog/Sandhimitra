@@ -22,7 +22,7 @@ object PdfExport {
         val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply { textSize = 13f; color = 0xFF28334D.toInt() }
         var y: Float
         fun header(c: Canvas): Float {
-            val bmp = BitmapFactory.decodeResource(ctx.resources, R.drawable.sanskrit_wordmark)
+            val bmp = BitmapFactory.decodeResource(ctx.resources, R.drawable.sanskrit_wordmark_transparent)
             val h = 44f; val w = h * bmp.width / bmp.height
             c.drawBitmap(bmp, null, android.graphics.RectF(margin, 30f, margin + w, 30f + h), Paint(Paint.FILTER_BITMAP_FLAG))
             return 30f + h + 26f

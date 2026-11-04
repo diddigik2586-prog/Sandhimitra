@@ -336,6 +336,8 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
                 ok += sp.copy(status = st)
             } else unsupported += sp
         }
+        // Occam: when a verified split without any Sandhi change exists, sandhi splits resting on stem+ending guesses are not offered
+        if (ok.any { it.alt.steps.isEmpty() && it.status == Status.VERIFIED }) ok.removeAll { it.alt.steps.isNotEmpty() && (it.leftSupport.level == Support.DERIVED || it.rightSupport.level == Support.DERIVED) }
         fun score(s: Split) = (if (s.status == Status.VERIFIED) 100 else 0) + s.leftSupport.level.ordinal.let { 3 - it } * 5 + s.rightSupport.level.ordinal.let { 3 - it } * 5 + minOf(s.left.length, s.right.length).coerceAtMost(6) + (if (s.alt.steps.isEmpty()) 8 else 0)
         ok.sortByDescending { score(it) }
         unsupported.sortByDescending { score(it) }

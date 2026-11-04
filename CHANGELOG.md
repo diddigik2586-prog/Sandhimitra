@@ -1,4 +1,9 @@
 # Changelog
+## 1.0.3-sample
+- Header: app icon top-left, Sanskrit wordmark centred with its white background removed (derived transparent PNG; recoloured for dark theme), Menu right. Splash uses the same wordmark.
+- Rule registry: no rule codes, no Verified chip, no explanatory line.
+- Sandhi Yojana: first two fields side by side with a + between.
+- Reverse analysis: when a verified no-change split exists (e.g. संहिता + पाठः), guess-based sandhi splits (संहिता + अपाठः) are no longer offered; Kannada input tested.
 ## 1.0.2-sample
 - About App, About Dr. DVK, Support, Feedback and Privacy Policy (pages and menu labels) are English only.
 - Support: bank transfer details are a collapsible dropdown.
