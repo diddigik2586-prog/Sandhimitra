@@ -21,10 +21,10 @@ jobs:
     steps:
       - name: Check out source
         uses: actions/checkout@v4
-      - name: Reassemble latest Kotlin source
+      - name: Reassemble and verify latest Kotlin source
         run: |
           cat tools/source-payload/MainActivity.kt.b64.part* | base64 --decode | gzip --decompress > app/src/main/java/org/sandhimitra/app/MainActivity.kt
-          test -s app/src/main/java/org/sandhimitra/app/MainActivity.kt
+          echo "e0f02af528ed042059121ec335f0f5639aea063f8f40a6511f3d6fbf16b4cd14  app/src/main/java/org/sandhimitra/app/MainActivity.kt" | sha256sum --check -
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
