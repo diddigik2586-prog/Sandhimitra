@@ -1,4 +1,6 @@
 # Changelog
+## 1.0.8-sample
+- About page: removed the dictionary data credit line (author's decision; the licence text remains in the app assets and docs).
 ## 1.0.7-sample
 - Removed the English-mode note about independent composition/IAST everywhere.
 - About page replaced with the author's text (plus a one-line dictionary licence credit).

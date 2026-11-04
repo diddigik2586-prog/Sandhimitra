@@ -34,7 +34,6 @@ fun AboutScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
         Sx("The app is designed to make learning and exploring Sanskrit Sandhi accessible and convenient.", modifier = Modifier.padding(top = 12.dp))
         SectionTitle("Font Credits")
         listOf("Sanskrit: Kohinoor Devanagari", "Kannada: Kannada MN", "English: Andika").forEach { Sx(it, modifier = Modifier.padding(bottom = 2.dp)) }
-        Sx("Word data: Monier-Williams Sanskrit-English Dictionary, Cologne Digital Sanskrit Dictionaries (CC BY-SA 4.0).", size = 12.sp, color = t.muted, modifier = Modifier.padding(top = 14.dp))
     } }
 }
 
