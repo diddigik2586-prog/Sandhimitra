@@ -44,7 +44,7 @@ fun CategoryScreen(app: SandhimitraApp, group: String, onMenu: () -> Unit, onBac
     val title = tr(group)
     Page(onMenu, onBack, title) {
         val done = app.progress.version.let { app.progress.doneCount(topics.map { it.id }) }
-        Sx("${tr("progress")}: $done / ${topics.size}", size = 13.sp, color = LocalTokens.current.muted, modifier = Modifier.padding(bottom = 8.dp))
+        Sx("${lab("progress")}$done / ${topics.size}", size = 13.sp, color = LocalTokens.current.muted, modifier = Modifier.padding(bottom = 8.dp))
         topics.forEach { ref ->
             val isDone = app.progress.version.let { app.progress.isLessonDone(ref.id) }
             CardBox(Modifier.fillMaxWidth().padding(bottom = 10.dp), onClick = { go(Routes.topic(ref.id)) }) {

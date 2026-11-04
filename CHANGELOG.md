@@ -1,4 +1,9 @@
 # Changelog
+## 1.0.2-sample
+- About App, About Dr. DVK, Support, Feedback and Privacy Policy (pages and menu labels) are English only.
+- Support: bank transfer details are a collapsible dropdown.
+- Sanskrit interface wording corrected (consistent 2nd-person plural imperatives, removed visarga+colon clashes, fixed case/verb forms, removed unused lexicon wording).
+- Menu: Introduction entry removed (Home and Sandhātrī unchanged; Introduction still opens from the Home card).
 ## 1.0.1-sample
 - Centre-aligned About App, About Dr. DVK, Support, Privacy.
 - Support: native QR (cropped from supplied image) + payment details as text.

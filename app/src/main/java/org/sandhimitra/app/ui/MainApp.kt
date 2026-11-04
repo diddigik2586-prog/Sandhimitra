@@ -71,17 +71,17 @@ fun MainApp(app: SandhimitraApp) {
             composable(Routes.YOJANA) { YojanaScreen(app, open, back) }
             composable(Routes.VICCHEDA) { VicchedaScreen(app, open, back) }
             composable(Routes.REGISTRY) { RegistryScreen(open, back) }
-            composable(Routes.ABOUT) { AboutScreen(app, open, back) }
-            composable(Routes.DVK) { DvkScreen(open, back) }
-            composable(Routes.SUPPORT) { SupportScreen(open, back) }
-            composable(Routes.PRIVACY) { PrivacyScreen(open, back) }
+            composable(Routes.ABOUT) { EnglishOnly { AboutScreen(app, open, back) } }
+            composable(Routes.DVK) { EnglishOnly { DvkScreen(open, back) } }
+            composable(Routes.SUPPORT) { EnglishOnly { SupportScreen(open, back) } }
+            composable(Routes.PRIVACY) { EnglishOnly { PrivacyScreen(open, back) } }
         }
 
         AnimatedVisibility(menuOpen, enter = fadeIn(), exit = fadeOut()) {
             Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.45f)).clickable(indication = null, interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }) { menuOpen = false })
         }
         AnimatedVisibility(menuOpen, modifier = Modifier.align(Alignment.CenterEnd), enter = slideInHorizontally { it }, exit = slideOutHorizontally { it }) {
-            MenuPanel(app, onHome = { goHome() }, onIntro = { go(Routes.INTRO) }, onSandhatri = { go(Routes.SANDHATRI) }, onAbout = { go(Routes.ABOUT) }, onDvk = { go(Routes.DVK) },
+            MenuPanel(app, onHome = { goHome() }, onSandhatri = { go(Routes.SANDHATRI) }, onAbout = { go(Routes.ABOUT) }, onDvk = { go(Routes.DVK) },
                 onSupport = { go(Routes.SUPPORT) }, onPrivacy = { go(Routes.PRIVACY) }, onFeedback = { menuOpen = false; sendFeedback(ctx) }, onClose = { menuOpen = false })
         }
     }
@@ -101,12 +101,12 @@ fun sendFeedback(ctx: android.content.Context) {
     val i = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:dvkrishna92@gmail.com")).putExtra(Intent.EXTRA_SUBJECT, "Sandhimitra App Feedback")
     try { ctx.startActivity(i) } catch (e: ActivityNotFoundException) {
         val lang = (ctx.applicationContext as SandhimitraApp).prefs.lang
-        Toast.makeText(ctx, S.t("no_mail", lang), Toast.LENGTH_LONG).show()
+        Toast.makeText(ctx, S.t("no_mail", "en"), Toast.LENGTH_LONG).show()
     }
 }
 
 @Composable
-private fun MenuPanel(app: SandhimitraApp, onHome: () -> Unit, onIntro: () -> Unit, onSandhatri: () -> Unit, onAbout: () -> Unit, onDvk: () -> Unit,
+private fun MenuPanel(app: SandhimitraApp, onHome: () -> Unit, onSandhatri: () -> Unit, onAbout: () -> Unit, onDvk: () -> Unit,
                       onSupport: () -> Unit, onPrivacy: () -> Unit, onFeedback: () -> Unit, onClose: () -> Unit) {
     val t = LocalTokens.current; val prefs = app.prefs
     val langs = listOf("sa", "kn", "en")
@@ -127,15 +127,15 @@ private fun MenuPanel(app: SandhimitraApp, onHome: () -> Unit, onIntro: () -> Un
             Capsule(listOf(tr("fs0"), tr("fs1"), tr("fs2"), tr("fs3")), prefs.fontStep, { prefs.chooseFontStep(it) }, Modifier.padding(vertical = 6.dp), textSize = 12)
             Divider()
             // B. Main navigation
-            MenuItem(tr("home"), onHome); MenuItem(tr("introduction"), onIntro); MenuItem(tr("sandhatri"), onSandhatri)
+            MenuItem(tr("home"), onHome); MenuItem(tr("sandhatri"), onSandhatri)
             Divider()
             // additional separator immediately above About App
             Box(Modifier.padding(bottom = 6.dp).fillMaxWidth().height(2.dp).background(t.accent))
             // C. Information and support
-            MenuItem(tr("about_app"), onAbout); MenuItem(tr("about_dvk"), onDvk); MenuItem(tr("support"), onSupport); MenuItem(tr("feedback"), onFeedback)
+            MenuItem(S.t("about_app", "en"), onAbout); MenuItem(S.t("about_dvk", "en"), onDvk); MenuItem(S.t("support", "en"), onSupport); MenuItem(S.t("feedback", "en"), onFeedback)
             Divider()
             // D. Privacy
-            MenuItem(tr("privacy"), onPrivacy)
+            MenuItem(S.t("privacy", "en"), onPrivacy)
         }
     }
 }
@@ -144,4 +144,10 @@ private fun MenuPanel(app: SandhimitraApp, onHome: () -> Unit, onIntro: () -> Un
 
 @Composable private fun MenuItem(label: String, onClick: () -> Unit) {
     Sx(label, size = 17.sp, modifier = Modifier.fillMaxWidth().clickable(onClick = onClick).padding(vertical = 12.dp, horizontal = 4.dp))
+}
+
+/** The information pages (About App … Privacy Policy) are English only, whatever the interface language. */
+@Composable
+private fun EnglishOnly(content: @Composable () -> Unit) {
+    androidx.compose.runtime.CompositionLocalProvider(LocalLang provides "en") { content() }
 }

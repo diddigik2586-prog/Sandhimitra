@@ -4,6 +4,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -96,10 +97,11 @@ fun SupportScreen(onMenu: () -> Unit, onBack: () -> Unit) {
                 }
             }
             Spacer(Modifier.height(12.dp))
-            CardBox(Modifier.fillMaxWidth()) {
+            var bankOpen by rememberSaveable { mutableStateOf(false) }
+            CardBox(Modifier.fillMaxWidth(), onClick = { bankOpen = !bankOpen }) {
                 Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Sx(tr("bank_details"), size = 16.sp, weight = FontWeight.SemiBold, color = t.primary)
-                    listOf("acc_holder" to "DIDDIGI VAMSI KRISHNA", "bank" to "Kotak Mahindra Bank", "branch" to "MYSORE", "acc_no" to "1348857820", "ifsc" to "KKBK0000425").forEach { (k, v) ->
+                    Sx(tr("bank_details") + if (bankOpen) "  ▴" else "  ▾", size = 16.sp, weight = FontWeight.SemiBold, color = t.primary)
+                    if (bankOpen) listOf("acc_holder" to "DIDDIGI VAMSI KRISHNA", "bank" to "Kotak Mahindra Bank", "branch" to "MYSORE", "acc_no" to "1348857820", "ifsc" to "KKBK0000425").forEach { (k, v) ->
                         Sx(tr(k), size = 13.sp, color = t.muted, modifier = Modifier.padding(top = 8.dp)); Sx(v, size = 17.sp, weight = FontWeight.SemiBold)
                     }
                 }

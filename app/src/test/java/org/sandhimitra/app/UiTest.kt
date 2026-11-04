@@ -54,11 +54,11 @@ class UiTest {
     @Test fun menuOrderAndClosesAfterNavigation() {
         toHome()
         rule.onNodeWithContentDescription("Menu").performClick(); rule.waitForIdle()
-        val order = listOf("मुखपृष्ठम्", "परिचयः", "सन्धात्री", "अनुप्रयोगविषये", "डॉ. डी.वी.के. विषये", "साहाय्यम्", "अभिप्रायः", "गोपनीयतानीतिः")
+        val order = listOf("मुखपृष्ठम्", "सन्धात्री", "About App", "About Dr. DVK", "Support Sandhimitra", "Feedback", "Privacy Policy")
         val tops = order.map { rule.onAllNodesWithText(it).fetchSemanticsNodes().last().boundsInRoot.top }
         assertEquals(tops.sorted(), tops)
-        rule.onAllNodesWithText("अनुप्रयोगविषये").onLast().performClick(); rule.waitForIdle()
-        rule.onAllNodesWithText("अनुप्रयोगविषये").assertCountEquals(1)     // only the page title remains: menu closed
+        rule.onAllNodesWithText("About App").onLast().performClick(); rule.waitForIdle()
+        rule.onAllNodesWithText("About App").assertCountEquals(1)     // only the page title remains: menu closed
     }
 
     @Test fun categoryTopicAndBack() {
@@ -83,8 +83,8 @@ class UiTest {
     @Test fun rootBackAsksToExit() {
         toHome()
         rule.activityRule.scenario.onActivity { it.onBackPressedDispatcher.onBackPressed() }; rule.waitForIdle()
-        rule.onNodeWithText("निर्गमः?").assertExists()
-        rule.onNodeWithText("तिष्ठतु").performClick(); rule.waitForIdle()
+        rule.onNodeWithText("निर्गमनम्?").assertExists()
+        rule.onNodeWithText("तिष्ठत").performClick(); rule.waitForIdle()
         rule.onNodeWithText("परिचयः").assertExists()
     }
 

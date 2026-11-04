@@ -56,7 +56,7 @@ class ScreenshotTest {
 
     @Test fun infoScreens() {
         toHome()
-        for ((label, name) in listOf("साहाय्यम्" to "20_support", "गोपनीयतानीतिः" to "21_privacy", "अनुप्रयोगविषये" to "22_about")) {
+        for ((label, name) in listOf("Support Sandhimitra" to "20_support", "Privacy Policy" to "21_privacy", "About App" to "22_about")) {
             rule.onNodeWithContentDescription("Menu").performClick(); rule.waitForIdle()
             rule.onAllNodesWithText(label).onLast().performClick(); shot(name)
         }

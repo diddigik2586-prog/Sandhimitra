@@ -108,7 +108,7 @@ private fun StepsView(steps: List<Step>) {
             Sx("${i + 1}. ${Script.render(r?.name ?: st.ruleId, lang)} (${r?.ref ?: ""})", size = 14.sp, weight = FontWeight.SemiBold, color = t.primary)
             val sutra = r?.sutraDeva ?: ""
             if (sutra.isNotEmpty()) Sx(Script.render(sutra, lang), size = 13.sp, color = t.muted)
-            if (st.from.isNotEmpty() || st.to.isNotEmpty()) Sx("${slTokens(st.from, lang)}  →  ${if (st.to.isEmpty()) "∅" else slTokens(st.to, lang)}${if (st.note.isNotEmpty() && st.note != "unchanged") "   [${st.note}]" else ""}", size = 14.sp)
+            if (st.from.isNotEmpty() || st.to.isNotEmpty()) Sx("${slTokens(st.from, lang)}  →  ${if (st.to.isEmpty()) "∅" else slTokens(st.to, lang)}${if (st.note == "vartika") "   [${S.t("vartika", lang)}]" else if (st.note.isNotEmpty() && st.note != "unchanged") "   [${st.note}]" else ""}", size = 14.sp)
         }
     }
 }
@@ -188,7 +188,7 @@ private fun ToggleRow(label: String, value: Boolean, onChange: (Boolean) -> Unit
 private fun JoinResultView(r: JoinResult, rawInputs: List<String>) {
     val lang = LocalLang.current; val t = LocalTokens.current
     SectionTitle(tr("results"))
-    Row(verticalAlignment = Alignment.CenterVertically) { Sx("${tr("status")}: ", size = 14.sp, color = t.muted); StatusChip(r.status) }
+    Row(verticalAlignment = Alignment.CenterVertically) { Sx("${lab("status")}", size = 14.sp, color = t.muted); StatusChip(r.status) }
     r.notes.map { noteText(it, lang) }.filter { it.isNotEmpty() }.forEach { Sx(it, size = 13.sp, color = t.accent, modifier = Modifier.padding(top = 4.dp)) }
     if (r.alts.isEmpty()) return
     val lines = mutableListOf<String>()
@@ -196,7 +196,7 @@ private fun JoinResultView(r: JoinResult, rawInputs: List<String>) {
         CardBox(Modifier.fillMaxWidth().padding(top = 10.dp)) {
             SurfaceBlock(a.surface, a.optional)
             val cats = categoriesOf(a.steps.map { it.ruleId })
-            if (cats.isNotEmpty()) Sx("${tr("category")}: ${cats.joinToString(" · ") { S.t(catKey(it), lang) }}", size = 13.sp, color = t.accent, modifier = Modifier.padding(top = 4.dp))
+            if (cats.isNotEmpty()) Sx("${lab("category")}${cats.joinToString(" · ") { S.t(catKey(it), lang) }}", size = 13.sp, color = t.accent, modifier = Modifier.padding(top = 4.dp))
             Sx(tr("steps"), size = 13.sp, color = t.muted, modifier = Modifier.padding(top = 8.dp))
             StepsView(a.steps)
         }
@@ -233,7 +233,7 @@ fun VicchedaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) 
         if (busy) Sx("…", color = t.muted, modifier = Modifier.padding(top = 8.dp))
         result?.let { r ->
             SectionTitle(tr("results"))
-            Row(verticalAlignment = Alignment.CenterVertically) { Sx("${tr("status")}: ", size = 14.sp, color = t.muted); StatusChip(r.status) }
+            Row(verticalAlignment = Alignment.CenterVertically) { Sx("${lab("status")}", size = 14.sp, color = t.muted); StatusChip(r.status) }
             r.notes.map { noteText(it, lang) }.filter { it.isNotEmpty() }.forEach { Sx(it, size = 14.sp, color = t.accent, modifier = Modifier.padding(top = 6.dp)) }
             val lines = mutableListOf<String>()
             r.analyses.forEach { s -> SplitCard(s); lines += splitLine(s, r.input) }
@@ -259,7 +259,7 @@ private fun SplitCard(s: Split) {
         if (lang != "sa") Sx("${sl(s.left, lang)} + ${sl(s.right, lang)}", size = 17.sp, color = t.muted)
         if (!s.leftPada) Sx(tr("not_pada"), size = 12.sp, color = t.accent)
         val cats = categoriesOf(s.ruleIds)
-        if (cats.isNotEmpty()) Sx("${tr("category")}: ${cats.joinToString(" · ") { S.t(catKey(it), lang) }}", size = 13.sp, color = t.accent, modifier = Modifier.padding(top = 4.dp))
+        if (cats.isNotEmpty()) Sx("${lab("category")}${cats.joinToString(" · ") { S.t(catKey(it), lang) }}", size = 13.sp, color = t.accent, modifier = Modifier.padding(top = 4.dp))
         Sx(tr("steps"), size = 13.sp, color = t.muted, modifier = Modifier.padding(top = 8.dp))
         StepsView(s.alt.steps)
     }
@@ -280,7 +280,7 @@ fun RegistryScreen(onMenu: () -> Unit, onBack: () -> Unit) {
                         StatusChip(if (r.verified) Status.VERIFIED else Status.PROVISIONAL)
                     }
                     Sx("${Script.render(r.sutraDeva, lang)} (${r.ref})", size = 14.sp)
-                    Sx("${tr("scope")}: ${r.scope}", size = 12.sp, color = t.muted)
+                    if (lang == "en") Sx("${lab("scope")}${r.scope}", size = 12.sp, color = t.muted)
                 }
             }
         }
