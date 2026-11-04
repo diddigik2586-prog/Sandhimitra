@@ -1,4 +1,7 @@
 # Changelog
+## 1.0.4-sample
+- Fonts: Kohinoor Devanagari for Sanskrit, Kannada MN for Kannada, Andika for English/IAST.
+- Smaller wordmark on the splash (slightly smaller in the header); faint halo around the wordmark removed.
 ## 1.0.3-sample
 - Header: app icon top-left, Sanskrit wordmark centred with its white background removed (derived transparent PNG; recoloured for dark theme), Menu right. Splash uses the same wordmark.
 - Rule registry: no rule codes, no Verified chip, no explanatory line.
