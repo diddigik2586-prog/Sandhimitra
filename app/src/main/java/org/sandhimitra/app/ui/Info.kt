@@ -24,24 +24,17 @@ private fun L(sa: String, kn: String, en: String, lang: String) = when (lang) { 
 
 @Composable
 fun AboutScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
-    val lang = LocalLang.current; val t = LocalTokens.current
-    val topics = app.content.groups.sumOf { app.content.topics(it).size }
-    Page(onMenu, onBack, tr("about_app")) { CentrePage {
-        Sx(L("सन्धिमित्रम् संस्कृतसन्धिशिक्षणाय सन्धिविश्लेषणाय च निर्मितः अनुप्रयोगः। सर्वाः सुविधाः अन्तर्जालं विना यन्त्रे एव प्रवर्तन्ते।",
-            "ಸಂಸ್ಕೃತ ಸಂಧಿಯ ಕಲಿಕೆ ಮತ್ತು ವಿಶ್ಲೇಷಣೆಗಾಗಿ ರೂಪಿಸಿದ ಆ್ಯಪ್. ಎಲ್ಲಾ ಸೌಲಭ್ಯಗಳೂ ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆ ಸಾಧನದಲ್ಲೇ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ.",
-            "An app for learning and analysing Sanskrit Sandhi. Every feature works on your device without internet.", lang))
-        SectionTitle(L("सुविधाः", "ಸೌಲಭ್ಯಗಳು", "What it contains", lang))
-        listOf(
-            L("स्वर-व्यञ्जन-विसर्ग-प्रकृतिभावसन्धीनां ${topics} प्रकरणानि (संस्कृते, कन्नडे, आङ्ग्ले च)।", "ಸ್ವರ, ವ್ಯಂಜನ, ವಿಸರ್ಗ, ಪ್ರಕೃತಿಭಾವ ಸಂಧಿಗಳ ${topics} ಪ್ರಕರಣಗಳು (ಸಂಸ್ಕೃತ, ಕನ್ನಡ, ಇಂಗ್ಲಿಷ್).", "$topics topics on vowel, consonant, visarga and prakṛtibhāva Sandhi, in Sanskrit, Kannada and English.", lang),
-            L("पाठाः अभ्यासाः च; पाठपूर्णता अभ्यासप्रगतिः च यन्त्रे एव रक्ष्यते।", "ಪಾಠಗಳು ಮತ್ತು ಅಭ್ಯಾಸಗಳು; ಪಾಠ ಪೂರ್ಣತೆ ಮತ್ತು ಅಭ್ಯಾಸ ಪ್ರಗತಿ ಸಾಧನದಲ್ಲೇ ಉಳಿಯುತ್ತದೆ.", "Lessons and practice; completion and practice progress are saved on the device.", lang),
-            L("सन्धात्री — सन्धियोजना, सन्धिविच्छेदः च, ${Rules.all.size} नियमकोशप्रविष्टिभिः, क्रमबद्धसूत्रानुसरणेन।", "ಸಂಧಾತ್ರೀ — ಸಂಧಿಯೋಜನೆ ಮತ್ತು ಸಂಧಿವಿಚ್ಛೇದ, ${Rules.all.size} ನಿಯಮ ದಾಖಲೆಗಳು, ಕ್ರಮಬದ್ಧ ಸೂತ್ರ ಅನುಸರಣೆ.", "Sandhātrī — forward joining and reverse separation using ${Rules.all.size} registry rules, with an ordered sūtra trace.", lang),
-            L("अनुप्रयोगान्तर्गतं संस्कृतकीबोर्डम्; प्रतिलिपिः, शेयर्, PDF च।", "ಆ್ಯಪ್‌ನೊಳಗಿನ ಸಂಸ್ಕೃತ ಕೀಬೋರ್ಡ್; ನಕಲು, ಹಂಚಿಕೆ, PDF.", "An in-app Sanskrit keyboard; copy, share and PDF export.", lang),
-        ).forEach { Bullet(it) }
-        SectionTitle(L("स्रोताः", "ಆಕರಗಳು", "Sources and credits", lang))
-        Sx(L("पाठ्यसामग्री संस्कृत-कन्नडव्याकरणग्रन्थद्वयाधारिता; आङ्ग्लभागः स्वतन्त्रतया रचितः।", "ಪಾಠಸಾಮಗ್ರಿ ಸಂಸ್ಕೃತ ಮತ್ತು ಕನ್ನಡ ವ್ಯಾಕರಣ ಗ್ರಂಥಗಳ ಆಧಾರಿತ; ಇಂಗ್ಲಿಷ್ ಭಾಗವನ್ನು ಸ್ವತಂತ್ರವಾಗಿ ರಚಿಸಲಾಗಿದೆ.", "Lesson content is based on the supplied Sanskrit and Kannada grammatical texts; the English layer is composed independently.", lang))
-        Sx(L("शब्दपरीक्षाडेटा: Monier-Williams Sanskrit-English Dictionary (1899), Cologne Digital Sanskrit Dictionaries, CC BY-SA 4.0।", "ಪದ ಪರಿಶೀಲನಾ ದತ್ತಾಂಶ: Monier-Williams Sanskrit-English Dictionary (1899), Cologne Digital Sanskrit Dictionaries, CC BY-SA 4.0.", "Word-check data used by the engine: Monier-Williams Sanskrit-English Dictionary (1899), Cologne Digital Sanskrit Dictionaries, CC BY-SA 4.0.", lang), size = 14.sp, modifier = Modifier.padding(top = 6.dp))
-        Sx(L("अक्षराणि: Kohinoor Devanagari (संस्कृतम्), Kannada MN (कन्नडम्), Andika (आङ्ग्लम्)।", "ಅಕ್ಷರಗಳು: Kohinoor Devanagari (ಸಂಸ್ಕೃತ), Kannada MN (ಕನ್ನಡ), Andika (ಇಂಗ್ಲಿಷ್).", "Fonts: Kohinoor Devanagari (Sanskrit), Kannada MN (Kannada), Andika (English).", lang), size = 14.sp, color = t.muted, modifier = Modifier.padding(top = 6.dp))
-        Sx(L("सत्यापनस्थितिः: ‘प्रमाणितम्’, ‘अनन्तिमम्’, ‘फलं नास्ति’। फलाभावः व्याकरणतः असम्भवत्वं न सूचयति।", "ಸ್ಥಿತಿಗಳು: ‘ಪರಿಶೀಲಿತ’, ‘ತಾತ್ಕಾಲಿಕ’, ‘ಫಲಿತಾಂಶವಿಲ್ಲ’. ಫಲಿತಾಂಶವಿಲ್ಲ ಎಂದರೆ ವ್ಯಾಕರಣದ ಪ್ರಕಾರ ಅಸಾಧ್ಯವೆಂದಲ್ಲ.", "Result statuses: Verified, Provisional, No Result. No Result does not mean a form is grammatically impossible.", lang), size = 14.sp, color = t.muted, modifier = Modifier.padding(top = 10.dp))
+    val t = LocalTokens.current
+    Page(onMenu, onBack, "About the App") { CentrePage {
+        Sx("Explore Sanskrit Sandhi in a simple and engaging way.", size = 18.sp, weight = FontWeight.SemiBold, color = t.primary, modifier = Modifier.padding(bottom = 10.dp))
+        Sx("Learn the different types of Sandhi through clear explanations, examples, lessons and practice activities. Understand how words combine and how Sandhi forms can be separated.")
+        SectionTitle("What You Can Explore")
+        listOf("Vowel Sandhi", "Consonant Sandhi", "Visarga Sandhi", "Prakṛtibhāva Sandhi", "Lessons and practice activities", "Sandhātrī — explore Sandhi formation and word separation",
+            "Learn in Sanskrit, Kannada or English", "Continue learning with your progress saved on your device").forEach { Sx(it, modifier = Modifier.padding(bottom = 4.dp)) }
+        Sx("The app is designed to make learning and exploring Sanskrit Sandhi accessible and convenient.", modifier = Modifier.padding(top = 12.dp))
+        SectionTitle("Font Credits")
+        listOf("Sanskrit: Kohinoor Devanagari", "Kannada: Kannada MN", "English: Andika").forEach { Sx(it, modifier = Modifier.padding(bottom = 2.dp)) }
+        Sx("Word data: Monier-Williams Sanskrit-English Dictionary, Cologne Digital Sanskrit Dictionaries (CC BY-SA 4.0).", size = 12.sp, color = t.muted, modifier = Modifier.padding(top = 14.dp))
     } }
 }
 

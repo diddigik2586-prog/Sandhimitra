@@ -5,6 +5,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LinearProgressIndicator
@@ -76,10 +77,9 @@ fun HomeScreen(app: SandhimitraApp, onMenu: () -> Unit, go: (String) -> Unit) {
 @Composable
 private fun HomeBar(label: String, onClick: () -> Unit) {
     val t = LocalTokens.current
-    CardBox(Modifier.testTag("bar_$label").fillMaxWidth(), onClick = onClick) {
-        Box(Modifier.fillMaxWidth().heightIn(min = 54.dp), contentAlignment = Alignment.Center) {
-            Sx(label, size = 22.sp, weight = FontWeight.SemiBold, color = t.primary, align = TextAlign.Center)
-        }
+    val shape = RoundedCornerShape(14.dp)
+    Box(Modifier.testTag("bar_$label").fillMaxWidth().heightIn(min = 78.dp).clip(shape).background(t.primary).clickable(onClick = onClick).padding(14.dp), contentAlignment = Alignment.Center) {
+        Sx(label, size = 22.sp, weight = FontWeight.SemiBold, color = t.onPrimary, align = TextAlign.Center)
     }
 }
 

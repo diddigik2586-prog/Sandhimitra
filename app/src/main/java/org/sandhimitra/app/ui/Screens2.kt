@@ -122,7 +122,6 @@ fun LessonBody(topic: Topic, lang: String) {
         val sa = topic.sa
         sa.sections.firstOrNull { it.n == 7 }?.let { s -> if (s.paras.isNotEmpty()) { SectionTitle(tr("derivations")); s.paras.forEach { Sx(tx(it, "en"), size = 15.sp, modifier = Modifier.padding(bottom = 8.dp)) } } }
         if (sa.ex.size > 1) { SectionTitle(tr("examples")); ExampleRows(sa.ex, "en", showComment = false) }
-        Sx(tr("source_note_en"), size = 12.sp, color = t.muted, italic = true, modifier = Modifier.padding(top = 12.dp))
         return
     }
     val lc = topic.lc(lang)

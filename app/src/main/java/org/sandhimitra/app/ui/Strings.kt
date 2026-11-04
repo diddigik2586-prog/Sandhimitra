@@ -59,7 +59,6 @@ object S {
         "notes" to Triple("टिप्पण्यः अपवादाश्च", "ಟಿಪ್ಪಣಿಗಳು ಮತ್ತು ಅಪವಾದಗಳು", "Notes, options and exceptions"),
         "derivations" to Triple("प्रक्रियादर्शनम्", "ಪ್ರಕ್ರಿಯಾ ದರ್ಶನ", "Derivations (from the source text)"),
         "examples" to Triple("उदाहरणानि", "ಉದಾಹರಣೆಗಳು", "Examples"),
-        "source_note_en" to Triple("", "", "The explanation above is composed independently in English. Derivations and examples are shown from the Sanskrit source text, transliterated into IAST."),
         "sep" to Triple("विच्छेदः", "ವಿಚ್ಛೇದ", "Separate form"),
         "joined" to Triple("संहितारूपम्", "ಸಂಧಿರೂಪ", "Joined form"),
         "operation" to Triple("स्थानी-निमित्त-विधेयाः", "ಸ್ಥಾನಿ-ನಿಮಿತ್ತ-ವಿಧೇಯ", "Operation"),

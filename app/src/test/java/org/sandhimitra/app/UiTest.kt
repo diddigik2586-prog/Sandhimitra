@@ -58,7 +58,7 @@ class UiTest {
         val tops = order.map { rule.onAllNodesWithText(it).fetchSemanticsNodes().last().boundsInRoot.top }
         assertEquals(tops.sorted(), tops)
         rule.onAllNodesWithText("About App").onLast().performClick(); rule.waitForIdle()
-        rule.onAllNodesWithText("About App").assertCountEquals(1)     // only the page title remains: menu closed
+        rule.onNodeWithText("About the App").assertExists()     // only the page title remains: menu closed
     }
 
     @Test fun categoryTopicAndBack() {

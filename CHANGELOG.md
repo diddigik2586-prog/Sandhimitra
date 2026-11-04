@@ -1,4 +1,8 @@
 # Changelog
+## 1.0.7-sample
+- Removed the English-mode note about independent composition/IAST everywhere.
+- About page replaced with the author's text (plus a one-line dictionary licence credit).
+- Home: Introduction and Sandhātrī bars inverted (indigo with light text in light theme; copper with indigo text in dark theme).
 ## 1.0.6-sample
 - Typing ल+ृ / ल+ॄ / ल+ॢ / ल+ॣ (and ಲ+ೃ…) in any Sandhātrī field is converted at once to the vowel ऌ / ॡ (ಌ / ೡ); the engine also reads these forms if pasted.
 ## 1.0.5-sample
