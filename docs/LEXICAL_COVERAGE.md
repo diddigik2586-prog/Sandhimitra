@@ -1,0 +1,3 @@
+# Lexical coverage (actual counts, `docs/lexical_report.json`)
+Monier-Williams headwords 194,083 (m 56,424; f 29,786; n 27,968; mfn 48,557; ind 5,171; unclassified 26,177) · attested forms from the documents 793 · closed-class 43 · all stored as SLP1 in `assets/lexicon/lexicon.db`, indexed, deduplicated by key.
+Source/licence: Cologne Digital Sanskrit Dictionaries (sanskrit-lexicon/csl-orig), CC BY-SA 4.0 (`MW_LICENSE_CC-BY-SA-4.0.txt`). Verification: headwords/attested = exact support; ending-derived = provisional. Not included: inflected-form database, dhātu paradigms, corpora (none obtainable/licensed within this session).

@@ -1,0 +1,2 @@
+# Session resume
+Done: content pipeline, engine + 41 tests, full UI, 7 UI tests, release APK signed (dist/). Remaining/ideas: on-device testing; review of Sanskrit/Kannada bio translations and SOURCE_DISCREPANCIES; extend rules (8.2.23, 8.3.40-41, ṅaḥ kuk-ṭuk); inflection data; English translation of long source paragraphs; new keystore for publication. Env note: Maven Central rate-limits the sandbox (use ~/.gradle/init.d mirror + ROBOLECTRIC_DEPS_DIR).

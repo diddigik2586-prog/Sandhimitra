@@ -1,0 +1,2 @@
+-keep class org.sandhimitra.app.engine.** { *; }
+-keepclassmembers class * { @androidx.room.* <methods>; }

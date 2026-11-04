@@ -1,0 +1,396 @@
+{
+ "groups": {
+  "intro": [
+   {
+    "id": "t00",
+    "sa": "सन्धिः संहिता च",
+    "kn": "ಸಂಧಿ ಮತ್ತು ಸಂಹಿತೆ",
+    "en": "Sandhi and Saṃhitā",
+    "has_lp": false
+   },
+   {
+    "id": "t01",
+    "sa": "त्रिविधानी सन्धिकार्याणि",
+    "kn": "ಮೂರು ಬಗೆಯ ಸಂಧಿಕಾರ್ಯಗಳು",
+    "en": "Three kinds of Sandhi operation: ādeśa, āgama, lopa",
+    "has_lp": false
+   },
+   {
+    "id": "t02",
+    "sa": "स्थानी निमित्तम् आदेशश्च",
+    "kn": "ಸ್ಥಾನಿ, ನಿಮಿತ್ತ ಮತ್ತು ಆದೇಶ",
+    "en": "Sthānī, nimitta and ādeśa",
+    "has_lp": false
+   },
+   {
+    "id": "t03",
+    "sa": "सन्धौ नित्यता विकल्पश्च",
+    "kn": "ಸಂಧಿಯಲ್ಲಿ ನಿತ್ಯತ್ವ ಮತ್ತು ವಿಕಲ್ಪ",
+    "en": "Obligatory and optional Sandhi",
+    "has_lp": false
+   },
+   {
+    "id": "t04",
+    "sa": "वर्णपरिचयः",
+    "kn": "ವರ್ಣಪರಿಚಯ",
+    "en": "Introduction to sounds: vowels, consonants, vargas, pratyāhāras",
+    "has_lp": false
+   },
+   {
+    "id": "t05",
+    "sa": "स्थानं प्रयत्नः सवर्णसंज्ञा च",
+    "kn": "ಉಚ್ಚಾರಣಾ ಸ್ಥಾನ, ಪ್ರಯತ್ನ ಮತ್ತು ಸವರ್ಣಸಂಜ್ಞೆ",
+    "en": "Place, effort and savarṇa",
+    "has_lp": false
+   },
+   {
+    "id": "t06",
+    "sa": "पदं पदान्तः पदादिश्च",
+    "kn": "ಪದ, ಪದಾಂತ ಮತ್ತು ಪದಾದಿ",
+    "en": "Pada, padānta and padādi",
+    "has_lp": false
+   },
+   {
+    "id": "t07",
+    "sa": "सन्धिविभागः",
+    "kn": "ಸಂಧಿ ವಿಭಾಗ",
+    "en": "Classification of Sandhi",
+    "has_lp": false
+   }
+  ],
+  "vowel": [
+   {
+    "id": "t08",
+    "sa": "सवर्णदीर्घसन्धिः",
+    "kn": "ಸವರ್ಣದೀರ್ಘ ಸಂಧಿ",
+    "en": "Savarṇadīrgha Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t09",
+    "sa": "गुणसन्धिः",
+    "kn": "ಗುಣಸಂಧಿ",
+    "en": "Guṇa Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t10",
+    "sa": "वृद्धिसन्धिः",
+    "kn": "ವೃದ್ಧಿಸಂಧಿ",
+    "en": "Vṛddhi Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t11",
+    "sa": "यण्सन्धिः",
+    "kn": "ಯಣ್ ಸಂಧಿ",
+    "en": "Yaṇ Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t12",
+    "sa": "अयादिसन्धिः",
+    "kn": "ಅಯಾದಿ ಸಂಧಿ",
+    "en": "Ayādi Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t13",
+    "sa": "पूर्वरूपसन्धिः",
+    "kn": "ಪೂರ್ವರೂಪ ಸಂಧಿ",
+    "en": "Pūrvarūpa Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t14",
+    "sa": "पररूपसन्धिः",
+    "kn": "ಪರರೂಪ ಸಂಧಿ",
+    "en": "Pararūpa Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t15",
+    "sa": "स्वरसन्धीनां परस्परसम्बन्धः",
+    "kn": "ಸ್ವರಸಂಧಿಗಳ ಪರಸ್ಪರ ಸಂಬಂಧ",
+    "en": "Relations among vowel Sandhi rules",
+    "has_lp": true
+   },
+   {
+    "id": "t38",
+    "sa": "अवग्रहचिह्नस्य प्रयोगः",
+    "kn": "ಅವಗ್ರಹ ಚಿಹ್ನೆಯ",
+    "en": "The avagraha sign",
+    "has_lp": true
+   },
+   {
+    "id": "t39",
+    "sa": "यकारवकारयोः विकल्पेन लोपः",
+    "kn": "ಪದಾಂತ ಯಕಾರ ಮತ್ತು ವಕಾರಗಳ ವಿಕಲ್ಪ ಲೋಪ",
+    "en": "Optional loss of y and v (Śākalya-lopa)",
+    "has_lp": true
+   }
+  ],
+  "consonant": [
+   {
+    "id": "t16",
+    "sa": "हल्सन्धिप्रवेशः",
+    "kn": "ಹಲ್ ಸಂಧಿ ಪ್ರವೇಶ",
+    "en": "Entry into consonant Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t17",
+    "sa": "श्चुत्वसन्धिः",
+    "kn": "ಶ್ಚುತ್ವ ಸಂಧಿ",
+    "en": "Ścutva Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t18",
+    "sa": "ष्टुत्वसन्धिः",
+    "kn": "ಷ್ಟುತ್ವ ಸಂಧಿ",
+    "en": "Ṣṭutva Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t19",
+    "sa": "जश्त्वसन्धिः",
+    "kn": "ಜಶ್ತ್ವ ಸಂಧಿ",
+    "en": "Jaśtva Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t20",
+    "sa": "चर्त्वसन्धिः",
+    "kn": "ಚರ್ತ್ವ ಸಂಧಿ",
+    "en": "Cartva Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t21",
+    "sa": "अनुनासिकसन्धिः",
+    "kn": "ಅನುನಾಸಿಕ ಸಂಧಿ",
+    "en": "Anunāsika Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t22",
+    "sa": "अनुस्वारसन्धिः",
+    "kn": "ಅನುಸ್ವಾರ ಸಂಧಿ",
+    "en": "Anusvāra Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t23",
+    "sa": "परसवर्णसन्धिः",
+    "kn": "ಪರಸವರ್ಣ ಸಂಧಿ",
+    "en": "Parasavarṇa Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t24",
+    "sa": "तुगागमसन्धिः",
+    "kn": "ತುಗಾಗಮ ಸಂಧಿ",
+    "en": "Tugāgama Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t25",
+    "sa": "ङमुडागमसन्धिः",
+    "kn": "ಙಮುಡಾಗಮ ಸಂಧಿ",
+    "en": "Ṅamuṭ augment (Ṅamuḍāgama)",
+    "has_lp": true
+   },
+   {
+    "id": "t26",
+    "sa": "छत्वसन्धिः",
+    "kn": "ಛತ್ವ ಸಂಧಿ",
+    "en": "Chatva Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t27",
+    "sa": "पूर्वसवर्णसन्धिः",
+    "kn": "ಪೂರ್ವಸವರ್ಣ ಸಂಧಿ",
+    "en": "Pūrvasavarṇa Sandhi",
+    "has_lp": true
+   },
+   {
+    "id": "t28",
+    "sa": "सत्वसन्धिः रुत्वप्रकरणं च",
+    "kn": "ಸತ್ವ ಸಂಧಿ",
+    "en": "Satva and rutva (including nakāra)",
+    "has_lp": true
+   },
+   {
+    "id": "t29",
+    "sa": "हल्सन्धीनां परस्परसम्बन्धः",
+    "kn": "ಹಲ್ ಸಂಧಿಗಳ ಪರಸ್ಪರ ಸಂಬಂಧ",
+    "en": "Relations among consonant Sandhi rules",
+    "has_lp": true
+   }
+  ],
+  "visarga": [
+   {
+    "id": "t30",
+    "sa": "विसर्गस्य उत्पत्तिः",
+    "kn": "ವಿಸರ್ಗದ ಉತ್ಪತ್ತಿ",
+    "en": "Origin of visarga",
+    "has_lp": true
+   },
+   {
+    "id": "t31",
+    "sa": "विसर्गलोपः",
+    "kn": "ವಿಸರ್ಗಲೋಪ ಸಂಧಿ",
+    "en": "Loss of visarga",
+    "has_lp": true
+   },
+   {
+    "id": "t32",
+    "sa": "विसर्गस्य उकारादेशः",
+    "kn": "ವಿಸರ್ಗದ ಉಕಾರಾದೇಶ",
+    "en": "Visarga becoming u",
+    "has_lp": true
+   },
+   {
+    "id": "t33",
+    "sa": "विसर्गस्य रेफादेशः",
+    "kn": "ವಿಸರ್ಗದ ರೇಫಾದೇಶ",
+    "en": "Visarga becoming r",
+    "has_lp": true
+   },
+   {
+    "id": "t34",
+    "sa": "विसर्गस्य सकारादेशः",
+    "kn": "ವಿಸರ್ಗದ ಸಕಾರಾದೇಶ",
+    "en": "Visarga becoming s (ś, ṣ)",
+    "has_lp": true
+   },
+   {
+    "id": "t35",
+    "sa": "जिह्वामूलीयः उपध्मानीयश्च",
+    "kn": "ಜಿಹ್ವಾಮೂಲೀಯ ಮತ್ತು ಉಪಧ್ಮಾನೀಯ",
+    "en": "Jihvāmūlīya and upadhmānīya",
+    "has_lp": true
+   },
+   {
+    "id": "t36",
+    "sa": "विसर्गसन्धीनां परस्परसम्बन्धः",
+    "kn": "ವಿಸರ್ಗಸಂಧಿಗಳ ಪರಸ್ಪರ ಸಂಬಂಧ",
+    "en": "Relations among visarga Sandhi rules",
+    "has_lp": true
+   }
+  ],
+  "prakriti": [
+   {
+    "id": "t37",
+    "sa": "प्रकृतिभावः",
+    "kn": "ಪ್ರಕೃತಿಭಾವ ಸಂಧಿ",
+    "en": "Prakṛtibhāva",
+    "has_lp": false
+   }
+  ],
+  "practice": [
+   {
+    "id": "t40",
+    "sa": "सन्धिप्रकारनिर्णयः",
+    "kn": "ಸಂಧಿಪ್ರಕಾರ ನಿರ್ಣಯ",
+    "en": "Identifying the type of Sandhi",
+    "has_lp": false
+   },
+   {
+    "id": "t41",
+    "sa": "सन्धिविच्छेदाभ्यासः",
+    "kn": "ಸಂಧಿವಿಚ್ಛೇದ ಅಭ್ಯಾಸ",
+    "en": "Practice in separating joined forms (Sandhi-viccheda)",
+    "has_lp": false
+   },
+   {
+    "id": "t42",
+    "sa": "सन्धियोजनाभ्यासः",
+    "kn": "ಸಂಧಿಯೋಜನಾ ಅಭ್ಯಾಸ",
+    "en": "Practice in joining words (Sandhi-yojana)",
+    "has_lp": false
+   },
+   {
+    "id": "t43",
+    "sa": "पुनरावृत्तिः मूल्याङ्कनं च",
+    "kn": "ಪುನರಾವರ್ತನೆ ಮತ್ತು ಅಂತಿಮ ಮೌಲ್ಯಮಾಪನ",
+    "en": "Review and assessment",
+    "has_lp": false
+   }
+  ]
+ },
+ "section_labels": {
+  "1": [
+   "प्रकरणनाम",
+   "ಪ್ರಕರಣದ ಹೆಸರು",
+   "Topic"
+  ],
+  "2": [
+   "प्रस्तावना",
+   "ಪ್ರಸ್ತಾವನೆ",
+   "Introduction"
+  ],
+  "3": [
+   "स्वरूपम्",
+   "ಸ್ವರೂಪ",
+   "Nature of the rule"
+  ],
+  "4": [
+   "सूत्राणि",
+   "ಸೂತ್ರಗಳು",
+   "Sūtras"
+  ],
+  "5": [
+   "पदच्छेदः अर्थश्च",
+   "ಪದಚ್ಛೇದ ಮತ್ತು ಅರ್ಥ",
+   "Word analysis and meaning"
+  ],
+  "6": [
+   "नियमविवरणम्",
+   "ನಿಯಮ ವಿವರಣೆ",
+   "Explanation of the rule"
+  ],
+  "7": [
+   "प्रक्रियादर्शनम्",
+   "ಪ್ರಕ್ರಿಯಾ ದರ್ಶನ",
+   "Derivations"
+  ],
+  "8": [
+   "उदाहरणानि",
+   "ಉದಾಹರಣೆಗಳು",
+   "Examples"
+  ],
+  "9": [
+   "विकल्पः अपवादाश्च",
+   "ವಿಕಲ್ಪ ಮತ್ತು ಅಪವಾದ",
+   "Options and exceptions"
+  ],
+  "10": [
+   "विशेषावधानानि",
+   "ವಿಶೇಷ ಸೂಚನೆಗಳು",
+   "Special notes"
+  ],
+  "11": [
+   "स्मरणीयांशाः",
+   "ನೆನಪಿಡಬೇಕಾದವು",
+   "To remember"
+  ],
+  "12": [
+   "अभ्यासः",
+   "ಅಭ್ಯಾಸ",
+   "Exercises"
+  ],
+  "13": [
+   "स्वाध्यायप्रश्नाः",
+   "ಸ್ವಾಧ್ಯಾಯ ಪ್ರಶ್ನೋತ್ತರಗಳು",
+   "Self-study questions"
+  ],
+  "14": [
+   "प्रकरणसारः",
+   "ಪ್ರಕರಣಸಾರ",
+   "Summary"
+  ]
+ }
+}
