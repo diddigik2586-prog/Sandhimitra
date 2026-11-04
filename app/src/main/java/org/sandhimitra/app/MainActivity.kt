@@ -240,8 +240,8 @@ private fun SectionScreen(section: Section, lang: AppLanguage, mode: LessonMode,
         Spacer(Modifier.height(14.dp))
         if (section == Section.VOWEL || section == Section.CONSONANT || section == Section.VISARGA) {
             SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-                SegmentedButton(selected=mode==LessonMode.LESSON,onClick={onMode(LessonMode.LESSON)},shape=SegmentedButtonDefaults.itemShape(0),label={Text(when(lang){AppLanguage.ENGLISH->"Lesson";AppLanguage.SANSKRIT->"पाठः";AppLanguage.KANNADA->"ಪಾಠ"})})
-                SegmentedButton(selected=mode==LessonMode.PRACTICE,onClick={onMode(LessonMode.PRACTICE)},shape=SegmentedButtonDefaults.itemShape(1),label={Text(when(lang){AppLanguage.ENGLISH->"Practice";AppLanguage.SANSKRIT->"अभ्यासः";AppLanguage.KANNADA->"ಅಭ್ಯಾಸ"})})
+                SegmentedButton(selected=mode==LessonMode.LESSON,onClick={onMode(LessonMode.LESSON)},shape=SegmentedButtonDefaults.itemShape(0, 2),label={Text(when(lang){AppLanguage.ENGLISH->"Lesson";AppLanguage.SANSKRIT->"पाठः";AppLanguage.KANNADA->"ಪಾಠ"})})
+                SegmentedButton(selected=mode==LessonMode.PRACTICE,onClick={onMode(LessonMode.PRACTICE)},shape=SegmentedButtonDefaults.itemShape(1, 2),label={Text(when(lang){AppLanguage.ENGLISH->"Practice";AppLanguage.SANSKRIT->"अभ्यासः";AppLanguage.KANNADA->"ಅಭ್ಯಾಸ"})})
             }
             Spacer(Modifier.height(12.dp))
             if (mode==LessonMode.LESSON) LessonContent(section, lang, card, text) else PracticeContent(section, lang, card, text)
