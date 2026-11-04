@@ -108,7 +108,7 @@ private fun StepsView(steps: List<Step>) {
             Sx("${i + 1}. ${Script.render(r?.name ?: st.ruleId, lang)} (${r?.ref ?: ""})", size = 14.sp, weight = FontWeight.SemiBold, color = t.primary)
             val sutra = r?.sutraDeva ?: ""
             if (sutra.isNotEmpty()) Sx(Script.render(sutra, lang), size = 13.sp, color = t.muted)
-            if (st.from.isNotEmpty() || st.to.isNotEmpty()) Sx("${slTokens(st.from, lang)}  →  ${if (st.to.isEmpty()) "∅" else slTokens(st.to, lang)}${if (st.note == "vartika") "   [${S.t("vartika", lang)}]" else if (st.note.isNotEmpty() && st.note != "unchanged") "   [${st.note}]" else ""}", size = 14.sp)
+            if (st.from.isNotEmpty() || st.to.isNotEmpty()) Sx("${slTokens(st.from, lang)}  →  ${if (st.to.isEmpty()) "∅" else slTokens(st.to, lang)}${if (st.note in setOf("vartika", "stem", "dual")) "   [${S.t(st.note, lang)}]" else if (st.note.isNotEmpty() && st.note != "unchanged") "   [${st.note}]" else ""}", size = 14.sp)
         }
     }
 }

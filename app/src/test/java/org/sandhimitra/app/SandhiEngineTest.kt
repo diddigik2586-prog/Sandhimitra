@@ -22,6 +22,7 @@ class SandhiEngineTest {
                 override fun isHeadword(k1: String) = has("SELECT g FROM lex WHERE k1=?", k1) != null
                 override fun isAttested(form: String) = has("SELECT f FROM attested WHERE f=?", form) != null
                 override fun closedClass(form: String) = has("SELECT c FROM closed WHERE f=?", form)
+                override fun weight(k1: String) = has("SELECT w FROM lex WHERE k1=?", k1)?.toIntOrNull() ?: 0
             })
         }
         fun d(s: String) = Script.slp1ToDevanagari(s)
@@ -45,7 +46,7 @@ class SandhiEngineTest {
     @Test fun vrddhi() { assertEquals(setOf("एकैकम्"), fwd("एक", "एकम्")); assertEquals(setOf("देवैश्वर्यम्"), fwd("देव", "ऐश्वर्यम्")); assertEquals(setOf("महौषधिः"), fwd("महा", "ओषधिः")) }
     @Test fun yan() { assertEquals(setOf("दध्यत्र"), fwd("दधि", "अत्र")); assertEquals(setOf("मध्वरिः"), fwd("मधु", "अरिः")); assertEquals(setOf("पित्राज्ञा"), fwd("पितृ", "आज्ञा")); assertEquals(setOf("नद्यम्बु"), fwd("नदी", "अम्बु")) }
     @Test fun ayadi() { assertEquals(setOf("नयनम्"), fwd("ने", "अनम्", Ctx(leftPada = false))); val r = fwd("हरे", "एहि"); assertTrue("हरयेहि" in r); assertTrue("हर एहि" in r); assertTrue("नायकः" in fwd("नै", "अकः")); assertTrue("पावकः" in fwd("पौ", "अकः")); assertTrue("पवनम्" in fwd("पो", "अनम्", Ctx(leftPada = false))) }
-    @Test fun purvarupa() { assertEquals(setOf("हरेऽव"), fwd("हरे", "अव")); assertEquals(setOf("विष्णोऽव"), fwd("विष्णो", "अव")); assertEquals(3, fwd("गो", "अग्रम्").size) }
+    @Test fun purvarupa() { assertEquals(setOf("हरेऽव"), fwd("हरे", "अव")); assertEquals(setOf("विष्णोऽव"), fwd("विष्णो", "अव")); assertTrue(fwd("गो", "अग्रम्").containsAll(setOf("गोऽग्रम्", "गो अग्रम्", "गवाग्रम्"))) }
     @Test fun pararupa() { assertEquals(setOf("प्रेजते"), fwd("प्र", "एजते")); assertEquals(setOf("उपोषति"), fwd("उप", "ओषति")); assertEquals(setOf("उपैति"), fwd("उप", "एति")); assertEquals(setOf("उपार्च्छति"), fwd("उप", "ऋच्छति")) }
     // negative / blocker
     @Test fun noVowelRuleBeforeConsonant() { assertEquals(setOf("तस्मै नमः".replace(" ", "")), fwd("तस्मै", "नमः").map { it.replace(" ", "") }.toSet()) }
@@ -68,7 +69,7 @@ class SandhiEngineTest {
     @Test fun anusvara() { assertEquals(setOf("सं तापः".replace(" ", "")), fwd("सम्", "तापः").filter { it.startsWith("सं") }.toSet()); assertTrue("सन्तापः" in fwd("सम्", "तापः")); assertTrue("अङ्कः" in fwd("अम्", "कः")); assertTrue("संरक्षति" in fwd("सम्", "रक्षति")); assertTrue("संसारः" in fwd("सम्", "सारः")); assertTrue("सम्राट्" in fwd("सम्", "राट्")); assertTrue("तमपि" in fwd("तम्", "अपि")) }
     @Test fun tuk() { assertEquals(setOf("वृक्षच्छाया"), fwd("वृक्ष", "छाया")); val r = fwd("सीता", "छाया"); assertTrue("सीताच्छाया" in r && "सीताछाया" in r); assertEquals(setOf("तवच्छत्रम्"), fwd("तव", "छत्रम्")) }
     @Test fun ngamut() { assertEquals(setOf("प्रत्यङ्ङात्मा"), fwd("प्रत्यङ्", "आत्मा")); assertEquals(setOf("महानात्मा"), fwd("महान्", "आत्मा")) }
-    @Test fun nashchavi() { assertEquals(setOf("तांस्तान्"), fwd("तान्", "तान्")); assertEquals(setOf("भवांश्च"), fwd("भवान्", "च")); assertEquals(setOf("प्रशान्तनोति"), fwd("प्रशान्", "तनोति")) }
+    @Test fun nashchavi() { assertTrue("तांस्तान्" in fwd("तान्", "तान्") && "ताँस्तान्" in fwd("तान्", "तान्")); assertTrue("भवांश्च" in fwd("भवान्", "च")); assertEquals(setOf("प्रशान्तनोति"), fwd("प्रशान्", "तनोति")) }
     @Test fun purvasavarna() { val r = fwd("वाक्", "हरिः"); assertTrue("वाग्घरिः" in r); assertTrue("वाग्हरिः" in r); assertTrue("उत्थानम्" in fwd("उद्", "स्थानम्")) }
     @Test fun torli() { assertTrue("विद्वाँल्लिखति" in fwd("विद्वान्", "लिखति")) }
 
@@ -81,6 +82,17 @@ class SandhiEngineTest {
     @Test fun visargaSibilantOptional() { val r = fwd("हरिः", "शेते"); assertTrue("हरिश्शेते" in r && "हरिः शेते" in r) }
     @Test fun sRule() { assertEquals(setOf("रामश्च"), fwd("रामस्", "च")); assertEquals(setOf("रामोऽयम्"), fwd("रामस्", "अयम्")) }
 
+    @Test fun inputVariants() { assertEquals(setOf("तवल्कारः"), fwd("तव", "लृकारः")); assertEquals(setOf("तवल्कारः"), fwd("tava", "lṛkāraḥ")); assertEquals(setOf("तवल्कारः"), fwd("tava", "l̥kāraḥ")) }
+    @Test fun morphemeAndIrregular() {
+        assertTrue("चयनम्" in fwd("चे", "अनम्")); assertTrue("भवनम्" in fwd("भो", "अनम्")); assertTrue("अक्षौहिणी" in fwd("अक्ष", "ऊहिनी")); assertTrue("शकन्धुः" in fwd("शक", "अन्धुः"))
+        assertTrue("अद्योम्" in fwd("अद्य", "ओम्")); assertTrue("उल्लासः" in fwd("उद्", "लासः")); assertTrue("नमस्कारः" in fwd("नमः", "कारः")); assertTrue("निष्कामः" in fwd("निः", "कामः"))
+        assertTrue("उत्तम्भनम्" in fwd("उद्", "स्तम्भनम्")); assertTrue("षण्णवतिः" in fwd("षट्", "नवतिः")); assertTrue("अन्तर्यामी" in fwd("अन्तः", "यामी")); assertTrue("मुनी आगच्छतः" in fwd("मुनी", "आगच्छतः"))
+        assertTrue("श्रावणम्" in fwd("श्रौ", "अनम्", Ctx(leftPada = false))); assertTrue("शान्तः" in fwd("शान्", "तः", Ctx(leftPada = false)))
+    }
+    @Test fun reverseSelected() {
+        assertTrue(hasSplit("देवालयः", "देव", "आलयः")); assertTrue(hasSplit("स्वागतम्", "सु", "आगतम्")); assertTrue(hasSplit("सतीशः", "सती", "ईशः")); assertTrue(hasSplit("नमस्कारः", "नमः", "कारः")); assertTrue(hasSplit("अक्षौहिणी", "अक्ष", "ऊहिनी"))
+        assertTrue(hasSplit("पयोदः", "पयः", "दः")); assertTrue(hasSplit("गवाक्षः", "गो", "अक्षः"))
+    }
     @Test fun particlesAndShari() { assertEquals(setOf("अहो इति"), fwd("अहो", "इति")); assertEquals(setOf("उ इति"), fwd("उ", "इति")); assertTrue("हरिः शेते" in fwd("हरिः", "शेते") && "हरिश्शेते" in fwd("हरिः", "शेते")); assertEquals(setOf("कः त्सरति"), fwd("कः", "त्सरति")) }
     @Test fun noChangeJunctionSplit() {
         val r = splits("संहितापाठः"); assertTrue(r.analyses.any { d(it.left) == "संहिता" && d(it.right) == "पाठः" && it.status == Status.VERIFIED })

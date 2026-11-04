@@ -23,7 +23,7 @@ data class SplitResult(val input: String, val analyses: List<Split>, val unsuppo
  * Forward ([join]) applies the registry rules in Pāṇinian order; reverse ([split]) proposes candidate
  * pairs and keeps only those that [join] reproduces exactly, so both directions share one rule implementation.
  */
-class SandhiEngine(lexicon: LexiconApi? = null) {
+class SandhiEngine(private val lexicon: LexiconApi? = null) {
     private val support = LexSupport(lexicon)
     private val hasLexicon = lexicon != null
 
@@ -66,17 +66,49 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
     internal fun joinPair(L: String, R: String, ctx: Ctx, notes: MutableList<String>): List<Alt> {
         val a = L.last(); val b = R.first()
         if (Ph.isVowel(b) || L.endsWith("3")) pragrhya(L, ctx, notes)?.let { return listOf(Alt("$L $R", listOf(Step(it, L.takeLast(2), "", "unchanged")))) }
+        SPECIAL[L to R]?.let { sp -> return sp.map { Alt(it.first, listOf(Step("V10", L.takeLast(1) + "+" + R.take(1), it.first.take(0), it.second)), sp.size > 1) } }
+        if (Ph.isVowel(b) && a in "IU" && !ctx.leftPragrhya && looksDual(L)) {
+            val normal = joinPairCore(L, R, ctx, notes)
+            return listOf(Alt("$L $R", listOf(Step("P02", L.takeLast(1), "", "dual")), true)) + normal.map { it.copy(optional = true) }
+        }
+        return joinPairCore(L, R, ctx, notes)
+    }
+
+    /** Nominative dual in ī/ū/e is pragṛhya; recognised when the stem is a headword and the form itself is not. */
+    private fun looksDual(L: String): Boolean {
+        val lx = lexicon ?: return false
+        if (lx.isHeadword(L)) return false
+        val st = L.dropLast(1)
+        return when (L.last()) { 'I' -> lx.isHeadword(st + "i"); 'U' -> lx.isHeadword(st + "u"); else -> false }
+    }
+
+    private fun joinPairCore(L: String, R: String, ctx: Ctx, notes: MutableList<String>): List<Alt> {
+        val a = L.last(); val b = R.first()
         return when {
             Ph.isVowel(a) && Ph.isVowel(b) -> vowelVowel(L, R, ctx)
             Ph.isVowel(a) -> vowelConsonant(L, R)
             a == 'H' || a == 's' || a == 'r' -> visarga(L, R)
             a == 'm' || a == 'M' -> anusvara(L, R)
-            a in "NRn" -> nasalFinal(L, R, notes)
+            a in "NRn" -> nasalFinal(L, R, notes, ctx)
             Ph.isJhalStop(a) -> stopFinal(L, R, notes, ctx)
             a in "yvl" -> listOf(Alt(L + R, emptyList()))
+            (a == 'z' || a == 'S') && !ctx.leftPada -> {
+                if (a == 'z' && b in "tTdDn") { val r = Ph.toRetroflex(b); listOf(Alt(L + r + R.drop(1), listOf(Step("C03", "z$b", "z$r")))) } else listOf(Alt(L + R, emptyList()))
+            }
             else -> emptyList()
         }
     }
+
+    /** Irregular joins taught as vārttikas in the source (topics t09, t10, t14, t17...). Value: result forms with a note. */
+    private val SPECIAL: Map<Pair<String, String>, List<Pair<String, String>>> = mapOf(
+        ("akza" to "UhinI") to listOf("akzOhiRI" to "vartika"), ("pra" to "UhaH") to listOf("prOhaH" to "vartika"), ("pra" to "UQaH") to listOf("prOQaH" to "vartika"),
+        ("pra" to "eSaH") to listOf("prEzaH" to "vartika"), ("pra" to "eSyaH") to listOf("prEzyaH" to "vartika"), ("sva" to "IraH") to listOf("svEraH" to "vartika"),
+        ("sva" to "IriRI") to listOf("svEriRI" to "vartika"), ("sukha" to "ftaH") to listOf("sukhArtaH" to "vartika"), ("sTUla" to "otuH") to listOf("sTUlOtuH" to "vartika", "sTUlotuH" to "vartika"),
+        ("bimba" to "oSTaH") to listOf("bimbOSTaH" to "vartika", "bimboSTaH" to "vartika"), ("tava" to "oSTaH") to listOf("tavOSTaH" to "vartika"),
+        ("Saka" to "anDuH") to listOf("SakanDuH" to "vartika"), ("karka" to "anDuH") to listOf("karkanDuH" to "vartika"), ("go" to "indraH") to listOf("gavendraH" to "vartika"),
+        ("kula" to "awA") to listOf("kulawA" to "vartika"), ("sAra" to "aNgaH") to listOf("sAraNgaH" to "vartika"), ("patat" to "aYjaliH") to listOf("pataYjaliH" to "vartika"),
+        ("manas" to "ISA") to listOf("maRISA" to "vartika")
+    ).filterValues { it.isNotEmpty() }
 
     private fun pragrhya(L: String, ctx: Ctx, notes: MutableList<String>): String? {
         if (L.endsWith("3")) return "P01"
@@ -89,12 +121,13 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
 
     private fun a1(res: String, vararg st: Step, opt: Boolean = false) = Alt(res, st.toList(), opt)
 
-    private val eDhatuHints = listOf("eti", "eD", "ej", "ez", "ew", "oz", "ok", "ow")
+    private val eDhatuHints = listOf("eti", "eD", "eh", "ej", "ez", "ew", "oz", "ok", "ow")
     private val rDhatuHints = listOf("fc", "fD", "fj", "fN", "fh")
 
     private fun vowelVowel(L: String, R: String, ctx: Ctx): List<Alt> {
         val a = L.last(); val b = R.first(); val pre = L.dropLast(1); val post = R.drop(1)
         val upasarga = ctx.leftUpasarga ?: (L in Ph.UPASARGAS)
+        if (a in "aA" && R == "om") return listOf(a1(pre + "om", Step("V08", "$a+o", "o", "6.1.95")))
         val dhatu = ctx.rightDhatu ?: (eDhatuHints.any { R.startsWith(it) } || rDhatuHints.any { R.startsWith(it) })
         return when (a) {
             'a', 'A' -> when (b) {
@@ -125,6 +158,10 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
                     out += Alt(L + " " + R, listOf(Step("V07", "go+a", "go a", "6.1.122")), true)
                     out += Alt("gavA$post", listOf(Step("V07", "go+a", "gavA", "6.1.123")), true)
                 }
+                if (L.length <= 3) {
+                out[0] = out[0].copy(optional = true)
+                out += Alt(natva(pre + (if (a == 'e') "ay" else "av") + R), listOf(Step("V06", a.toString(), if (a == 'e') "ay" else "av", "stem")), true)
+                }
                 out
             } else ayadi(pre, a, R, ctx.leftPada)
             'E', 'O' -> ayadi(pre, a, R, ctx.leftPada)
@@ -135,7 +172,7 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
     private fun ayadi(pre: String, a: Char, R: String, pada: Boolean): List<Alt> {
         val y = when (a) { 'e' -> "ay"; 'o' -> "av"; 'E' -> "Ay"; else -> "Av" }
         val dropped = if (a == 'e' || a == 'o') "a" else "A"
-        if (!pada) return listOf(Alt(pre + y + R, listOf(Step("V06", a.toString(), y))))
+        if (!pada) return listOf(Alt(natva(pre + y + R), listOf(Step("V06", a.toString(), y))))
         return listOf(
             Alt(pre + y + R, listOf(Step("V06", a.toString(), y)), true),
             Alt("$pre$dropped $R", listOf(Step("V06", a.toString(), y), Step("V09", y, dropped)), true)
@@ -155,6 +192,21 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
         return listOf(Alt(L + R, emptyList()))
     }
 
+    /** Ṇatva (8.4.1) inside a word: n after r/ṣ/ṛ(+ vowels, h y v r, k- and p-varga, anusvāra) becomes ṇ before a vowel or n m y v. */
+    private fun natva(w: String): String {
+        val sb = StringBuilder(w); var armed = false
+        for (i in sb.indices) {
+            val c = sb[i]
+            when {
+                c in "rzfF" -> armed = true
+                c == 'n' && armed && i + 1 < sb.length && (Ph.isVowel(sb[i + 1]) || sb[i + 1] in "nmyv") -> { sb[i] = 'R'; armed = false }
+                armed && (Ph.isVowel(c) || c in "hyvrkKgGNpPbBmM") -> {}
+                else -> armed = false
+            }
+        }
+        return sb.toString()
+    }
+
     private fun anusvara(L: String, R: String): List<Alt> {
         val c = L.last(); val b = R.first(); val base = L.dropLast(1)
         if (Ph.isVowel(b)) return listOf(Alt(L + R, emptyList()))
@@ -169,8 +221,10 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
         return out
     }
 
-    private fun nasalFinal(L: String, R: String, notes: MutableList<String>): List<Alt> {
+    private fun nasalFinal(L: String, R: String, notes: MutableList<String>, ctx: Ctx = Ctx()): List<Alt> {
         val c = L.last(); val b = R.first(); val base = L.dropLast(1)
+        if (!ctx.leftPada && c == 'n' && !Ph.isVowel(b) && b in "Szsh") return listOf(Alt(base + "M" + R, listOf(Step("C15", "n$b", "M$b"))))
+        if (!ctx.leftPada && c == 'n' && Ph.isJhalStop(b)) return listOf(Alt(L + R, listOf(Step("C15", "n$b", "M$b"), Step("C07", "M$b", "n$b", "8.4.58"))))
         if (Ph.isVowel(b)) {
             val prevShort = L.length >= 2 && Ph.isShort(L[L.length - 2])
             return if (prevShort) listOf(Alt(L + c + R, listOf(Step("C09", "$c+${b}", "$c$c$b"))))
@@ -181,7 +235,9 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
                 b in "cCwWtT" && !L.endsWith("praSAn") -> {
                     val s = when (b) { 'c', 'C' -> "S"; 'w', 'W' -> "z"; else -> "s" }
                     val second = if (s == "S") Step("C02", "s$b", "S$b") else if (s == "z") Step("C03", "s$b", "z$b") else null
-                    return listOf(Alt(base + "M" + s + R, listOfNotNull(Step("C12", "n$b", "Ms$b"), second)))
+                    if (!ctx.leftPada) return listOf(Alt(L + R, emptyList()))
+                    val st = listOfNotNull(Step("C12", "n$b", "Ms$b"), second)
+                    return listOf(Alt(base + "M" + s + R, st, true), Alt(base + "~" + s + R, st + Step("C12", "M", "~", "8.3.2"), true))
                 }
                 b == 'l' -> return listOf(Alt(base + "~" + "l" + R, listOf(Step("C13", "nl", "~ll"))))
                 b in "jJYS" -> return listOf(Alt(base + "Y" + R, listOf(Step("C02", "n$b", "Y$b"))))
@@ -196,6 +252,8 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
         if (base.isNotEmpty() && Ph.isCons(base.last())) notes += "padanta_conjunct"
         val steps = mutableListOf<Step>()
         if (L == "ud" && (R.startsWith("sTA"))) return listOf(Alt("utTA" + R.drop(3), listOf(Step("C01", "d", "d"), Step("C11", "sTA", "TA", "8.4.61"), Step("C04", "d", "t"))))
+        if (L == "ud" && R.startsWith("stamB")) return listOf(Alt("ut" + R.drop(1), listOf(Step("C01", "d", "d"), Step("C11", "stamB", "tamB", "8.4.61"), Step("C04", "d", "t"))))
+        if (Ph.isTVarga(Ph.jash(c0)) && b == 'l') return listOf(Alt(base + "l" + R, listOf(Step("C01", c0.toString(), Ph.jash(c0).toString()), Step("C13", "${Ph.jash(c0)}l", "ll"))))
         var cur = if (ctx.leftPada || b in "gGjJqQdDbB") Ph.jash(c0) else c0
         if (cur != c0 || ctx.leftPada) steps += Step(if (ctx.leftPada) "C01" else "C01", c0.toString(), cur.toString(), if (ctx.leftPada) "" else "8.4.53")
         var bn = b
@@ -214,13 +272,13 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
         val s1 = if (out[0].steps.isEmpty()) emptyList() else out[0].steps
         if (b == 'n' || b == 'm') {
             out[0] = out[0].copy(optional = true)
-            out += Alt(base + Ph.nasalOf(cur) + R, s1 + Step("C05", "$cur$b", "${Ph.nasalOf(cur)}$b", "8.4.45"), true)
+            out += Alt(base + Ph.nasalOf(cur) + bn + rest, s1 + Step("C05", "$cur$b", "${Ph.nasalOf(cur)}$b", "8.4.45"), true)
         }
         if (b == 'h') {
             out[0] = out[0].copy(optional = true)
             out += Alt(base + cur + Ph.voicedAspirate(cur) + rest, s1 + Step("C11", "${cur}h", "${cur}${Ph.voicedAspirate(cur)}", "8.4.62"), true)
         }
-        if (b == 'S' && R.length > 1 && (Ph.isVowel(R[1]) || R[1] in "hyvr")) {
+        if (b == 'S' && R.length > 1 && (Ph.isVowel(R[1]) || R[1] in "hyvrlmnNYR")) {
             out[0] = out[0].copy(optional = true)
             out += Alt(base + cur + "C" + rest, s1 + Step("C10", "S", "C", "8.4.63"), true)
         }
@@ -228,11 +286,29 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
     }
 
     private fun visarga(L: String, R: String): List<Alt> {
-        val last = L.last(); val core = L.dropLast(1); val b = R.first()
-        val preV = core.lastOrNull() ?: ' '
+        val last = L.last(); val core = L.dropLast(1)
         val sru = last != 'r'
-        val s0 = if (last == 's') listOf(Step("H01", "s", "ru")) else emptyList()
+        val s0 = if (last == 's') listOf(Step("H01", "s", "ru")) else emptyList<Step>()
+        if (last == 'H' && L in RADICAL_R) {
+            val rad = visargaCore(core + "r", R, false, core + "r", emptyList())
+            val sr = visargaCore(L, R, true, L, emptyList())
+            return (rad + sr).distinctBy { it.surface }.map { it.copy(optional = true) }
+        }
+        return visargaCore(L, R, sru, L, s0)
+    }
+
+    private val RADICAL_R = setOf("antaH", "punaH", "prAtaH", "svaH", "ahaH")
+    private val GATI_S = setOf("namaH", "puraH")
+    private val IU_S = setOf("niH", "duH", "AviH", "prAduH", "bahiH", "dhanuH", "sarpiH", "jyotiH")
+
+    private fun visargaCore(L0: String, R: String, sruIn: Boolean, unused: String, s0in: List<Step>): List<Alt> {
+        val last = L0.last(); val core = L0.dropLast(1); val b = R.first()
+        val preV = core.lastOrNull() ?: ' '
+        val sru = sruIn && last != 'r'
+        val s0 = if (L0.last() == 's') listOf(Step("H01", "s", "ru")) else s0in
         val coreNoV = if (core.isNotEmpty()) core.dropLast(1) else core
+        if (b in "kKpP" && L0 in GATI_S) return listOf(Alt(core + "s" + R, s0 + Step("H13", "H$b", "s$b", "8.3.40")))
+        if (b in "kKpP" && L0 in IU_S) return listOf(Alt(core + "z" + R, s0 + Step("H14", "H$b", "z$b", "8.3.41")))
         if (sru && (core == "sa" || core == "eza") && Ph.isCons(b)) return listOf(Alt("$core $R", s0 + Step("H11", "${core}H", core)))
         if (Ph.isKhar(b)) {
             val h = s0 + Step("H02", "ru", "H")
@@ -315,6 +391,7 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
         if (hasLexicon) for (k in 2..n - 2) {
             val L = J.substring(0, k); val R = J.substring(k)
             if (spaceAt >= 0 && spaceAt != k) continue
+            if (!Ph.isVowel(L.last()) || L.length < 3 || R.length < 4) continue
             if (L.none { Ph.isVowel(it) } || R.none { Ph.isVowel(it) }) continue
             val ls = support.classify(L); val rs = support.classify(R)
             if (ls.level == Support.NONE || rs.level == Support.NONE || ls.level == Support.VERBLIKE || rs.level == Support.VERBLIKE) continue
@@ -323,6 +400,10 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
         }
         // a form that is itself a dictionary word is not split at junctions where nothing changes (kamala is not ka + mala)
         if (support.classify(J).level == Support.EXACT) found.entries.removeAll { it.value.alt.steps.isEmpty() }
+        for ((k, v) in SPECIAL) for (res in v) if (res.first == J) {
+            val ls = support.classify(k.first); val rs = support.classify(k.second)
+            found.putIfAbsent("${k.first}|${k.second}|true", Split(k.first, k.second, Alt(J, listOf(Step("V10", "", "", res.second))), listOf("V10"), Status.PROVISIONAL, ls, rs, true))
+        }
         // prune trivial candidates (very short invented parts)
         val ok = mutableListOf<Split>(); val unsupported = mutableListOf<Split>()
         for (sp in found.values) {
@@ -337,8 +418,10 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
             } else unsupported += sp
         }
         // Occam: when a verified split without any Sandhi change exists, sandhi splits resting on stem+ending guesses are not offered
-        if (ok.any { it.alt.steps.isEmpty() && it.status == Status.VERIFIED }) ok.removeAll { it.alt.steps.isNotEmpty() && (it.leftSupport.level == Support.DERIVED || it.rightSupport.level == Support.DERIVED) }
-        fun score(s: Split) = (if (s.status == Status.VERIFIED) 100 else 0) + s.leftSupport.level.ordinal.let { 3 - it } * 5 + s.rightSupport.level.ordinal.let { 3 - it } * 5 + minOf(s.left.length, s.right.length).coerceAtMost(6) + (if (s.alt.steps.isEmpty()) 8 else 0)
+        val plain = ok.filter { it.alt.steps.isEmpty() && it.status == Status.VERIFIED }
+        if (plain.isNotEmpty()) ok.removeAll { sp -> sp.alt.steps.isNotEmpty() && Ph.isVowel(sp.right.first()) && !sp.leftSupport.detail.let { d -> d == "upasarga" || d == "avyaya" } &&
+            plain.any { n -> n.right == sp.right.drop(1) && support.weight(sp.left) + support.weight(sp.right) < support.weight(n.left) + support.weight(n.right) } }
+        fun score(s: Split) = (if (s.status == Status.VERIFIED) 100 else 0) + s.leftSupport.level.ordinal.let { 3 - it } * 5 + s.rightSupport.level.ordinal.let { 3 - it } * 5 + minOf(s.left.length, s.right.length).coerceAtMost(6) + (if (s.alt.steps.isEmpty()) 8 else 0) + (if (s.leftSupport.detail == "upasarga") 6 else 0)
         ok.sortByDescending { score(it) }
         unsupported.sortByDescending { score(it) }
         val status = when {

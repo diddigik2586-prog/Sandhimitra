@@ -7,11 +7,12 @@ import json, re, sqlite3, sys, os, glob, collections
 
 mw, content, out, report = sys.argv[1:5]
 CAT = {'m.': 'm', 'f.': 'f', 'n.': 'n', 'mfn.': 'a', 'ind.': 'i', 'nf.': 'f', 'fn.': 'n', 'm.f.': 'm'}
-heads = collections.OrderedDict(); cur = None
+heads = collections.OrderedDict(); size = collections.Counter(); cur = None
 for line in open(mw, encoding='utf8'):
     m = re.match(r'<L>[^<]*<pc>[^<]*<k1>([^<]*)<k2>', line)
     if m:
         cur = m.group(1); heads.setdefault(cur, 'x'); continue
+    if cur: size[cur] += len(line)
     m2 = re.search(r'<lex>([^<]*)</lex>', line)
     if cur and m2 and heads.get(cur) == 'x' and m2.group(1) in CAT:
         heads[cur] = CAT[m2.group(1)]
@@ -55,10 +56,10 @@ closed = {
  'avyaya': 'iti eva api atra tatra yatra kutra iha ca vA na hi tu atha aTa yadi tadA yadA ekadA sadA sarvadA'.split(),
 }
 con = sqlite3.connect(out)
-con.executescript('''PRAGMA journal_mode=OFF; CREATE TABLE lex(k1 TEXT PRIMARY KEY, g TEXT NOT NULL) WITHOUT ROWID;
+con.executescript('''PRAGMA journal_mode=OFF; CREATE TABLE lex(k1 TEXT PRIMARY KEY, g TEXT NOT NULL, w INTEGER NOT NULL) WITHOUT ROWID;
 CREATE TABLE attested(f TEXT PRIMARY KEY) WITHOUT ROWID; CREATE TABLE closed(f TEXT PRIMARY KEY, c TEXT) WITHOUT ROWID;
 CREATE TABLE meta(k TEXT PRIMARY KEY, v TEXT) WITHOUT ROWID;''')
-con.executemany('INSERT INTO lex VALUES(?,?)', heads.items())
+con.executemany('INSERT INTO lex VALUES(?,?,?)', [(k, g, 1 if size[k] < 120 else (2 if size[k] < 500 else 3)) for k, g in heads.items()])
 con.executemany('INSERT OR IGNORE INTO attested VALUES(?)', [(a,) for a in sorted(attested)])
 cl = [(w, c) for c, ws in closed.items() for w in ws]
 con.executemany('INSERT OR IGNORE INTO closed VALUES(?,?)', cl)

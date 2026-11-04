@@ -26,7 +26,12 @@ object Script {
     private val slMatraOrder = "AiIuUfFxXeEoO"
 
     /** Devanagari (or Kannada) text to SLP1. Unknown characters are passed through unchanged. */
-    fun toSlp1(text: String): String {
+    fun toSlp1(text: String): String = normalise(toSlp1Raw(text))
+
+    /** Input variants: consonant ल + vowel sign ृ/ॄ ("लृ") is the usual way to type the vowels ऌ/ॡ; ':' is accepted for visarga. */
+    private fun normalise(s: String) = s.replace("lF", "X").replace("lf", "x").replace(':', 'H')
+
+    private fun toSlp1Raw(text: String): String {
         val dev = text.any { it in 'ऀ'..'ॿ' }
         val kn = text.any { it in 'ಀ'..'೿' }
         return when {
@@ -76,6 +81,7 @@ object Script {
 
     private fun iastToSlp1(text: String): String {
         val s = java.text.Normalizer.normalize(text, java.text.Normalizer.Form.NFC)
+            .replace("l\u0325\u0304", "ḹ").replace("l\u0325", "ḷ").replace("r\u0325\u0304", "ṝ").replace("r\u0325", "ṛ").replace("m\u0307", "ṃ")
         val sb = StringBuilder(); var i = 0
         while (i < s.length) {
             var done = false

@@ -1,0 +1,30 @@
+forward ok=264 bad=17 ; reverse ok=69 bad=12
+FWD t5 ऋ + ऌ -> want सवर्णौ | got [ॠ, ऋ, ॠ, ऋ] VERIFIED []
+FWD t8 मुर + अरिः -> want मुरारीः | got [मुरारिः, मुरारिः] VERIFIED []
+FWD t11 भ्रातृ + स्नेहः -> want मात्रानन्दः | got [भ्रातृस्नेहः, भ्रातृस्नेहः] VERIFIED []
+FWD t13 ते + अपि -> want तेऽपी | got [तेऽपि, तयपि, तयपि] VERIFIED [hint_pragrhya_unchecked]
+FWD t14 आ + इहि -> want अवेहि | got [एहि, एहि] VERIFIED []
+FWD t22 त्वम् + पठसि -> want त्वं | got [त्वंपठसि, त्वम्पठसि, त्वंपठसि, त्वम्पठसि] PROVISIONAL [component_unverified:paWasi]
+FWD t22 मनस् + सि -> want मनांसि | got [मनस्सि, मनःसि, मनस्सि, मनःसि] VERIFIED []
+FWD t27 उद् + स्तम्भनम् -> want उत्थम्भनम् | got [उत्तम्भनम्, उत्तम्भनम्] VERIFIED []
+FWD t31 बालकः + इच्छति -> want बालक | got [बालकइच्छति, बालकयिच्छति, बालकइच्छति, बालकयिच्छति] PROVISIONAL [component_unverified:icCati]
+FWD t31 जनाः + गच्छन्ति -> want जना | got [जनागच्छन्ति, जनागच्छन्ति] PROVISIONAL [component_unverified:gacCanti]
+FWD t31 भगवन्तः + इमे -> want भगवन्त | got [भगवन्तइमे, भगवन्तयिमे, भगवन्तइमे, भगवन्तयिमे] VERIFIED []
+FWD t32 नमः + नमः -> want नमो | got [नमोनमः, नमोनमः] VERIFIED []
+FWD t36 भोः + छात्राः -> want भो | got [भोश्छात्राः, भोश्छात्राः] PROVISIONAL [component_unverified:CAtrAH]
+FWD t37 मुनी + आगच्छतः -> want मुनी | got [मुनीआगच्छतः, मुन्यागच्छतः, मुनीआगच्छतः, मुन्यागच्छतः] PROVISIONAL [hint_pragrhya_unchecked, component_unverified:munI, component_unverified:AgacCataH]
+FWD t37 लते + एते -> want लते | got [लतयेते, लतएते, लतयेते] PROVISIONAL [hint_pragrhya_unchecked, component_unverified:late]
+FWD t37 अमी + अलङ्काराः -> want अमी | got [अमीअलङ्काराः, अमीअलङ्काराः] PROVISIONAL [component_unverified:alaNkArAH]
+FWD t39 गुरवे + नमः -> want गुरवे | got [गुरवेनमः, गुरवेनमः] VERIFIED []
+REV t1 गुरवादेशः -> want गुरौ + आदेशः | got [गुरो+आदेशः, गुरो+आदेशः] VERIFIED
+REV t3 नयकः -> want नै + अकः | got [ने+अकः, ने+अकः] VERIFIED
+REV t14 हलीषा -> want हलस् + ईषा | got [हलि+ईषा, हली+ईषा, हलीषा+अ, हलीषा+आ, हलि+इषा, हली+इषा] VERIFIED
+REV t14 मार्तण्डः -> want मृत + अण्डः | got [] NO_RESULT
+REV t18 दुष्टः -> want दुष् + तः | got [दुः+टः, दुर्+टः, दुस्+टः] VERIFIED
+REV t20 क्षुत्पिपासा -> want क्षुध् + पिपासा | got [क्षुत्+पिपासा, क्षुद्+पिपासा] VERIFIED
+REV t21 मृण्मयम् -> want मृद् + मयम् | got [मृड्+मयम्] VERIFIED
+REV t21 षण्णगर्यः -> want षट् + नगर्यः | got [षण्णगरी+अः, षण्+अगर्यः] VERIFIED
+REV t22 हंसः -> want हन् + सः | got [हम्+सः] VERIFIED
+REV t30 पयोदः -> want पयस् + दः | got [पय+उदः, पयः+दः, पया+उदः] VERIFIED
+REV t35 यशस्कल्पम् -> want यशः + कल्पम् | got [] NO_RESULT
+REV t35 धनुष्पाशम् -> want धनुः + पाशम् | got [] NO_RESULT

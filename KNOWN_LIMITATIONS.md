@@ -11,3 +11,5 @@
 **Sample build 1.0.1-sample:** in-app keyboard and the lexicon page were removed at the author's request (the engine still uses the bundled word list internally to check components; the About page credits it). Practice answers are optional reveal-only. Status label 'Provisional' is displayed as 'Possible' and means the analysis is grammatically valid but a component is only heuristically recognised (e.g. a verb form). Still not hardware-tested.
 
 **Wordmark:** at the author's request the header/splash wordmark is a derived transparent version of the supplied PNG (white background removed, artwork unchanged; original kept in original_assets/images). The header centre is no longer empty and carries the wordmark; the icon sits at the left.
+
+**Corpus check (1.0.5):** 17 forward and 12 reverse items of the supplied tables still differ; they are source-table defects (wrong spellings, truncated cells, rows whose answer belongs to another row, उत्थम्भनम्, गुरवादेशः…) or morphology beyond Sandhi (मृण्मयम्, हंसः). Listed in docs/CORPUS_CHECK_REPORT.txt for the author's review.

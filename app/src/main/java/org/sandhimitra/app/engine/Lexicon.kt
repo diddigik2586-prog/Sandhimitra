@@ -5,6 +5,8 @@ interface LexiconApi {
     fun isHeadword(k1: String): Boolean
     fun isAttested(form: String): Boolean
     fun closedClass(form: String): String?
+    /** 1..3: how extensive the dictionary article is (a rough indicator of how common a word is); 0 if unknown. */
+    fun weight(k1: String): Int
 }
 
 enum class Support { EXACT, DERIVED, VERBLIKE, NONE }
@@ -18,7 +20,8 @@ data class SupportInfo(val level: Support, val detail: String = "")
  *  VERBLIKE – ends like a finite verb; the root is not checked (never counted as verified);
  *  NONE     – not found.
  */
-class LexSupport(private val lex: LexiconApi?) {
+class LexSupport(private val lexicon: LexiconApi?) {
+    private val lex: LexiconApi? = lexicon
     private val nominalEndings: List<Pair<String, String>> = listOf(
         "aH" to "a", "am" to "a", "ena" to "a", "Aya" to "a", "At" to "a", "asya" to "a", "e" to "a", "O" to "a", "AH" to "a",
         "An" to "a", "EH" to "a", "ebyaH" to "a", "ezu" to "a", "AnAm" to "a", "ayoH" to "a", "Ani" to "a", "ena" to "a",
@@ -33,6 +36,24 @@ class LexSupport(private val lex: LexiconApi?) {
         "An" to "at", "ataH" to "at", "atA" to "at", "at" to "at", "an" to "an"
     )
     private val verbEndings = listOf("anti", "ati", "ate", "ante", "asi", "ase", "ami", "Ami", "Ayati", "yati", "ti", "te", "nti", "si", "mi", "maH", "ma", "Ati", "etu", "atu", "at", "Ata", "ayet", "et")
+
+    private fun derivedStem(word: String): String? {
+        val lx = lex ?: return null
+        for ((suf, stemEnd) in nominalEndings) if (word.length > suf.length && word.endsWith(suf)) {
+            val stem = word.dropLast(suf.length) + stemEnd
+            if (stem.length >= 2 && lx.isHeadword(stem)) return stem
+        }
+        return null
+    }
+
+    /** Weight of the dictionary entry behind a surface form (the form itself if a headword, else its stem). */
+    fun weight(word0: String): Int {
+        val lx = lex ?: return 0
+        val word = word0.replace("'", "")
+        val w = lx.weight(word)
+        if (w > 0) return w
+        return derivedStem(word)?.let { lx.weight(it) } ?: 0
+    }
 
     fun classify(word0: String): SupportInfo {
         val word = word0.replace("'", "").trim()

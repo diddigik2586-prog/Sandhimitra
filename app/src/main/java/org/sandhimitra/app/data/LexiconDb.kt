@@ -12,7 +12,7 @@ class LexiconDb(ctx: Context) : LexiconApi {
     val attestedCount: Int
 
     init {
-        val f = File(ctx.filesDir, "lexicon_v1.db")
+        val f = File(ctx.filesDir, "lexicon_v2.db")
         if (!f.exists() || f.length() < 1_000_000) {
             ctx.assets.open("lexicon/lexicon.db").use { i -> f.outputStream().use { o -> i.copyTo(o) } }
         }
@@ -26,4 +26,5 @@ class LexiconDb(ctx: Context) : LexiconApi {
     override fun isHeadword(k1: String) = one("SELECT g FROM lex WHERE k1=?", k1) != null
     override fun isAttested(form: String) = one("SELECT f FROM attested WHERE f=?", form) != null
     override fun closedClass(form: String) = one("SELECT c FROM closed WHERE f=?", form)
+    override fun weight(k1: String) = one("SELECT w FROM lex WHERE k1=?", k1)?.toIntOrNull() ?: 0
 }

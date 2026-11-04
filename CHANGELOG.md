@@ -1,4 +1,9 @@
 # Changelog
+## 1.0.5-sample
+- Input variants: ल+ृ ("लृ") is read as the vowel ऌ (likewise ॡ), IAST l̥/r̥, ':' as visarga (तव + लृकारः now gives तवल्कारः).
+- Every example and exercise of the supplied tables was run through the engine (docs/CORPUS_CHECK_REPORT.txt): forward 218→264 of 281, reverse 53→69 of 81; the remainder are source-table defects.
+- New: morpheme-level ayādi alternative (ने+अनम्→नयनम्, भो+अनम्→भवनम्) with ṇatva; listed vārttika exceptions (अक्षौहिणी, प्रौढः, स्वैरः, शकन्धुः, कुलटा, सारङ्गः, पतञ्जलिः, गवेन्द्रः…); ओम् (6.1.95); उद्+ल (उल्लासः); उद्+स्तम्भ; ṣ-final stems; नमस्/पुरस् (8.3.40); निः/दुः/आविः…+क/प (8.3.41); radical-r words (अन्तः, पुनः, प्रातः, स्वः, अहः) offered both ways; candrabindu variants (ताँस्तान्); dual ī/ū forms offered as pragṛhya alternative; षट्+नवतिः fix.
+- Reverse analysis: no-change splits need a vowel-final left part; guess-based sandhi splits are dropped only when a clearly better no-change reading exists (dictionary-entry weight); prefixes (सु, प्र…) always kept.
 ## 1.0.4-sample
 - Fonts: Kohinoor Devanagari for Sanskrit, Kannada MN for Kannada, Andika for English/IAST.
 - Smaller wordmark on the splash (slightly smaller in the header); faint halo around the wordmark removed.
