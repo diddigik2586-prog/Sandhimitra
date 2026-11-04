@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -89,7 +90,7 @@ private fun SandhimitraApp() {
     val text = if (dark) LightText else Ink
     val baseDensity = LocalDensity.current
     val selectedScale = listOf(0.90f, 1.00f, 1.15f)[fontSize]
-    CompositionLocalProvider(LocalDensity provides baseDensity.copy(fontScale = baseDensity.fontScale * selectedScale)) {
+    CompositionLocalProvider(LocalDensity provides Density(baseDensity.density, baseDensity.fontScale * selectedScale)) {
     MaterialTheme(colorScheme = if (dark) darkColorScheme(primary=CopperPrimary, secondary=DarkAccent, background=DarkBg, surface=DarkCard, onSurface=LightText) else lightColorScheme(primary=IndigoPrimary, secondary=CopperAccent, background=LightBg, surface=LightCard, onSurface=Ink)) {
         if (splash) { SplashScreen(dark) } else Scaffold(containerColor=bg, topBar={
             TopAppBar(
@@ -284,8 +285,20 @@ private fun EngineScreen(lang:AppLanguage, card:Color, text:Color) {
         Text(when(lang){AppLanguage.ENGLISH->"Rule-based analysis · no fabricated forms";AppLanguage.SANSKRIT->"सूत्राधारितं विश्लेषणम् · कल्पितरूपाणि न";AppLanguage.KANNADA->"ಸೂತ್ರಾಧಾರಿತ ವಿಶ್ಲೇಷಣೆ · ಕಲ್ಪಿತ ರೂಪಗಳಿಲ್ಲ"},color=text.copy(alpha=.7f),fontSize=12.sp)
         Spacer(Modifier.height(14.dp))
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth()) {
-            SegmentedButton(direction==0,{direction=0;result=null},SegmentedButtonDefaults.itemShape(0),label={Text(when(lang){AppLanguage.ENGLISH->"Yojana";AppLanguage.SANSKRIT->"योजनम्";AppLanguage.KANNADA->"ಯೋಜನೆ"})})
-            SegmentedButton(direction==1,{direction=1;result=null},SegmentedButtonDefaults.itemShape(1),label={Text(when(lang){AppLanguage.ENGLISH->"Viccheda";AppLanguage.SANSKRIT->"विच्छेदः";AppLanguage.KANNADA->"ವಿಚ್ಛೇದ"})})
+            SegmentedButton(
+                selected = direction == 0,
+                onClick = { direction = 0; result = null },
+                shape = SegmentedButtonDefaults.itemShape(index = 0, count = 2)
+            ) {
+                Text(when(lang){AppLanguage.ENGLISH->"Yojana";AppLanguage.SANSKRIT->"योजनम्";AppLanguage.KANNADA->"ಯೋಜನೆ"})
+            }
+            SegmentedButton(
+                selected = direction == 1,
+                onClick = { direction = 1; result = null },
+                shape = SegmentedButtonDefaults.itemShape(index = 1, count = 2)
+            ) {
+                Text(when(lang){AppLanguage.ENGLISH->"Viccheda";AppLanguage.SANSKRIT->"विच्छेदः";AppLanguage.KANNADA->"ವಿಚ್ಛೇದ"})
+            }
         }
         Spacer(Modifier.height(12.dp))
         if(direction==0){ OutlinedTextField(value=inputA,onValueChange={inputA=it;result=null},label={Text(when(lang){AppLanguage.ENGLISH->"First word";AppLanguage.SANSKRIT->"प्रथमं पदम्";AppLanguage.KANNADA->"ಮೊದಲ ಪದ"})},modifier=Modifier.fillMaxWidth()); OutlinedTextField(value=inputB,onValueChange={inputB=it;result=null},label={Text(when(lang){AppLanguage.ENGLISH->"Second word";AppLanguage.SANSKRIT->"द्वितीयं पदम्";AppLanguage.KANNADA->"ಎರಡನೇ ಪದ"})},modifier=Modifier.fillMaxWidth()) }
