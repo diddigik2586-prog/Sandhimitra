@@ -29,7 +29,13 @@ object Script {
     fun toSlp1(text: String): String = normalise(toSlp1Raw(text))
 
     /** Input variants: consonant ल + vowel sign ृ/ॄ ("लृ") is the usual way to type the vowels ऌ/ॡ; ':' is accepted for visarga. */
-    private fun normalise(s: String) = s.replace("lF", "X").replace("lf", "x").replace(':', 'H')
+    private fun normalise(s: String) = s.replace("lF", "X").replace("lf", "x").replace("lX", "X").replace("lx", "x").replace(':', 'H')
+
+    /** Live clean-up of typed text: ल/ಲ followed by the ṛ/ṝ/ḷ/ḹ vowel sign is replaced by the vowel letter ऌ/ॡ (ಌ/ೡ), which keyboards do not offer. */
+    fun fixTyped(t: String): String = t
+        .replace("ल\u0943", "ऌ").replace("ल\u0944", "ॡ").replace("ल\u0962", "ऌ").replace("ल\u0963", "ॡ")
+        .replace("ल्\u090B", "ऌ").replace("ल्\u0960", "ॡ")
+        .replace("ಲ\u0CC3", "ಌ").replace("ಲ\u0CC4", "ೡ").replace("ಲ\u0CE2", "ಌ").replace("ಲ\u0CE3", "ೡ")
 
     private fun toSlp1Raw(text: String): String {
         val dev = text.any { it in 'ऀ'..'ॿ' }

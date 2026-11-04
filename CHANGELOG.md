@@ -1,4 +1,6 @@
 # Changelog
+## 1.0.6-sample
+- Typing ल+ृ / ल+ॄ / ल+ॢ / ल+ॣ (and ಲ+ೃ…) in any Sandhātrī field is converted at once to the vowel ऌ / ॡ (ಌ / ೡ); the engine also reads these forms if pasted.
 ## 1.0.5-sample
 - Input variants: ल+ृ ("लृ") is read as the vowel ऌ (likewise ॡ), IAST l̥/r̥, ':' as visarga (तव + लृकारः now gives तवल्कारः).
 - Every example and exercise of the supplied tables was run through the engine (docs/CORPUS_CHECK_REPORT.txt): forward 218→264 of 281, reverse 53→69 of 81; the remainder are source-table defects.

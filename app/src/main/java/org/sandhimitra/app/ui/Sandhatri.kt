@@ -55,7 +55,10 @@ private fun EngineField(label: String, value: TextFieldValue, onChange: (TextFie
     val t = LocalTokens.current
     Column(Modifier.fillMaxWidth().padding(bottom = 10.dp)) {
         Sx(label, size = 13.sp, color = t.muted, modifier = Modifier.padding(bottom = 4.dp))
-        BasicTextField(value, onChange, readOnly = readOnly, singleLine = true, visualTransformation = ScriptTransformation,
+        BasicTextField(value, { nv ->
+            val fixed = Script.fixTyped(nv.text)
+            onChange(if (fixed == nv.text) nv else TextFieldValue(fixed, androidx.compose.ui.text.TextRange(Script.fixTyped(nv.text.substring(0, nv.selection.end.coerceIn(0, nv.text.length))).length)))
+        }, readOnly = readOnly, singleLine = true, visualTransformation = ScriptTransformation,
             textStyle = TextStyle(fontSize = 22.sp, color = t.text), cursorBrush = SolidColor(t.accent),
             modifier = Modifier.fillMaxWidth().border(BorderStroke(1.dp, t.primary), RoundedCornerShape(10.dp)).padding(12.dp).onFocusChanged { if (it.isFocused) onFocus() })
     }

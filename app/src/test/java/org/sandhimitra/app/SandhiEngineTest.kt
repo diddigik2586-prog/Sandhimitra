@@ -82,6 +82,11 @@ class SandhiEngineTest {
     @Test fun visargaSibilantOptional() { val r = fwd("हरिः", "शेते"); assertTrue("हरिश्शेते" in r && "हरिः शेते" in r) }
     @Test fun sRule() { assertEquals(setOf("रामश्च"), fwd("रामस्", "च")); assertEquals(setOf("रामोऽयम्"), fwd("रामस्", "अयम्")) }
 
+    @Test fun typedVowelVariants() {
+        assertEquals("तवऌकारः", Script.fixTyped("तवलृकारः")); assertEquals("ऌकारः", Script.fixTyped("लॢकारः")); assertEquals("ॡ", Script.fixTyped("लॄ")); assertEquals("ಌ", Script.fixTyped("ಲೃ"))
+        for (w in listOf("लृकारः", "लॢकारः", "ऌकारः", "ल्ऋकारः")) assertEquals(setOf("तवल्कारः"), fwd("तव", w))
+        assertTrue(hasSplit("तवल्कारः", "तव", "ऌकारः"))
+    }
     @Test fun inputVariants() { assertEquals(setOf("तवल्कारः"), fwd("तव", "लृकारः")); assertEquals(setOf("तवल्कारः"), fwd("tava", "lṛkāraḥ")); assertEquals(setOf("तवल्कारः"), fwd("tava", "l̥kāraḥ")) }
     @Test fun morphemeAndIrregular() {
         assertTrue("चयनम्" in fwd("चे", "अनम्")); assertTrue("भवनम्" in fwd("भो", "अनम्")); assertTrue("अक्षौहिणी" in fwd("अक्ष", "ऊहिनी")); assertTrue("शकन्धुः" in fwd("शक", "अन्धुः"))
