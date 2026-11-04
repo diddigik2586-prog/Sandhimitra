@@ -44,7 +44,7 @@ object Rules {
         RuleInfo("H01", Category.VISARGA, "रुत्वम्", "ससजुषो रुः", "8.2.66", "t30", true, "word-final s → ru"),
         RuleInfo("H02", Category.VISARGA, "विसर्गः", "खरवसानयोर्विसर्जनीयः", "8.3.15", "t30", true, "ru → visarga before khar"),
         RuleInfo("H03", Category.VISARGA, "सत्वम्", "विसर्जनीयस्य सः", "8.3.34", "t34", true, "visarga → s before c ṭ t (then ś ṣ s by ścutva/ṣṭutva)"),
-        RuleInfo("H04", Category.VISARGA, "शरि विकल्पः", "वा शरि", "8.3.36", "t34", false, "optional before ś ṣ s; retained before śar + khar (8.3.35)"),
+        RuleInfo("H04", Category.VISARGA, "शरि विकल्पः", "वा शरि", "8.3.36", "t34", true, "optional before ś ṣ s; retained before śar + khar (8.3.35)"),
         RuleInfo("H05", Category.VISARGA, "जिह्वामूलीयोपध्मानीयौ", "कुप्वोः ≍क ≍पौ च", "8.3.37", "t35", true, "visarga retained (jihvāmūlīya/upadhmānīya) before k kh p ph"),
         RuleInfo("H06", Category.VISARGA, "उत्वम्", "अतो रोरप्लुतादप्लुते", "6.1.113", "t32", true, "aḥ + a → o + avagraha"),
         RuleInfo("H07", Category.VISARGA, "हशि उत्वम्", "हशि च", "6.1.114", "t32", true, "aḥ + voiced consonant → o"),
@@ -56,7 +56,7 @@ object Rules {
         RuleInfo("P01", Category.PRAKRITIBHAVA, "प्लुतप्रगृह्याः", "प्लुतप्रगृह्या अचि नित्यम्", "6.1.125", "t37", true, "pluta and pragṛhya vowels unchanged before a vowel"),
         RuleInfo("P02", Category.PRAKRITIBHAVA, "द्विवचनप्रगृह्यम्", "ईदूदेद्द्विवचनं प्रगृह्यम्", "1.1.11", "t37", true, "dual forms in ī ū e (declared by the user)"),
         RuleInfo("P03", Category.PRAKRITIBHAVA, "अदसो मात्", "अदसो मात्", "1.1.12", "t37", true, "amī, amū"),
-        RuleInfo("P04", Category.PRAKRITIBHAVA, "निपातप्रगृह्यम्", "निपात एकाजनाङ्", "1.1.14", "t37", false, "small built-in list of single-vowel and o-ending particles"),
+        RuleInfo("P04", Category.PRAKRITIBHAVA, "निपातप्रगृह्यम्", "निपात एकाजनाङ्", "1.1.14", "t37", true, "small built-in list of single-vowel and o-ending particles"),
     )
     private val byId = all.associateBy { it.id }
     fun get(id: String): RuleInfo = byId.getValue(id)

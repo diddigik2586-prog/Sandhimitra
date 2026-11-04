@@ -53,4 +53,12 @@ class ScreenshotTest {
         rule.onNodeWithText("सन्धियोजना").performClick()
         rule.onAllNodesWithText("प्रथमं पदम्").onFirst().performClick(); shot("12_yojana_keyboard_sa")
     }
+
+    @Test fun infoScreens() {
+        toHome()
+        for ((label, name) in listOf("साहाय्यम्" to "20_support", "गोपनीयतानीतिः" to "21_privacy", "अनुप्रयोगविषये" to "22_about")) {
+            rule.onNodeWithContentDescription("Menu").performClick(); rule.waitForIdle()
+            rule.onAllNodesWithText(label).onLast().performClick(); shot(name)
+        }
+    }
 }

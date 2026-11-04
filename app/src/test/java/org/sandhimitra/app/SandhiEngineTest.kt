@@ -81,6 +81,11 @@ class SandhiEngineTest {
     @Test fun visargaSibilantOptional() { val r = fwd("हरिः", "शेते"); assertTrue("हरिश्शेते" in r && "हरिः शेते" in r) }
     @Test fun sRule() { assertEquals(setOf("रामश्च"), fwd("रामस्", "च")); assertEquals(setOf("रामोऽयम्"), fwd("रामस्", "अयम्")) }
 
+    @Test fun particlesAndShari() { assertEquals(setOf("अहो इति"), fwd("अहो", "इति")); assertEquals(setOf("उ इति"), fwd("उ", "इति")); assertTrue("हरिः शेते" in fwd("हरिः", "शेते") && "हरिश्शेते" in fwd("हरिः", "शेते")); assertEquals(setOf("कः त्सरति"), fwd("कः", "त्सरति")) }
+    @Test fun noChangeJunctionSplit() {
+        val r = splits("संहितापाठः"); assertTrue(r.analyses.any { d(it.left) == "संहिता" && d(it.right) == "पाठः" && it.status == Status.VERIFIED })
+        assertEquals("संहिता", d(r.analyses.first().left))
+    }
     // ---------- multi-part
     @Test fun threeParts() { val r = engine.joinAll(listOf("देव", "इन्द्र", "आसनम्")); assertTrue(r.alts.any { d(it.surface) == "देवेन्द्रासनम्" }) }
 

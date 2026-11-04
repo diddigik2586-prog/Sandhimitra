@@ -24,10 +24,8 @@ private fun L(sa: String, kn: String, en: String, lang: String) = when (lang) { 
 @Composable
 fun AboutScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
     val lang = LocalLang.current; val t = LocalTokens.current
-    var hw by remember { mutableStateOf(0) }
-    LaunchedEffect(Unit) { hw = withContext(Dispatchers.IO) { app.lexicon.headwordCount } }
     val topics = app.content.groups.sumOf { app.content.topics(it).size }
-    Page(onMenu, onBack, tr("about_app")) {
+    Page(onMenu, onBack, tr("about_app")) { CentrePage {
         Sx(L("सन्धिमित्रम् संस्कृतसन्धिशिक्षणाय सन्धिविश्लेषणाय च निर्मितः अनुप्रयोगः। सर्वाः सुविधाः अन्तर्जालं विना यन्त्रे एव प्रवर्तन्ते।",
             "ಸಂಸ್ಕೃತ ಸಂಧಿಯ ಕಲಿಕೆ ಮತ್ತು ವಿಶ್ಲೇಷಣೆಗಾಗಿ ರೂಪಿಸಿದ ಆ್ಯಪ್. ಎಲ್ಲಾ ಸೌಲಭ್ಯಗಳೂ ಇಂಟರ್ನೆಟ್ ಇಲ್ಲದೆ ಸಾಧನದಲ್ಲೇ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತವೆ.",
             "An app for learning and analysing Sanskrit Sandhi. Every feature works on your device without internet.", lang))
@@ -36,21 +34,20 @@ fun AboutScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
             L("स्वर-व्यञ्जन-विसर्ग-प्रकृतिभावसन्धीनां ${topics} प्रकरणानि (संस्कृते, कन्नडे, आङ्ग्ले च)।", "ಸ್ವರ, ವ್ಯಂಜನ, ವಿಸರ್ಗ, ಪ್ರಕೃತಿಭಾವ ಸಂಧಿಗಳ ${topics} ಪ್ರಕರಣಗಳು (ಸಂಸ್ಕೃತ, ಕನ್ನಡ, ಇಂಗ್ಲಿಷ್).", "$topics topics on vowel, consonant, visarga and prakṛtibhāva Sandhi, in Sanskrit, Kannada and English.", lang),
             L("पाठाः अभ्यासाः च; पाठपूर्णता अभ्यासप्रगतिः च यन्त्रे एव रक्ष्यते।", "ಪಾಠಗಳು ಮತ್ತು ಅಭ್ಯಾಸಗಳು; ಪಾಠ ಪೂರ್ಣತೆ ಮತ್ತು ಅಭ್ಯಾಸ ಪ್ರಗತಿ ಸಾಧನದಲ್ಲೇ ಉಳಿಯುತ್ತದೆ.", "Lessons and practice; completion and practice progress are saved on the device.", lang),
             L("सन्धात्री — सन्धियोजना, सन्धिविच्छेदः च, ${Rules.all.size} नियमकोशप्रविष्टिभिः, क्रमबद्धसूत्रानुसरणेन।", "ಸಂಧಾತ್ರೀ — ಸಂಧಿಯೋಜನೆ ಮತ್ತು ಸಂಧಿವಿಚ್ಛೇದ, ${Rules.all.size} ನಿಯಮ ದಾಖಲೆಗಳು, ಕ್ರಮಬದ್ಧ ಸೂತ್ರ ಅನುಸರಣೆ.", "Sandhātrī — forward joining and reverse separation using ${Rules.all.size} registry rules, with an ordered sūtra trace.", lang),
-            L("${"%,d".format(hw)} शब्दशीर्षाणि सहितः अन्तर्निहितः शब्दकोशः।", "${"%,d".format(hw)} ಶಬ್ದಶೀರ್ಷಿಕೆಗಳ ಅಂತರ್ನಿಹಿತ ಶಬ್ದಕೋಶ.", "A bundled lexicon of ${"%,d".format(hw)} headwords.", lang),
             L("अनुप्रयोगान्तर्गतं संस्कृतकीबोर्डम्; प्रतिलिपिः, शेयर्, PDF च।", "ಆ್ಯಪ್‌ನೊಳಗಿನ ಸಂಸ್ಕೃತ ಕೀಬೋರ್ಡ್; ನಕಲು, ಹಂಚಿಕೆ, PDF.", "An in-app Sanskrit keyboard; copy, share and PDF export.", lang),
         ).forEach { Bullet(it) }
         SectionTitle(L("स्रोताः", "ಆಕರಗಳು", "Sources and credits", lang))
         Sx(L("पाठ्यसामग्री संस्कृत-कन्नडव्याकरणग्रन्थद्वयाधारिता; आङ्ग्लभागः स्वतन्त्रतया रचितः।", "ಪಾಠಸಾಮಗ್ರಿ ಸಂಸ್ಕೃತ ಮತ್ತು ಕನ್ನಡ ವ್ಯಾಕರಣ ಗ್ರಂಥಗಳ ಆಧಾರಿತ; ಇಂಗ್ಲಿಷ್ ಭಾಗವನ್ನು ಸ್ವತಂತ್ರವಾಗಿ ರಚಿಸಲಾಗಿದೆ.", "Lesson content is based on the supplied Sanskrit and Kannada grammatical texts; the English layer is composed independently.", lang))
-        Sx(tr("lex_source"), size = 14.sp, modifier = Modifier.padding(top = 6.dp))
+        Sx(L("शब्दपरीक्षाडेटा: Monier-Williams Sanskrit-English Dictionary (1899), Cologne Digital Sanskrit Dictionaries, CC BY-SA 4.0।", "ಪದ ಪರಿಶೀಲನಾ ದತ್ತಾಂಶ: Monier-Williams Sanskrit-English Dictionary (1899), Cologne Digital Sanskrit Dictionaries, CC BY-SA 4.0.", "Word-check data used by the engine: Monier-Williams Sanskrit-English Dictionary (1899), Cologne Digital Sanskrit Dictionaries, CC BY-SA 4.0.", lang), size = 14.sp, modifier = Modifier.padding(top = 6.dp))
         Sx(L("अक्षरसंयोजनम्: Kohinoor Latin (लैटिनाक्षराणि), Noto Sans Devanagari / Kannada / Noto Sans (OFL)।", "ಅಕ್ಷರಗಳು: Kohinoor Latin (ಲ್ಯಾಟಿನ್), Noto Sans Devanagari / Kannada / Noto Sans (OFL).", "Fonts: Kohinoor Latin (Latin text); Noto Sans Devanagari, Kannada and Noto Sans (OFL).", lang), size = 14.sp, color = t.muted, modifier = Modifier.padding(top = 6.dp))
         Sx(L("सत्यापनस्थितिः: ‘प्रमाणितम्’, ‘अनन्तिमम्’, ‘फलं नास्ति’। फलाभावः व्याकरणतः असम्भवत्वं न सूचयति।", "ಸ್ಥಿತಿಗಳು: ‘ಪರಿಶೀಲಿತ’, ‘ತಾತ್ಕಾಲಿಕ’, ‘ಫಲಿತಾಂಶವಿಲ್ಲ’. ಫಲಿತಾಂಶವಿಲ್ಲ ಎಂದರೆ ವ್ಯಾಕರಣದ ಪ್ರಕಾರ ಅಸಾಧ್ಯವೆಂದಲ್ಲ.", "Result statuses: Verified, Provisional, No Result. No Result does not mean a form is grammatically impossible.", lang), size = 14.sp, color = t.muted, modifier = Modifier.padding(top = 10.dp))
-    }
+    } }
 }
 
 @Composable
 fun DvkScreen(onMenu: () -> Unit, onBack: () -> Unit) {
     val lang = LocalLang.current; val t = LocalTokens.current
-    Page(onMenu, onBack, tr("about_dvk")) {
+    Page(onMenu, onBack, tr("about_dvk")) { CentrePage {
         Image(painterResource(R.drawable.dvk_photograph), contentDescription = "Dr. Diddigi Vamsi Krishna", contentScale = ContentScale.FillWidth, modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)))
         Sx(L("डॉ. दिड्डिगि वंशी कृष्णः", "ಡಾ. ದಿಡ್ಡಿಗಿ ವಂಶಿ ಕೃಷ್ಣ", "Dr. Diddigi Vamsi Krishna", lang), size = 22.sp, weight = FontWeight.Bold, color = t.primary, align = TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(top = 14.dp))
         Sx(L("संस्कृतविद्वान् | हस्तप्रतिशास्त्रज्ञः | संशोधकः", "ಸಂಸ್ಕೃತ ವಿದ್ವಾಂಸ | ಹಸ್ತಪ್ರತಿಶಾಸ್ತ್ರಜ್ಞ | ಸಂಶೋಧಕ", "Sanskrit Scholar | Manuscriptologist | Researcher", lang), size = 15.sp, weight = FontWeight.SemiBold, align = TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp))
@@ -72,23 +69,50 @@ fun DvkScreen(onMenu: () -> Unit, onBack: () -> Unit) {
               "He received the Grantha Puraskara (2020) from Karnataka Samskrit University for his Sanskrit work Niruktacintanam and the Saṃskṛta-Suptanidhi-Ācārya recognition in 2014.", lang)
         ).forEach { Sx(it, modifier = Modifier.padding(bottom = 10.dp)) }
         if (lang != "en") Sx(L("टिप्पणी: संस्कृत-कन्नडरूपे दत्तं जीवनवृत्तं प्रदत्तस्य आङ्ग्लपाठस्य अनुवादः।", "ಸೂಚನೆ: ಕನ್ನಡ/ಸಂಸ್ಕೃತ ರೂಪದ ಪರಿಚಯವು ಒದಗಿಸಿದ ಇಂಗ್ಲಿಷ್ ಪಠ್ಯದ ಅನುವಾದ.", "", lang), size = 12.sp, color = t.muted, italic = true)
-    }
+    } }
 }
 
 @Composable
 fun SupportScreen(onMenu: () -> Unit, onBack: () -> Unit) {
     val t = LocalTokens.current
+    val ctx = androidx.compose.ui.platform.LocalContext.current
+    val upi = "8970500450@kotakbank"
     Page(onMenu, onBack, tr("support")) {
-        Sx(tr("support_intro"), modifier = Modifier.padding(bottom = 12.dp))
-        Image(painterResource(R.drawable.support_qr_screen), contentDescription = "UPI QR / bank details", contentScale = ContentScale.FillWidth, modifier = Modifier.fillMaxWidth())
-        Sx(tr("support_note"), size = 13.sp, color = t.muted, modifier = Modifier.padding(top = 12.dp))
+        CentrePage {
+            Sx(tr("support_intro"), modifier = Modifier.padding(bottom = 12.dp))
+            CardBox(Modifier.fillMaxWidth()) {
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Sx(tr("scan_upi"), size = 16.sp, weight = FontWeight.SemiBold)
+                    Spacer(Modifier.height(10.dp))
+                    Image(painterResource(R.drawable.support_qr), contentDescription = "UPI QR", contentScale = ContentScale.Fit, modifier = Modifier.fillMaxWidth(0.72f).aspectRatio(1f).clip(RoundedCornerShape(10.dp)))
+                    Spacer(Modifier.height(10.dp))
+                    Sx("DIDDIGI VAMSI KRISHNA", weight = FontWeight.Bold)
+                    Sx(tr("upi_id"), size = 13.sp, color = t.muted)
+                    Sx(upi, size = 18.sp, weight = FontWeight.SemiBold, color = t.primary)
+                    PrimaryButton(tr("copy_upi"), {
+                        (ctx.getSystemService(android.content.Context.CLIPBOARD_SERVICE) as android.content.ClipboardManager).setPrimaryClip(android.content.ClipData.newPlainText("UPI", upi))
+                        android.widget.Toast.makeText(ctx, S.t("copied", (ctx.applicationContext as org.sandhimitra.app.SandhimitraApp).prefs.lang), android.widget.Toast.LENGTH_SHORT).show()
+                    }, Modifier.padding(top = 10.dp))
+                }
+            }
+            Spacer(Modifier.height(12.dp))
+            CardBox(Modifier.fillMaxWidth()) {
+                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Sx(tr("bank_details"), size = 16.sp, weight = FontWeight.SemiBold, color = t.primary)
+                    listOf("acc_holder" to "DIDDIGI VAMSI KRISHNA", "bank" to "Kotak Mahindra Bank", "branch" to "MYSORE", "acc_no" to "1348857820", "ifsc" to "KKBK0000425").forEach { (k, v) ->
+                        Sx(tr(k), size = 13.sp, color = t.muted, modifier = Modifier.padding(top = 8.dp)); Sx(v, size = 17.sp, weight = FontWeight.SemiBold)
+                    }
+                }
+            }
+            Sx(tr("support_note"), size = 13.sp, color = t.muted, modifier = Modifier.padding(top = 12.dp))
+        }
     }
 }
 
 @Composable
 fun PrivacyScreen(onMenu: () -> Unit, onBack: () -> Unit) {
     val lang = LocalLang.current
-    Page(onMenu, onBack, tr("privacy")) {
+    Page(onMenu, onBack, tr("privacy")) { CentrePage {
         data class P(val h: String, val b: String)
         listOf(
             P(L("स्थानीयं प्रक्रियणम्", "ಸ್ಥಳೀಯ ಸಂಸ್ಕರಣೆ", "Local processing", lang), L("पाठाः, अभ्यासाः, सन्धात्री, शब्दकोशान्वेषणं च भवतः यन्त्रे एव प्रवर्तन्ते। भवता लिखिताः संस्कृतपदाः अन्यत्र न प्रेष्यन्ते।", "ಪಾಠ, ಅಭ್ಯಾಸ, ಸಂಧಾತ್ರೀ ಮತ್ತು ಶಬ್ದಕೋಶ ಹುಡುಕಾಟ ನಿಮ್ಮ ಸಾಧನದಲ್ಲೇ ನಡೆಯುತ್ತವೆ. ನೀವು ಬರೆದ ಸಂಸ್ಕೃತ ಪದಗಳನ್ನು ಬೇರೆಲ್ಲೂ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ.", "Lessons, practice, Sandhātrī and lexicon lookup run entirely on your device. The Sanskrit text you type is never sent anywhere.", lang)),
@@ -99,5 +123,13 @@ fun PrivacyScreen(onMenu: () -> Unit, onBack: () -> Unit) {
         ).forEach { p ->
             SectionTitle(p.h); Sx(p.b)
         }
+    } }
+}
+
+/** Centres all text and images of an information page. */
+@Composable
+fun CentrePage(content: @Composable ColumnScope.() -> Unit) {
+    androidx.compose.runtime.CompositionLocalProvider(LocalAlign provides TextAlign.Center) {
+        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally, content = content)
     }
 }

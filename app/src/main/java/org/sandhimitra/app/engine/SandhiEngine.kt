@@ -236,13 +236,13 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
         if (sru && (core == "sa" || core == "eza") && Ph.isCons(b)) return listOf(Alt("$core $R", s0 + Step("H11", "${core}H", core)))
         if (Ph.isKhar(b)) {
             val h = s0 + Step("H02", "ru", "H")
+            if (b !in "Szs" && R.length > 1 && R[1] in "Szs") return listOf(Alt(core + "H " + R, h + Step("H04", "H$b", "H$b", "8.3.35")))
             return when (b) {
                 'c', 'C' -> listOf(Alt(core + "S" + R, h + Step("H03", "H$b", "S$b") + Step("C02", "s$b", "S$b")))
                 'w', 'W' -> listOf(Alt(core + "z" + R, h + Step("H03", "H$b", "z$b") + Step("C03", "s$b", "z$b")))
                 't', 'T' -> listOf(Alt(core + "s" + R, h + Step("H03", "H$b", "s$b")))
                 'k', 'K', 'p', 'P' -> listOf(Alt(core + "H " + R, h + Step("H05", "H$b", "H$b")))
-                else -> if (R.length > 1 && Ph.isKhar(R[1])) listOf(Alt(core + "H " + R, h + Step("H04", "H$b", "H$b", "8.3.35")))
-                        else listOf(Alt(core + b + R, h + Step("H04", "H$b", "$b$b", "8.3.36"), true), Alt(core + "H " + R, h + Step("H04", "H$b", "H$b", "8.3.36"), true))
+                else -> listOf(Alt(core + b + R, h + Step("H04", "H$b", "$b$b", "8.3.36"), true), Alt(core + "H " + R, h + Step("H04", "H$b", "H$b", "8.3.36"), true))
             }
         }
         if (Ph.isVowel(b)) {
@@ -311,6 +311,18 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
                 }
             }
         }
+        // junctions where no Sandhi rule changes anything (e.g. saMhitA + pAWaH): accepted only when both parts are lexically supported
+        if (hasLexicon) for (k in 2..n - 2) {
+            val L = J.substring(0, k); val R = J.substring(k)
+            if (spaceAt >= 0 && spaceAt != k) continue
+            if (L.none { Ph.isVowel(it) } || R.none { Ph.isVowel(it) }) continue
+            val ls = support.classify(L); val rs = support.classify(R)
+            if (ls.level == Support.NONE || rs.level == Support.NONE || ls.level == Support.VERBLIKE || rs.level == Support.VERBLIKE) continue
+            val alts = try { joinPair(L, R, Ctx(), mutableListOf()) } catch (e: Exception) { emptyList() }
+            if (alts.any { it.steps.isEmpty() && it.surface.replace(" ", "") == J }) found.putIfAbsent("$L|$R|true", Split(L, R, Alt(L + R, emptyList()), emptyList(), Status.PROVISIONAL, ls, rs, true))
+        }
+        // a form that is itself a dictionary word is not split at junctions where nothing changes (kamala is not ka + mala)
+        if (support.classify(J).level == Support.EXACT) found.entries.removeAll { it.value.alt.steps.isEmpty() }
         // prune trivial candidates (very short invented parts)
         val ok = mutableListOf<Split>(); val unsupported = mutableListOf<Split>()
         for (sp in found.values) {
@@ -319,11 +331,12 @@ class SandhiEngine(lexicon: LexiconApi? = null) {
             if (!hasLexicon) { unsupported += sp; continue }
             if (bothKnown) {
                 val allVerifiedRules = sp.ruleIds.all { Rules.find(it)?.verified == true }
-                val st = if (ls == Support.EXACT && rs == Support.EXACT && allVerifiedRules) Status.VERIFIED else Status.PROVISIONAL
+                val nominal = { x: Support -> x == Support.EXACT || x == Support.DERIVED }
+                val st = if (nominal(ls) && nominal(rs) && allVerifiedRules) Status.VERIFIED else Status.PROVISIONAL
                 ok += sp.copy(status = st)
             } else unsupported += sp
         }
-        fun score(s: Split) = (if (s.status == Status.VERIFIED) 100 else 0) + s.leftSupport.level.ordinal.let { 3 - it } * 5 + s.rightSupport.level.ordinal.let { 3 - it } * 5 + minOf(s.left.length, s.right.length).coerceAtMost(6)
+        fun score(s: Split) = (if (s.status == Status.VERIFIED) 100 else 0) + s.leftSupport.level.ordinal.let { 3 - it } * 5 + s.rightSupport.level.ordinal.let { 3 - it } * 5 + minOf(s.left.length, s.right.length).coerceAtMost(6) + (if (s.alt.steps.isEmpty()) 8 else 0)
         ok.sortByDescending { score(it) }
         unsupported.sortByDescending { score(it) }
         val status = when {

@@ -36,7 +36,7 @@ import org.sandhimitra.app.SandhimitraApp
 
 object Routes {
     const val SPLASH = "splash"; const val HOME = "home"; const val INTRO = "intro"; const val CAT = "cat/{group}"; const val TOPIC = "topic/{id}"
-    const val SANDHATRI = "sandhatri"; const val YOJANA = "yojana"; const val VICCHEDA = "viccheda"; const val REGISTRY = "registry"; const val LEXICON = "lexicon"
+    const val SANDHATRI = "sandhatri"; const val YOJANA = "yojana"; const val VICCHEDA = "viccheda"; const val REGISTRY = "registry"
     const val PSET = "pset/{id}"; const val ABOUT = "about"; const val DVK = "dvk"; const val SUPPORT = "support"; const val PRIVACY = "privacy"
     fun cat(g: String) = "cat/$g"; fun topic(id: String) = "topic/$id"; fun pset(id: String) = "pset/$id"
 }
@@ -71,7 +71,6 @@ fun MainApp(app: SandhimitraApp) {
             composable(Routes.YOJANA) { YojanaScreen(app, open, back) }
             composable(Routes.VICCHEDA) { VicchedaScreen(app, open, back) }
             composable(Routes.REGISTRY) { RegistryScreen(open, back) }
-            composable(Routes.LEXICON) { LexiconScreen(app, open, back) }
             composable(Routes.ABOUT) { AboutScreen(app, open, back) }
             composable(Routes.DVK) { DvkScreen(open, back) }
             composable(Routes.SUPPORT) { SupportScreen(open, back) }

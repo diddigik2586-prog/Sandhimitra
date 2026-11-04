@@ -143,7 +143,7 @@ private fun RichPara(p: String) {
 @Composable
 fun Bullet(text: String) {
     Row(Modifier.fillMaxWidth().padding(bottom = 6.dp)) {
-        Sx("•", color = LocalTokens.current.accent, modifier = Modifier.padding(end = 8.dp))
+        if (LocalAlign.current == null) Sx("•", color = LocalTokens.current.accent, modifier = Modifier.padding(end = 8.dp))
         Sx(text, modifier = Modifier.weight(1f))
     }
 }
@@ -192,34 +192,23 @@ fun PracticeBody(app: SandhimitraApp, topic: Topic, lang: String) {
     val qa = remember(id, lang) { lc.sections.firstOrNull { it.n == 13 }?.paras.orEmpty().mapIndexedNotNull { i, p -> splitQa(p)?.let { (q, a) -> Item("q$i", tx(q, lang), tx(a, lang)) } } }
     val recall = remember(id, lang) { if (lang == "en") topic.en.rules.mapIndexed { i, r -> Item("r$i", S.t("q_recall", "en") + r.gloss, "${tx(r.sutra, "en")} (${r.ref})") } else emptyList() }
     val all = src + qa + gen + recall
-    val stats = app.progress.version.let { app.progress.stats(id) }
     if (all.isEmpty()) { Sx(tr("no_practice")); return }
-    Row(Modifier.fillMaxWidth().padding(bottom = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-        Sx("${tr("answered")}: ${stats.first} / ${all.size}  ·  ${tr("correct")}: ${stats.second}", size = 13.sp, color = t.muted, modifier = Modifier.weight(1f))
-    }
     @Composable fun block(title: String, items: List<Item>) { if (items.isNotEmpty()) { SectionTitle(title); items.forEach { QuestionCard(app, id, it) } } }
     block(tr("source_exercises"), src)
     block(tr("selfstudy"), qa)
     block(tr("generated"), gen)
     block(tr("recall"), recall)
-    PrimaryButton(tr("reset_practice"), { app.progress.resetPractice(id) }, Modifier.padding(top = 12.dp).fillMaxWidth(), filled = false)
 }
 
 @Composable
 private fun QuestionCard(app: SandhimitraApp, topic: String, item: Item) {
     val t = LocalTokens.current
     var shown by rememberSaveable(topic, item.id) { mutableStateOf(false) }
-    val prev = app.progress.version.let { app.progress.attempt(topic, item.id) }
     CardBox(Modifier.fillMaxWidth().padding(bottom = 10.dp)) {
         Sx(item.q, weight = FontWeight.Medium)
         if (shown) {
             Spacer(Modifier.height(6.dp)); Sx(item.a, color = t.primary)
-            Row(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                PrimaryButton(tr("i_was_right"), { app.progress.record(topic, item.id, true) }, filled = prev == 1)
-                PrimaryButton(tr("i_was_wrong"), { app.progress.record(topic, item.id, false) }, filled = prev == 0)
-            }
         }
         PrimaryButton(if (shown) tr("hide_answer") else tr("show_answer"), { shown = !shown }, Modifier.padding(top = 10.dp), filled = false)
-        if (prev != null) Sx(if (prev == 1) "✓" else "✗", size = 16.sp, color = if (prev == 1) t.ok else t.bad, modifier = Modifier.padding(top = 4.dp))
     }
 }

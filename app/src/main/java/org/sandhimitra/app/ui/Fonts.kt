@@ -64,13 +64,15 @@ object Fonts {
     }
 }
 
+val LocalAlign = androidx.compose.runtime.compositionLocalOf<TextAlign?> { null }
+
 /** The single text primitive of the app: every visible string goes through script-aware font mapping. */
 @Composable
 fun Sx(text: String, modifier: Modifier = Modifier, size: TextUnit = 16.sp, weight: FontWeight = FontWeight.Normal, color: Color = LocalTokens.current.text,
        align: TextAlign? = null, italic: Boolean = false, maxLines: Int = Int.MAX_VALUE, lineHeight: TextUnit = TextUnit.Unspecified) {
     val a = remember(text) { Fonts.annotate(text) }
     BasicText(a, modifier = modifier, maxLines = maxLines, overflow = TextOverflow.Ellipsis,
-        style = TextStyle(fontSize = size, fontWeight = weight, color = color, textAlign = align ?: TextAlign.Unspecified,
+        style = TextStyle(fontSize = size, fontWeight = weight, color = color, textAlign = align ?: LocalAlign.current ?: TextAlign.Unspecified,
             fontStyle = if (italic) FontStyle.Italic else FontStyle.Normal,
             lineHeight = if (lineHeight == TextUnit.Unspecified) (size.value * 1.55f).sp else lineHeight, fontFamily = Fonts.kohinoor))
 }

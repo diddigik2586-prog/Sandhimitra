@@ -103,7 +103,7 @@ object S {
         "results" to Triple("फलानि", "ಫಲಿತಾಂಶಗಳು", "Results"),
         "status" to Triple("स्थितिः", "ಸ್ಥಿತಿ", "Status"),
         "verified" to Triple("प्रमाणितम्", "ಪರಿಶೀಲಿತ", "Verified"),
-        "provisional" to Triple("अनन्तिमम्", "ತಾತ್ಕಾಲಿಕ", "Provisional"),
+        "provisional" to Triple("सम्भाव्यम्", "ಸಂಭಾವ್ಯ", "Possible"),
         "no_result" to Triple("फलं नास्ति", "ಫಲಿತಾಂಶವಿಲ್ಲ", "No Result"),
         "optional_form" to Triple("वैकल्पिकम्", "ವೈಕಲ್ಪಿಕ", "optional (vikalpa)"),
         "steps" to Triple("प्रक्रियाक्रमः", "ಪ್ರಕ್ರಿಯಾ ಕ್ರಮ", "Derivation steps"),
@@ -143,7 +143,16 @@ object S {
         "kb_hide" to Triple("पिधानम्", "ಮರೆಮಾಡಿ", "Hide keyboard"),
         // pages
         "support_intro" to Triple("साहाय्यं सर्वथा ऐच्छिकम्। अनुप्रयोगः सर्वेभ्यः निःशुल्कः; सर्वाः शोधसुविधाः साहाय्यं विना अपि उपलभ्यन्ते।", "ಬೆಂಬಲ ಸಂಪೂರ್ಣ ಐಚ್ಛಿಕ. ಆ್ಯಪ್ ಎಲ್ಲರಿಗೂ ಉಚಿತ; ಎಲ್ಲಾ ಸೌಲಭ್ಯಗಳೂ ಬೆಂಬಲವಿಲ್ಲದೆಯೂ ಲಭ್ಯ.", "Support is entirely voluntary. The app is free for everyone; every feature remains available without contributing."),
-        "support_note" to Triple("अत्र चित्रं यथाप्रदत्तं दर्शितम्। भुगतानं भवतः स्वकीये UPI/बैङ्क्-अनुप्रयोगे एव; अयम् अनुप्रयोगः भुगतानं न प्रक्रियते।", "ಚಿತ್ರವನ್ನು ಒದಗಿಸಿದಂತೆಯೇ ತೋರಿಸಲಾಗಿದೆ. ಪಾವತಿ ನಿಮ್ಮ ಸ್ವಂತ UPI/ಬ್ಯಾಂಕ್ ಆ್ಯಪ್‌ನಲ್ಲೇ; ಈ ಆ್ಯಪ್ ಪಾವತಿಯನ್ನು ಸಂಸ್ಕರಿಸುವುದಿಲ್ಲ.", "The image is shown exactly as supplied. Payments are made in your own UPI or banking app; this app does not process payments.")
+        "scan_upi" to Triple("कस्मिन्नपि UPI-अनुप्रयोगेन स्कैन् कुरुत", "ಯಾವುದೇ UPI ಆ್ಯಪ್‌ನಿಂದ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ", "Scan with any UPI app"),
+        "upi_id" to Triple("UPI सङ्केतः", "UPI ಐಡಿ", "UPI ID"),
+        "copy_upi" to Triple("UPI सङ्केतं प्रतिलिपयतु", "UPI ಐಡಿ ನಕಲಿಸಿ", "Copy UPI ID"),
+        "bank_details" to Triple("बैङ्क्-हस्तान्तरणविवरणम्", "ಬ್ಯಾಂಕ್ ವರ್ಗಾವಣೆ ವಿವರ", "Bank transfer details"),
+        "acc_holder" to Triple("खातधारकः", "ಖಾತೆದಾರರು", "Account holder"),
+        "bank" to Triple("बैङ्कः", "ಬ್ಯಾಂಕ್", "Bank"),
+        "branch" to Triple("मूलशाखा", "ಮೂಲ ಶಾಖೆ", "Home branch"),
+        "acc_no" to Triple("खातासङ्ख्या", "ಖಾತೆ ಸಂಖ್ಯೆ", "Account number"),
+        "ifsc" to Triple("IFSC सङ्केतः", "IFSC ಕೋಡ್", "IFSC code"),
+        "support_note" to Triple("अयम् अनुप्रयोगः भवतः UPI-पिन्, OTP, बैङ्क्-गुप्तपदं वा न याचते, भुगतानं च न प्रक्रियते; भुगतानं भवतः स्वकीये UPI/बैङ्क्-अनुप्रयोगे एव।", "ಈ ಆ್ಯಪ್ ನಿಮ್ಮ UPI ಪಿನ್, OTP ಅಥವಾ ಬ್ಯಾಂಕ್ ಪಾಸ್‌ವರ್ಡ್ ಕೇಳುವುದಿಲ್ಲ ಮತ್ತು ಪಾವತಿಯನ್ನು ಸಂಸ್ಕರಿಸುವುದಿಲ್ಲ; ಪಾವತಿ ನಿಮ್ಮ ಸ್ವಂತ UPI/ಬ್ಯಾಂಕ್ ಆ್ಯಪ್‌ನಲ್ಲೇ ನಡೆಯುತ್ತದೆ.", "This app never asks for your UPI PIN, OTP or any banking password, and it does not process payments. Payments are made in your own UPI or banking app.")
     )
 
     fun t(key: String, lang: String): String {

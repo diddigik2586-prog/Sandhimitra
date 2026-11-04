@@ -42,7 +42,7 @@ fun SandhatriHome(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit, g
     val sets = remember { app.content.topics("practice") }
     Page(onMenu, onBack, tr("sandhatri")) {
         Sx(tr("engine_intro"), size = 15.sp, color = t.muted, modifier = Modifier.padding(bottom = 12.dp))
-        listOf(Routes.YOJANA to "yojana", Routes.VICCHEDA to "viccheda", Routes.REGISTRY to "registry", Routes.LEXICON to "lexicon").forEach { (r, k) ->
+        listOf(Routes.YOJANA to "yojana", Routes.VICCHEDA to "viccheda", Routes.REGISTRY to "registry").forEach { (r, k) ->
             CardBox(Modifier.fillMaxWidth().padding(bottom = 10.dp), onClick = { go(r) }) { Sx(tr(k), size = 19.sp, weight = FontWeight.SemiBold, color = t.primary) }
         }
         SectionTitle(tr("practice_sets"))
@@ -129,10 +129,7 @@ private fun SurfaceBlock(surface: String, optional: Boolean) {
 fun YojanaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
     val lang = LocalLang.current; val t = LocalTokens.current
     val parts: SnapshotStateList<TextFieldValue> = remember { mutableStateListOf(TextFieldValue(""), TextFieldValue("")) }
-    var active by remember { mutableIntStateOf(0) }
-    var kbVisible by remember { mutableStateOf(false) }
-    var sysKb by rememberSaveable { mutableStateOf(false) }
-    var pragrhya by rememberSaveable { mutableStateOf(false) }
+        var pragrhya by rememberSaveable { mutableStateOf(false) }
     var pada by rememberSaveable { mutableStateOf(true) }
     var result by remember { mutableStateOf<JoinResult?>(null) }
     var busy by remember { mutableStateOf(false) }
@@ -141,7 +138,7 @@ fun YojanaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
 
     fun run() {
         val inputs = parts.map { it.text.trim() }.filter { it.isNotEmpty() }
-        busy = true; kbVisible = false
+        busy = true
         scope.launch {
             val r = withContext(Dispatchers.Default) { app.engine.joinAll(inputs, Ctx(leftPragrhya = pragrhya, leftPada = pada)) }
             result = r; busy = false
@@ -149,16 +146,13 @@ fun YojanaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
         }
     }
 
-    Page(onMenu, onBack, tr("yojana"), bottomBar = {
-        if (kbVisible && !sysKb) SanskritKeyboard(onText = { s -> parts[active] = Edit.insert(parts[active], s) }, onBackspace = { parts[active] = Edit.backspace(parts[active]) },
-            onMove = { d -> parts[active] = Edit.move(parts[active], d) }, onClear = { parts[active] = TextFieldValue("") }, onHide = { kbVisible = false })
-    }) {
+    Page(onMenu, onBack, tr("yojana")) {
         parts.forEachIndexed { i, v ->
             Row(verticalAlignment = Alignment.Bottom) {
                 Box(Modifier.weight(1f)) {
-                    EngineField(if (i == 0) tr("part1") else if (i == 1) tr("part2") else "${tr("part_n")} ${i + 1}", v, { parts[i] = it }, readOnly = !sysKb, onFocus = { active = i; kbVisible = true })
+                    EngineField(if (i == 0) tr("part1") else if (i == 1) tr("part2") else "${tr("part_n")} ${i + 1}", v, { parts[i] = it }, readOnly = false, onFocus = {})
                 }
-                if (i >= 2) Sx("✕", size = 20.sp, color = t.bad, modifier = Modifier.padding(start = 8.dp, bottom = 22.dp).clickable { parts.removeAt(i); active = 0 })
+                if (i >= 2) Sx("✕", size = 20.sp, color = t.bad, modifier = Modifier.padding(start = 8.dp, bottom = 22.dp).clickable { parts.removeAt(i) })
             }
         }
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp), modifier = Modifier.padding(bottom = 6.dp)) {
@@ -167,7 +161,6 @@ fun YojanaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
         }
         ToggleRow(tr("opt_pragrhya"), pragrhya) { pragrhya = it }
         ToggleRow(tr("opt_pada"), pada) { pada = it }
-        ToggleRow(tr("opt_system_kb"), sysKb) { sysKb = it; if (it) kbVisible = false }
         PrimaryButton(tr("run"), { run() }, Modifier.fillMaxWidth().padding(vertical = 10.dp))
         if (busy) Sx("…", color = t.muted)
         result?.let { r -> JoinResultView(r, parts.map { it.text }) }
@@ -218,26 +211,21 @@ private fun JoinResultView(r: JoinResult, rawInputs: List<String>) {
 fun VicchedaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
     val lang = LocalLang.current; val t = LocalTokens.current
     var value by remember { mutableStateOf(TextFieldValue("")) }
-    var kbVisible by remember { mutableStateOf(false) }
-    var sysKb by rememberSaveable { mutableStateOf(false) }
     var result by remember { mutableStateOf<SplitResult?>(null) }
     var busy by remember { mutableStateOf(false) }
     var showUnsup by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val hist = app.progress.version.let { app.progress.history("split") }
     fun run() {
-        val inp = value.text.trim(); busy = true; kbVisible = false
+        val inp = value.text.trim(); busy = true
         scope.launch {
             val r = withContext(Dispatchers.Default) { app.engine.split(inp) }
             result = r; busy = false; showUnsup = false
             if (r.status != Status.NO_RESULT || r.unsupported.isNotEmpty()) app.progress.addHistory("split", inp)
         }
     }
-    Page(onMenu, onBack, tr("viccheda"), bottomBar = {
-        if (kbVisible && !sysKb) SanskritKeyboard(onText = { s -> value = Edit.insert(value, s) }, onBackspace = { value = Edit.backspace(value) }, onMove = { d -> value = Edit.move(value, d) }, onClear = { value = TextFieldValue("") }, onHide = { kbVisible = false })
-    }) {
-        EngineField(tr("joined_input"), value, { value = it }, readOnly = !sysKb, onFocus = { kbVisible = true })
-        ToggleRow(tr("opt_system_kb"), sysKb) { sysKb = it; if (it) kbVisible = false }
+    Page(onMenu, onBack, tr("viccheda")) {
+        EngineField(tr("joined_input"), value, { value = it }, readOnly = false, onFocus = {})
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             PrimaryButton(tr("run"), { run() }, Modifier.weight(1f))
             PrimaryButton(tr("clear"), { value = TextFieldValue(""); result = null }, filled = false)
@@ -250,10 +238,6 @@ fun VicchedaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) 
             val lines = mutableListOf<String>()
             r.analyses.forEach { s -> SplitCard(s); lines += splitLine(s, r.input) }
             if (r.analyses.isNotEmpty()) ExportRow(lines)
-            if (r.unsupported.isNotEmpty()) {
-                PrimaryButton((if (showUnsup) "▾ " else "▸ ") + tr("unsupported_cands"), { showUnsup = !showUnsup }, Modifier.padding(top = 12.dp), filled = false)
-                if (showUnsup) r.unsupported.forEach { SplitCard(it) }
-            }
         }
         if (hist.isNotEmpty()) {
             SectionTitle(tr("history"))
@@ -303,33 +287,3 @@ fun RegistryScreen(onMenu: () -> Unit, onBack: () -> Unit) {
     }
 }
 
-@Composable
-fun LexiconScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
-    val lang = LocalLang.current; val t = LocalTokens.current
-    var counts by remember { mutableStateOf<Pair<Int, Int>?>(null) }
-    var q by remember { mutableStateOf(TextFieldValue("")) }
-    var kb by remember { mutableStateOf(false) }
-    var found by remember { mutableStateOf<String?>(null) }
-    LaunchedEffect(Unit) { counts = withContext(Dispatchers.IO) { app.lexicon.headwordCount to app.lexicon.attestedCount } }
-    Page(onMenu, onBack, tr("lexicon"), bottomBar = {
-        if (kb) SanskritKeyboard(onText = { s -> q = Edit.insert(q, s) }, onBackspace = { q = Edit.backspace(q) }, onMove = { d -> q = Edit.move(q, d) }, onClear = { q = TextFieldValue("") }, onHide = { kb = false })
-    }) {
-        counts?.let { (h, a) ->
-            CardBox(Modifier.fillMaxWidth()) {
-                Sx("%,d ${tr("headwords")}".format(h), size = 20.sp, weight = FontWeight.SemiBold, color = t.primary)
-                Sx("%,d ${tr("attested_forms")}".format(a), size = 15.sp)
-            }
-        }
-        Sx(tr("lex_note"), size = 14.sp, color = t.muted, modifier = Modifier.padding(top = 10.dp))
-        Sx(tr("lex_source"), size = 14.sp, modifier = Modifier.padding(top = 6.dp))
-        Spacer(Modifier.height(14.dp))
-        EngineField(tr("lexicon"), q, { q = it }, readOnly = true, onFocus = { kb = true })
-        val sVer = tr("verified"); val sProv = tr("provisional"); val sNone = tr("no_result")
-        PrimaryButton(tr("run"), {
-            val info = app.engine.lookup(q.text)
-            found = when (info.level) { Support.EXACT -> "✓ $sVer (${info.detail})"; Support.DERIVED -> "≈ $sProv → ${sl(info.detail, lang)}"; Support.VERBLIKE -> "≈ $sProv (tiṅ-like)"; Support.NONE -> sNone }
-            kb = false
-        }, Modifier.fillMaxWidth())
-        found?.let { Sx(it, size = 16.sp, modifier = Modifier.padding(top = 10.dp)) }
-    }
-}
