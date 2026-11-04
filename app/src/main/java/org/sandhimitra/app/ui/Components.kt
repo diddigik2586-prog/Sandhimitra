@@ -37,7 +37,7 @@ fun GlobalHeader(onMenu: () -> Unit) {
         Box(Modifier.fillMaxWidth().statusBarsPadding().height(60.dp).padding(horizontal = 12.dp)) {
             Image(painterResource(R.drawable.header_icon), contentDescription = null, contentScale = ContentScale.Fit,
                 modifier = Modifier.align(Alignment.CenterStart).size(40.dp).clip(RoundedCornerShape(9.dp)))
-            Wordmark(Modifier.align(Alignment.Center).height(38.dp))
+            Wordmark(Modifier.align(Alignment.Center).height(32.dp))
             IconButton(onClick = onMenu, modifier = Modifier.align(Alignment.CenterEnd).semantics { contentDescription = "Menu" }) {
                 Icon(Icons.Default.Menu, contentDescription = null, tint = t.primary, modifier = Modifier.size(30.dp))
             }
@@ -51,7 +51,7 @@ fun GlobalHeader(onMenu: () -> Unit) {
 fun Wordmark(modifier: Modifier = Modifier) {
     val t = LocalTokens.current
     Image(painterResource(R.drawable.sanskrit_wordmark_transparent), contentDescription = "सन्धिमित्रम्", contentScale = ContentScale.Fit,
-        colorFilter = if (t.dark) androidx.compose.ui.graphics.ColorFilter.tint(t.text) else null, modifier = modifier.aspectRatio(2137f / 709f))
+        colorFilter = if (t.dark) androidx.compose.ui.graphics.ColorFilter.tint(t.text) else null, modifier = modifier.aspectRatio(2129f / 707f))
 }
 
 @Composable

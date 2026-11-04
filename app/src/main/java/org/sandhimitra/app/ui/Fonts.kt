@@ -22,27 +22,20 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
 import org.sandhimitra.app.R
 
-/**
- * Font mapping. The supplied Kohinoor family covers Latin only (no Devanagari, Kannada, nor the IAST dot-below letters),
- * so Kohinoor is applied to every Latin run and Noto Sans Devanagari / Kannada / Noto Sans (IAST letters) cover the rest.
- * See FONT_INTEGRATION_REPORT.md.
- */
+/** Fonts: Kohinoor Devanagari (Sanskrit), Kannada MN (Kannada), Andika (English/IAST). See FONT_INTEGRATION_REPORT.md. */
 object Fonts {
-    val kohinoor = FontFamily(Font(R.font.kohinoor_book, FontWeight.Normal), Font(R.font.kohinoor_book_italic, FontWeight.Normal, FontStyle.Italic),
-        Font(R.font.kohinoor_medium, FontWeight.Medium), Font(R.font.kohinoor_medium, FontWeight.SemiBold), Font(R.font.kohinoor_bold, FontWeight.Bold))
-    val devanagari = FontFamily(Font(R.font.noto_devanagari_regular, FontWeight.Normal), Font(R.font.noto_devanagari_regular, FontWeight.Medium),
-        Font(R.font.noto_devanagari_bold, FontWeight.SemiBold), Font(R.font.noto_devanagari_bold, FontWeight.Bold))
-    val kannada = FontFamily(Font(R.font.noto_kannada_regular, FontWeight.Normal), Font(R.font.noto_kannada_regular, FontWeight.Medium),
-        Font(R.font.noto_kannada_bold, FontWeight.SemiBold), Font(R.font.noto_kannada_bold, FontWeight.Bold))
-    val latinExt = FontFamily(Font(R.font.noto_sans_regular, FontWeight.Normal), Font(R.font.noto_sans_regular, FontWeight.Medium),
-        Font(R.font.noto_sans_bold, FontWeight.SemiBold), Font(R.font.noto_sans_bold, FontWeight.Bold))
+    /** Latin text and IAST (English): Andika. */
+    val latin = FontFamily(Font(R.font.andika_regular, FontWeight.Normal), Font(R.font.andika_italic, FontWeight.Normal, FontStyle.Italic),
+        Font(R.font.andika_medium, FontWeight.Medium), Font(R.font.andika_semibold, FontWeight.SemiBold), Font(R.font.andika_bold, FontWeight.Bold))
+    /** Sanskrit (Devanagari): Kohinoor Devanagari. */
+    val devanagari = FontFamily(Font(R.font.kohinoor_deva_regular, FontWeight.Normal), Font(R.font.kohinoor_deva_medium, FontWeight.Medium),
+        Font(R.font.kohinoor_deva_semibold, FontWeight.SemiBold), Font(R.font.kohinoor_deva_bold, FontWeight.Bold))
+    /** Kannada: Kannada MN (single weight; bold is synthesised). */
+    val kannada = FontFamily(Font(R.font.kannada_mn, FontWeight.Normal))
 
-    /** Latin letters absent from Kohinoor but present in Noto Sans (IAST dot-below, macron-less etc.). */
-    private const val NOT_IN_KOHINOOR = "ṛṝḷḹṃṁḥṅṭḍṇṣṚṜḶḸṂḤṄṬḌṆṢ̣̃̄́"
     fun kindOf(c: Char): Int = when {
-        c in 'ऀ'..'ॿ' || c == '‍' || c == '‌' -> 1
-        c in 'ಀ'..'೿' -> 2
-        NOT_IN_KOHINOOR.indexOf(c) >= 0 || c in '̀'..'ͯ' || c in 'Ḁ'..'ỿ' || c in 'Ā'..'ſ' && "āīūĀĪŪñśŚÑ".indexOf(c) < 0 -> 3
+        c in '\u0900'..'\u097F' || c == '\u200D' || c == '\u200C' -> 1
+        c in '\u0C80'..'\u0CFF' -> 2
         else -> 0
     }
 
@@ -51,7 +44,7 @@ object Fonts {
         append(text)
         var start = 0; var cur = -1
         fun close(end: Int) {
-            if (cur >= 0 && end > start) addStyle(SpanStyle(fontFamily = when (cur) { 1 -> devanagari; 2 -> kannada; 3 -> latinExt; else -> kohinoor }), start, end)
+            if (cur >= 0 && end > start) addStyle(SpanStyle(fontFamily = when (cur) { 1 -> devanagari; 2 -> kannada; else -> latin }), start, end)
         }
         for (i in text.indices) {
             val c = text[i]
@@ -74,7 +67,7 @@ fun Sx(text: String, modifier: Modifier = Modifier, size: TextUnit = 16.sp, weig
     BasicText(a, modifier = modifier, maxLines = maxLines, overflow = TextOverflow.Ellipsis,
         style = TextStyle(fontSize = size, fontWeight = weight, color = color, textAlign = align ?: LocalAlign.current ?: TextAlign.Unspecified,
             fontStyle = if (italic) FontStyle.Italic else FontStyle.Normal,
-            lineHeight = if (lineHeight == TextUnit.Unspecified) (size.value * 1.55f).sp else lineHeight, fontFamily = Fonts.kohinoor))
+            lineHeight = if (lineHeight == TextUnit.Unspecified) (size.value * 1.55f).sp else lineHeight, fontFamily = Fonts.latin))
 }
 
 /** Applies script-aware fonts inside text fields (identity offset mapping). */

@@ -34,9 +34,9 @@ fun SplashScreen(onDone: () -> Unit) {
     LaunchedEffect(Unit) { started = true; delay(5000); onDone() }
     Column(Modifier.fillMaxSize().background(t.bg).systemBarsPadding().padding(horizontal = 32.dp), horizontalAlignment = Alignment.CenterHorizontally) {
         Spacer(Modifier.weight(1f))
-        Image(painterResource(R.drawable.header_icon), null, Modifier.size(150.dp).clip(RoundedCornerShape(30.dp)), contentScale = ContentScale.Fit)
+        Image(painterResource(R.drawable.header_icon), null, Modifier.size(130.dp).clip(RoundedCornerShape(26.dp)), contentScale = ContentScale.Fit)
         Spacer(Modifier.height(28.dp))
-        Wordmark(Modifier.fillMaxWidth(0.8f))
+        Wordmark(Modifier.fillMaxWidth(0.45f))
         Spacer(Modifier.height(36.dp))
         LinearProgressIndicator(progress = { p }, modifier = Modifier.fillMaxWidth(0.7f).height(6.dp).clip(RoundedCornerShape(3.dp)), color = t.primary, trackColor = t.outline)
         Spacer(Modifier.weight(1f))
