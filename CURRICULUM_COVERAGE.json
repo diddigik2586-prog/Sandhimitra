@@ -1,0 +1,64 @@
+{
+  "status": "planned_not_yet_scholarly_curated",
+  "topics": {
+    "introduction": [
+      "Meaning and definition of Sandhi",
+      "Saṃhitā",
+      "Sound relations and conditions",
+      "Ādeśa, Āgama and Lopa",
+      "Sthānī, Nimitta and Ādeśa",
+      "Ekādeśa",
+      "Nityatva and Vikalpa",
+      "Māheśvara sūtras and Pratyāhāras",
+      "Places and efforts of articulation",
+      "Savarṇa",
+      "Pada, Padānta and Apadānta",
+      "Classification of Sandhi"
+    ],
+    "vowel": [
+      "Savarṇadīrgha",
+      "Guṇa",
+      "Vṛddhi",
+      "Yaṇ",
+      "Ayādi",
+      "Pūrvarūpa",
+      "Pararūpa",
+      "Governing sūtras, conditions, derivations, examples, exceptions, vikalpas and exercises"
+    ],
+    "consonant": [
+      "Consonant classification",
+      "Ghoṣa and Aghoṣa",
+      "Ścutva",
+      "Ṣṭutva",
+      "Jaśtva",
+      "Cartva",
+      "Anunāsika",
+      "Anusvāra",
+      "Parasavarṇa",
+      "Tukāgama",
+      "Ṅamuṭāgama",
+      "Chatva",
+      "Pūrvasavarṇa",
+      "Satva",
+      "Rule ordering and exceptions"
+    ],
+    "visarga": [
+      "Origin and grammatical status",
+      "Visarga transformations and deletion",
+      "U-kāra substitution",
+      "Repha substitution",
+      "Sakāra substitution",
+      "Jihvāmūlīya",
+      "Upadhmānīya",
+      "Sūtras, derivations, exceptions and optional forms"
+    ],
+    "prakritibhava": [
+      "Definition and grammatical basis",
+      "Conditions for preservation of original form",
+      "Avagraha",
+      "Optional deletion of word-final Yakāra and Vakāra",
+      "Sūtras, examples and exceptions"
+    ]
+  },
+  "note": "This is a coverage checklist derived from the approved master specification, not a claim that lesson content is complete."
+}
