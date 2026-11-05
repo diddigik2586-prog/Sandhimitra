@@ -36,8 +36,34 @@ def clean_paras(ps):
         out.append(p)
     return out
 
+PREFIXES = ('प्रौढशास्त्रीयव्याख्यानम् — ', 'ವಿದ್ವತ್ಪೂರ್ಣ ಶಾಸ್ತ್ರೀಯ ವಿವರಣೆ — ')
+
+def load_corrections():
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sa_corrections.json')
+    return json.load(open(f, encoding='utf8')) if os.path.exists(f) else []
+
+def apply_corrections(d, corr):
+    """Each correction names a Sanskrit line by id (tNN.sN.pK or tNN.ex|pr.rR.cC); 'old' must occur exactly once in it."""
+    applied = 0
+    for c in corr:
+        parts = c['id'].split('.')
+        t = d['sa'][int(parts[0][1:])]
+        if parts[1] in ('ex', 'pr'):
+            row = t['ex_table' if parts[1] == 'ex' else 'pr_table'][int(parts[2][1:])]
+            ci = int(parts[3][1:]); text = row[ci]
+            assert text.count(c['old']) == 1, c
+            row[ci] = text.replace(c['old'], c['new']); applied += 1
+        else:
+            n = int(parts[1][1:]); k = int(parts[2][1:])
+            sec = [x for x in t['sections'] if x['num'] == n][0]
+            text = sec['paras'][k]
+            assert text.count(c['old']) == 1, c
+            sec['paras'][k] = text.replace(c['old'], c['new']); applied += 1
+    return applied
+
 def main(parsed, outdir):
     d = json.load(open(parsed, encoding='utf8'))
+    print('Sanskrit corrections applied:', apply_corrections(d, load_corrections()))
     os.makedirs(os.path.join(outdir, 'topics'), exist_ok=True)
     index = {'groups': {g: [] for g in GROUPS}, 'section_labels': {str(k): v for k, v in LABELS.items()}}
     dropped = 0
@@ -54,6 +80,12 @@ def main(parsed, outdir):
             secs = []
             for s in t['sections']:
                 ps = clean_paras(s['paras']); dropped += len(s['paras']) - len(ps)
+                ps = [next((p[len(x):] for x in PREFIXES if p.startswith(x)), p) for p in ps]
+                if s['num'] == 1:
+                    # the topic-name line is not shown; the remaining opening paragraphs keep no heading
+                    ps = ps[1:]
+                    if not ps: continue
+                    secs.append({'n': 0, 'p': ps}); continue
                 secs.append({'n': s['num'], 'p': ps})
             rec[lang] = {'title': short(t['title']), 'subtitle': t['title'], 'sections': secs,
                          'ex': t['ex_table'], 'pr': t['pr_table']}

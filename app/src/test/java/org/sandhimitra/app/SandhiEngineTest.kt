@@ -69,7 +69,7 @@ class SandhiEngineTest {
     @Test fun anusvara() { assertEquals(setOf("सं तापः".replace(" ", "")), fwd("सम्", "तापः").filter { it.startsWith("सं") }.toSet()); assertTrue("सन्तापः" in fwd("सम्", "तापः")); assertTrue("अङ्कः" in fwd("अम्", "कः")); assertTrue("संरक्षति" in fwd("सम्", "रक्षति")); assertTrue("संसारः" in fwd("सम्", "सारः")); assertTrue("सम्राट्" in fwd("सम्", "राट्")); assertTrue("तमपि" in fwd("तम्", "अपि")) }
     @Test fun tuk() { assertEquals(setOf("वृक्षच्छाया"), fwd("वृक्ष", "छाया")); val r = fwd("सीता", "छाया"); assertTrue("सीताच्छाया" in r && "सीताछाया" in r); assertEquals(setOf("तवच्छत्रम्"), fwd("तव", "छत्रम्")) }
     @Test fun ngamut() { assertEquals(setOf("प्रत्यङ्ङात्मा"), fwd("प्रत्यङ्", "आत्मा")); assertEquals(setOf("महानात्मा"), fwd("महान्", "आत्मा")) }
-    @Test fun nashchavi() { assertTrue("तांस्तान्" in fwd("तान्", "तान्") && "ताँस्तान्" in fwd("तान्", "तान्")); assertTrue("भवांश्च" in fwd("भवान्", "च")); assertEquals(setOf("प्रशान्तनोति"), fwd("प्रशान्", "तनोति")) }
+    @Test fun nashchavi() { assertTrue("तांस्तान्" in fwd("तान्", "तान्") && "ताँस्तान्" in fwd("तान्", "तान्")); assertTrue("भवांश्च" in fwd("भवान्", "च")); assertEquals(setOf("प्रशान्तनोति"), fwd("प्रशान्", "तनोति")); assertEquals(setOf("प्रशाञ्चिनोति"), fwd("प्रशान्", "चिनोति")) }
     @Test fun purvasavarna() { val r = fwd("वाक्", "हरिः"); assertTrue("वाग्घरिः" in r); assertTrue("वाग्हरिः" in r); assertTrue("उत्थानम्" in fwd("उद्", "स्थानम्")) }
     @Test fun torli() { assertTrue("विद्वाँल्लिखति" in fwd("विद्वान्", "लिखति")) }
 

@@ -232,6 +232,8 @@ class SandhiEngine(private val lexicon: LexiconApi? = null) {
         }
         if (c == 'n') {
             when {
+                b in "cC" && L.endsWith("praSAn") -> return listOf(Alt(base + "Y" + R, listOf(Step("C02", "n$b", "Y$b", "8.3.7"))))
+                b in "wW" && L.endsWith("praSAn") -> return listOf(Alt(base + "R" + R, listOf(Step("C03", "n$b", "R$b", "8.3.7"))))
                 b in "cCwWtT" && !L.endsWith("praSAn") -> {
                     val s = when (b) { 'c', 'C' -> "S"; 'w', 'W' -> "z"; else -> "s" }
                     val second = if (s == "S") Step("C02", "s$b", "S$b") else if (s == "z") Step("C03", "s$b", "z$b") else null

@@ -1,4 +1,10 @@
 # Changelog
+## 1.1.0
+- Lessons: the topic-name line (e.g. "1. प्रकरणनाम — सवर्णदीर्घसन्धिः प्रकरणम्।" / "ಪ್ರಕರಣದ ಹೆಸರು") removed in all languages; headings renumbered.
+- Removed the label "प्रौढशास्त्रीयव्याख्यानम् —" (and Kannada "ವಿದ್ವತ್ಪೂರ್ಣ ಶಾಸ್ತ್ರೀಯ ವಿವರಣೆ —") from all lessons.
+- Sanskrit text proof-read in full; 133 corrections applied (listed with reasons in docs/SANSKRIT_CORRECTIONS.md).
+- Paragraphs justified with a 3 mm first-line indent in all languages.
+- Engine: प्रशान् + चिनोति → प्रशाञ्चिनोति (ścutva still applies when 8.3.7 is blocked).
 ## 1.0.8-sample
 - About page: removed the dictionary data credit line (author's decision; the licence text remains in the app assets and docs).
 ## 1.0.7-sample

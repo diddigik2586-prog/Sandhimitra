@@ -104,7 +104,7 @@ fun LessonBody(topic: Topic, lang: String) {
     if (lang == "en") {
         val en = topic.en
         SectionTitle(tr("overview"))
-        Sx(en.overview)
+        Para(en.overview)
         if (en.rules.isNotEmpty()) {
             SectionTitle(tr("sutras"))
             en.rules.forEach { r ->
@@ -120,14 +120,15 @@ fun LessonBody(topic: Topic, lang: String) {
             en.notes.forEach { n -> Bullet(n) }
         }
         val sa = topic.sa
-        sa.sections.firstOrNull { it.n == 7 }?.let { s -> if (s.paras.isNotEmpty()) { SectionTitle(tr("derivations")); s.paras.forEach { Sx(tx(it, "en"), size = 15.sp, modifier = Modifier.padding(bottom = 8.dp)) } } }
+        sa.sections.firstOrNull { it.n == 7 }?.let { s -> if (s.paras.isNotEmpty()) { SectionTitle(tr("derivations")); s.paras.forEach { Para(tx(it, "en"), 15.sp) } } }
         if (sa.ex.size > 1) { SectionTitle(tr("examples")); ExampleRows(sa.ex, "en", showComment = false) }
         return
     }
     val lc = topic.lc(lang)
+    var no = 0
     lc.sections.filter { it.n != 12 && it.n != 13 }.forEach { s ->
         if (s.paras.isEmpty() && s.n != 8) return@forEach
-        SectionTitle("${s.n}. ${secLabel(s.n, lang)}")
+        if (s.n != 0) { no++; SectionTitle("$no. ${secLabel(s.n, lang)}") }
         s.paras.forEach { p -> RichPara(p) }
         if (s.n == 8 && lc.ex.size > 1) ExampleRows(lc.ex, lang, showComment = true)
     }
@@ -136,15 +137,22 @@ fun LessonBody(topic: Topic, lang: String) {
 @Composable
 private fun RichPara(p: String) {
     val parts = p.split(" • ").map { it.trim().removePrefix("•").trim() }.filter { it.isNotEmpty() }
-    if (parts.size > 1 || p.trim().startsWith("•")) parts.forEach { Bullet(it) } else Sx(p, modifier = Modifier.padding(bottom = 8.dp))
+    if (parts.size > 1 || p.trim().startsWith("•")) parts.forEach { Bullet(it) } else Para(p)
 }
 
 @Composable
 fun Bullet(text: String) {
     Row(Modifier.fillMaxWidth().padding(bottom = 6.dp)) {
         if (LocalAlign.current == null) Sx("•", color = LocalTokens.current.accent, modifier = Modifier.padding(end = 8.dp))
-        Sx(text, modifier = Modifier.weight(1f))
+        Sx(text, modifier = Modifier.weight(1f), justify = LocalAlign.current == null)
     }
+}
+
+/** Lesson paragraph: justified with a 3 mm first-line indent. */
+@Composable
+fun Para(text: String, size: androidx.compose.ui.unit.TextUnit = 16.sp) {
+    if (LocalAlign.current != null) Sx(text, size = size, modifier = Modifier.padding(bottom = 8.dp))
+    else Sx(text, size = size, modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp), justify = true, indent = true)
 }
 
 @Composable
@@ -204,9 +212,9 @@ private fun QuestionCard(app: SandhimitraApp, topic: String, item: Item) {
     val t = LocalTokens.current
     var shown by rememberSaveable(topic, item.id) { mutableStateOf(false) }
     CardBox(Modifier.fillMaxWidth().padding(bottom = 10.dp)) {
-        Sx(item.q, weight = FontWeight.Medium)
+        Sx(item.q, weight = FontWeight.Medium, modifier = Modifier.fillMaxWidth(), justify = true, indent = true)
         if (shown) {
-            Spacer(Modifier.height(6.dp)); Sx(item.a, color = t.primary)
+            Spacer(Modifier.height(6.dp)); Sx(item.a, color = t.primary, modifier = Modifier.fillMaxWidth(), justify = true, indent = true)
         }
         PrimaryButton(if (shown) tr("hide_answer") else tr("show_answer"), { shown = !shown }, Modifier.padding(top = 10.dp), filled = false)
     }

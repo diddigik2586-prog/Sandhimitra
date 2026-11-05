@@ -19,6 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sandhimitra.app.R
 
@@ -62,10 +63,14 @@ val LocalAlign = androidx.compose.runtime.compositionLocalOf<TextAlign?> { null 
 /** The single text primitive of the app: every visible string goes through script-aware font mapping. */
 @Composable
 fun Sx(text: String, modifier: Modifier = Modifier, size: TextUnit = 16.sp, weight: FontWeight = FontWeight.Normal, color: Color = LocalTokens.current.text,
-       align: TextAlign? = null, italic: Boolean = false, maxLines: Int = Int.MAX_VALUE, lineHeight: TextUnit = TextUnit.Unspecified) {
+       align: TextAlign? = null, italic: Boolean = false, maxLines: Int = Int.MAX_VALUE, lineHeight: TextUnit = TextUnit.Unspecified,
+       justify: Boolean = false, indent: Boolean = false) {
     val a = remember(text) { Fonts.annotate(text) }
+    // paragraph style: justified, first line indented by 3 mm (3 / 25.4 in × 160 dp/in ≈ 18.9 dp, kept physical under font scaling)
+    val ind = if (indent) with(androidx.compose.ui.platform.LocalDensity.current) { 18.9f.dp.toSp() } else 0.sp
     BasicText(a, modifier = modifier, maxLines = maxLines, overflow = TextOverflow.Ellipsis,
-        style = TextStyle(fontSize = size, fontWeight = weight, color = color, textAlign = align ?: LocalAlign.current ?: TextAlign.Unspecified,
+        style = TextStyle(fontSize = size, fontWeight = weight, color = color, textAlign = if (justify) TextAlign.Justify else align ?: LocalAlign.current ?: TextAlign.Unspecified,
+            textIndent = if (indent) androidx.compose.ui.text.style.TextIndent(firstLine = ind) else null,
             fontStyle = if (italic) FontStyle.Italic else FontStyle.Normal,
             lineHeight = if (lineHeight == TextUnit.Unspecified) (size.value * 1.55f).sp else lineHeight, fontFamily = Fonts.latin))
 }

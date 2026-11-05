@@ -12,7 +12,7 @@ class LexiconDb(ctx: Context) : LexiconApi {
     val attestedCount: Int
 
     init {
-        val f = File(ctx.filesDir, "lexicon_v2.db")
+        val f = File(ctx.filesDir, "lexicon_v3.db")
         if (!f.exists() || f.length() < 1_000_000) {
             ctx.assets.open("lexicon/lexicon.db").use { i -> f.outputStream().use { o -> i.copyTo(o) } }
         }
