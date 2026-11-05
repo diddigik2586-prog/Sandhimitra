@@ -117,6 +117,7 @@ object S {
         "copy" to Triple("प्रतिलिखत", "ನಕಲಿಸಿ", "Copy"),
         "share" to Triple("प्रेषयत", "ಹಂಚಿಕೊಳ್ಳಿ", "Share"),
         "pdf" to Triple("PDF", "PDF", "PDF"),
+        "other_analyses" to Triple("अन्ये सम्भाव्याः विच्छेदाः", "ಇತರ ಸಂಭಾವ್ಯ ವಿಭಜನೆಗಳು", "Other possible analyses"),
         "stem" to Triple("यदि प्रथमः भागः पदं न", "ಮೊದಲ ಭಾಗ ಪದವಲ್ಲದಿದ್ದರೆ", "if the first part is not a complete word"),
         "dual" to Triple("यदि द्विवचनम्", "ದ್ವಿವಚನವಾದರೆ", "if it is a dual form"),
         "vartika" to Triple("वार्तिकम्", "ವಾರ್ತಿಕ", "vārttika"),

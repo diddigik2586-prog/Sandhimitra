@@ -1,4 +1,11 @@
 # Changelog
+## 1.1.1
+- Sandhi Viccheda: the best analysis is shown first; other possible readings are under a collapsed "Other possible analyses".
+- Compound-only dictionary forms (आत्म, मनो, तपो …: "in comp. for …" in Monier-Williams) no longer count as words: आत्मावलोकनम् → आत्मा + अवलोकनम्, मनोरथः → मनः + रथः.
+- Dictionary compound markers decide the boundary: an intact second member (संहिता—पाठ) names the right part; a fused boundary (हिमालय, गणेश) requires a vowel sandhi.
+- Readings that differ only in vowel length or in the word-final consonant (देव/देवा, सत्/सद्/सच्, अन्तर्/अन्तः) are merged, keeping the better-attested citation form.
+- Not offered any more: parts with an avagraha, one-letter fragments (श, ग, प), lone-vowel right parts, visarga-loss readings for unspaced input, splits of simple words (बुद्धिः, गङ्गा); oblique-case first members are ranked down; numeral nominatives (सप्त) handled.
+- रो रि lengthening limited to a/i/u (6.3.111).
 ## 1.1.0
 - Lessons: the topic-name line (e.g. "1. प्रकरणनाम — सवर्णदीर्घसन्धिः प्रकरणम्।" / "ಪ್ರಕರಣದ ಹೆಸರು") removed in all languages; headings renumbered.
 - Removed the label "प्रौढशास्त्रीयव्याख्यानम् —" (and Kannada "ವಿದ್ವತ್ಪೂರ್ಣ ಶಾಸ್ತ್ರೀಯ ವಿವರಣೆ —") from all lessons.

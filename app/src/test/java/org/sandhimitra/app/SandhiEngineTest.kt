@@ -23,6 +23,8 @@ class SandhiEngineTest {
                 override fun isAttested(form: String) = has("SELECT f FROM attested WHERE f=?", form) != null
                 override fun closedClass(form: String) = has("SELECT c FROM closed WHERE f=?", form)
                 override fun weight(k1: String) = has("SELECT w FROM lex WHERE k1=?", k1)?.toIntOrNull() ?: 0
+                override fun isSimple(k1: String) = has("SELECT s FROM lex WHERE k1=?", k1) == "1"
+                override fun compound(k1: String): Pair<String, String>? { val p = has("SELECT parent FROM cmp WHERE k1=?", k1) ?: return null; return p to (has("SELECT second FROM cmp WHERE k1=?", k1) ?: "") }
             })
         }
         fun d(s: String) = Script.slp1ToDevanagari(s)
@@ -97,6 +99,18 @@ class SandhiEngineTest {
     @Test fun reverseSelected() {
         assertTrue(hasSplit("देवालयः", "देव", "आलयः")); assertTrue(hasSplit("स्वागतम्", "सु", "आगतम्")); assertTrue(hasSplit("सतीशः", "सती", "ईशः")); assertTrue(hasSplit("नमस्कारः", "नमः", "कारः")); assertTrue(hasSplit("अक्षौहिणी", "अक्ष", "ऊहिनी"))
         assertTrue(hasSplit("पयोदः", "पयः", "दः")); assertTrue(hasSplit("गवाक्षः", "गो", "अक्षः"))
+    }
+    @Test fun bestAnalysisFirst() {
+        val cases = mapOf("संहितापाठः" to "संहिता+पाठः", "हिमालयः" to "हिम+आलयः", "देवालयः" to "देव+आलयः", "विद्यालयः" to "विद्या+आलयः", "मनोरथः" to "मनः+रथः",
+            "गणेशः" to "गण+ईशः", "अत्रैव" to "अत्र+एव", "तपोवनम्" to "तपः+वनम्", "स्वागतम्" to "सु+आगतम्", "परोपकारः" to "पर+उपकारः", "सप्तर्षयः" to "सप्त+ऋषयः",
+            "महर्षिः" to "महा+ऋषिः", "सदैव" to "सदा+एव", "सच्चित्" to "सत्+चित्", "वागीशः" to "वाक्+ईशः", "उत्पन्नः" to "उद्+पन्नः", "अन्तःकरणम्" to "अन्तः+करणम्", "आत्मावलोकनम्" to "आत्मा+अवलोकनम्")
+        for ((w, want) in cases) { val a = splits(w).analyses.firstOrNull(); assertEquals(w, want, a?.let { d(it.left) + "+" + d(it.right) }) }
+        assertTrue(splits("बुद्धिः").analyses.isEmpty()); assertTrue(splits("गङ्गा").analyses.none { d(it.left) == "गम्" })
+    }
+    @Test fun vowelLengthAmbiguity() {
+        assertEquals(listOf("आत्मा+अवलोकनम्"), splits("आत्मावलोकनम्").analyses.map { d(it.left) + "+" + d(it.right) })
+        assertTrue(hasSplit("देवालयः", "देव", "आलयः")); assertFalse(hasSplit("देवालयः", "देवा", "आलयः"))
+        assertTrue(hasSplit("विद्यालयः", "विद्या", "आलयः")); assertFalse(hasSplit("विद्यालयः", "विद्य", "आलयः"))
     }
     @Test fun particlesAndShari() { assertEquals(setOf("अहो इति"), fwd("अहो", "इति")); assertEquals(setOf("उ इति"), fwd("उ", "इति")); assertTrue("हरिः शेते" in fwd("हरिः", "शेते") && "हरिश्शेते" in fwd("हरिः", "शेते")); assertEquals(setOf("कः त्सरति"), fwd("कः", "त्सरति")) }
     @Test fun noChangeJunctionSplit() {

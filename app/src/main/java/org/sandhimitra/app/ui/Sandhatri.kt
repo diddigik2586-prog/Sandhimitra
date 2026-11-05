@@ -243,7 +243,13 @@ fun VicchedaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) 
             Row(verticalAlignment = Alignment.CenterVertically) { Sx("${lab("status")}", size = 14.sp, color = t.muted); StatusChip(r.status) }
             r.notes.map { noteText(it, lang) }.filter { it.isNotEmpty() }.forEach { Sx(it, size = 14.sp, color = t.accent, modifier = Modifier.padding(top = 6.dp)) }
             val lines = mutableListOf<String>()
-            r.analyses.forEach { s -> SplitCard(s); lines += splitLine(s, r.input) }
+            // the best-supported analysis is shown; any further possible readings are listed under a collapsed heading
+            r.analyses.firstOrNull()?.let { s -> SplitCard(s); lines += splitLine(s, r.input) }
+            val others = r.analyses.drop(1)
+            if (others.isNotEmpty()) {
+                PrimaryButton((if (showUnsup) "▾ " else "▸ ") + tr("other_analyses") + " (${others.size})", { showUnsup = !showUnsup }, Modifier.padding(top = 12.dp), filled = false)
+                if (showUnsup) others.forEach { s -> SplitCard(s); lines += splitLine(s, r.input) }
+            }
             if (r.analyses.isNotEmpty()) ExportRow(lines)
         }
         if (hist.isNotEmpty()) {

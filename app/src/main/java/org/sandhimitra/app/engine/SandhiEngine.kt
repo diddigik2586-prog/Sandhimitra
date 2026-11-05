@@ -337,6 +337,8 @@ class SandhiEngine(private val lexicon: LexiconApi? = null) {
         }
         if (Ph.isVoicedCons(b)) {
             if (b == 'r' && !(sru && preV == 'a')) {
+                // ḍhralope pūrvasya dīrgho 'ṇaḥ (6.3.111) lengthens only aṇ (a i u); after other vowels r is simply dropped
+                if (preV !in "aAiIuU") return listOf(Alt(core + " " + R, s0 + Step("H10", "r r", "$preV r")))
                 return listOf(Alt(coreNoV + Ph.longOf(preV) + R, s0 + Step("H10", "r r", "${Ph.longOf(preV)} r", "6.3.111")))
             }
             if (sru && preV == 'a') return listOf(Alt(coreNoV + "o" + R, s0 + listOf(Step("H07", "ru", "u"), Step("V02", "a+u", "o"))))
@@ -393,22 +395,43 @@ class SandhiEngine(private val lexicon: LexiconApi? = null) {
         if (hasLexicon) for (k in 2..n - 2) {
             val L = J.substring(0, k); val R = J.substring(k)
             if (spaceAt >= 0 && spaceAt != k) continue
-            if (!Ph.isVowel(L.last()) || L.length < 3 || R.length < 4) continue
+            if (!Ph.isVowel(L.last()) || R.length < 4 || (L.length < 3 && lexicon?.closedClass(L) != "upasarga")) continue
             if (L.none { Ph.isVowel(it) } || R.none { Ph.isVowel(it) }) continue
             val ls = support.classify(L); val rs = support.classify(R)
-            if (ls.level == Support.NONE || rs.level == Support.NONE || ls.level == Support.VERBLIKE || rs.level == Support.VERBLIKE) continue
+            val prefixLeft = ls.detail == "upasarga"
+            if (ls.level == Support.NONE || rs.level == Support.NONE || ls.level == Support.VERBLIKE || (rs.level == Support.VERBLIKE && !prefixLeft)) continue
             val alts = try { joinPair(L, R, Ctx(), mutableListOf()) } catch (e: Exception) { emptyList() }
             if (alts.any { it.steps.isEmpty() && it.surface.replace(" ", "") == J }) found.putIfAbsent("$L|$R|true", Split(L, R, Alt(L + R, emptyList()), emptyList(), Status.PROVISIONAL, ls, rs, true))
         }
         // a form that is itself a dictionary word is not split at junctions where nothing changes (kamala is not ka + mala)
-        if (support.classify(J).level == Support.EXACT) found.entries.removeAll { it.value.alt.steps.isEmpty() }
+        if (lexicon?.isHeadword(J) == true && lexicon.isSimple(J)) found.entries.removeAll { it.value.alt.steps.isEmpty() }
+        // a simple dictionary word (not a compound in the dictionary) is not split, except into the morpheme pairs taught in the lessons
+        val jInfo = support.classify(J)
+        val jStem = support.stemOf(J)
+        if (spaceAt < 0 && lexicon?.isSimple(jStem) == true)
+            found.entries.removeAll { (_, sp) ->
+                val taught = (lexicon.isAttested(sp.left) || lexicon.closedClass(sp.left) != null) && (lexicon.isAttested(sp.right) || lexicon.closedClass(sp.right) != null)
+                val prefixed = lexicon.closedClass(sp.left) == "upasarga"
+                !taught && !prefixed
+            }
         for ((k, v) in SPECIAL) for (res in v) if (res.first == J) {
             val ls = support.classify(k.first); val rs = support.classify(k.second)
             found.putIfAbsent("${k.first}|${k.second}|true", Split(k.first, k.second, Alt(J, listOf(Step("V10", "", "", res.second))), listOf("V10"), Status.PROVISIONAL, ls, rs, true))
         }
         // prune trivial candidates (very short invented parts)
         val ok = mutableListOf<Split>(); val unsupported = mutableListOf<Split>()
+        val seen = HashSet<String>()
         for (sp in found.values) {
+            if (!seen.add(sp.left + "|" + sp.right)) continue
+            // a typed form without a space cannot be a reading that is written as two separate words (hiatus, visarga loss, pragṛhya)
+            if (spaceAt < 0 && sp.alt.surface.replace("H ", "H").contains(' ')) continue
+            // every part must contain a consonant unless it is a listed particle/prefix (no "वृक्षच्छाया + अ")
+            if (sp.right.none { Ph.isCons(it) && it != 'H' && it != 'M' }) continue
+            if (sp.left.none { Ph.isCons(it) && it != 'H' && it != 'M' } && lexicon?.closedClass(sp.left) == null) continue
+            // the avagraha only arises from the join itself; it never belongs inside a part
+            if (sp.left.contains('\'') || sp.right.contains('\'')) continue
+            // one-syllable dictionary fragments (श, ग, प…) are not offered as parts unless they are listed particles/prefixes or attested in the lessons
+            if (listOf(sp.left, sp.right).any { p -> p.length <= 2 && lexicon?.closedClass(p) == null && lexicon?.isAttested(p) != true }) continue
             val ls = sp.leftSupport.level; val rs = sp.rightSupport.level
             val bothKnown = ls != Support.NONE && rs != Support.NONE
             if (!hasLexicon) { unsupported += sp; continue }
@@ -419,11 +442,54 @@ class SandhiEngine(private val lexicon: LexiconApi? = null) {
                 ok += sp.copy(status = st)
             } else unsupported += sp
         }
+        // a compound listed in the dictionary decides its own boundary: an intact second member (मनो—हर, संहिता—पाठ) names the right part;
+        // otherwise the vowels fused at the boundary and the left part is the headword the compound is listed under (हिम + आलयः)
+        val cinfo = lexicon?.compound(jStem) ?: lexicon?.compound(J)
+        if (cinfo != null && spaceAt < 0) {
+            val second = cinfo.second
+            // second member intact → it is the right part; no intact member → the vowels fused, so the reading must contain a vowel sandhi
+            val pick = if (second.isNotEmpty()) ok.filter { support.stemOf(it.right) == second || it.right == second }
+                       else ok.filter { s -> s.alt.steps.any { Rules.find(it.ruleId)?.category == Category.VOWEL } }
+            // prefer a real word on the left over a compound-only form (मनः, not मनो)
+            val real = pick.filter { !(lexicon?.isHeadword(it.left) == true && lexicon.weight(it.left) == 0) }
+            val chosen = if (real.isNotEmpty()) real else pick
+            if (chosen.isNotEmpty()) ok.retainAll { it in chosen }
+        }
         // Occam: when a verified split without any Sandhi change exists, sandhi splits resting on stem+ending guesses are not offered
         val plain = ok.filter { it.alt.steps.isEmpty() && it.status == Status.VERIFIED }
-        if (plain.isNotEmpty()) ok.removeAll { sp -> sp.alt.steps.isNotEmpty() && Ph.isVowel(sp.right.first()) && !sp.leftSupport.detail.let { d -> d == "upasarga" || d == "avyaya" } &&
+        if (cinfo == null && plain.isNotEmpty()) ok.removeAll { sp -> sp.alt.steps.isNotEmpty() && Ph.isVowel(sp.right.first()) && !sp.leftSupport.detail.let { d -> d == "upasarga" || d == "avyaya" } &&
             plain.any { n -> n.right == sp.right.drop(1) && support.weight(sp.left) + support.weight(sp.right) < support.weight(n.left) + support.weight(n.right) } }
-        fun score(s: Split) = (if (s.status == Status.VERIFIED) 100 else 0) + s.leftSupport.level.ordinal.let { 3 - it } * 5 + s.rightSupport.level.ordinal.let { 3 - it } * 5 + minOf(s.left.length, s.right.length).coerceAtMost(6) + (if (s.alt.steps.isEmpty()) 8 else 0) + (if (s.leftSupport.detail == "upasarga") 6 else 0)
+        // splits that differ only in the length of the joining vowel (आत्म/आत्मा + अवलोकनम्, देव/देवा + आलयः) are one
+        // analysis: keep the reading whose words are better attested (compound-only stems such as आत्म weigh 0)
+        fun shortEnd(w: String) = if (w.isNotEmpty() && w.last() in "AIUF") w.dropLast(1) + "aiuf"["AIUF".indexOf(w.last())] else w
+        fun shortStart(w: String) = if (w.isNotEmpty() && w.first() in "AIUF") "aiuf"["AIUF".indexOf(w.first())] + w.drop(1) else w
+        val groups = ok.groupBy { shortEnd(it.left) + "|" + shortStart(it.right) + "|" + it.ruleIds.joinToString(",") }
+        val keep = groups.values.flatMap { g ->
+            if (g.size == 1) g else {
+                val w = g.associateWith { support.weight(it.left) + support.weight(it.right) + (if (lexicon?.closedClass(it.left) == "avyaya") 2 else 0) }; val m = w.values.max()
+                // tie: the short-vowel stem on the left (देव, हिम) and the long-vowel word on the right (आलयः)
+                listOf(g.filter { w.getValue(it) == m }.minBy { (if (it.left.last() in "AIUF") 1 else 0) + (if (it.right.first() in "aiuf") 1 else 0) })
+            }
+        }.toSet()
+        ok.retainAll { it in keep }
+        // the same word with alternative final consonants (सत्/सद्/सच्/सज् + चित्, वाक्/वाग् + ईशः) is one analysis:
+        // keep the best-attested form, and on a tie the citation form (unvoiced, dental before palatal/retroflex)
+        val pref = "tkpwcTKPWCdgbqjDGBQJ"
+        fun consKey(w: String) = when {
+            w.isNotEmpty() && w.last() in "rsH" -> w.dropLast(1) + "%"          // अन्तर्/अन्तस्/अन्तः are one word: cited with visarga
+            w.isNotEmpty() && Ph.varga(w.last()) >= 0 && w.last() !in "NYRnm" -> w.dropLast(1) + "#"
+            else -> w
+        }
+        val cgroups = ok.groupBy { consKey(it.left) + "|" + it.right }
+        val ckeep = cgroups.values.flatMap { g ->
+            if (g.size == 1) g else {
+                if (g.all { it.left.last() in "rsH" }) listOf(g.minBy { "Hsr".indexOf(it.left.last()) }) else {
+                val w = g.associateWith { support.weight(it.left) + support.weight(it.right) }; val m = w.values.max()
+                listOf(g.filter { w.getValue(it) == m }.minBy { pref.indexOf(it.left.last()).let { i -> if (i < 0) 99 else i } }) }
+            }
+        }.toSet()
+        ok.retainAll { it in ckeep }
+        fun score(s: Split) = (if (s.status == Status.VERIFIED) 100 else 0) - (if (spaceAt < 0 && s.leftSupport.ending in LexSupport.OBLIQUE_ENDINGS) 30 else 0) + 4 * (support.weight(s.left) + support.weight(s.right)) - s.alt.steps.size + s.leftSupport.level.ordinal.let { 3 - it } * 5 + s.rightSupport.level.ordinal.let { 3 - it } * 5 + minOf(s.left.length, s.right.length).coerceAtMost(6) + (if (s.alt.steps.isEmpty()) 8 else 0) + (if (s.leftSupport.detail == "upasarga") 15 else 0)
         ok.sortByDescending { score(it) }
         unsupported.sortByDescending { score(it) }
         val status = when {

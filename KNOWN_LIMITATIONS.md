@@ -13,3 +13,5 @@
 **Wordmark:** at the author's request the header/splash wordmark is a derived transparent version of the supplied PNG (white background removed, artwork unchanged; original kept in original_assets/images). The header centre is no longer empty and carries the wordmark; the icon sits at the left.
 
 **Corpus check (1.0.5):** 17 forward and 12 reverse items of the supplied tables still differ; they are source-table defects (wrong spellings, truncated cells, rows whose answer belongs to another row, उत्थम्भनम्, गुरवादेशः…) or morphology beyond Sandhi (मृण्मयम्, हंसः). Listed in docs/CORPUS_CHECK_REPORT.txt for the author's review.
+
+**Reverse ranking (1.1.1):** when a joined form has several grammatical readings, the first one shown is chosen from dictionary evidence (entry size, compound markers, citation forms), not from meaning; truly ambiguous forms can still put a valid but less usual reading first. All readings remain available under "Other possible analyses".

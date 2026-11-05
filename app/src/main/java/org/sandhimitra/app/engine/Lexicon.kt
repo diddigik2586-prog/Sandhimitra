@@ -7,11 +7,15 @@ interface LexiconApi {
     fun closedClass(form: String): String?
     /** 1..3: how extensive the dictionary article is (a rough indicator of how common a word is); 0 if unknown. */
     fun weight(k1: String): Int
+    /** true when the dictionary lists the word only as a simple (non-compound) headword. */
+    fun isSimple(k1: String): Boolean = false
+    /** For a compound headword: (first-member headword, second member if the dictionary marks it intact, else ""). */
+    fun compound(k1: String): Pair<String, String>? = null
 }
 
 enum class Support { EXACT, DERIVED, VERBLIKE, NONE }
 
-data class SupportInfo(val level: Support, val detail: String = "")
+data class SupportInfo(val level: Support, val detail: String = "", val ending: String = "")
 
 /**
  * Decides how well a surface form is supported by the lexicon:
@@ -21,12 +25,13 @@ data class SupportInfo(val level: Support, val detail: String = "")
  *  NONE     – not found.
  */
 class LexSupport(private val lexicon: LexiconApi?) {
+    companion object { val OBLIQUE_ENDINGS = setOf("ena", "Aya", "At", "asya", "ayoH", "EH", "ebyaH", "ezu", "AnAm", "ayA", "AyE", "AyAH", "AyAm", "Asu", "AByaH", "inA", "aye", "eH", "ibyaH", "izu", "InAm", "unA", "ave", "oH", "uzu", "UnAm", "yAH", "yAm", "yE", "ByaH", "vAH", "vAm", "rA", "re", "asA", "ataH", "atA", "inaH", "AnaH") }
     private val lex: LexiconApi? = lexicon
     private val nominalEndings: List<Pair<String, String>> = listOf(
         "aH" to "a", "am" to "a", "ena" to "a", "Aya" to "a", "At" to "a", "asya" to "a", "e" to "a", "O" to "a", "AH" to "a",
         "An" to "a", "EH" to "a", "ebyaH" to "a", "ezu" to "a", "AnAm" to "a", "ayoH" to "a", "Ani" to "a", "ena" to "a",
         "Am" to "A", "ayA" to "A", "AyE" to "A", "AyAH" to "A", "AyAm" to "A", "AH" to "A", "Asu" to "A", "AByaH" to "A",
-        "iH" to "i", "im" to "i", "inA" to "i", "aye" to "i", "eH" to "i", "ayaH" to "i", "In" to "i", "ibyaH" to "i", "izu" to "i", "InAm" to "i", "O" to "i",
+        "o" to "u", "e" to "i", "iH" to "i", "im" to "i", "inA" to "i", "aye" to "i", "eH" to "i", "ayaH" to "i", "In" to "i", "ibyaH" to "i", "izu" to "i", "InAm" to "i", "O" to "i",
         "uH" to "u", "um" to "u", "unA" to "u", "ave" to "u", "oH" to "u", "avaH" to "u", "Un" to "u", "uzu" to "u", "UnAm" to "u", "O" to "u",
         "Im" to "I", "yAH" to "I", "yAm" to "I", "yE" to "I", "yaH" to "I", "ByaH" to "I",
         "Um" to "U", "vAH" to "U", "vAm" to "U",
@@ -35,12 +40,15 @@ class LexSupport(private val lexicon: LexiconApi?) {
         "aH" to "as", "asA" to "as", "aso" to "as", "asi" to "as", "AMsi" to "as", "aSAn" to "as",
         "An" to "at", "ataH" to "at", "atA" to "at", "at" to "at", "an" to "an"
     )
+    /** numerals in -an have nominatives without n (सप्त, not सप्ता) */
+    private val NUMERAL_AN = setOf("paYcan", "saptan", "azwan", "navan", "daSan", "ekAdaSan", "dvAdaSan")
     private val verbEndings = listOf("anti", "ati", "ate", "ante", "asi", "ase", "ami", "Ami", "Ayati", "yati", "ti", "te", "nti", "si", "mi", "maH", "ma", "Ati", "etu", "atu", "at", "Ata", "ayet", "et")
 
     private fun derivedStem(word: String): String? {
         val lx = lex ?: return null
         for ((suf, stemEnd) in nominalEndings) if (word.length > suf.length && word.endsWith(suf)) {
             val stem = word.dropLast(suf.length) + stemEnd
+            if (stem in NUMERAL_AN) continue
             if (stem.length >= 2 && lx.isHeadword(stem)) return stem
         }
         return null
@@ -50,23 +58,28 @@ class LexSupport(private val lexicon: LexiconApi?) {
     fun weight(word0: String): Int {
         val lx = lex ?: return 0
         val word = word0.replace("'", "")
+        val bonus = if (lx.closedClass(word) != null) 1 else 0
         val w = lx.weight(word)
-        if (w > 0) return w
-        return derivedStem(word)?.let { lx.weight(it) } ?: 0
+        if (w > 0) return w + bonus
+        return (derivedStem(word)?.let { lx.weight(it) } ?: 0) + bonus
     }
+
+    /** The dictionary stem behind a surface form (itself, or the stem found through a nominal ending). */
+    fun stemOf(word0: String): String { val w = word0.replace("'", ""); return if (lex?.isHeadword(w) == true) w else derivedStem(w) ?: w }
 
     fun classify(word0: String): SupportInfo {
         val word = word0.replace("'", "").trim()
         if (word.isEmpty() || lex == null) return SupportInfo(Support.NONE)
-        if (lex.isHeadword(word)) return SupportInfo(Support.EXACT, "headword")
         lex.closedClass(word)?.let { return SupportInfo(Support.EXACT, it) }
+        if (lex.isHeadword(word)) return SupportInfo(Support.EXACT, "headword")
         if (lex.isAttested(word)) return SupportInfo(Support.EXACT, "attested")
         // a trailing visarga/anusvāra variant of an avyaya or stem
         if (word.endsWith("M") && lex.isHeadword(word.dropLast(1) + "m")) return SupportInfo(Support.EXACT, "headword")
         for ((suf, stemEnd) in nominalEndings) {
             if (word.length > suf.length && word.endsWith(suf)) {
                 val stem = word.dropLast(suf.length) + stemEnd
-                if (stem.length >= 2 && lex.isHeadword(stem)) return SupportInfo(Support.DERIVED, stem)
+                if (stem in NUMERAL_AN) continue
+                if (stem.length >= 2 && lex.isHeadword(stem)) return SupportInfo(Support.DERIVED, stem, suf)
             }
         }
         for (v in verbEndings) if (word.length >= v.length + 2 && word.endsWith(v)) return SupportInfo(Support.VERBLIKE, v)
