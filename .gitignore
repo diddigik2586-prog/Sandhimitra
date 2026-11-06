@@ -4,3 +4,4 @@ build/
 *.keystore
 /release/*.jks
 .idea/
+__pycache__/
