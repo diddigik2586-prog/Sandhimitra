@@ -262,17 +262,17 @@ fun VicchedaScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) 
     }
 }
 
-private fun splitLine(s: Split, input: String) = "$input → ${Script.slp1ToDevanagari(s.left)} + ${Script.slp1ToDevanagari(s.right)} (${sl(s.left, "en")} + ${sl(s.right, "en")}) [${s.alt.steps.mapNotNull { Rules.find(it.ruleId)?.ref }.distinct().joinToString("; ")}]"
+private fun splitLine(s: Split, input: String) = "$input → ${s.parts.joinToString(" + ") { Script.slp1ToDevanagari(it) }} (${s.parts.joinToString(" + ") { sl(it, "en") }}) [${s.alt.steps.mapNotNull { Rules.find(it.ruleId)?.ref }.distinct().joinToString("; ")}]"
 
 @Composable
 private fun SplitCard(s: Split) {
     val lang = LocalLang.current; val t = LocalTokens.current
     CardBox(Modifier.fillMaxWidth().padding(top = 10.dp)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Sx("${Script.slp1ToDevanagari(s.left)} + ${Script.slp1ToDevanagari(s.right)}", size = 24.sp, weight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
+            Sx(s.parts.joinToString(" + ") { Script.slp1ToDevanagari(it) }, size = 24.sp, weight = FontWeight.SemiBold, modifier = Modifier.weight(1f))
             StatusChip(s.status)
         }
-        if (lang != "sa") Sx("${sl(s.left, lang)} + ${sl(s.right, lang)}", size = 17.sp, color = t.muted)
+        if (lang != "sa") Sx(s.parts.joinToString(" + ") { sl(it, lang) }, size = 17.sp, color = t.muted)
         if (!s.leftPada) Sx(tr("not_pada"), size = 12.sp, color = t.accent)
         val cats = categoriesOf(s.ruleIds)
         if (cats.isNotEmpty()) Sx("${lab("category")}${cats.joinToString(" · ") { S.t(catKey(it), lang) }}", size = 13.sp, color = t.accent, modifier = Modifier.padding(top = 4.dp))

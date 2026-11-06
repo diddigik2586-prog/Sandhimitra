@@ -1,4 +1,8 @@
 # Changelog
+## 0.1 (build 17)
+- Sandhi Viccheda: आत्मन्-compounds are cited as आत्मा (आत्मावलोकनम् → आत्मा + अवलोकनम्, आत्मेति → आत्मा + इति).
+- Other possible analyses list only well-formed, meaningful readings.
+- Forms joining three words are split fully (आत्मेत्यवधारणम् → आत्मा + इति + अवधारणम्).
 ## 0.1 (build 16)
 - Final full edit of Sanskrit and Kannada lesson text (content, consistency and grammar): 413 Sanskrit and 375 Kannada corrections in total.
 - Sandhātrī input boxes taller so Devanagari is shown fully.

@@ -29,7 +29,8 @@ for line in open(mw, encoding='utf8'):
     if cur and m2 and heads.get(cur) == 'x' and m2.group(1) in CAT:
         heads[cur] = CAT[m2.group(1)]
 
-nalopa = {k for k in comp_only if comp_for.get(k) == k + 'n' and comp_for[k] in heads}
+# compound stems such as Atma (for Atman) are not offered as words: the analysis cites the nominative (आत्मा + इति)
+nalopa = set()
 comp_only -= nalopa
 
 # --- Devanagari -> SLP1 (for attested forms in the supplied documents)

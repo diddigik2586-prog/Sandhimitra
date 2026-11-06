@@ -14,7 +14,9 @@ data class Ctx(val leftPragrhya: Boolean = false, val leftUpasarga: Boolean? = n
 data class JoinResult(val parts: List<String>, val alts: List<Alt>, val status: Status, val notes: List<String>)
 
 data class Split(val left: String, val right: String, val alt: Alt, val ruleIds: List<String>, val status: Status,
-                 val leftSupport: SupportInfo, val rightSupport: SupportInfo, val leftPada: Boolean = true)
+                 val leftSupport: SupportInfo, val rightSupport: SupportInfo, val leftPada: Boolean = true,
+                 /** all words of the analysis (more than two when a form joins three or more words) */
+                 val parts: List<String> = listOf(left, right))
 
 data class SplitResult(val input: String, val analyses: List<Split>, val unsupported: List<Split>, val status: Status, val notes: List<String>)
 
@@ -356,7 +358,9 @@ class SandhiEngine(private val lexicon: LexiconApi? = null) {
     }
     private val rStarts: List<String> by lazy { (Ph.VOWELS + "kKgGNcCjJYwWqQRtTdDnpPbBmyrlvSzsh").map { it.toString() } }
 
-    fun split(input: String): SplitResult {
+    fun split(input: String): SplitResult = splitDepth(input, 0)
+
+    private fun splitDepth(input: String, depth: Int): SplitResult {
         val raw = Script.toSlp1(input).trim()
         val spaceAt = raw.indexOf(' ').let { if (it < 0) -1 else it }
         val J = raw.replace(" ", "")
@@ -492,6 +496,38 @@ class SandhiEngine(private val lexicon: LexiconApi? = null) {
         fun score(s: Split) = (if (s.status == Status.VERIFIED) 100 else 0) - (if (spaceAt < 0 && s.leftSupport.ending in LexSupport.OBLIQUE_ENDINGS) 30 else 0) + 4 * (support.weight(s.left) + support.weight(s.right)) - s.alt.steps.size + s.leftSupport.level.ordinal.let { 3 - it } * 5 + s.rightSupport.level.ordinal.let { 3 - it } * 5 + minOf(s.left.length, s.right.length).coerceAtMost(6) + (if (s.alt.steps.isEmpty()) 8 else 0) + (if (s.leftSupport.detail == "upasarga") 15 else 0)
         ok.sortByDescending { score(it) }
         unsupported.sortByDescending { score(it) }
+        // further readings are offered only when every word in them is a well-attested dictionary word (no fragments, no rare or compound-only forms)
+        if (ok.size > 1) {
+            val best = ok.first()
+            val others = ok.drop(1).filter { s ->
+                s.status == Status.VERIFIED && listOf(s.left, s.right).all { p -> support.weight(p) >= 4 && !(lexicon?.isHeadword(p) == true && lexicon.weight(p) == 0) } &&
+                    s.leftSupport.ending !in LexSupport.OBLIQUE_ENDINGS
+            }
+            ok.clear(); ok += best; ok += others
+        }
+        // a part that is not itself a dictionary word but is a further Sandhi form is analysed again (आत्मेति → आत्मा + इति)
+        if (ok.isNotEmpty() && depth < 2) {
+            val best = ok.first()
+            val newParts = mutableListOf<String>(); var steps = best.alt.steps; val ids = best.ruleIds.toMutableList(); var expanded = false
+            for (p in best.parts) {
+                val isWord = lexicon?.isHeadword(support.stemOf(p)) == true || lexicon?.closedClass(p) != null
+                val sub = if (isWord || p.length < 5) null else splitDepth(Script.slp1ToDevanagari(p), depth + 1).analyses.firstOrNull()
+                if (sub != null && sub.alt.steps.isNotEmpty()) { newParts += sub.parts; steps = steps + sub.alt.steps; ids += sub.ruleIds; expanded = true } else newParts += p
+            }
+            if (expanded) ok[0] = best.copy(alt = best.alt.copy(steps = steps), ruleIds = ids.distinct(), parts = newParts)
+        }
+        // a form that joins three or more words: split off a known first word and analyse the rest again (आत्मेत्यवधारणम् → आत्मा + इति + अवधारणम्)
+        if (ok.isEmpty() && depth < 2 && spaceAt < 0) {
+            val heads = unsupported.filter { (it.leftSupport.level == Support.EXACT || it.leftSupport.level == Support.DERIVED) && support.weight(it.left) >= 2 && it.right.length >= 4 }
+                .sortedByDescending { support.weight(it.left) }.distinctBy { it.left + "|" + it.right }.take(4)
+            for (h in heads) {
+                val sub = splitDepth(Script.slp1ToDevanagari(h.right), depth + 1).analyses.firstOrNull() ?: continue
+                val ids = (h.ruleIds + sub.ruleIds).distinct()
+                val st = if (h.ruleIds.all { Rules.find(it)?.verified == true } && sub.status == Status.VERIFIED) Status.VERIFIED else Status.PROVISIONAL
+                ok += Split(h.left, h.right, Alt(J, h.alt.steps + sub.alt.steps), ids, st, h.leftSupport, sub.rightSupport, h.leftPada, listOf(h.left) + sub.parts)
+                break
+            }
+        }
         val status = when {
             ok.any { it.status == Status.VERIFIED } -> Status.VERIFIED
             ok.isNotEmpty() -> Status.PROVISIONAL
