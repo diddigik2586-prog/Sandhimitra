@@ -59,8 +59,11 @@ private fun EngineField(label: String, value: TextFieldValue, onChange: (TextFie
             val fixed = Script.fixTyped(nv.text)
             onChange(if (fixed == nv.text) nv else TextFieldValue(fixed, androidx.compose.ui.text.TextRange(Script.fixTyped(nv.text.substring(0, nv.selection.end.coerceIn(0, nv.text.length))).length)))
         }, readOnly = readOnly, singleLine = true, visualTransformation = ScriptTransformation,
-            textStyle = TextStyle(fontSize = 22.sp, color = t.text), cursorBrush = SolidColor(t.accent),
-            modifier = Modifier.fillMaxWidth().border(BorderStroke(1.dp, t.primary), RoundedCornerShape(10.dp)).padding(12.dp).onFocusChanged { if (it.isFocused) onFocus() })
+            // tall line box so Devanagari matras above and below (ि ी ु ृ, conjuncts) are never clipped by the border
+            textStyle = TextStyle(fontSize = 22.sp, color = t.text, lineHeight = 40.sp,
+                lineHeightStyle = androidx.compose.ui.text.style.LineHeightStyle(androidx.compose.ui.text.style.LineHeightStyle.Alignment.Center, androidx.compose.ui.text.style.LineHeightStyle.Trim.None)),
+            cursorBrush = SolidColor(t.accent),
+            modifier = Modifier.fillMaxWidth().heightIn(min = 64.dp).border(BorderStroke(1.dp, t.primary), RoundedCornerShape(10.dp)).padding(horizontal = 14.dp, vertical = 12.dp).onFocusChanged { if (it.isFocused) onFocus() })
     }
 }
 

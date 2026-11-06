@@ -51,7 +51,7 @@ class ScreenshotTest {
         toHome()
         rule.onNodeWithText("सन्धात्री").performClick(); shot("11_sandhatri_home_sa")
         rule.onNodeWithText("सन्धियोजना").performClick()
-        rule.onAllNodesWithText("प्रथमं पदम्").onFirst().performClick(); shot("12_yojana_keyboard_sa")
+        rule.onAllNodes(hasSetTextAction()).onFirst().performTextInput("कृष्णर्द्धिः"); rule.onAllNodes(hasSetTextAction())[1].performTextInput("ह्रीं ष्ट्र्य"); shot("12_yojana_fields_sa")
     }
 
     @Test fun infoScreens() {
