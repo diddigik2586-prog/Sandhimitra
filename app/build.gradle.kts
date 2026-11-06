@@ -13,7 +13,7 @@ android {
         applicationId = "org.sandhimitra.app"
         minSdk = 26
         targetSdk = 35
-        versionCode = 17
+        versionCode = 18
         versionName = "0.1"
         resourceConfigurations += listOf("en", "kn", "sa")
     }

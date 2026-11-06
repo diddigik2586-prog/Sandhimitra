@@ -1,4 +1,7 @@
 # Changelog
+## 0.1 (build 18)
+- Build 17 shipped a stale lexicon file; the आत्मा citation and the stricter analyses take effect from this build.
+- A fully verified three-word reading is preferred to a two-word guess (आत्मेत्यभिमानम् → आत्मा + इति + अभिमानम्), and the unknown side of a junction is analysed again whichever side it is on.
 ## 0.1 (build 17)
 - Sandhi Viccheda: आत्मन्-compounds are cited as आत्मा (आत्मावलोकनम् → आत्मा + अवलोकनम्, आत्मेति → आत्मा + इति).
 - Other possible analyses list only well-formed, meaningful readings.

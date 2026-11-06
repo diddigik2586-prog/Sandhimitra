@@ -110,6 +110,9 @@ class SandhiEngineTest {
     @Test fun threeWords() {
         val a = splits("आत्मेत्यवधारणम्").analyses.firstOrNull()
         assertEquals(listOf("आत्मा", "इति", "अवधारणम्"), a?.parts?.map { d(it) })
+        val b = splits("आत्मेत्यभिमानम्")
+        assertEquals(listOf("आत्मा", "इति", "अभिमानम्"), b.analyses.firstOrNull()?.parts?.map { d(it) })
+        assertEquals(Status.VERIFIED, b.analyses.firstOrNull()?.status)
     }
     @Test fun vowelLengthAmbiguity() {
         assertEquals(listOf("आत्मा+अवलोकनम्"), splits("आत्मावलोकनम्").analyses.map { d(it.left) + "+" + d(it.right) })

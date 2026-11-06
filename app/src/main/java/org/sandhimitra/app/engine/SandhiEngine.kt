@@ -512,21 +512,32 @@ class SandhiEngine(private val lexicon: LexiconApi? = null) {
             for (p in best.parts) {
                 val isWord = lexicon?.isHeadword(support.stemOf(p)) == true || lexicon?.closedClass(p) != null
                 val sub = if (isWord || p.length < 5) null else splitDepth(Script.slp1ToDevanagari(p), depth + 1).analyses.firstOrNull()
-                if (sub != null && sub.alt.steps.isNotEmpty()) { newParts += sub.parts; steps = steps + sub.alt.steps; ids += sub.ruleIds; expanded = true } else newParts += p
+                if (sub != null && sub.alt.steps.isNotEmpty() && sub.status == Status.VERIFIED) { newParts += sub.parts; steps = steps + sub.alt.steps; ids += sub.ruleIds; expanded = true } else newParts += p
             }
             if (expanded) ok[0] = best.copy(alt = best.alt.copy(steps = steps), ruleIds = ids.distinct(), parts = newParts)
         }
-        // a form that joins three or more words: split off a known first word and analyse the rest again (आत्मेत्यवधारणम् → आत्मा + इति + अवधारणम्)
-        if (ok.isEmpty() && depth < 2 && spaceAt < 0) {
-            val heads = unsupported.filter { (it.leftSupport.level == Support.EXACT || it.leftSupport.level == Support.DERIVED) && support.weight(it.left) >= 2 && it.right.length >= 4 }
-                .sortedByDescending { support.weight(it.left) }.distinctBy { it.left + "|" + it.right }.take(4)
-            for (h in heads) {
-                val sub = splitDepth(Script.slp1ToDevanagari(h.right), depth + 1).analyses.firstOrNull() ?: continue
-                val ids = (h.ruleIds + sub.ruleIds).distinct()
-                val st = if (h.ruleIds.all { Rules.find(it)?.verified == true } && sub.status == Status.VERIFIED) Status.VERIFIED else Status.PROVISIONAL
-                ok += Split(h.left, h.right, Alt(J, h.alt.steps + sub.alt.steps), ids, st, h.leftSupport, sub.rightSupport, h.leftPada, listOf(h.left) + sub.parts)
-                break
+        // a form that joins three or more words: one side of a junction is a known word and the other side is itself a Sandhi form
+        // (आत्मेत्यवधारणम् → आत्मा + इति + अवधारणम्, आत्मेत्यभिमानम् → आत्मा + इति + अभिमानम्). A fully verified multi-word
+        // reading is preferred to any two-word reading that rests on a guess.
+        if (depth < 2 && spaceAt < 0 && ok.none { it.status == Status.VERIFIED }) {
+            fun known(x: SupportInfo, w: String) = (x.level == Support.EXACT || x.level == Support.DERIVED) && support.weight(w) >= 2 && w.any { Ph.isCons(it) && it != 'H' && it != 'M' }
+            val cands = (unsupported + ok).filter { c ->
+                (known(c.leftSupport, c.left) && c.right.length >= 4 && !known(c.rightSupport, c.right)) ||
+                (known(c.rightSupport, c.right) && c.left.length >= 4 && !known(c.leftSupport, c.left))
+            }.distinctBy { it.left + "|" + it.right }
+                .sortedByDescending { c -> if (known(c.leftSupport, c.left)) support.weight(c.left) else support.weight(c.right) }.take(6)
+            var multi: Split? = null
+            for (c in cands) {
+                val leftKnown = known(c.leftSupport, c.left)
+                val sub = splitDepth(Script.slp1ToDevanagari(if (leftKnown) c.right else c.left), depth + 1).analyses.firstOrNull() ?: continue
+                if (sub.status != Status.VERIFIED || sub.alt.steps.isEmpty()) continue
+                val ids = (sub.ruleIds + c.ruleIds).distinct()
+                val st = if (c.ruleIds.all { Rules.find(it)?.verified == true }) Status.VERIFIED else Status.PROVISIONAL
+                multi = if (leftKnown) Split(c.left, c.right, Alt(J, c.alt.steps + sub.alt.steps), ids, st, c.leftSupport, sub.rightSupport, c.leftPada, listOf(c.left) + sub.parts)
+                        else Split(c.left, c.right, Alt(J, sub.alt.steps + c.alt.steps), ids, st, sub.leftSupport, c.rightSupport, c.leftPada, sub.parts + listOf(c.right))
+                if (st == Status.VERIFIED) break
             }
+            if (multi != null) { ok.removeAll { it.status != Status.VERIFIED }; ok.add(0, multi) }
         }
         val status = when {
             ok.any { it.status == Status.VERIFIED } -> Status.VERIFIED
