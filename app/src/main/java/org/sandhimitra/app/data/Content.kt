@@ -26,6 +26,10 @@ class ContentRepo(private val ctx: Context) {
         return (0 until arr.length()).map { val o = arr.getJSONObject(it); TopicRef(o.getString("id"), o.getString("sa"), fix(o.getString("kn")), o.getString("en"), o.getBoolean("has_lp")) }
     }
 
+    /** The group (parent category) a lesson belongs to, from the index. */
+    fun groupOf(id: String): String? = groups.firstOrNull { g -> topics(g).any { it.id == id } }
+    fun ref(id: String): TopicRef? = groups.asSequence().flatMap { topics(it).asSequence() }.firstOrNull { it.id == id }
+
     fun topic(id: String): Topic = cache.getOrPut(id) {
         val o = JSONObject(ctx.assets.open("content/topics/$id.json").bufferedReader(Charsets.UTF_8).readText())
         val e = o.getJSONObject("en")

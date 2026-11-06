@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
 /** Learning progress in a local SQLite database: lesson completion, practice attempts, bookmarks, engine history. */
-class Progress(ctx: Context) : SQLiteOpenHelper(ctx, "progress.db", null, 1) {
+class Progress(ctx: Context) : SQLiteOpenHelper(ctx, "progress.db", null, 2) {
     /** Incremented on every write so Compose screens re-read. */
     var version by mutableIntStateOf(0)
         private set
@@ -19,8 +19,18 @@ class Progress(ctx: Context) : SQLiteOpenHelper(ctx, "progress.db", null, 1) {
         db.execSQL("CREATE TABLE practice(topic TEXT NOT NULL, item TEXT NOT NULL, correct INTEGER NOT NULL, ts INTEGER NOT NULL, PRIMARY KEY(topic,item))")
         db.execSQL("CREATE TABLE bookmark(topic TEXT PRIMARY KEY, ts INTEGER NOT NULL)")
         db.execSQL("CREATE TABLE history(id INTEGER PRIMARY KEY AUTOINCREMENT, kind TEXT NOT NULL, input TEXT NOT NULL, ts INTEGER NOT NULL)")
+        createV2(db)
     }
-    override fun onUpgrade(db: SQLiteDatabase, o: Int, n: Int) {}
+    override fun onUpgrade(db: SQLiteDatabase, o: Int, n: Int) = upgrade(db, o)
+
+    companion object {
+        /** Build 20 (schema 2): Sandhicakram tables are added; the Build 19 tables and their rows are never touched. */
+        fun upgrade(db: SQLiteDatabase, old: Int) { if (old < 2) createV2(db) }
+        private fun createV2(db: SQLiteDatabase) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS quiz_session(cat TEXT PRIMARY KEY, state TEXT NOT NULL, ts INTEGER NOT NULL)")
+            db.execSQL("CREATE TABLE IF NOT EXISTS quiz_done(cat TEXT NOT NULL, qid TEXT NOT NULL, ts INTEGER NOT NULL, PRIMARY KEY(cat, qid))")
+        }
+    }
 
     private fun bump() { version++ }
 
@@ -43,6 +53,19 @@ class Progress(ctx: Context) : SQLiteOpenHelper(ctx, "progress.db", null, 1) {
         else writableDatabase.delete("bookmark", "topic=?", arrayOf(topic)); bump()
     }
     fun isBookmarked(topic: String) = readableDatabase.rawQuery("SELECT 1 FROM bookmark WHERE topic=?", arrayOf(topic)).use { it.moveToFirst() }
+    /** Bookmarked lesson ids, most recent first (the primary key makes duplicates impossible). */
+    fun bookmarks(): List<String> = readableDatabase.rawQuery("SELECT topic FROM bookmark ORDER BY ts DESC", null).use { c -> buildList { while (c.moveToNext()) add(c.getString(0)) } }
+
+    // ---- Sandhicakram: one saved session per category, and the set of questions ever answered correctly
+    fun saveQuizSession(cat: String, state: String) {
+        writableDatabase.replace("quiz_session", null, ContentValues().apply { put("cat", cat); put("state", state); put("ts", System.currentTimeMillis()) }); bump()
+    }
+    fun quizSession(cat: String): String? = readableDatabase.rawQuery("SELECT state FROM quiz_session WHERE cat=?", arrayOf(cat)).use { if (it.moveToFirst()) it.getString(0) else null }
+    fun clearQuizSession(cat: String) { writableDatabase.delete("quiz_session", "cat=?", arrayOf(cat)); bump() }
+    fun markQuizDone(cat: String, qid: String) {
+        writableDatabase.insertWithOnConflict("quiz_done", null, ContentValues().apply { put("cat", cat); put("qid", qid); put("ts", System.currentTimeMillis()) }, SQLiteDatabase.CONFLICT_IGNORE); bump()
+    }
+    fun quizDoneCount(cat: String): Int = readableDatabase.rawQuery("SELECT COUNT(*) FROM quiz_done WHERE cat=?", arrayOf(cat)).use { it.moveToFirst(); it.getInt(0) }
 
     fun addHistory(kind: String, input: String) {
         val db = writableDatabase

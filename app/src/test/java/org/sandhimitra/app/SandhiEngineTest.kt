@@ -14,7 +14,8 @@ class SandhiEngineTest {
         @BeforeClass @JvmStatic fun setup() {
             val db = File("src/main/assets/lexicon/lexicon.db")
             assertTrue("lexicon.db missing at ${db.absolutePath}", db.exists())
-            val conn = DriverManager.getConnection("jdbc:sqlite:${db.absolutePath}")
+            // direct driver use: DriverManager cannot see the driver from inside Robolectric's sandbox class loader
+            val conn = org.sqlite.JDBC.createConnection("jdbc:sqlite:${db.absolutePath}", java.util.Properties())
             fun has(sql: String, v: String): String? {
                 conn.prepareStatement(sql).use { ps -> ps.setString(1, v); ps.executeQuery().use { rs -> return if (rs.next()) rs.getString(1) else null } }
             }

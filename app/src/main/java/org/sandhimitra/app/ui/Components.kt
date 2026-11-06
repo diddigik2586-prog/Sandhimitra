@@ -29,16 +29,24 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sandhimitra.app.R
 
-/** Global header: small logo at the top-left corner, the Sanskrit wordmark centred, Menu button on the right. */
+/** Opens My Bookmarks from the global header (provided by MainApp). */
+val LocalOpenBookmarks = androidx.compose.runtime.staticCompositionLocalOf<() -> Unit> { {} }
+
+/** Global header (Build 20 order): logo and the approved Sanskrit wordmark on the left, centre empty, Bookmark icon, then Menu at the far right. */
 @Composable
 fun GlobalHeader(onMenu: () -> Unit) {
     val t = LocalTokens.current
+    val openBookmarks = LocalOpenBookmarks.current
     Column(Modifier.fillMaxWidth().background(t.card)) {
-        Box(Modifier.fillMaxWidth().statusBarsPadding().height(60.dp).padding(horizontal = 12.dp)) {
-            Image(painterResource(R.drawable.header_icon), contentDescription = null, contentScale = ContentScale.Fit,
-                modifier = Modifier.align(Alignment.CenterStart).size(40.dp).clip(RoundedCornerShape(9.dp)))
-            Wordmark(Modifier.align(Alignment.Center).height(32.dp))
-            IconButton(onClick = onMenu, modifier = Modifier.align(Alignment.CenterEnd).semantics { contentDescription = "Menu" }) {
+        Row(Modifier.fillMaxWidth().statusBarsPadding().height(60.dp).padding(start = 12.dp, end = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+            Image(painterResource(R.drawable.header_icon), contentDescription = null, contentScale = ContentScale.Fit, modifier = Modifier.size(38.dp).clip(RoundedCornerShape(9.dp)))
+            Spacer(Modifier.width(10.dp))
+            Wordmark(Modifier.height(30.dp))
+            Spacer(Modifier.weight(1f))
+            IconButton(onClick = openBookmarks, modifier = Modifier.semantics { contentDescription = "Bookmarks" }) {
+                Icon(painterResource(R.drawable.ic_bookmark_outline), contentDescription = null, tint = t.primary, modifier = Modifier.size(28.dp))
+            }
+            IconButton(onClick = onMenu, modifier = Modifier.semantics { contentDescription = "Menu" }) {
                 Icon(Icons.Default.Menu, contentDescription = null, tint = t.primary, modifier = Modifier.size(30.dp))
             }
         }

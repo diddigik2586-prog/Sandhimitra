@@ -1,0 +1,80 @@
+# Sandhicakram Question Audit — Build 20
+
+All figures below are produced by the bank builder (`app/src/test/java/org/sandhimitra/app/QuizBankBuild.kt`) and re-checked
+by the regression test `QuizBankTest`. The raw builder log with every excluded row is in `docs/quiz_bank_audit.txt`.
+
+## 1. Source and method
+
+**Source material.** Only the supplied grammatical documents (the Sanskrit and Kannada lesson texts bundled as
+`app/src/main/assets/content/topics/*.json`). Two tables of each lesson were used:
+
+- `ex` — the lesson's example table (विच्छेदः → संहितारूपम्, with the स्थानी-निमित्त-विधेय column and the scholarly note);
+- `pr` — the lesson's exercise table (अभ्यासः, with its scholarly answer).
+
+493 rows contained a two-part Sandhi (`पदम् + पदम् → रूपम्`, or the reverse exercise). Rows of the Introduction (t00–t07) and
+Practice-set (t40–t43) lessons were assigned to a category by the Sandhi rule that the engine applies.
+
+**No question was composed by hand, no word was invented, and no sūtra reference was written freehand.** Sūtra references in the
+explanations come from the engine's rule registry (`Rules.kt`), whose entries carry the sūtra wording and Pāṇinian number as printed
+in the supplied Sanskrit source.
+
+**Verification of every playable row (automatic, by the Sandhātrī engine):**
+
+1. the engine must reproduce the documented joined form from the documented parts (forward join). If the document lists two valid
+   forms (`A / B`), each reproduced form becomes an accepted answer (a vikalpa question); a documented form the engine cannot
+   produce (jihvāmūlīya sign, avagraha spellings of a commentary style) is **not offered and is never used as a distractor**;
+2. every distractor is proven wrong: for a join question the engine does not produce it from the parts; for a separation question
+   the engine does not join the distractor's two words into the given form. A row with fewer than three provably wrong distractors
+   is excluded rather than padded;
+3. the lesson id and practice id must exist in the content index;
+4. the forward question and the reverse question of the same row are independent records with stable ids
+   (`<topic>-<table><row>-F|R`).
+
+The regression test `QuizBankTest.everyShippedQuestionIsVerified` repeats checks 1–3 on the shipped
+`assets/quiz/questions.json` on every test run.
+
+## 2. Verified question counts (actual, from the shipped bank)
+
+| Category | Forward (yojana) | Reverse (viccheda) | Total | Minimum required | Status |
+|---|---|---|---|---|---|
+| Vowel Sandhi | 181 | 181 | **362** | 150 | met |
+| Consonant Sandhi | 175 | 175 | **350** | 150 | met |
+| Visarga Sandhi | 84 | 84 | **168** | 150 | met |
+| Prakṛtibhāva | 13 | 13 | **26** | 150 | **shortfall of 124** |
+| **Total** | 453 | 453 | **906** | 600 | |
+
+Vikalpa (more than one accepted answer): consonant 78, vowel 40, visarga 7, prakṛtibhāva 2.
+
+Questions per lesson (lesson id = exact "Read the Lesson" target):
+
+- Vowel: t08 50, t09 50, t10 38, t11 62, t12 48, t13 32, t14 24, t15 8, t38 24, t39 26
+- Consonant: t17 22, t18 14, t19 58, t20 28, t21 28, t22 26, t23 26, t24 34, t25 32, t26 26, t27 26, t28 30
+- Visarga: t30 10, t31 30, t32 32, t33 26, t34 28, t35 26, t36 16
+- Prakṛtibhāva: t37 26
+
+Rules referenced (registry ids, most frequent first): C01 196, C02 112, V02 90, V06 74, C04 74, V05 62, V07 58, H02 58, V01 56,
+V09 42, V03 40, C05 36, C08 34, H12 34, C06 32, C09 30, C10 30, C11 28, H03 24, C12 24, H05 24, H07 24, H08 22, V10 18, H06 18,
+C03 18, C07 18, V08 14, C13 14, P02 12, H01 10, H04 8, H10 8, H14 8, H09 6, H11 6, H13 6, P03 6, V04 4, P04 4.
+
+## 3. Rows not admitted (40 of 493 rows; the remaining 453 rows yield the 906 questions)
+
+| Reason | Rows |
+|---|---|
+| The engine does not reproduce the documented form: internal word-formation sandhi (बुध्+तिः → बुद्धिः, पुष्+तः → पुष्टः, हन्+सः → हंसः …), or a rule outside the engine (ऋत्यकः, याच्ञा, उत्थम्भनम्) | 25 |
+| The row is a note, not an example (contains →, numbering or Latin text; the "relations among rules" lessons) | 14 |
+| No Sandhi operates in the row | 1 |
+
+Sixteen admitted rows offer only the engine-reproducible alternative of a documented pair (listed in `docs/quiz_bank_audit.txt`
+under "partially offered": jihvāmūlīya/upadhmānīya signs, commentary-style avagraha spellings, candrabindu forms); the other
+documented spelling is withheld and never shown as a wrong option.
+
+## 4. Shortfall — honest statement
+
+**Prakṛtibhāva has 26 verified questions, not 150.** The supplied documents contain one prakṛtibhāva lesson (t37) with 8 examples
+and 6 exercises, and a handful of pragṛhya rows elsewhere. One documented row (राजा + ऋषिः → राज ऋषिः, ऋत्यकः 6.1.128) could not be admitted because the engine does not model that
+rule. No additional authorised source text was available offline in this environment, and the
+requirement forbids manufacturing rows; the shortfall is therefore reported rather than filled. The category is playable with its
+26 verified questions. Raising it to 150 needs either a further supplied source with pragṛhya examples or engine support for
+6.1.125–6.1.128 variants, after which the builder admits rows automatically.
+
+Visarga Sandhi (168) meets the minimum with a modest margin; its lessons contain fewer example rows than the vowel and consonant lessons.

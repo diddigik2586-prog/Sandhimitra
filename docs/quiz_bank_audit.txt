@@ -1,0 +1,63 @@
+rows considered: 493
+consonant: forward=175 reverse=175 total=350
+prakriti: forward=13 reverse=13 total=26
+visarga: forward=84 reverse=84 total=168
+vowel: forward=181 reverse=181 total=362
+partially offered (16):
+  t38 ex row 5: documented alternative नाऽस्ति is outside the engine (not offered, never a distractor); offered: नास्ति
+  t38 ex row 6: documented alternative नाऽऽस्ते is outside the engine (not offered, never a distractor); offered: नास्ते
+  t38 ex row 7: documented alternative मैऽवम् is outside the engine (not offered, never a distractor); offered: मैवम्
+  t38 ex row 8: documented alternative सैऽऽच्छत् is outside the engine (not offered, never a distractor); offered: सैच्छत्
+  t28 ex row 7: documented alternative नॄँःपाहि/नॄँष्पाहि is outside the engine (not offered, never a distractor); offered: नॄन्पाहि
+  t35 ex row 1: documented alternative बालᳵक्रीडति is outside the engine (not offered, never a distractor); offered: बालः क्रीडति
+  t35 ex row 2: documented alternative जनᳵखादति is outside the engine (not offered, never a distractor); offered: जनः खादति
+  t35 ex row 3: documented alternative हरिᳶपाति is outside the engine (not offered, never a distractor); offered: हरिः पाति
+  t35 ex row 4: documented alternative वृक्षᳶफलति is outside the engine (not offered, never a distractor); offered: वृक्षः फलति
+  t35 ex row 6: documented alternative मनᳵकामना is outside the engine (not offered, never a distractor); offered: मनःकामना
+  t35 ex row 7: documented alternative अधᳶपतनम् is outside the engine (not offered, never a distractor); offered: अधःपतनम्
+  t35 ex row 8: documented alternative प्रातᳵकालः is outside the engine (not offered, never a distractor); offered: प्रातःकालः
+  t35 pr row 1: documented alternative शिवᳶपातु is outside the engine (not offered, never a distractor); offered: शिवः पातु
+  t35 pr row 2: documented alternative मनᳵकल्पितम् is outside the engine (not offered, never a distractor); offered: मनःकल्पितम्
+  t35 pr row 3: documented alternative पयᳶपानम् is outside the engine (not offered, never a distractor); offered: पयःपानम्
+  t03 ex row 6: documented alternative बालकः गच्छति is outside the engine (not offered, never a distractor); offered: बालको गच्छति
+excluded (40):
+  t12 pr row 3: engine does not reproduce श्रावणम् from श्रौ + अनम् (got श्रावनम् | श्रा अनम्)
+  t12 pr row 4: engine does not reproduce सञ्चयः from सञ्चे + अः (got सञ्चेऽः)
+  t14 pr row 5: engine does not reproduce हलीषा from हल + ईषा (got हलेषा)
+  t14 pr row 6: engine does not reproduce मार्तण्डः from मार्त + अण्डः (got मार्ताण्डः)
+  t39 pr row 2: engine does not reproduce गुरव अर्पणम्/गुरवयर्पणम् from गुरवे + अर्पणम् (got गुरवेऽर्पणम्)
+  t17 ex row 8: engine does not reproduce याच्ञा from याच् + ना (got याञ्ञा | याज्ञा)
+  t17 pr row 6: engine does not reproduce प्रश्नः from प्रश् + नः (got )
+  t18 ex row 5: engine does not reproduce आकृष्टः from आकृष् + तः (got )
+  t18 ex row 6: engine does not reproduce षष्ठः from षष् + थः (got )
+  t18 ex row 7: engine does not reproduce पुष्टः from पुष् + तः (got )
+  t18 ex row 8: engine does not reproduce विष्णुः from विष् + नुः (got )
+  t18 pr row 1: engine does not reproduce पेष्टा from पेष् + ता (got )
+  t18 pr row 5: engine does not reproduce दुष्टः from दुष् + तः (got )
+  t22 ex row 4: engine does not reproduce पयांसि from पयान् + सि (got पयान्सि)
+  t22 ex row 5: engine does not reproduce मंस्यते from मन् + स्यते (got मन्स्यते)
+  t22 pr row 3: engine does not reproduce मनांसि from मनस् + सि (got मनः सि | मनस्सि)
+  t22 pr row 6: engine does not reproduce हंसः from हन् + सः (got हन्सः)
+  t27 ex row 8: engine does not reproduce उत्थम्भनम् from उद् + स्तम्भनम् (got उत्तम्भनम्)
+  t29 ex row 1: non-Devanagari characters
+  t29 ex row 2: non-Devanagari characters
+  t29 ex row 3: non-Devanagari characters
+  t29 ex row 4: non-Devanagari characters
+  t29 ex row 5: non-Devanagari characters
+  t29 ex row 6: non-Devanagari characters
+  t29 pr row 1: non-Devanagari characters
+  t29 pr row 2: non-Devanagari characters
+  t29 pr row 3: non-Devanagari characters
+  t35 ex row 5: engine does not reproduce दुᳵखम्/दुःखम् from दुः + खम् (got दुष्खम्)
+  t36 pr row 3: engine does not reproduce भो छात्राः from भोः + छात्राः (got भोश्छात्राः)
+  t36 pr row 5: non-Devanagari characters
+  t37 pr row 5: engine does not reproduce राज ऋषिः from राजा + ऋषिः (got राजर्षिः)
+  t03 ex row 3: no Sandhi rule operates (cannot be assigned to a category)
+  t05 ex row 5: engine does not reproduce सवर्णौ from ऋ + ऌ (got ॠ | ऋ)
+  t05 ex row 6: engine does not reproduce न सवर्णौ from इ + श् (got इश्)
+  t05 pr row 6: non-Devanagari characters
+  t06 ex row 4: engine does not reproduce बुद्धिः from बुध् + तिः (got बुत्तिः)
+  t06 pr row 4: engine does not reproduce लब्धः from लभ् + तः (got लप्तः)
+  t07 pr row 4: non-Devanagari characters
+  t07 pr row 5: non-Devanagari characters
+  t07 pr row 6: non-Devanagari characters

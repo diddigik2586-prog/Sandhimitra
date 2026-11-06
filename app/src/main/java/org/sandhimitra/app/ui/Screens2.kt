@@ -67,6 +67,10 @@ fun TopicScreen(app: SandhimitraApp, id: String, onMenu: () -> Unit, onBack: () 
     Page(onMenu, onBack, title) {
         if (hasLp) Capsule(listOf(tr("lesson"), tr("practice")), mode, { mode = it }, Modifier.padding(bottom = 12.dp))
         if (mode == 0 && !practiceOnly) {
+            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                Sx(tr("bookmark"), size = 13.sp, color = LocalTokens.current.muted, modifier = Modifier.weight(1f))
+                BookmarkToggle(app, topic.id)
+            }
             LessonBody(topic, lang)
             LessonActions(app, topic.id)
         } else PracticeBody(app, topic, lang)
@@ -76,10 +80,8 @@ fun TopicScreen(app: SandhimitraApp, id: String, onMenu: () -> Unit, onBack: () 
 @Composable
 private fun LessonActions(app: SandhimitraApp, id: String) {
     val done = app.progress.version.let { app.progress.isLessonDone(id) }
-    val bm = app.progress.version.let { app.progress.isBookmarked(id) }
     Column(Modifier.fillMaxWidth().padding(top = 16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
         PrimaryButton(if (done) tr("unmark_done") else tr("mark_done"), { app.progress.setLessonDone(id, !done) }, Modifier.fillMaxWidth(), filled = !done)
-        PrimaryButton(if (bm) tr("bookmarked") else tr("bookmark"), { app.progress.setBookmark(id, !bm) }, Modifier.fillMaxWidth(), filled = false)
     }
 }
 

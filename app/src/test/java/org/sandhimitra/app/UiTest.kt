@@ -54,7 +54,7 @@ class UiTest {
     @Test fun menuOrderAndClosesAfterNavigation() {
         toHome()
         rule.onNodeWithContentDescription("Menu").performClick(); rule.waitForIdle()
-        val order = listOf("मुखपृष्ठम्", "सन्धात्री", "About App", "About Dr. DVK", "Support Sandhimitra", "Feedback", "Privacy Policy")
+        val order = listOf("मुखपृष्ठम्", "सन्धात्री", "About App", "About Dr. DVK", "Support Sandhimitram", "Feedback", "Privacy Policy")
         val tops = order.map { rule.onAllNodesWithText(it).fetchSemanticsNodes().last().boundsInRoot.top }
         assertEquals(tops.sorted(), tops)
         rule.onAllNodesWithText("About App").onLast().performClick(); rule.waitForIdle()

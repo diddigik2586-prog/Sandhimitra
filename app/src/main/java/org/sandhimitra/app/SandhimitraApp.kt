@@ -14,6 +14,7 @@ class SandhimitraApp : Application() {
     lateinit var content: ContentRepo
     val lexicon: LexiconDb by lazy { LexiconDb(this) }
     val engine: SandhiEngine by lazy { SandhiEngine(lexicon) }
+    val quiz: org.sandhimitra.app.data.QuizBank by lazy { org.sandhimitra.app.data.QuizBank(this) }
 
     override fun onCreate() {
         super.onCreate()

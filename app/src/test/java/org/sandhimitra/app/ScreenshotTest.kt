@@ -56,9 +56,22 @@ class ScreenshotTest {
 
     @Test fun infoScreens() {
         toHome()
-        for ((label, name) in listOf("Support Sandhimitra" to "20_support", "Privacy Policy" to "21_privacy", "About App" to "22_about")) {
+        for ((label, name) in listOf("Support Sandhimitram" to "20_support", "Privacy Policy" to "21_privacy", "About App" to "22_about")) {
             rule.onNodeWithContentDescription("Menu").performClick(); rule.waitForIdle()
             rule.onAllNodesWithText(label).onLast().performClick(); shot(name)
         }
+    }
+
+    @Test fun build20Screens() {
+        toHome()
+        app.prefs.chooseDark(true); rule.waitForIdle(); shot("30_home_sa_dark"); app.prefs.chooseDark(false); rule.waitForIdle()
+        rule.onNodeWithTag("bar_games").performClick(); shot("31_games_sa")
+        app.prefs.chooseLang("kn"); rule.waitForIdle(); shot("32_games_kn"); app.prefs.chooseLang("sa"); rule.waitForIdle()
+        rule.onNodeWithTag("game_vowel").performClick(); shot("33_quiz_sa")
+        val s = org.sandhimitra.app.ui.QuizSession.fromJson(app.progress.quizSession("vowel")!!)!!
+        val q = app.quiz.byId(s.seq[0])!!
+        rule.onNodeWithTag("opt_${(0..3).first { it !in q.answers }}").performClick(); shot("34_quiz_wrong_sa")
+        app.prefs.chooseLang("en"); rule.waitForIdle(); shot("35_quiz_wrong_en"); app.prefs.chooseLang("sa"); rule.waitForIdle()
+        app.progress.setBookmark("t09", true); rule.onNodeWithContentDescription("Bookmarks").performClick(); shot("36_bookmarks_sa")
     }
 }

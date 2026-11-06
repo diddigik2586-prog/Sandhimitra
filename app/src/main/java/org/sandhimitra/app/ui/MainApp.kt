@@ -38,7 +38,8 @@ object Routes {
     const val SPLASH = "splash"; const val HOME = "home"; const val INTRO = "intro"; const val CAT = "cat/{group}"; const val TOPIC = "topic/{id}"
     const val SANDHATRI = "sandhatri"; const val YOJANA = "yojana"; const val VICCHEDA = "viccheda"; const val REGISTRY = "registry"
     const val PSET = "pset/{id}"; const val ABOUT = "about"; const val DVK = "dvk"; const val SUPPORT = "support"; const val PRIVACY = "privacy"
-    fun cat(g: String) = "cat/$g"; fun topic(id: String) = "topic/$id"; fun pset(id: String) = "pset/$id"
+    const val GAMES = "games"; const val QUIZ = "quiz/{cat}"; const val BOOKMARKS = "bookmarks"
+    fun cat(g: String) = "cat/$g"; fun topic(id: String) = "topic/$id"; fun pset(id: String) = "pset/$id"; fun quiz(c: String) = "quiz/$c"
 }
 
 @Composable
@@ -59,6 +60,7 @@ fun MainApp(app: SandhimitraApp) {
     BackHandler(enabled = menuOpen) { menuOpen = false }
     BackHandler(enabled = !menuOpen && route == Routes.HOME) { exitAsk = true }
 
+    androidx.compose.runtime.CompositionLocalProvider(LocalOpenBookmarks provides { go(Routes.BOOKMARKS) }) {
     Box(Modifier.fillMaxSize().background(t.bg)) {
         NavHost(nav, startDestination = Routes.SPLASH, modifier = Modifier.fillMaxSize()) {
             composable(Routes.SPLASH) { SplashScreen { nav.navigate(Routes.HOME) { popUpTo(Routes.SPLASH) { inclusive = true } } } }
@@ -75,6 +77,9 @@ fun MainApp(app: SandhimitraApp) {
             composable(Routes.DVK) { EnglishOnly { DvkScreen(open, back) } }
             composable(Routes.SUPPORT) { EnglishOnly { SupportScreen(open, back) } }
             composable(Routes.PRIVACY) { EnglishOnly { PrivacyScreen(open, back) } }
+            composable(Routes.GAMES) { GamesScreen(app, open, back) { go(it) } }
+            composable(Routes.QUIZ) { e -> QuizScreen(app, e.arguments?.getString("cat") ?: "vowel", open, back) { go(it) } }
+            composable(Routes.BOOKMARKS) { BookmarksScreen(app, open, back) { go(it) } }
         }
 
         AnimatedVisibility(menuOpen, enter = fadeIn(), exit = fadeOut()) {
@@ -84,6 +89,7 @@ fun MainApp(app: SandhimitraApp) {
             MenuPanel(app, onHome = { goHome() }, onSandhatri = { go(Routes.SANDHATRI) }, onAbout = { go(Routes.ABOUT) }, onDvk = { go(Routes.DVK) },
                 onSupport = { go(Routes.SUPPORT) }, onPrivacy = { go(Routes.PRIVACY) }, onFeedback = { menuOpen = false; sendFeedback(ctx) }, onClose = { menuOpen = false })
         }
+    }
     }
 
     if (exitAsk) {
@@ -98,7 +104,7 @@ fun MainApp(app: SandhimitraApp) {
 
 /** Feedback is an email action only: ACTION_SENDTO opens the default email app with a prefilled recipient and subject; the user presses Send. */
 fun sendFeedback(ctx: android.content.Context) {
-    val i = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:dvkrishna92@gmail.com")).putExtra(Intent.EXTRA_SUBJECT, "Sandhimitra App Feedback")
+    val i = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:dvkrishna92@gmail.com")).putExtra(Intent.EXTRA_SUBJECT, "Sandhimitram App Feedback")
     try { ctx.startActivity(i) } catch (e: ActivityNotFoundException) {
         val lang = (ctx.applicationContext as SandhimitraApp).prefs.lang
         Toast.makeText(ctx, S.t("no_mail", "en"), Toast.LENGTH_LONG).show()
