@@ -760,5 +760,1493 @@
   "old": "ಗುರವಾದೇಶಃ",
   "new": "ಗುರಾವಾದೇಶಃ",
   "reason": "ಗುರೌ + ಆದೇಶಃ gives ಗುರಾವಾದೇಶಃ (ಔ → ಆವ್), as in the Sanskrit lesson"
+ },
+ {
+  "id": "t01.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t01.s2.p1",
+  "old": "' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Plural pronoun agreement"
+ },
+ {
+  "id": "t02.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t02.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t04.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t04.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t05.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t05.s2.p1",
+  "old": "' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Plural pronoun agreement"
+ },
+ {
+  "id": "t06.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t06.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t09.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t09.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t10.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t10.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t03.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಶಾಸ್ತ್ರ ಕಾರಿಕೆ — ಸಂಹಿತೈಕಪದೇ ನಿತ್ಯಾ ನಿತ್ಯಾ ಧಾತೂಪಸರ್ಗಯೋಃ. ",
+  "new": "ಮುಖ್ಯ ಕಾರಿಕೆಯಾದ 'ಸಂಹಿತೈಕಪದೇ ನಿತ್ಯಾ ನಿತ್ಯಾ ಧಾತೂಪಸರ್ಗಯೋಃ। ",
+  "reason": "It is a kārikā, not a sūtra; punctuation (daṇḍa)"
+ },
+ {
+  "id": "t07.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಅಧಿಕಾರವ್ಯವಸ್ಥಾ — ಸಂಹಿತೆಯಲ್ಲಿ (",
+  "new": "ಮುಖ್ಯ ಅಧಿಕಾರಸೂತ್ರಗಳಾದ 'ಸಂಹಿತಾಯಾಮ್ (",
+  "reason": "Correct sūtra wording (ಸಂಹಿತಾಯಾಮ್) and plural agreement"
+ },
+ {
+  "id": "t07.s2.p1",
+  "old": "ಪ್ರಕರಣಮ್).' ಎಂಬುದರ",
+  "new": "ಪ್ರಕರಣಮ್)' ಎಂಬವುಗಳ",
+  "reason": "Stray period; plural agreement"
+ },
+ {
+  "id": "t07.s4.p0",
+  "old": "ಸಂಹಿತೆಯಲ್ಲಿ (೬.೧.೭೨",
+  "new": "ಸಂಹಿತಾಯಾಮ್ (೬.೧.೭೨",
+  "reason": "Sūtra wording is ಸಂಹಿತಾಯಾಮ್"
+ },
+ {
+  "id": "t00.s2.p0",
+  "old": "ಎರಡು ವರ್ಣಗಳನ್ನು ನಡುವೆ",
+  "new": "ಎರಡು ವರ್ಣಗಳನ್ನು ಅವುಗಳ ನಡುವೆ",
+  "reason": "Kannada grammar: missing genitive"
+ },
+ {
+  "id": "t00.s4.p0",
+  "old": "ಅಧಿಕಾರ ಸೂತ್ರ — ಸಂಹಿತೆಯಲ್ಲಿ (",
+  "new": "ಅಧಿಕಾರ ಸೂತ್ರ — ಸಂಹಿತಾಯಾಮ್ (",
+  "reason": "Sūtra wording is ಸಂಹಿತಾಯಾಮ್"
+ },
+ {
+  "id": "t00.s11.p1",
+  "old": "ವಿರಾಮಃ ಅವಸಾನಮ್",
+  "new": "ವಿರಾಮೋಽವಸಾನಮ್",
+  "reason": "Sūtra wording (with sandhi)"
+ },
+ {
+  "id": "t00.s11.p2",
+  "old": "ಸಂಹಿತೆಯಲ್ಲಿ (೬.೧.೭೨)",
+  "new": "ಸಂಹಿತಾಯಾಮ್ (೬.೧.೭೨)",
+  "reason": "Sūtra wording is ಸಂಹಿತಾಯಾಮ್"
+ },
+ {
+  "id": "t02.pr.r1.c2",
+  "old": "ಪೂರ್ವಪರಸ್ಥಾನಿ: ಆ + ಈ, ಗುಣ",
+  "new": "ಪೂರ್ವಪರಸ್ಥಾನಿ: ಆ + ಈ, ಪರನಿಮಿತ್ತ: ಈ, ಗುಣ",
+  "reason": "Question asks for nimitta too"
+ },
+ {
+  "id": "t02.pr.r2.c1",
+  "old": "ಸ್ಥಾನೀ-ನಿಮಿತ್ತ-ಆದೇಶಾನ್",
+  "new": "ಸ್ಥಾನಿ-ನಿಮಿತ್ತ-ಆದೇಶಾನ್",
+  "reason": "Compound stem of sthānin is sthāni"
+ },
+ {
+  "id": "t02.pr.r3.c1",
+  "old": "ಸ್ಥಾನೀ-ನಿಮಿತ್ತ-ಆದೇಶಾನ್",
+  "new": "ಸ್ಥಾನಿ-ನಿಮಿತ್ತ-ಆದೇಶಾನ್",
+  "reason": "Compound stem of sthānin is sthāni"
+ },
+ {
+  "id": "t02.pr.r3.c2",
+  "old": "ಪರನಿಮಿತ್ತ: ಈ, ಆದೇಶ: ಗ್",
+  "new": "ನಿಮಿತ್ತ: ಪದಾಂತತ್ವ (ಝಲಾಂ ಜಶೋಽನ್ತೇ), ಆದೇಶ: ಗ್",
+  "reason": "Padānta jaśtva has no para-nimitta; the condition is padāntatva"
+ },
+ {
+  "id": "t02.pr.r4.c2",
+  "old": "ಇತಿ ಗುಣ ಏಕಾದೇಶ)",
+  "new": "ಇತಿ ಗುಣೈಕಾದೇಶಃ)",
+  "reason": "Sanskrit: compound and nominative visarga"
+ },
+ {
+  "id": "t02.pr.r6.c2",
+  "old": "ಇತಿ ವೃದ್ಧಿ ಏಕಾದೇಶ)",
+  "new": "ಇತಿ ವೃದ್ಧ್ಯೇಕಾದೇಶಃ)",
+  "reason": "Sanskrit: compound and nominative visarga"
+ },
+ {
+  "id": "t03.s4.p0",
+  "old": "ಧಾತೂಪಸರ್ಗಯೋಃ. ನಿತ್ಯಾ",
+  "new": "ಧಾತೂಪಸರ್ಗಯೋಃ। ನಿತ್ಯಾ",
+  "reason": "Punctuation: daṇḍa"
+ },
+ {
+  "id": "t03.s4.p0",
+  "old": "ಮಪೇಕ್ಷತೇ||",
+  "new": "ಮಪೇಕ್ಷತೇ॥",
+  "reason": "Punctuation: double daṇḍa"
+ },
+ {
+  "id": "t03.s13.p1",
+  "old": "'ಸಃ ಗಚ್ಛತಿ' ಅಥವಾ 'ಸ ಗಚ್ಛತಿ'",
+  "new": "'ರಾಮಃ ಗಚ್ಛತಿ' ಅಥವಾ 'ರಾಮೋ ಗಚ್ಛತಿ'",
+  "reason": "ಸ ಗಚ್ಛತಿ is governed by 6.1.132 (sulopa), not an optional-sandhi illustration; use the standard example"
+ },
+ {
+  "id": "t03.s13.p2",
+  "old": "ಏಕಪದವತ್ ಭಾವ",
+  "new": "ಏಕಪದವದ್ಭಾವ",
+  "reason": "Internal sandhi in compound"
+ },
+ {
+  "id": "t03.ex.r6.c0",
+  "old": "ಬಾಲಕಃ + ಪಠತಿ",
+  "new": "ಬಾಲಕಃ + ಗಚ್ಛತಿ",
+  "reason": "Example changed so the two alternatives differ"
+ },
+ {
+  "id": "t03.ex.r6.c1",
+  "old": "ಬಾಲಕಃ ಪಠತಿ / ಬಾಲಕಃ ಪಠತಿ",
+  "new": "ಬಾಲಕಃ ಗಚ್ಛತಿ / ಬಾಲಕೋ ಗಚ್ಛತಿ",
+  "reason": "The two alternative forms were identical"
+ },
+ {
+  "id": "t03.pr.r6.c2",
+  "old": "ಸವರ್ಣದೀರ್ಘ)",
+  "new": "ಸವರ್ಣದೀರ್ಘಃ)",
+  "reason": "Sanskrit nominative visarga"
+ },
+ {
+  "id": "t04.s2.p0",
+  "old": "ಮಹೇಶ್ವರ ಸೂತ್ರ",
+  "new": "ಮಾಹೇಶ್ವರ ಸೂತ್ರ",
+  "reason": "Correct term is ಮಾಹೇಶ್ವರ (consistent with rest of text)"
+ },
+ {
+  "id": "t04.s3.p0",
+  "old": "ಮಹೇಶ್ವರ ಸೂತ್ರ",
+  "new": "ಮಾಹೇಶ್ವರ ಸೂತ್ರ",
+  "reason": "Correct term is ಮಾಹೇಶ್ವರ (consistent with rest of text)"
+ },
+ {
+  "id": "t04.s10.p0",
+  "old": "ಮಹೇಶ್ವರ ಸೂತ್ರ",
+  "new": "ಮಾಹೇಶ್ವರ ಸೂತ್ರ",
+  "reason": "Correct term is ಮಾಹೇಶ್ವರ (consistent with rest of text)"
+ },
+ {
+  "id": "t04.s14.p0",
+  "old": "ಮಹೇಶ್ವರ ಸೂತ್ರ",
+  "new": "ಮಾಹೇಶ್ವರ ಸೂತ್ರ",
+  "reason": "Correct term is ಮಾಹೇಶ್ವರ (consistent with rest of text)"
+ },
+ {
+  "id": "t04.s9.p0",
+  "old": "'ರೇಫ' ಮತ್ತು 'ಲ' ವರ್ಣಗಳನ್ನು ಒಳಗೊಂಡ 'ರಲ್' ಪ್ರತ್ಯಾಹಾರ",
+  "new": "'ರೇಫ' ಮತ್ತು 'ಲ' ವರ್ಣಗಳನ್ನು ಒಳಗೊಂಡ 'ರ' ಪ್ರತ್ಯಾಹಾರ ('ಉರಣ್ ರಪರಃ' ಸೂತ್ರದಲ್ಲಿ ಬಳಕೆ)",
+  "reason": "The pratyāhāra formed with the it-a of laṇ is ರ (= ರ್, ಲ್), not ರಲ್"
+ },
+ {
+  "id": "t04.s13.p1",
+  "old": "'ಅಶ್', 'ಭಶ್'",
+  "new": "'ಅಶ್', 'ಹಶ್'",
+  "reason": "ಭಶ್ does not contain ಹ; ಹಶ್ does"
+ },
+ {
+  "id": "t04.pr.r5.c2",
+  "old": "ಪ್ರತ್ಯಾಹಾರಃ 'ಞಮ್' ಅಥವಾ 'ಙಮ್' (ಙ್, ಣ್, ನ್).",
+  "new": "ಪ್ರತ್ಯಾಹಾರಃ 'ಞಮ್'; ಙ್, ಣ್, ನ್ ಇತ್ಯೇತೇಷಾಂ ತು 'ಙಮ್'.",
+  "reason": "ಙಮ್ covers only ಙ್, ಣ್, ನ್; it is not an equivalent of ಞಮ್"
+ },
+ {
+  "id": "t06.s5.p0",
+  "old": "ಷಷ್ಠಿಯಿಂದ ನಿರ್ದೇಶಿಸಲ್ಪಟ್ಟ ಪದಕ್ಕೆ ವಿಧಿಸಿದ ಕಾರ್ಯವು ಆ ಪದದ ಕೊನೆಯ",
+  "new": "ಷಷ್ಠಿಯಿಂದ ನಿರ್ದೇಶಿಸಲ್ಪಟ್ಟ ಸ್ಥಾನಿಗೆ ವಿಧಿಸಿದ ಕಾರ್ಯವು ಆ ಸ್ಥಾನಿಯ ಕೊನೆಯ",
+  "reason": "1.1.52 concerns any ṣaṣṭhī-designated sthānin, not only a pada"
+ },
+ {
+  "id": "t06.s11.p1",
+  "old": "ಷಷ್ಠೀ ನಿರ್ದಿಷ್ಟ ಪದದ ಅಂತ್ಯ",
+  "new": "ಷಷ್ಠೀ ನಿರ್ದಿಷ್ಟ ಸ್ಥಾನಿಯ ಅಂತ್ಯ",
+  "reason": "1.1.52 concerns any ṣaṣṭhī-designated sthānin"
+ },
+ {
+  "id": "t06.s10.p0",
+  "old": "(ಅಂಕಃ, ಶಾಂತಃ)",
+  "new": "(ಅಙ್ಕಃ, ಶಾನ್ತಃ)",
+  "reason": "Show the obligatory parasavarṇa forms explicitly"
+ },
+ {
+  "id": "t06.s13.p2",
+  "old": "ಅನೇಕ ಸಂಧಿಸೂತ್ರಗಳು 'ಪದಸ್ಯ' (೮.೧.೧೬) ಎಂಬ ಅಧಿಕಾರದಲ್ಲಿ ಪದಾಂತಕ್ಕೆ ಮಾತ್ರ ವಿಧಿಸಲ್ಪಟ್ಟಿವೆ (ಉದಾ: ಪದಾಂತ ಜಶ್ತ್ವ, ರುತ್ವ, ಪೂರ್ವರೂಪ)",
+  "new": "ಅನೇಕ ಸಂಧಿಸೂತ್ರಗಳು ಪದಾಂತಕ್ಕೆ ಮಾತ್ರ ವಿಧಿಸಲ್ಪಟ್ಟಿವೆ (ಉದಾ: 'ಪದಸ್ಯ' (೮.೧.೧೬) ಅಧಿಕಾರದ ಪದಾಂತ ಜಶ್ತ್ವ ಮತ್ತು ರುತ್ವ, 'ಏಙಃ ಪದಾಂತಾದತಿ' ಸೂತ್ರದ ಪೂರ್ವರೂಪ)",
+  "reason": "Pūrvarūpa (6.1.109) is not under the padasya (8.1.16) adhikāra"
+ },
+ {
+  "id": "t06.ex.r4.c0",
+  "old": "ಬುಧ್ + ಧಿಃ",
+  "new": "ಬುಧ್ + ತಿಃ",
+  "reason": "Source suffix is ktin (ತಿ); ಧ is the result of 8.2.40"
+ },
+ {
+  "id": "t06.ex.r4.c2",
+  "old": "(ಝಲಾಂ ಜಶ್ ಝಶಿ)",
+  "new": "(ಝಷಸ್ತಥೋರ್ಧೋಽಧಃ, ಝಲಾಂ ಜಶ್ ಝಶಿ)",
+  "reason": "Derivation needs dhatva before jaśtva"
+ },
+ {
+  "id": "t06.ex.r6.c0",
+  "old": "ಶಾನ್ + ತಃ",
+  "new": "ಶಾಮ್ + ತಃ",
+  "reason": "Root śam ends in ಮ್"
+ },
+ {
+  "id": "t06.ex.r6.c2",
+  "old": "ಶಾನ್ = ಅಪದಾನ್ತಃ ನಕಾರಃ",
+  "new": "ಶಾಮ್ = ಅಪದಾನ್ತಃ ಮಕಾರಃ",
+  "reason": "Root śam ends in ಮ್"
+ },
+ {
+  "id": "t06.ex.r6.c3",
+  "old": "ಅಪದಾಂತ ನಕಾರಕ್ಕೆ",
+  "new": "ಅಪದಾಂತ ಮಕಾರಕ್ಕೆ",
+  "reason": "Root śam ends in ಮ್"
+ },
+ {
+  "id": "t06.pr.r4.c2",
+  "old": "ಅಪದಾನ್ತಜಶ್ತ್ವಮ್ ಪೂರ್ವಸವರ್ಣಶ್ಚ ('ಝಲಾಂ ಜಶ್ ಝಶಿ')",
+  "new": "ಧತ್ವಮ್ ('ಝಷಸ್ತಥೋರ್ಧೋಽಧಃ') ಅಪದಾನ್ತಜಶ್ತ್ವಂ ಚ ('ಝಲಾಂ ಜಶ್ ಝಶಿ')",
+  "reason": "ತ್→ಧ್ is by 8.2.40, not pūrvasavarṇa"
+ },
+ {
+  "id": "t06.pr.r5.c1",
+  "old": "ಶಮ್ + ಕರಃ",
+  "new": "ಅನ್ + ಕಿತಃ",
+  "reason": "ಶಮ್ is an avyaya (a pada), so parasavarṇa there is optional; use an apadānta example"
+ },
+ {
+  "id": "t06.pr.r5.c2",
+  "old": "ಶಙ್ಕರಃ —",
+  "new": "ಅಙ್ಕಿತಃ —",
+  "reason": "Answer matches the corrected question"
+ },
+ {
+  "id": "t08.s5.p0",
+  "old": "ಅಕಃ (ಪಂಚಮೀ ಏಕವಚನ)",
+  "new": "ಅಕಃ (ಷಷ್ಠೀ ಏಕವಚನ)",
+  "reason": "ಅಕಃ in this sūtra is ṣaṣṭhī (sthānin)"
+ },
+ {
+  "id": "t08.s11.p2",
+  "old": "ಪರರೂಪಸ್ಯ ಅಪವಾದರೂಪಾಣಿ.",
+  "new": "ಶಕನ್ಧ್ವಾದಿಷು ಪರರೂಪಸ್ಯ ಉದಾಹರಣಾನಿ (ದೀರ್ಘಾದಿಸನ್ಧೀನಾಮ್ ಅಪವಾದಃ).",
+  "reason": "These are instances of pararūpa, not exceptions to it"
+ },
+ {
+  "id": "t08.s13.p1",
+  "old": "ಹೋತೄಕಾರಃ (ಹೋತೃಕಾರಃ)",
+  "new": "ಹೋತೄಕಾರಃ (ಹೋತ್ಌಕಾರಃ)",
+  "reason": "Optional form by ಌತಿ ಸವರ್ಣೇ ಌ ವಾ is ಹೋತ್ಌಕಾರಃ"
+ },
+ {
+  "id": "t08.pr.r3.c1",
+  "old": "ಸೂ + ಉಕ್ತಿಃ (ಸು + ಉಕ್ತಿಃ)",
+  "new": "ಸು + ಉಕ್ತಿಃ",
+  "reason": "Wrong source word ಸೂ"
+ },
+ {
+  "id": "t09.s7.p0",
+  "old": "ಇ ಂದ್ರಃ",
+  "new": "ಇ ನ್ದ್ರಃ",
+  "reason": "Anusvāra cannot follow a space/vowel split; correct split"
+ },
+ {
+  "id": "t09.s11.p1",
+  "old": "ಗುಣ ಏಕಾದೇಶಃ",
+  "new": "ಗುಣೈಕಾದೇಶಃ",
+  "reason": "Sanskrit: compound required"
+ },
+ {
+  "id": "t10.s11.p1",
+  "old": "ವೃದ್ಧಿ ಏಕಾದೇಶ.",
+  "new": "ವೃದ್ಧ್ಯೇಕಾದೇಶಃ.",
+  "reason": "Sanskrit: compound and nominative visarga"
+ },
+ {
+  "id": "t10.ex.r3.c3",
+  "old": "ದೈವೀ ಐಶ್ವರ್ಯ",
+  "new": "ದೇವತೆಗಳ ಐಶ್ವರ್ಯ",
+  "reason": "Correct meaning in Kannada"
+ },
+ {
+  "id": "t11.s11.p1",
+  "old": "ಸದೃಶತಮಃ ಆದೇಶಃ",
+  "new": "ಸದೃಶತಮ ಆದೇಶಃ",
+  "reason": "Kaumudī wording: visarga sandhi before vowel"
+ },
+ {
+  "id": "t11.pr.r3.c1",
+  "old": "ಭ್ರಾತೃ + ಸ್ನೇಹಃ (ಮಾತೃ + ಆನನ್ದಃ)",
+  "new": "ಮಾತೃ + ಆನನ್ದಃ",
+  "reason": "question matched to answer; ಭ್ರಾತೃ + ಸ್ನೇಹಃ is not a yaṇ case"
+ },
+ {
+  "id": "t12.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಏಚೋಽಯವಾಯಾವಃ (೬.೧.೭೮), ಯಥಾಸಙ್ಖ್ಯಮನುದೇಶಃ ಸಮಾನಾಮ್ (೧.೩.೧೦), ವಾನ್ತೋ ಯಿ ಪ್ರತ್ಯಯೇ (೬.೧.೭೯).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ಏಚೋಽಯವಾಯಾವಃ' (೬.೧.೭೮), 'ಯಥಾಸಙ್ಖ್ಯಮನುದೇಶಃ ಸಮಾನಾಮ್' (೧.೩.೧೦), 'ವಾನ್ತೋ ಯಿ ಪ್ರತ್ಯಯೇ' (೬.೧.೭೯) ಎಂಬವುಗಳ",
+  "reason": "three sūtras: plural; stray period"
+ },
+ {
+  "id": "t12.s2.p1",
+  "old": "'ಸ್ಥಾನೇಽಂತರತಮಃ' (೧.೧.೫೦) ಪರಿಭಾಷೆಯಿಂದ ಉಚ್ಚಾರಣಾ ಸ್ಥಾನ ಮತ್ತು ಪ್ರಯತ್ನಗಳಿಗೆ ಅನುಗುಣವಾದ ಸದೃಶತಮ ಆದೇಶದ ನಿರ್ಣಯವೂ",
+  "new": "'ಯಥಾಸಙ್ಖ್ಯಮನುದೇಶಃ ಸಮಾನಾಮ್' (೧.೩.೧೦) ಪರಿಭಾಷೆಯಿಂದ ಸ್ಥಾನಿಗಳಿಗೆ ಕ್ರಮವಾಗಿ ಆದೇಶಗಳ ನಿರ್ಣಯವೂ",
+  "reason": "in ayādi the ādeśas are assigned by yathāsaṅkhya (as s6 says), not by sthāne'ntaratamaḥ"
+ },
+ {
+  "id": "t12.pr.r5.c1",
+  "old": "ವಿಧಾಯಕಃ",
+  "new": "ವಿನಾಯಕಃ",
+  "reason": "ವಿಧಾಯಕ is from ಧಾ with yuk, not ayādi; ವಿನಾಯಕ = ವಿ+ನೀ (ನೈ)+ಅಕ"
+ },
+ {
+  "id": "t12.pr.r5.c2",
+  "old": "ವಿಧೈ + ಅಕಃ",
+  "new": "ವಿನೈ + ಅಕಃ",
+  "reason": "answer matched to corrected question"
+ },
+ {
+  "id": "t13.s2.p1",
+  "old": "'ಸ್ಥಾನೇಽಂತರತಮಃ' (೧.೧.೫೦) ಪರಿಭಾಷೆಯಿಂದ ಉಚ್ಚಾರಣಾ ಸ್ಥಾನ ಮತ್ತು ಪ್ರಯತ್ನಗಳಿಗೆ ಅನುಗುಣವಾದ ಸದೃಶತಮ ಆದೇಶದ ನಿರ್ಣಯವೂ",
+  "new": "'ಏಕಃ ಪೂರ್ವಪರಯೋಃ' (೬.೧.೮೪) ಅಧಿಕಾರದಿಂದ ಪೂರ್ವ-ಪರ ಎರಡರ ಸ್ಥಾನದಲ್ಲಿ ಏಕಾದೇಶದ ನಿರ್ಣಯವೂ",
+  "reason": "pūrvarūpa is an ekādeśa of the former sound; no antaratama choice"
+ },
+ {
+  "id": "t13.s4.p0",
+  "old": "ಸಹಾಯಕಸೂತ್ರಮ್ —",
+  "new": "ಸಹಾಯಕಸೂತ್ರೇ —",
+  "reason": "two sūtras: dual"
+ },
+ {
+  "id": "t14.s2.p0",
+  "old": "ಅಕಾರಾಂತ ಉಪಸರ್ಗದ ಮುಂದೆ",
+  "new": "ಅವರ್ಣಾಂತ ಉಪಸರ್ಗದ ಮುಂದೆ",
+  "reason": "rule covers अ/आ (e.g. ಪರಾ + ಏಜತೇ)"
+ },
+ {
+  "id": "t14.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಏಙಿ ಪರರೂಪಮ್ (೬.೧.೯೪), ಓಮಾಙೋಶ್ಚ (೬.೧.೯೫)' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ಏಙಿ ಪರರೂಪಮ್' (೬.೧.೯೪), 'ಓಮಾಙೋಶ್ಚ' (೬.೧.೯೫) ಎಂಬವುಗಳ",
+  "reason": "two sūtras: plural"
+ },
+ {
+  "id": "t14.s2.p1",
+  "old": "'ಸ್ಥಾನೇಽಂತರತಮಃ' (೧.೧.೫೦) ಪರಿಭಾಷೆಯಿಂದ ಉಚ್ಚಾರಣಾ ಸ್ಥಾನ ಮತ್ತು ಪ್ರಯತ್ನಗಳಿಗೆ ಅನುಗುಣವಾದ ಸದೃಶತಮ ಆದೇಶದ ನಿರ್ಣಯವೂ",
+  "new": "'ಏಕಃ ಪೂರ್ವಪರಯೋಃ' (೬.೧.೮೪) ಅಧಿಕಾರದಿಂದ ಪೂರ್ವ-ಪರ ಎರಡರ ಸ್ಥಾನದಲ್ಲಿ ಏಕಾದೇಶದ ನಿರ್ಣಯವೂ",
+  "reason": "pararūpa is an ekādeśa of the latter sound; no antaratama choice"
+ },
+ {
+  "id": "t14.s3.p0",
+  "old": "ಅಕಾರಾಂತ ಉಪಸರ್ಗ (ಪ್ರ, ಉಪ, ಅವ ಮುಂತಾದವುಗಳ ಕೊನೆಯ 'ಅ')",
+  "new": "ಅವರ್ಣಾಂತ ಉಪಸರ್ಗ (ಪ್ರ, ಉಪ, ಪರಾ ಮುಂತಾದವುಗಳ ಕೊನೆಯ 'ಅ'/'ಆ')",
+  "reason": "rule covers अ/आ (ಪರಾ + ಏಜತೇ = ಪರೇಜತೇ)"
+ },
+ {
+  "id": "t14.s5.p0",
+  "old": "ಅಕಾರಾಂತ ಉಪಸರ್ಗದಿಂದ",
+  "new": "ಅವರ್ಣಾಂತ ಉಪಸರ್ಗದಿಂದ",
+  "reason": "anuvṛtti ಆತ್ = avarṇa"
+ },
+ {
+  "id": "t14.s9.p0",
+  "old": "ಉಪ + ಏಡಕಯತಿ = ಉಪೈಡಕಯತಿ / ಉಪೇಡಕಯತಿ",
+  "new": "ಉಪ + ಏಡಕೀಯತಿ = ಉಪೈಡಕೀಯತಿ / ಉಪೇಡಕೀಯತಿ",
+  "reason": "correct nāmadhātu form (ಕ್ಯಚ್): ಏಡಕೀಯತಿ"
+ },
+ {
+  "id": "t14.s10.p0",
+  "old": "ಕೇಶವೇಷ",
+  "new": "ಕೇಶವೇಶ",
+  "reason": "vārttika: सीमन्तः केशवेशे (arrangement of hair)"
+ },
+ {
+  "id": "t14.s13.p2",
+  "old": "'ಏಙಿ ಪರರೂಪಮ್' ಸೂತ್ರದಲ್ಲಿ 'ಏತಿ' (ಇಣ್ ಧಾತು) ಮತ್ತು 'ಏಧತೇ' ಧಾತುಗಳನ್ನು ಹೊರತುಪಡಿಸಲಾಗಿದೆ ('ಏತ್ಯೇಧತ್ಯೂಠ್ಸು' ೬.೧.೮೯)",
+  "new": "'ಏತಿ' (ಇಣ್ ಧಾತು) ಮತ್ತು 'ಏಧತೇ' ಧಾತುಗಳ ವಿಷಯದಲ್ಲಿ 'ಏತ್ಯೇಧತ್ಯೂಠ್ಸು' (೬.೧.೮೯) ಸೂತ್ರವು 'ಏಙಿ ಪರರೂಪಮ್' ಸೂತ್ರವನ್ನು ಬಾಧಿಸುತ್ತದೆ",
+  "reason": "एङि पररूपम् contains no exclusion; 6.1.89 blocks it"
+ },
+ {
+  "id": "t14.pr.r5.c2",
+  "old": "ಹಲಸ್ (ಹಲೀ) + ಈಷಾ",
+  "new": "ಹಲ + ಈಷಾ",
+  "reason": "correct source word of ಹಲೀಷಾ"
+ },
+ {
+  "id": "t14.pr.r6.c2",
+  "old": "ಮೃತ (ಮಾರ್ತ) + ಅಣ್ಡಃ",
+  "new": "ಮಾರ್ತ + ಅಣ್ಡಃ",
+  "reason": "correct source word of ಮಾರ್ತಣ್ಡಃ"
+ },
+ {
+  "id": "t15.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ವಿಪ್ರತಿಷೇಧೇ ಪರಂ ಕಾರ್ಯಮ್ (೧.೪.೨), ಪೂರ್ವತ್ರಾಸಿದ್ಧಮ್ (೮.೨.೧)' ಎಂಬುದರ ಆಧಾರದ ಮೇಲೆ ಪೂರ್ವವರ್ಣ (ಸ್ಥಾನಿ) ಮತ್ತು ಪರವರ್ಣಗಳ (ನಿಮಿತ್ತ) ನಡುವೆ ಸಂಹಿತೆಯು ಏರ್ಪಟ್ಟಾಗ ವರ್ಣವಿಕಾರವು ಜರುಗುತ್ತದೆ.",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ವಿಪ್ರತಿಷೇಧೇ ಪರಂ ಕಾರ್ಯಮ್' (೧.೪.೨), 'ಪೂರ್ವತ್ರಾಸಿದ್ಧಮ್' (೮.೨.೧) ಎಂಬವುಗಳ ಆಧಾರದ ಮೇಲೆ ಪೂರ್ವವರ್ಣ (ಸ್ಥಾನಿ) ಮತ್ತು ಪರವರ್ಣಗಳ (ನಿಮಿತ್ತ) ನಡುವೆ ಸಂಹಿತೆಯು ಏರ್ಪಟ್ಟಾಗ ಯಾವ ಸಂಧಿಸೂತ್ರವು ಪ್ರವರ್ತಿಸಬೇಕೆಂಬುದು ನಿರ್ಣಯವಾಗುತ್ತದೆ.",
+  "reason": "two sūtras: plural; these sūtras decide rule precedence, they do not themselves effect a sound change"
+ },
+ {
+  "id": "t15.s4.p0",
+  "old": "ಪರಿಭಾಷೆ — ",
+  "new": "ಪರಿಭಾಷೆಗಳು — ",
+  "reason": "two paribhāṣās: plural"
+ },
+ {
+  "id": "t15.s6.p0",
+  "old": "ಸವರ್ಣ ಅಕ್ ಸ್ವರಗಳ ಸಂಯೋಗ",
+  "new": "ಸವರ್ಣ ಅಕ್ ಸ್ವರಗಳ ಸಂಯೋಜನೆ",
+  "reason": "ಸಂಯೋಗ is the technical term for consonant clusters (೧.೧.೭)"
+ },
+ {
+  "id": "t15.s11.p1",
+  "old": "ವೃದ್ಧಿಃ ಗುಣಸ್ಯಾಪವಾದಃ",
+  "new": "ವೃದ್ಧಿರ್ಗುಣಸ್ಯಾಪವಾದಃ",
+  "reason": "visarga sandhi within the rhythmic summary line"
+ },
+ {
+  "id": "t15.ex.r1.c2",
+  "old": "ಯಣ್ ಬಾಧಿತ್ವಾ ಸವರ್ಣದೀರ್ಘ",
+  "new": "ಯಣಂ ಬಾಧಿತ್ವಾ ಸವರ್ಣದೀರ್ಘಃ",
+  "reason": "accusative object and nominative, as in the other rows"
+ },
+ {
+  "id": "t15.pr.r1.c1",
+  "old": "ಪ್ರ + ಏಷಯತಿ ತಥಾ",
+  "new": "ಪ್ರ + ಏಷಃ ತಥಾ",
+  "reason": "question made consistent with a valid contrast"
+ },
+ {
+  "id": "t15.pr.r1.c2",
+  "old": "ಪ್ರೇಷಯತಿ (ಪ್ರೈಷಯತಿ ವಾ ನಾಮಧಾತೌ; ಪ್ರ + ಇಷಯತಿ = ಪ್ರೇಷಯತಿ ಗುಣಃ)",
+  "new": "ಪ್ರೈಷಃ ('ಪ್ರಾದೂಹೋಢೋಢ್ಯೇಷೈಷ್ಯೇಷು' ಇತಿ ವಾರ್ತಿಕೇನ ವೃದ್ಧಿಃ)",
+  "reason": "invalid optional form ಪ್ರೈಷಯತಿ removed; answer matches question"
+ },
+ {
+  "id": "t15.pr.r3.c2",
+  "old": "(ಅಪದಾನ್ತೇ ಅಯಾದಿಸಂಧಿ)",
+  "new": "(ಅಪದಾನ್ತೇ ಅಯಾದಿಸನ್ಧಿಃ)",
+  "reason": "Sanskrit nominative needs visarga"
+ },
+ {
+  "id": "t15.pr.r3.c2",
+  "old": "(ಪದಾನ್ತೇ ಪೂರ್ವರೂಪ ಸಂಧಿ)",
+  "new": "(ಪದಾನ್ತೇ ಪೂರ್ವರೂಪಸನ್ಧಿಃ)",
+  "reason": "Sanskrit nominative needs visarga; samāsa"
+ },
+ {
+  "id": "t16.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಹಲೋಽನನ್ತರಾಃ ಸಂಯೋಗಃ (೧.೧.೭), ಅಣುದಿತ್ ಸವರ್ಣಸ್ಯ ಚಾಪ್ರತ್ಯಯಃ (೧.೧.೬೯), ಸಂಯೋಗಾನ್ತಸ್ಯ ಲೋಪಃ (೮.೨.೨೩).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ಹಲೋಽನನ್ತರಾಃ ಸಂಯೋಗಃ' (೧.೧.೭), 'ಅಣುದಿತ್ ಸವರ್ಣಸ್ಯ ಚಾಪ್ರತ್ಯಯಃ' (೧.೧.೬೯), 'ಸಂಯೋಗಾನ್ತಸ್ಯ ಲೋಪಃ' (೮.೨.೨೩) ಎಂಬವುಗಳ",
+  "reason": "three sūtras: plural; stray period"
+ },
+ {
+  "id": "t16.s9.p0",
+  "old": "ಭಗವಂತ್ → ಭಗವನ್",
+  "new": "ಭಗವಾನ್ತ್ → ಭಗವಾನ್",
+  "reason": "nominative singular is ಭಗವಾನ್ (ಉಪಧಾದೀರ್ಘ)"
+ },
+ {
+  "id": "t16.pr.r1.c1",
+  "old": "ವರ್ಣಃ ಕಃ?",
+  "new": "ವರ್ಣೌ ಕೌ?",
+  "reason": "two letters asked: dual"
+ },
+ {
+  "id": "t16.pr.r2.c1",
+  "old": "ವರ್ಣಃ ಕಃ?",
+  "new": "ವರ್ಣೌ ಕೌ?",
+  "reason": "two letters asked: dual"
+ },
+ {
+  "id": "t16.pr.r6.c1",
+  "old": "'ಅಮ್' ತಥಾ 'ಙಮ್'",
+  "new": "'ಙಮ್' ತಥಾ 'ಞಮ್'",
+  "reason": "question matched to answer (ಙಮ್, ಞಮ್)"
+ },
+ {
+  "id": "t18.s4.p0",
+  "old": "ಅಪವಾದಸೂತ್ರಾಣಿ",
+  "new": "ಅಪವಾದಸೂತ್ರೇ",
+  "reason": "two sūtras: dual"
+ },
+ {
+  "id": "t19.s2.p0",
+  "old": "ಈ ಸಂಧಿಯಲ್ಲಿ ಎರಡು ವಿಧ:",
+  "new": "ಈ ಸಂಧಿಯಲ್ಲಿ ಎರಡು ವಿಧಗಳಿವೆ:",
+  "reason": "incomplete sentence"
+ },
+ {
+  "id": "t19.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '೧. ಝಲಾಂ ಜಶೋಽನ್ತೇ (೮.೨.೩೯ — ಪದಾನ್ತಜಶ್ತ್ವಮ್), ೨. ಝಲಾಂ ಜಶ್ ಝಶಿ (೮.೪.೫೩ — ಅಪದಾನ್ತಜಶ್ತ್ವಮ್).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ಝಲಾಂ ಜಶೋಽನ್ತೇ' (೮.೨.೩೯ — ಪದಾನ್ತಜಶ್ತ್ವಮ್), 'ಝಲಾಂ ಜಶ್ ಝಶಿ' (೮.೪.೫೩ — ಅಪದಾನ್ತಜಶ್ತ್ವಮ್) ಎಂಬವುಗಳ",
+  "reason": "two sūtras: plural; stray period"
+ },
+ {
+  "id": "t19.s3.p0",
+  "old": "ಟ-ವರ್ಗ (ಟ್, ಠ್, ಡ್, ಢ್, ಷ್) → ಡ್",
+  "new": "ಟ-ವರ್ಗ (ಟ್, ಠ್, ಡ್, ಢ್) ಮತ್ತು ಷ್ → ಡ್",
+  "reason": "ಷ್ is not a member of ಟ-ವರ್ಗ"
+ },
+ {
+  "id": "t19.s11.p2",
+  "old": "ಅವಸಾನೇ ಝಲಾಂ ವಿಕಲ್ಪವಾಗಿ ಚರ್ತ್ವಂ ಜಶ್ತ್ವಂ ವಾ",
+  "new": "ಅವಸಾನೇ ಝಲಾಂ ಚರ್ತ್ವಂ ಜಶ್ತ್ವಂ ವಾ",
+  "reason": "Kannada word inside Sanskrit sentence; redundant with ವಾ"
+ },
+ {
+  "id": "t20.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಖರಿ ಚ (೮.೪.೫೫), ವಾವಸಾನೇ (೮.೪.೫೬).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ಖರಿ ಚ' (೮.೪.೫೫), 'ವಾವಸಾನೇ' (೮.೪.೫೬) ಎಂಬವುಗಳ",
+  "reason": "two sūtras: plural; stray period"
+ },
+ {
+  "id": "t20.s6.p0",
+  "old": "(ಉದಾ: ಸದ್ + ಕಾರಃ → ಸತ್ಕಾರಃ)",
+  "new": "(ಉದಾ: ಸತ್ + ಕಾರಃ → ಸದ್ + ಕಾರಃ → ಸತ್ಕಾರಃ)",
+  "reason": "source word is ಸತ್; jaśtva then cartva"
+ },
+ {
+  "id": "t20.s7.p0",
+  "old": "೧. ಸದ್ + ಕಾರಃ →",
+  "new": "೧. ಸತ್ + ಕಾರಃ → ಜಶ್ತ್ವದಿಂದ ಸದ್ + ಕಾರಃ →",
+  "reason": "source word is ಸತ್"
+ },
+ {
+  "id": "t20.s11.p1",
+  "old": "ಅವಸಾನೇ ವಿಕಲ್ಪವಾಗಿ ಚರ್ತ್ವಮ್",
+  "new": "ಅವಸಾನೇ ವಿಕಲ್ಪೇನ ಚರ್ತ್ವಮ್",
+  "reason": "Kannada word inside Sanskrit sentence"
+ },
+ {
+  "id": "t20.pr.r4.c1",
+  "old": "(ಮೂಲದಕಾರಾನ್ತವಿಚ್ಛೇದಂ ಕುರುತ)",
+  "new": "(ಸನ್ಧಿವಿಚ್ಛೇದಂ ಕುರುತ)",
+  "reason": "ಸತ್ is takārānta; question matched to answer"
+ },
+ {
+  "id": "t20.pr.r4.c2",
+  "old": "ಸದ್ + ಪುರುಷಃ (ದ್ → ತ್)",
+  "new": "ಸತ್ + ಪುರುಷಃ (ತ್ → ದ್ → ತ್)",
+  "reason": "correct source word ಸತ್"
+ },
+ {
+  "id": "t21.s2.p0",
+  "old": "ಅನುನಾಸಿಕ ವ್ಯಂಜನವು (ಙ್, ಞ್, ಣ್, ನ್, ಮ್) ಆದೇಶವಾಗಿ ಬರುತ್ತದೆ.",
+  "new": "ಅನುನಾಸಿಕ ವ್ಯಂಜನವು (ಙ್, ಞ್, ಣ್, ನ್, ಮ್) ವಿಕಲ್ಪವಾಗಿ ಆದೇಶವಾಗಿ ಬರುತ್ತದೆ (ಅನುನಾಸಿಕಾದಿ ಪ್ರತ್ಯಯ ಪರವಾದಾಗ ನಿತ್ಯವಾಗಿ).",
+  "reason": "sūtra has वा: optional, nitya only before a suffix"
+ },
+ {
+  "id": "t21.pr.r4.c1",
+  "old": "ಮೃಣ್ಮಯಮ್",
+  "new": "ಮೃನ್ಮಯಮ್",
+  "reason": "correct form ಮೃನ್ಮಯಮ್ (consistent with the Sanskrit edition)"
+ },
+ {
+  "id": "t21.pr.r4.c2",
+  "old": "ಮೃದ್ (ಮೃತ್) + ಮಯಮ್ (ಪ್ರತ್ಯಯೇ ನಿಪಾತನಾತ್ ಮೂರ್ಧನ್ಯಃ ಣ್)",
+  "new": "ಮೃದ್ + ಮಯಮ್ (ದ್ → ನ್, ಪ್ರತ್ಯಯೇ ನಿತ್ಯಮ್)",
+  "reason": "ಮೃದ್+ಮಯಟ್ gives ನ್ (no nipātana for ಣ್)"
+ },
+ {
+  "id": "t22.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t22.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t23.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t23.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t24.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t24.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t25.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t25.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t27.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t27.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t28.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t28.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t29.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t29.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t30.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t30.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t31.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t31.s2.p1",
+  "old": ".' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Stray period removed; plural pronoun agreement"
+ },
+ {
+  "id": "t32.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ '",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ '",
+  "reason": "Several sūtras are listed: plural agreement"
+ },
+ {
+  "id": "t32.s2.p1",
+  "old": "' ಎಂಬುದರ",
+  "new": "' ಎಂಬವುಗಳ",
+  "reason": "Plural pronoun agreement"
+ },
+ {
+  "id": "t30.s2.p1",
+  "old": "ವಿರಾಮಃ ಅವಸಾನಮ್",
+  "new": "ವಿರಾಮೋಽವಸಾನಮ್",
+  "reason": "Sūtra wording (with sandhi)"
+ },
+ {
+  "id": "t30.s4.p0",
+  "old": "ವಿರಾಮಃ ಅವಸಾನಮ್",
+  "new": "ವಿರಾಮೋಽವಸಾನಮ್",
+  "reason": "Sūtra wording (with sandhi)"
+ },
+ {
+  "id": "t22.s6.p0",
+  "old": "ಅನುಸ್ವಾರವಾಗಿಯೇ ಉಳಿಯುತ್ತದೆ (ಸತ್ಯಂ ವದ, ಧರ್ಮಂ ಚರ)",
+  "new": "ಅನುಸ್ವಾರವಾಗಿಯೇ ಉಳಿಯುತ್ತದೆ (ಹರಿಂ ಶರಣಮ್, ಧರ್ಮಂ ರಕ್ಷತಿ, ಸಂಸಾರಃ, ಸಂಹಾರಃ)",
+  "reason": "Examples must have ś/ṣ/s/h/r following; ವ and ಚ do not illustrate the rule"
+ },
+ {
+  "id": "t22.s10.p0",
+  "old": "ಹಾಗೂ ವಾಕ್ಯದ ಕೊನೆಯಲ್ಲಿ 'ರಾಮಂ ಭಜೇತ್' ಸರಿಯಾದರೂ 'ಶುಭಮ್'",
+  "new": "ಹಾಗೂ ವಾಕ್ಯಮಧ್ಯದಲ್ಲಿ 'ರಾಮಂ ಭಜೇತ್' ಸರಿಯಾದರೂ ವಾಕ್ಯದ ಕೊನೆಯಲ್ಲಿ 'ಶುಭಮ್'",
+  "reason": "ರಾಮಂ is not sentence-final; clarify contrast"
+ },
+ {
+  "id": "t22.pr.r3.c1",
+  "old": "ಮನಸ್ + ಸಿ (",
+  "new": "ಮನಸ್ + ಇ (ಶಿ) (",
+  "reason": "Plural ending is ಶಿ (ಇ); ಮನಸ್ + ಸಿ double-counts ಸ್"
+ },
+ {
+  "id": "t22.pr.r5.c1",
+  "old": "ಅನುಸ್ವಾರಃ ಭವತಿ?",
+  "new": "ಅನುಸ್ವಾರೋ ಭವತಿ?",
+  "reason": "Sanskrit visarga sandhi (haśi ca)"
+ },
+ {
+  "id": "t23.s2.p0",
+  "old": "(ಐದು ವರ್ಗಗಳ ೨೯ ವ್ಯಂಜನಗಳು)",
+  "new": "(ಐದು ವರ್ಗಗಳ ೨೫ ವ್ಯಂಜನಗಳು ಮತ್ತು ಯ್, ವ್, ರ್, ಲ್ — ಒಟ್ಟು ೨೯)",
+  "reason": "Five vargas have 25 consonants; yay also includes y v r l"
+ },
+ {
+  "id": "t23.s9.p0",
+  "old": "ಆದರೆ ಮುಂದೆ 'ರ್' ಅಥವಾ 'ಶ್, ಷ್, ಸ್, ಹ್' ಇದ್ದಾಗ ಅವು 'ಯಯ್' ಪ್ರತ್ಯಾಹಾರದಲ್ಲಿ ಬಾರದ ಕಾರಣ ಪರಸವರ್ಣವು",
+  "new": "ಆದರೆ ಮುಂದೆ 'ಶ್, ಷ್, ಸ್, ಹ್' ಇದ್ದಾಗ ಅವು 'ಯಯ್' ಪ್ರತ್ಯಾಹಾರದಲ್ಲಿ ಬಾರದ ಕಾರಣವೂ, 'ರ್' ಇದ್ದಾಗ ಅದಕ್ಕೆ ಸಾನುನಾಸಿಕ ಸವರ್ಣವಿಲ್ಲದ ಕಾರಣವೂ ಪರಸವರ್ಣವು",
+  "reason": "yay DOES include ರ್; parasavarṇa fails before ರ್ because it has no nasal counterpart"
+ },
+ {
+  "id": "t23.s10.p0",
+  "old": "ಹಿಂದಿನ ಪ್ರಕರಣದ 'ಅನುನಾಸಿಕ ಸಂಧಿ'ಯಲ್ಲಿ",
+  "new": "ಹಿಂದೆ ಕಲಿತ 'ಅನುನಾಸಿಕ ಸಂಧಿ'ಯಲ್ಲಿ",
+  "reason": "The immediately preceding topic is anusvāra sandhi, not anunāsika sandhi"
+ },
+ {
+  "id": "t23.s13.p0",
+  "old": "'ಶಾಂತಃ' ಸಿದ್ಧಿಸುತ್ತದೆ",
+  "new": "'ಶಾನ್ತಃ' ಸಿದ್ಧಿಸುತ್ತದೆ",
+  "reason": "Result after parasavarṇa is ಶಾನ್ತಃ"
+ },
+ {
+  "id": "t23.ex.r1.c0",
+  "old": "(ಅಮ್ + ಕಃ)",
+  "new": "(ಅನ್ + ಕಃ)",
+  "reason": "Nasal in ಅಙ್ಕ is from num-āgama (ನ್), not ಮ್"
+ },
+ {
+  "id": "t23.pr.r6.c2",
+  "old": "ರೇಫಃ (ರ್) ಸಾನುನಾಸಿಕೋ ನಾಸ್ತಿ",
+  "new": "ರೇಫಸ್ಯ (ರ್) ಸಾನುನಾಸಿಕಃ ಸವರ್ಣೋ ನಾಸ್ತಿ",
+  "reason": "Correct statement: ರ್ has no nasal savarṇa"
+ },
+ {
+  "id": "t24.s11.p2",
+  "old": "ವಿಕಲ್ಪವಾಗಿ ತುಕ್",
+  "new": "ವಿಕಲ್ಪೇನ ತುಕ್",
+  "reason": "Kannada word in Sanskrit gloss"
+ },
+ {
+  "id": "t24.ex.r2.c2",
+  "old": "ಇ + ತ್ + ಛ → ಇಚ್ಛೇ",
+  "new": "ಇ + ತ್ + ಛೇ → ಇಚ್ಛೇ",
+  "reason": "Both sides must match"
+ },
+ {
+  "id": "t24.ex.r3.c2",
+  "old": "ಉ + ತ್ + ಛ → ಉಚ್ಛೇ",
+  "new": "ಉ + ತ್ + ಛೇ → ಉಚ್ಛೇ",
+  "reason": "Both sides must match"
+ },
+ {
+  "id": "t24.ex.r6.c2",
+  "old": "+ ತ್ + ಛ → ಆಚ್ಛಿ",
+  "new": "+ ತ್ + ಛಿ → ಆಚ್ಛಿ",
+  "reason": "Both sides must match"
+ },
+ {
+  "id": "t25.s2.p0",
+  "old": "ಆ ಙ್, ಣ್, ನ್ ವರ್ಣಗಳಿಗೆ ದ್ವಿತ್ವದಂತೆ ನಿತ್ಯವಾಗಿ",
+  "new": "ಪರಸ್ವರದ ಆದಿಯಲ್ಲಿ ದ್ವಿತ್ವದಂತೆ ನಿತ್ಯವಾಗಿ",
+  "reason": "ಙಮುಟ್ is a ṭit āgama of the following vowel (ಅಚಃ), not of ಙ್/ಣ್/ನ್"
+ },
+ {
+  "id": "t25.s7.p0",
+  "old": "ಙಮುಣ್ಣಿತ್ಯಮ್",
+  "new": "ಙಮುಣ್ನಿತ್ಯಮ್",
+  "reason": "Sūtra wording"
+ },
+ {
+  "id": "t25.s9.p0",
+  "old": "ಎಂಬ ನಿಬಂಧನೆ ಇಲ್ಲದ ಕಾರಣ",
+  "new": "ಎಂಬ ನಿಬಂಧನೆ ಪೂರೈಸದ ಕಾರಣ",
+  "reason": "The condition is unmet, not absent"
+ },
+ {
+  "id": "t25.s11.p0",
+  "old": "ಹ್ರಸ್ವಾತ್ ಪರಸ್ಯ ಪದಾನ್ತ-ಙ್/ಣ್/ನ್ ವರ್ಣಸ್ಯ ಅಚಿ ಪರೇ ನಿತ್ಯಂ ದ್ವಿತ್ವಮ್ (ಙಮುಟ್).",
+  "new": "ಹ್ರಸ್ವಾತ್ ಪರೋ ಯಃ ಪದಾನ್ತ-ಙ್/ಣ್/ನ್-ವರ್ಣಃ, ತಸ್ಮಾತ್ ಪರಸ್ಯ ಅಚಃ ನಿತ್ಯಂ ಙಮುಡಾಗಮಃ (ದ್ವಿತ್ವಸದೃಶಃ).",
+  "reason": "ಙಮುಟ್ is an āgama of the following vowel, not dvitva of the nasal"
+ },
+ {
+  "id": "t25.ex.r3.c3",
+  "old": "ಒಳ್ಳೆಯ ಗಣಗಳ ಒಡೆಯ",
+  "new": "ಚೆನ್ನಾಗಿ ಎಣಿಸುವ ಒಡೆಯ",
+  "reason": "ಸುಗಣ್ = one who counts well (√ಗಣ್ + ಕ್ವಿಪ್)"
+ },
+ {
+  "id": "t26.s2.p0",
+  "old": "ಸ್ವರ ಅಥವಾ ಯ್, ವ್, ರ್, ಲ್, ಮ್, ನ್ ('ಅಮ್' ವರ್ಣಗಳು)",
+  "new": "ಸ್ವರ ಅಥವಾ ಹ್, ಯ್, ವ್, ರ್, ಲ್, ಅನುನಾಸಿಕಗಳು ('ಅಮ್' ವರ್ಣಗಳು)",
+  "reason": "ಅಮ್ includes ಹ್ and all five nasals"
+ },
+ {
+  "id": "t26.s3.p0",
+  "old": "ಸ್ವರ ಅಥವಾ ಯ್, ವ್, ರ್, ಲ್, ಅನುನಾಸಿಕ",
+  "new": "ಸ್ವರ ಅಥವಾ ಹ್, ಯ್, ವ್, ರ್, ಲ್, ಅನುನಾಸಿಕ",
+  "reason": "ಅಮ್ includes ಹ್"
+ },
+ {
+  "id": "t26.s6.p0",
+  "old": "(ವಿಕಲ್ಪವಿಲ್ಲದ ಪಕ್ಷದಲ್ಲಿ",
+  "new": "(ಛತ್ವವಿಲ್ಲದ ಪಕ್ಷದಲ್ಲಿ",
+  "reason": "Correct wording: the alternative where chatva does not apply"
+ },
+ {
+  "id": "t27.s5.p0",
+  "old": "• ಅನುವೃತ್ತಿ: 'ಪೂರ್ವಸವರ್ಣಃ' (೮.೪.೬೧).",
+  "new": "• ಅನುವೃತ್ತಿ: 'ಪೂರ್ವಸ್ಯ' (೮.೪.೬೧), 'ಸವರ್ಣಃ' (೮.೪.೫೮).",
+  "reason": "Anuvṛtti: ಪೂರ್ವಸ್ಯ from 8.4.61 and ಸವರ್ಣಃ from 8.4.58"
+ },
+ {
+  "id": "t27.s7.p0",
+  "old": "(ವಿಕಲ್ಪವಿಲ್ಲದ ಪಕ್ಷದಲ್ಲಿ",
+  "new": "(ಪೂರ್ವಸವರ್ಣವಿಲ್ಲದ ಪಕ್ಷದಲ್ಲಿ",
+  "reason": "Correct wording for the optional alternative"
+ },
+ {
+  "id": "t27.s10.p0",
+  "old": "'ಹ' ಆಗಿರುತ್ತದೆ ಎಂಬುದನ್ನು",
+  "new": "'ಹ' ಆಗಿರಬಹುದು ಎಂಬುದನ್ನು",
+  "reason": "ದ್ಧ does not always come from ದ್+ಹ (e.g. ಬುದ್ಧಿಃ)"
+ },
+ {
+  "id": "t27.s11.p0",
+  "old": "ವಿಕಲ್ಪವಾಗಿ ಚತುರ್ಥವರ್ಣಃ",
+  "new": "ವಿಕಲ್ಪೇನ ಚತುರ್ಥವರ್ಣಃ",
+  "reason": "Kannada word in Sanskrit gloss"
+ },
+ {
+  "id": "t27.ex.r5.c3",
+  "old": "ಉದ್ಧಾರ / ಎತ್ತುವಿಕೆ",
+  "new": "ಉದ್ಧರಣ / ಎತ್ತುವಿಕೆ",
+  "reason": "Meaning must match ಉದ್ಧರಣಮ್"
+ },
+ {
+  "id": "t28.s5.p0",
+  "old": "'ರುಃ' (೮.೨.೬೬), 'ಅಮಿ' (೮.೩.೬)",
+  "new": "'ರುಃ' (೮.೩.೧), 'ಅಮ್ಪರೇ' (೮.೩.೬)",
+  "reason": "ರುಃ comes from 8.3.1 (8.2.66 is ಸಸಜುಷೋ ರುಃ); 8.3.6 supplies ಅಮ್ಪರೇ"
+ },
+ {
+  "id": "t28.s9.p0",
+  "old": "ಪ್ರಶಾನ್ + ತನೋತಿ = ಪ್ರಶಾಂತನೋತಿ, ಪ್ರಶಾನ್ + ಚಿನೋತಿ = ಪ್ರಶಾಂಚಿನೋತಿ",
+  "new": "ಪ್ರಶಾನ್ + ತನೋತಿ = ಪ್ರಶಾನ್ತನೋತಿ, ಪ್ರಶಾನ್ + ಚಿನೋತಿ = ಪ್ರಶಾಞ್ಚಿನೋತಿ",
+  "reason": "No anusvāra arises for padānta ನ್; before ಚ ścutva gives ಞ್"
+ },
+ {
+  "id": "t28.s11.p2",
+  "old": "ಪ್ರಶಾನ್ಚಿನೋತಿ",
+  "new": "ಪ್ರಶಾಞ್ಚಿನೋತಿ",
+  "reason": "ścutva: ನ್ before ಚ becomes ಞ್"
+ },
+ {
+  "id": "t28.s13.p2",
+  "old": "('ಪ್ರಶಾಂತನೋತಿ')",
+  "new": "('ಪ್ರಶಾನ್ತನೋತಿ')",
+  "reason": "No anusvāra arises for padānta ನ್"
+ },
+ {
+  "id": "t28.pr.r6.c2",
+  "old": "ಪ್ರಶಾನ್ಚಲತಿ",
+  "new": "ಪ್ರಶಾಞ್ಚಲತಿ",
+  "reason": "ścutva: ನ್ before ಚ becomes ಞ್"
+ },
+ {
+  "id": "t29.s9.p0",
+  "old": "ಉತ್ತ್ಥಾನಮ್ / ಉತ್ಥಾನಮ್",
+  "new": "ಉತ್ಥ್ಥಾನಮ್ / ಉತ್ಥಾನಮ್",
+  "reason": "Non-elided form is ಉತ್ಥ್ಥಾನಮ್ (ಥ್ deleted, not ತ್)"
+ },
+ {
+  "id": "t29.s13.p1",
+  "old": "ಸಂಷಷ್ಠಃ",
+  "new": "ಸನ್ಷಷ್ಠಃ",
+  "reason": "Example must show unchanged ನ್ (ತೋಃ ಷಿ blocks ṣṭutva)"
+ },
+ {
+  "id": "t29.ex.r1.c0",
+  "old": "ವಾಕ್ + ಈಶಃ",
+  "new": "ವಾಚ್ + ಈಶಃ",
+  "reason": "Source word is ವಾಚ್ (ಚೋಃ ಕುಃ applies to it)"
+ },
+ {
+  "id": "t29.pr.r2.c1",
+  "old": "ಪ್ರವೃತ್ತಿಃ ಭವತಿ?",
+  "new": "ಪ್ರವೃತ್ತಿರ್ಭವತಿ?",
+  "reason": "Sanskrit visarga sandhi"
+ },
+ {
+  "id": "t29.pr.r4.c2",
+  "old": "(ಪ್ರತ್ಯಯೇ ನಿತ್ಯ — ಟ್→ಣ್)",
+  "new": "(ಪ್ರತ್ಯಯೇ ಭಾಷಾಯಾಂ ನಿತ್ಯಮ್ — ಡ್→ಣ್)",
+  "reason": "Vārttika wording; jaśtva ಡ್ becomes ಣ್"
+ },
+ {
+  "id": "t29.pr.r5.c1",
+  "old": "(ಅಮ್ + ಕಃ)",
+  "new": "(ಅನ್ + ಕಃ)",
+  "reason": "Nasal in ಅಙ್ಕ is from num-āgama (ನ್)"
+ },
+ {
+  "id": "t30.s9.p0",
+  "old": "ಪ್ರಾತಃ + ಕಾಲಃ / ಪ್ರಾತಃ + ಗಚ್ಛತಿ",
+  "new": "ಪ್ರಾತಃ + ಗಚ್ಛತಿ",
+  "reason": "Dangling example without result removed"
+ },
+ {
+  "id": "t30.s10.p0",
+  "old": "(ಸಿಪ್ -> ಸ್)",
+  "new": "(ಸಿಪ್ → ಸ್)",
+  "reason": "Broken arrow"
+ },
+ {
+  "id": "t30.s11.p2",
+  "old": "vs ಮೌಲಿಕರೇಫಜನ್ಯವಿಸರ್ಗಃ (ಪುನಃ, ಪ್ರಾತಃ, ಅನ್ತಃ, ಸ್ವಃ).",
+  "new": "ಮೌಲಿಕರೇಫಜನ್ಯವಿಸರ್ಗಾತ್ (ಪುನಃ, ಪ್ರಾತಃ, ಅನ್ತಃ, ಸ್ವಃ) ಭಿನ್ನಃ.",
+  "reason": "English 'vs' replaced with Sanskrit"
+ },
+ {
+  "id": "t30.pr.r2.c2",
+  "old": "ಮೌಲಿಕಃ ರೇಫಃ ತಿಷ್ಠತಿ",
+  "new": "ಮೌಲಿಕೋ ರೇಫಸ್ತಿಷ್ಠತಿ",
+  "reason": "Sanskrit visarga sandhi"
+ },
+ {
+  "id": "t31.s9.p0",
+  "old": "ಸಾಹಿತ್ಯ ಮತ್ತು ಬಳಕೆಯಲ್ಲಿ ಲೋಪರೂಪವೇ",
+  "new": "ಸಾಹಿತ್ಯದಲ್ಲಿ ಲೋಪರೂಪವೇ",
+  "reason": "Redundant repetition of ಬಳಕೆ"
+ },
+ {
+  "id": "t31.ex.r3.c0",
+  "old": "ವೃಕ್ಷಾಃ + ಫಲನ್ತಿ",
+  "new": "ವೃಕ್ಷಾಃ + ವರ್ಧನ್ತೇ",
+  "reason": "Row made internally consistent (ಫ is khar; lopa example needs haś)"
+ },
+ {
+  "id": "t31.ex.r3.c1",
+  "old": "ವೃಕ್ಷಾಃ ಫಲನ್ತಿ",
+  "new": "ವೃಕ್ಷಾ ವರ್ಧನ್ತೇ",
+  "reason": "Row made internally consistent"
+ },
+ {
+  "id": "t31.ex.r3.c2",
+  "old": "ಆಃ + ಫ (ಕಿನ್ತು ಹಶಿ: ವರ್ಧನ್ತೇ)",
+  "new": "ಆಃ + ವ್ → ಆ + ವ್",
+  "reason": "Row made internally consistent"
+ },
+ {
+  "id": "t31.ex.r3.c3",
+  "old": "ವೃಕ್ಷಾ ವರ್ಧನ್ತೇ (",
+  "new": "ಮರಗಳು ಬೆಳೆಯುತ್ತವೆ (",
+  "reason": "Meaning column must give the Kannada meaning"
+ },
+ {
+  "id": "t32.s3.p0",
+  "old": "ಪೂರ್ವರೂಪ ಸಂಧಿಯಾಗಿ ('ಽ') ಉಳಿಯುತ್ತದೆ",
+  "new": "ಪೂರ್ವರೂಪ ಸಂಧಿಯಾಗಿ ಅವಗ್ರಹ ('ಽ') ಚಿಹ್ನೆ ಉಳಿಯುತ್ತದೆ",
+  "reason": "Clarify: only the avagraha sign remains"
+ },
+ {
+  "id": "t32.s10.p0",
+  "old": "ಮುಂದೆ ರಾತ್ರಿ ಬಂದಾಗ",
+  "new": "ಮುಂದೆ ರಾತ್ರಿ (ರೂಪ, ರಥಂತರ) ಶಬ್ದಗಳು ಬಂದಾಗ",
+  "reason": "Vārttika ರೂಪರಾತ್ರಿರಥನ್ತರೇಷು covers three words"
+ },
+ {
+  "id": "t32.ex.r4.c0",
+  "old": "ಸೋಽಹಮ್ (ಸಃ + ಅಹಮ್)",
+  "new": "ಸಃ + ಅಹಮ್",
+  "reason": "Split column must hold the split form"
+ },
+ {
+  "id": "t34.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ವಿಸರ್ಜನೀಯಸ್ಯ ಸಃ (೮.೩.೩೪), ವಾ ಶರಿ (೮.೩.೩೬), ಶರ್ಪರೇ ವಿಸರ್ಜನೀಯಃ (೮.೩.೩೫), ಇಣಃ ಷಃ (೮.೩.೩೯), ನಮಸ್ಪುರಸೋರ್ಗತ್ಯೋಃ (೮.೩.೪೦), ಇದುದುಪಧಸ್ಯ ಚಾಪ್ರತ್ಯಯಸ್ಯ (೮.೩.೪೧).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ವಿಸರ್ಜನೀಯಸ್ಯ ಸಃ' (೮.೩.೩೪), 'ವಾ ಶರಿ' (೮.೩.೩೬), 'ಶರ್ಪರೇ ವಿಸರ್ಜನೀಯಃ' (೮.೩.೩೫), 'ಇಣಃ ಷಃ' (೮.೩.೩೯), 'ನಮಸ್ಪುರಸೋರ್ಗತ್ಯೋಃ' (೮.೩.೪೦), 'ಇದುದುಪಧಸ್ಯ ಚಾಪ್ರತ್ಯಯಸ್ಯ' (೮.೩.೪೧) ಎಂಬವುಗಳ",
+  "reason": "several sūtras: plural; stray period/label removed from quotation"
+ },
+ {
+  "id": "t36.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಸಸಜುಷೋ ರುಃ (೮.೨.೬೬), ಅತೋ ರೋರಪ್ಲುತಾದಪ್ಲುತೇ (೬.೧.೧೧೩), ಹಶಿ ಚ (೬.೧.೧೧೪), ಭೋಭಗೋಅಘೋಅಪೂರ್ವಸ್ಯ ಯೋಽಶಿ (೮.೩.೧೭), ಲೋಪಃ ಶಾಕಲ್ಯಸ್ಯ (೮.೩.೧೯), ವಿಸರ್ಜನೀಯಸ್ಯ ಸಃ (೮.೩.೩೪), ಕುಪ್ವೋಃ ≍ಕ ≍ಪೌ ಚ (೮.೩.೩೭).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ಸಸಜುಷೋ ರುಃ' (೮.೨.೬೬), 'ಅತೋ ರೋರಪ್ಲುತಾದಪ್ಲುತೇ' (೬.೧.೧೧೩), 'ಹಶಿ ಚ' (೬.೧.೧೧೪), 'ಭೋಭಗೋಅಘೋಅಪೂರ್ವಸ್ಯ ಯೋಽಶಿ' (೮.೩.೧೭), 'ಲೋಪಃ ಶಾಕಲ್ಯಸ್ಯ' (೮.೩.೧೯), 'ವಿಸರ್ಜನೀಯಸ್ಯ ಸಃ' (೮.೩.೩೪), 'ಕುಪ್ವೋಃ ≍ಕ ≍ಪೌ ಚ' (೮.೩.೩೭) ಎಂಬವುಗಳ",
+  "reason": "several sūtras: plural; stray period/label removed from quotation"
+ },
+ {
+  "id": "t37.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಪ್ಲುತಪ್ರಗೃಹ್ಯಾ ಅಚಿ ನಿತ್ಯಮ್ (೬.೧.೧೨೫), ಈದೂದೇದ್ದ್ವಿವಚನಂ ಪ್ರಗೃಹ್ಯಮ್ (೧.೧.೧೧), ಅದಸೋ ಮಾತ್ (೧.೧.೧೨), ನಿಪಾತ ಏಕಾಜನಾಙ್ (೧.೧.೧೪), ಓತ್ (೧.೧.೧೫).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ಪ್ಲುತಪ್ರಗೃಹ್ಯಾ ಅಚಿ ನಿತ್ಯಮ್' (೬.೧.೧೨೫), 'ಈದೂದೇದ್ದ್ವಿವಚನಂ ಪ್ರಗೃಹ್ಯಮ್' (೧.೧.೧೧), 'ಅದಸೋ ಮಾತ್' (೧.೧.೧೨), 'ನಿಪಾತ ಏಕಾಜನಾಙ್' (೧.೧.೧೪), 'ಓತ್' (೧.೧.೧೫) ಎಂಬವುಗಳ",
+  "reason": "several sūtras: plural; stray period/label removed from quotation"
+ },
+ {
+  "id": "t39.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ವ್ಯೋರ್ಲಘುಪ್ರಯತ್ನತರಃ ಶಾಕಟಾಯನಸ್ಯ (೮.೩.೧೮), ಲೋಪಃ ಶಾಕಲ್ಯಸ್ಯ (೮.೩.೧೯), ಓತೋ ಗಾರ್ಗ್ಯಸ್ಯ (೮.೩.೨೦), ಉಞಿ ಚ ಪದೇ (೮.೩.೨೧), ಹಲಿ ಸರ್ವೇಷಾಮ್ (೮.೩.೨೨).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ವ್ಯೋರ್ಲಘುಪ್ರಯತ್ನತರಃ ಶಾಕಟಾಯನಸ್ಯ' (೮.೩.೧೮), 'ಲೋಪಃ ಶಾಕಲ್ಯಸ್ಯ' (೮.೩.೧೯), 'ಓತೋ ಗಾರ್ಗ್ಯಸ್ಯ' (೮.೩.೨೦), 'ಉಞಿ ಚ ಪದೇ' (೮.೩.೨೧), 'ಹಲಿ ಸರ್ವೇಷಾಮ್' (೮.೩.೨೨) ಎಂಬವುಗಳ",
+  "reason": "several sūtras: plural; stray period/label removed from quotation"
+ },
+ {
+  "id": "t38.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಸಮ್ಬದ್ಧಶಾಸ್ತ್ರಸೂತ್ರಾಣಿ — ಏಙಃ ಪದಾನ್ತಾದತಿ (೬.೧.೧೦೯), ಅತೋ ರೋರಪ್ಲುತಾದಪ್ಲುತೇ (೬.೧.೧೧೩), ಅಕಃ ಸವರ್ಣೇ ದೀರ್ಘಃ (೬.೧.೧೦೧)' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸೂತ್ರಗಳಾದ 'ಏಙಃ ಪದಾನ್ತಾದತಿ' (೬.೧.೧೦೯), 'ಅತೋ ರೋರಪ್ಲುತಾದಪ್ಲುತೇ' (೬.೧.೧೧೩), 'ಅಕಃ ಸವರ್ಣೇ ದೀರ್ಘಃ' (೬.೧.೧೦೧) ಎಂಬವುಗಳ",
+  "reason": "several sūtras: plural; stray period/label removed from quotation"
+ },
+ {
+  "id": "t40.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಸಮಗ್ರಸನ್ಧಿಸೂತ್ರಸಙ್ಕಲನಮ್ — ಅಷ್ಟಾಧ್ಯಾಯ್ಯಾಃ ಷಷ್ಠಾಷ್ಟಮಾಧ್ಯಾಯಯೋಃ ಸರ್ವೇಷಾಂ ಸೂತ್ರಾಣಾಮ್ ಅನ್ವಯಪರೀಕ್ಷಾ.' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸಂಗ್ರಹವಾದ 'ಸಮಗ್ರಸನ್ಧಿಸೂತ್ರಸಙ್ಕಲನಮ್ — ಅಷ್ಟಾಧ್ಯಾಯ್ಯಾಃ ಷಷ್ಠಾಷ್ಟಮಾಧ್ಯಾಯಯೋಃ ಸರ್ವೇಷಾಂ ಸೂತ್ರಾಣಾಮ್ ಅನ್ವಯಪರೀಕ್ಷಾ' ಎಂಬುದರ",
+  "reason": "not a sūtra; stray period"
+ },
+ {
+  "id": "t41.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಶಾಸ್ತ್ರೀಯಸಿದ್ಧಾನ್ತಃ — ಪದಾನಾಂ ವಿಭಜ್ಯದರ್ಶನಂ ಪದಚ್ಛೇದಃ (ಸ್ಥಾನ್ಯಾದೇಶವಿವೇಕಪೂರ್ವಕಃ ವಿಶ್ಲೇಷಣವಿಧಿಃ).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸಿದ್ಧಾಂತವಾದ 'ಶಾಸ್ತ್ರೀಯಸಿದ್ಧಾನ್ತಃ — ಪದಾನಾಂ ವಿಭಜ್ಯದರ್ಶನಂ ಪದಚ್ಛೇದಃ (ಸ್ಥಾನ್ಯಾದೇಶವಿವೇಕಪೂರ್ವಕಃ ವಿಶ್ಲೇಷಣವಿಧಿಃ)' ಎಂಬುದರ",
+  "reason": "not a sūtra; stray period"
+ },
+ {
+  "id": "t42.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಶಾಸ್ತ್ರೀಯಸಿದ್ಧಾನ್ತಃ — ವರ್ಣಸನ್ಧಾನಚಾತುರ್ಯಮ್ (ಸ್ಥಾನೀ-ನಿಮಿತ್ತ-ಆದೇಶಾನಾಂ ಕ್ರಮಿಕಸಂಯೋಜನಮ್).' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸಿದ್ಧಾಂತವಾದ 'ಶಾಸ್ತ್ರೀಯಸಿದ್ಧಾನ್ತಃ — ವರ್ಣಸನ್ಧಾನಚಾತುರ್ಯಮ್ (ಸ್ಥಾನೀ-ನಿಮಿತ್ತ-ಆದೇಶಾನಾಂ ಕ್ರಮಿಕಸಂಯೋಜನಮ್)' ಎಂಬುದರ",
+  "reason": "not a sūtra; stray period"
+ },
+ {
+  "id": "t43.s2.p1",
+  "old": "ಮುಖ್ಯ ಸೂತ್ರವಾದ 'ಸರ್ವಸನ್ಧಿಸೂತ್ರರತ್ನಮಾಲಾ — ಅಷ್ಟಾಧ್ಯಾಯ್ಯಾಃ ಪ್ರಮುಖತಮಾನಾಮ್ ಅಷ್ಟತ್ರಿಂಶತ್ (೩೮) ಸೂತ್ರಾಣಾಂ ಸಮಗ್ರಸಙ್ಗ್ರಹಃ.' ಎಂಬುದರ",
+  "new": "ಮುಖ್ಯ ಸಂಗ್ರಹವಾದ 'ಸರ್ವಸನ್ಧಿಸೂತ್ರರತ್ನಮಾಲಾ — ಅಷ್ಟಾಧ್ಯಾಯ್ಯಾಃ ಪ್ರಮುಖತಮಾನಾಮ್ ಅಷ್ಟತ್ರಿಂಶತ್ (೩೮) ಸೂತ್ರಾಣಾಂ ಸಮಗ್ರಸಙ್ಗ್ರಹಃ' ಎಂಬುದರ",
+  "reason": "not a sūtra; stray period"
+ },
+ {
+  "id": "t33.s7.p3",
+  "old": "೪. ಚತುಃ + ಮುಖಃ (ಚತುಸ್ + ಮುಖಃ) → ಸಕಾರಕ್ಕೆ ರೇಫವಾಗಿ →",
+  "new": "೪. ಚತುಃ + ಮುಖಃ (ಚತುರ್ + ಮುಖಃ) → ಮೂಲ ರೇಫವೇ ಉಳಿದು →",
+  "reason": "catur is originally r-final, not s-final"
+ },
+ {
+  "id": "t33.s9.p0",
+  "old": "ಮೊದಲ ರೇಫವು ಲೋಪವಾಗಿ, ಹಿಂದಿನ ಹ್ರಸ್ವ ಸ್ವರವು ದೀರ್ಘವಾಗುತ್ತದೆ",
+  "new": "ಮೊದಲ ರೇಫವು ಲೋಪವಾಗಿ, 'ಢ್ರಲೋಪೇ ಪೂರ್ವಸ್ಯ ದೀರ್ಘೋಽಣಃ' ಸೂತ್ರದಿಂದ ಹಿಂದಿನ ಹ್ರಸ್ವ ಸ್ವರವು ದೀರ್ಘವಾಗುತ್ತದೆ",
+  "reason": "lengthening is by 6.3.111, not by ro ri"
+ },
+ {
+  "id": "t33.s11.p0",
+  "old": "ಅ/ಆ ಭಿನ್ನಸ್ವರಾತ್ ಪರಸ್ಯ ವಿಸರ್ಗಸ್ಯ ಸ್ವರೇ ಮೃದುವ್ಯಞ್ಜನೇ ಚ ಪರೇ ರೇಫಃ ('ರ್') ಭವತಿ.",
+  "new": "ಪದಾನ್ತಸಕಾರಸ್ಯ ರುಃ; ಅ/ಆ ಭಿನ್ನಸ್ವರಾತ್ ಪರಸ್ಯ ರೋಃ ಸ್ವರೇ ಮೃದುವ್ಯಞ್ಜನೇ ಚ ಪರೇ ರೇಫಃ ('ರ್') ಏವ ತಿಷ್ಠತಿ.",
+  "reason": "gloss did not state what the sūtra prescribes"
+ },
+ {
+  "id": "t34.s6.p0",
+  "old": "'ನಮಃ', 'ಪುರಃ', 'ತಿರಃ' ಶಬ್ದಗಳ ಮುಂದೆ ಕ/ಪ ಬಂದಾಗ ವಿಸರ್ಗಕ್ಕೆ 'ಸ್'ಕಾರವಾಗುತ್ತದೆ: ನಮಃ + ಕಾರಃ = ನಮಸ್ಕಾರಃ, ಪುರಃ + ಕಾರಃ = ಪುರಸ್ಕಾರಃ, ತಿರಃ + ಕಾರಃ = ತಿರಸ್ಕಾರಃ.",
+  "new": "ಗತಿಸಂಜ್ಞಕವಾದ 'ನಮಃ', 'ಪುರಃ' ಶಬ್ದಗಳ ಮುಂದೆ ಕ/ಪ ಬಂದಾಗ ವಿಸರ್ಗಕ್ಕೆ 'ಸ್'ಕಾರವಾಗುತ್ತದೆ: ನಮಃ + ಕಾರಃ = ನಮಸ್ಕಾರಃ, ಪುರಃ + ಕಾರಃ = ಪುರಸ್ಕಾರಃ; 'ತಿರಸೋಽನ್ಯತರಸ್ಯಾಮ್' (೮.೩.೪೨) ಸೂತ್ರದಿಂದ ವಿಕಲ್ಪವಾಗಿ ತಿರಃ + ಕಾರಃ = ತಿರಸ್ಕಾರಃ.",
+  "reason": "tiras is covered by 8.3.42 (optional), not 8.3.40; 8.3.40 requires gati"
+ },
+ {
+  "id": "t34.s6.p0",
+  "old": "'ನಿಃ', 'ದುಃ', 'ಬಹಿಸ್', 'ಆವಿಃ', 'ಚತುಃ', 'ಧನುಃ' ಮುಂತಾದ",
+  "new": "'ನಿಃ', 'ದುಃ', 'ಬಹಿಃ', 'ಆವಿಃ', 'ಚತುಃ' ಮುಂತಾದ",
+  "reason": "dhanus ends in pratyaya -us (8.3.41 excludes it; that is 8.3.44); consistent visarga notation"
+ },
+ {
+  "id": "t34.s13.p0",
+  "old": "'ನಮಃ + ಕಾರಃ' ಎಂಬಲ್ಲಿ ಅಕಾರ ಪೂರ್ವದಲ್ಲಿರುವುದರಿಂದ",
+  "new": "'ನಮಃ + ಕಾರಃ' ಎಂಬಲ್ಲಿ 'ನಮಸ್' ಶಬ್ದವು ಗತಿಸಂಜ್ಞಕವಾದ್ದರಿಂದ",
+  "reason": "8.3.40 applies because of namas (gati), not because of preceding a"
+ },
+ {
+  "id": "t34.s13.p2",
+  "old": "ಅಥವಾ ಸಕಾರಾದೇಶವಾಗುತ್ತದೆ (ಉದಾ:",
+  "new": "ಅಥವಾ ಸಕಾರಾದೇಶವಾಗುತ್ತದೆ (ಶಕಾರ ಪರವಾದಾಗ ಶ್ಚುತ್ವದಿಂದ ಶಕಾರ; ಉದಾ:",
+  "reason": "example ಹರಿಶ್ಶೇತೇ shows ś, not s"
+ },
+ {
+  "id": "t35.s2.p0",
+  "old": "ವಿಕಲ್ಪವಿಲ್ಲದ ಪಕ್ಷದಲ್ಲಿ",
+  "new": "ಇನ್ನೊಂದು ಪಕ್ಷದಲ್ಲಿ",
+  "reason": "wrong wording: the other option of the vikalpa"
+ },
+ {
+  "id": "t35.ex.r5.c3",
+  "old": "ದುಃಖ (ಇಲ್ಲಿ ದುಷ್ಖಮ್ ಆಗುವುದಿಲ್ಲ, ಪ್ರತ್ಯಯವಲ್ಲದ ಕಾರಣ)",
+  "new": "ದುಃಖ (ಶಿಷ್ಟಪ್ರಯೋಗದಲ್ಲಿ 'ದುಃಖಮ್' ಎಂದೇ ರೂಢ; 'ದುಷ್ಖಮ್' ಎಂದು ಬರೆಯುವುದಿಲ್ಲ)",
+  "reason": "wrong reason: 'apratyaya' is the condition for ṣatva, not against it"
+ },
+ {
+  "id": "t36.ex.r4.c3",
+  "old": "ಮಂಗಳಕರರಾದವರು (",
+  "new": "ಮಂಗಳಕರರಾದವರು ವಂದ್ಯರು (",
+  "reason": "incomplete meaning"
+ },
+ {
+  "id": "t37.s3.p0",
+  "old": "೧.೧.೧೪ — ಇ, ಉ, ಏ)",
+  "new": "೧.೧.೧೪ — ಅ, ಇ, ಉ, ಆಙ್ ಅಲ್ಲದ ಆ)",
+  "reason": "'ಏ' is not a standard ekāc nipāta; standard examples a, i, u, ā"
+ },
+ {
+  "id": "t37.s6.p0",
+  "old": "ಏಕವಚನ ಅಥವಾ ಬಹುವಚನವಾಗಿದ್ದರೆ ಅಲ್ಲಿ",
+  "new": "ಏಕವಚನ ಅಥವಾ ಬಹುವಚನವಾಗಿದ್ದರೆ ('ಅಮೀ' ಮುಂತಾದ ವಿಶೇಷ ಸೂತ್ರದ ಸಂದರ್ಭಗಳನ್ನು ಬಿಟ್ಟು) ಅಲ್ಲಿ",
+  "reason": "contradicted by plural ಅಮೀ (1.1.12) in the same paragraph"
+ },
+ {
+  "id": "t38.s3.p0",
+  "old": "('ಽ' / 'ಽ')",
+  "new": "('ಽ')",
+  "reason": "duplicate identical alternatives"
+ },
+ {
+  "id": "t38.s3.p0",
+  "old": "(ಉದಾ: ಕೋ + ಅಯಮ್ = ಕೋಽಯಮ್, ಪ್ರಥಮೋ + ಅಧ್ಯಾಯಃ = ಪ್ರಥಮೋಽಧ್ಯಾಯಃ)",
+  "new": "(ಉದಾ: ಕಃ + ಅಯಮ್ = ಕೋಽಯಮ್, ಪ್ರಥಮಃ + ಅಧ್ಯಾಯಃ = ಪ್ರಥಮೋಽಧ್ಯಾಯಃ)",
+  "reason": "visarga-sandhi examples must start from visarga forms"
+ },
+ {
+  "id": "t38.pr.r3.c2",
+  "old": "ಅವಗ್ರಹಸ್ಯ ಮಾತ್ರಾ ನಾಸ್ತಿ).",
+  "new": "ಆಹತ್ಯ ಚತಸ್ರೋ ಮಾತ್ರಾಃ; ಅವಗ್ರಹಸ್ಯ ಮಾತ್ರಾ ನಾಸ್ತಿ).",
+  "reason": "question asks how many mātrās; total added"
+ },
+ {
+  "id": "t39.s10.p0",
+  "old": "('ಅಪೂರ್ವಸ್ಯ' ಎಂಬ ನಿಬಂಧನೆ ಅಲ್ಲಿಲ್ಲ)",
+  "new": "('ಅಪೂರ್ವಸ್ಯ' ಎಂಬ ನಿಬಂಧನೆ ಅಲ್ಲಿ ಪೂರೈಸುವುದಿಲ್ಲ; ಅಲ್ಲದೆ ಆ ಯ/ವ ಪದಾಂತವೂ ಅಲ್ಲ)",
+  "reason": "garbled reasoning"
+ },
+ {
+  "id": "t39.s11.p1",
+  "old": "ಅಶಿ ಪರೇ ವಿಕಲ್ಪವಾಗಿ ಲೋಪಃ",
+  "new": "ಅಶಿ ಪರೇ ವಿಕಲ್ಪೇನ ಲೋಪಃ",
+  "reason": "Kannada word in Sanskrit sentence"
+ },
+ {
+  "id": "t40.s6.p0",
+  "old": "= ಗುಣಸಂಧಿ) vs 'ಮನೋಹರಃ'",
+  "new": "= ಗುಣಸಂಧಿ) ಮತ್ತು 'ಮನೋಹರಃ'",
+  "reason": "English word"
+ },
+ {
+  "id": "t40.s6.p0",
+  "old": "= ತುಗಾಗಮ ಸಂಧಿ) vs 'ಸಚ್ಛಾಸ್ತ್ರಮ್'",
+  "new": "= ತುಗಾಗಮ ಸಂಧಿ) ಮತ್ತು 'ಸಚ್ಛಾಸ್ತ್ರಮ್'",
+  "reason": "English word"
+ },
+ {
+  "id": "t40.s6.p0",
+  "old": "= ಅನುನಾಸಿಕ ಸಂಧಿ) vs 'ಸಙ್ಕಲ್ಪಃ'",
+  "new": "= ಅನುನಾಸಿಕ ಸಂಧಿ) ಮತ್ತು 'ಸಙ್ಕಲ್ಪಃ'",
+  "reason": "English word"
+ },
+ {
+  "id": "t40.s6.p0",
+  "old": "= ವೃದ್ಧಿಸಂಧಿ) vs 'ಪ್ರೇಜತೇ'",
+  "new": "= ವೃದ್ಧಿಸಂಧಿ) ಮತ್ತು 'ಪ್ರೇಜತೇ'",
+  "reason": "English word"
+ },
+ {
+  "id": "t40.ex.r1.c0",
+  "old": "ಕವೀಶ್ವರಃ",
+  "new": "ಕವಿ + ಈಶ್ವರಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t40.ex.r1.c1",
+  "old": "ಕವಿ + ಈಶ್ವರಃ",
+  "new": "ಕವೀಶ್ವರಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t40.ex.r2.c0",
+  "old": "ದೇವರ್ಷಿಃ",
+  "new": "ದೇವ + ಋಷಿಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t40.ex.r2.c1",
+  "old": "ದೇವ + ಋಷಿಃ",
+  "new": "ದೇವರ್ಷಿಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t40.ex.r3.c0",
+  "old": "ಜಲೌಘಃ",
+  "new": "ಜಲ + ಓಘಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t40.ex.r3.c1",
+  "old": "ಜಲ + ಓಘಃ",
+  "new": "ಜಲೌಘಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t40.ex.r4.c0",
+  "old": "ಅನ್ವೇಷಣಮ್",
+  "new": "ಅನು + ಏಷಣಮ್",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t40.ex.r4.c1",
+  "old": "ಅನು + ಏಷಣಮ್",
+  "new": "ಅನ್ವೇಷಣಮ್",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t40.ex.r5.c0",
+  "old": "ಸಚ್ಚರಿತ್ರಮ್",
+  "new": "ಸತ್ + ಚರಿತ್ರಮ್",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t40.ex.r5.c1",
+  "old": "ಸತ್ + ಚರಿತ್ರಮ್",
+  "new": "ಸಚ್ಚರಿತ್ರಮ್",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t40.ex.r6.c0",
+  "old": "ಉಲ್ಲೇಖಃ",
+  "new": "ಉದ್ + ಲೇಖಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t40.ex.r6.c1",
+  "old": "ಉದ್ + ಲೇಖಃ",
+  "new": "ಉಲ್ಲೇಖಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t40.ex.r7.c0",
+  "old": "ಪ್ರತ್ಯಙ್ಙಾತ್ಮಾ",
+  "new": "ಪ್ರತ್ಯಙ್ + ಆತ್ಮಾ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t40.ex.r7.c1",
+  "old": "ಪ್ರತ್ಯಙ್ + ಆತ್ಮಾ",
+  "new": "ಪ್ರತ್ಯಙ್ಙಾತ್ಮಾ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t40.ex.r8.c0",
+  "old": "ಆಶೀರ್ವಾದಃ",
+  "new": "ಆಶೀಃ + ವಾದಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t40.ex.r8.c1",
+  "old": "ಆಶೀಃ + ವಾದಃ",
+  "new": "ಆಶೀರ್ವಾದಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.ex.r1.c0",
+  "old": "ಗಿರೀಶಃ",
+  "new": "ಗಿರಿ + ಈಶಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t41.ex.r1.c1",
+  "old": "ಗಿರಿ + ಈಶಃ",
+  "new": "ಗಿರೀಶಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.ex.r2.c0",
+  "old": "ಮಹೇನ್ದ್ರಃ",
+  "new": "ಮಹಾ + ಇನ್ದ್ರಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t41.ex.r2.c1",
+  "old": "ಮಹಾ + ಇನ್ದ್ರಃ",
+  "new": "ಮಹೇನ್ದ್ರಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.ex.r3.c0",
+  "old": "ಗಙ್ಗೋರ್ಮಿಃ",
+  "new": "ಗಙ್ಗಾ + ಊರ್ಮಿಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t41.ex.r3.c1",
+  "old": "ಗಙ್ಗಾ + ಊರ್ಮಿಃ",
+  "new": "ಗಙ್ಗೋರ್ಮಿಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.ex.r4.c0",
+  "old": "ನದ್ಯಮ್ಬು",
+  "new": "ನದೀ + ಅಮ್ಬು",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t41.ex.r4.c1",
+  "old": "ನದೀ + ಅಮ್ಬು",
+  "new": "ನದ್ಯಮ್ಬು",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.ex.r5.c0",
+  "old": "ಉಭಾವಪಿ",
+  "new": "ಉಭೌ + ಅಪಿ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t41.ex.r5.c1",
+  "old": "ಉಭೌ + ಅಪಿ",
+  "new": "ಉಭಾವಪಿ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.ex.r6.c0",
+  "old": "ಷಡ್ದರ್ಶನಮ್",
+  "new": "ಷಟ್ + ದರ್ಶನಮ್",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t41.ex.r6.c1",
+  "old": "ಷಟ್ + ದರ್ಶನಮ್",
+  "new": "ಷಡ್ದರ್ಶನಮ್",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.ex.r7.c0",
+  "old": "ಜಗಚ್ಛಾನ್ತಿಃ",
+  "new": "ಜಗತ್ + ಶಾನ್ತಿಃ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t41.ex.r7.c1",
+  "old": "ಜಗತ್ + ಶಾನ್ತಿಃ",
+  "new": "ಜಗಚ್ಛಾನ್ತಿಃ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.ex.r8.c0",
+  "old": "ಮನೋರಮಾ",
+  "new": "ಮನಃ (ಮನಸ್) + ರಮಾ",
+  "reason": "columns swapped (header: ಸಂಧಿವಿಚ್ಛೇದ first)"
+ },
+ {
+  "id": "t41.ex.r8.c1",
+  "old": "ಮನಃ (ಮನಸ್) + ರಮಾ",
+  "new": "ಮನೋರಮಾ",
+  "reason": "columns swapped (header: ಸಂಧಿರೂಪ second)"
+ },
+ {
+  "id": "t41.s2.p0",
+  "old": "'ಪದಚ್ಛೇದಃ ಪದಾರ್ಥೋಕ್ತಿಃ ವಿಗ್ರಹೋ ವಾಕ್ಯಯೋಜನಾ'",
+  "new": "'ಪದಚ್ಛೇದಃ ಪದಾರ್ಥೋಕ್ತಿರ್ವಿಗ್ರಹೋ ವಾಕ್ಯಯೋಜನಾ'",
+  "reason": "exact wording of the verse (sandhi within the verse)"
+ },
+ {
+  "id": "t41.s6.p0",
+  "old": "೧. ಸ್ತ್ರೀಲಿಂಗ ಶಬ್ದಗಳು ದೀರ್ಘಾಂತವಾಗಿರುತ್ತವೆ:",
+  "new": "೧. ಈ ಸ್ತ್ರೀಲಿಂಗ ಶಬ್ದಗಳು ದೀರ್ಘಾಂತವಾಗಿವೆ:",
+  "reason": "not all feminine words end in long vowels (ಮತಿ, ಧೇನು)"
+ },
+ {
+  "id": "t42.s2.p1",
+  "old": "ಸ್ಥಾನೀ-ನಿಮಿತ್ತ-ಆದೇಶಾನಾಂ",
+  "new": "ಸ್ಥಾನಿ-ನಿಮಿತ್ತ-ಆದೇಶಾನಾಂ",
+  "reason": "compound stem of sthānin is sthāni-"
+ },
+ {
+  "id": "t42.s4.p0",
+  "old": "ಸ್ಥಾನೀ-ನಿಮಿತ್ತ-ಆದೇಶಾನಾಂ",
+  "new": "ಸ್ಥಾನಿ-ನಿಮಿತ್ತ-ಆದೇಶಾನಾಂ",
+  "reason": "compound stem of sthānin is sthāni-"
+ },
+ {
+  "id": "t42.s9.p0",
+  "old": "ಅಯಾದಿ ಮತ್ತು ಯಕಾರ ಲೋಪವಾಗುತ್ತದೆ",
+  "new": "ಅಯಾದಿ ಮತ್ತು ವಿಕಲ್ಪವಾಗಿ ಯಕಾರ ಲೋಪವಾಗುತ್ತದೆ",
+  "reason": "yakāra lopa is optional (both forms given)"
+ },
+ {
+  "id": "t43.ex.r8.c2",
+  "old": "ವಿಸರ್ಗಸನ್ಧಯಃ (೮.೨–೮.೩)",
+  "new": "ವಿಸರ್ಗಸನ್ಧಯಃ (೬.೧, ೮.೨–೮.೩)",
+  "reason": "ಶಿವೋಽರ್ಚ್ಯಃ, ಮನೋರಥಃ use 6.1.113–114"
  }
 ]

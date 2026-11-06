@@ -1,4 +1,7 @@
 # Changelog
+## 0.1 (build 16)
+- Final full edit of Sanskrit and Kannada lesson text (content, consistency and grammar): 413 Sanskrit and 375 Kannada corrections in total.
+- Sandhātrī input boxes taller so Devanagari is shown fully.
 ## 0.1 (build 15)
 - Kannada lessons proof-read in full: 127 corrections (sūtra wording, missing viramas, wrong Sandhi results, Sanskrit agreement inside the Kannada text, stray letters). Listed in docs/SANSKRIT_CORRECTIONS.md.
 ## 0.1 (build 14)
