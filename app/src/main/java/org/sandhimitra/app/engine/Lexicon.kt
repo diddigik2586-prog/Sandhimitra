@@ -11,6 +11,8 @@ interface LexiconApi {
     fun isSimple(k1: String): Boolean = false
     /** For a compound headword: (first-member headword, second member if the dictionary marks it intact, else ""). */
     fun compound(k1: String): Pair<String, String>? = null
+    /** Dictionary category: m f n a(adj) i(ind) r(verbal root) c(compound-only form) x(unknown); null if not a headword. */
+    fun category(k1: String): String? = null
 }
 
 enum class Support { EXACT, DERIVED, VERBLIKE, NONE }
@@ -25,11 +27,11 @@ data class SupportInfo(val level: Support, val detail: String = "", val ending: 
  *  NONE     – not found.
  */
 class LexSupport(private val lexicon: LexiconApi?) {
-    companion object { val OBLIQUE_ENDINGS = setOf("ena", "Aya", "At", "asya", "ayoH", "EH", "ebyaH", "ezu", "AnAm", "ayA", "AyE", "AyAH", "AyAm", "Asu", "AByaH", "inA", "aye", "eH", "ibyaH", "izu", "InAm", "unA", "ave", "oH", "uzu", "UnAm", "yAH", "yAm", "yE", "ByaH", "vAH", "vAm", "rA", "re", "asA", "ataH", "atA", "inaH", "AnaH") }
+    companion object { val OBLIQUE_ENDINGS = setOf("ena", "eRa", "Aya", "At", "asya", "ayoH", "EH", "ebyaH", "ezu", "AnAm", "ARAm", "ayA", "AyE", "AyAH", "AyAm", "Asu", "AByaH", "inA", "aye", "eH", "ibyaH", "izu", "InAm", "unA", "ave", "oH", "uzu", "UnAm", "yAH", "yAm", "yE", "ByaH", "vAH", "vAm", "rA", "re", "asA", "ataH", "atA", "inaH", "AnaH") }
     private val lex: LexiconApi? = lexicon
     private val nominalEndings: List<Pair<String, String>> = listOf(
         "aH" to "a", "am" to "a", "ena" to "a", "Aya" to "a", "At" to "a", "asya" to "a", "e" to "a", "O" to "a", "AH" to "a",
-        "An" to "a", "EH" to "a", "ebyaH" to "a", "ezu" to "a", "AnAm" to "a", "ayoH" to "a", "Ani" to "a", "ena" to "a",
+        "An" to "a", "EH" to "a", "ebyaH" to "a", "ezu" to "a", "AnAm" to "a", "ayoH" to "a", "Ani" to "a", "ena" to "a", "eRa" to "a", "ARAm" to "a", "ARi" to "a",
         "Am" to "A", "ayA" to "A", "AyE" to "A", "AyAH" to "A", "AyAm" to "A", "AH" to "A", "Asu" to "A", "AByaH" to "A",
         "o" to "u", "e" to "i", "iH" to "i", "im" to "i", "inA" to "i", "aye" to "i", "eH" to "i", "ayaH" to "i", "In" to "i", "ibyaH" to "i", "izu" to "i", "InAm" to "i", "O" to "i",
         "uH" to "u", "um" to "u", "unA" to "u", "ave" to "u", "oH" to "u", "avaH" to "u", "Un" to "u", "uzu" to "u", "UnAm" to "u", "O" to "u",
@@ -38,7 +40,7 @@ class LexSupport(private val lexicon: LexiconApi?) {
         "A" to "f", "Aram" to "f", "AraH" to "f", "rA" to "f", "re" to "f", "uH" to "f",
         "A" to "an", "AnaH" to "an", "AnaM" to "an", "I" to "in", "inaH" to "in", "inam" to "in", "I" to "in",
         "aH" to "as", "asA" to "as", "aso" to "as", "asi" to "as", "AMsi" to "as", "aSAn" to "as",
-        "An" to "at", "ataH" to "at", "atA" to "at", "at" to "at", "an" to "an"
+        "An" to "at", "ataH" to "at", "atA" to "at", "at" to "at", "an" to "at", "an" to "an", "uH" to "us", "iH" to "is", "ur" to "us", "ir" to "is"
     )
     /** numerals in -an have nominatives without n (सप्त, not सप्ता) */
     private val NUMERAL_AN = setOf("paYcan", "saptan", "azwan", "navan", "daSan", "ekAdaSan", "dvAdaSan")
@@ -48,7 +50,7 @@ class LexSupport(private val lexicon: LexiconApi?) {
         val lx = lex ?: return null
         for ((suf, stemEnd) in nominalEndings) if (word.length > suf.length && word.endsWith(suf)) {
             val stem = word.dropLast(suf.length) + stemEnd
-            if (stem in NUMERAL_AN) continue
+            if (stem in NUMERAL_AN || lx.closedClass(stem) == "upasarga") continue
             if (stem.length >= 2 && lx.isHeadword(stem)) return stem
         }
         return null
@@ -59,9 +61,8 @@ class LexSupport(private val lexicon: LexiconApi?) {
         val lx = lex ?: return 0
         val word = word0.replace("'", "")
         val bonus = if (lx.closedClass(word) != null) 1 else 0
-        val w = lx.weight(word)
-        if (w > 0) return w + bonus
-        return (derivedStem(word)?.let { lx.weight(it) } ?: 0) + bonus
+        // a weak dictionary entry for the form itself (भगवन् "in comp.") does not hide the word it is declined from (भगवत्)
+        return maxOf(lx.weight(word), derivedStem(word)?.let { lx.weight(it) } ?: 0) + bonus
     }
 
     /** The dictionary stem behind a surface form (itself, or the stem found through a nominal ending). */
@@ -78,7 +79,7 @@ class LexSupport(private val lexicon: LexiconApi?) {
         for ((suf, stemEnd) in nominalEndings) {
             if (word.length > suf.length && word.endsWith(suf)) {
                 val stem = word.dropLast(suf.length) + stemEnd
-                if (stem in NUMERAL_AN) continue
+                if (stem in NUMERAL_AN || lex.closedClass(stem) == "upasarga") continue   // prefixes are not declined (no प्रः)
                 if (stem.length >= 2 && lex.isHeadword(stem)) return SupportInfo(Support.DERIVED, stem, suf)
             }
         }

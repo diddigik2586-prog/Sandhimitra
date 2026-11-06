@@ -1,4 +1,9 @@
 # Changelog
+## 0.1 (build 19)
+- Sandhi Yojana: words stay separate when the junction leaves them separate (रामो गच्छति, रामेण सह, रामं पश्यति, पुना रमते) and close up when the whole is a dictionary word (मनोहरः, अन्तःकरणम्).
+- Sandhi Yojana: no य-spelling after visarga loss (राम आगच्छति only); पुनः-type words are र-final only (पुना रमते, पुनरपि); जगन्नाथः and रामः शेते shown first; धनुष्पाशम्, यशस्कल्पम्, मार्तण्डः.
+- Sandhi Viccheda: रामेणैक्यम् → रामेण + ऐक्यम् (instrumental in -एण), भगवन्नत्र → भगवन् + अत्र, किमपि → किम् + अपि, तेजोमयः → तेजः + मयः, तल्लीनः → तत् + लीनः, प्रौढः → प्र + ऊढः, नायकः → नै + अकः.
+- Sandhi Viccheda: verbal roots, prefixes as last word, two-vowel fragments and compound-only stems are never offered as words; a three-word reading is used only when no two-word reading has known words (हरिर्वदति → हरिः + वदति).
 ## 0.1 (build 18)
 - Build 17 shipped a stale lexicon file; the आत्मा citation and the stricter analyses take effect from this build.
 - A fully verified three-word reading is preferred to a two-word guess (आत्मेत्यभिमानम् → आत्मा + इति + अभिमानम्), and the unknown side of a junction is analysed again whichever side it is on.

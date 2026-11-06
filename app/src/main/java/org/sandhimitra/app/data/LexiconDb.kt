@@ -12,7 +12,7 @@ class LexiconDb(ctx: Context) : LexiconApi {
     val attestedCount: Int
 
     init {
-        val f = File(ctx.filesDir, "lexicon_v9.db")
+        val f = File(ctx.filesDir, "lexicon_v10.db")
         if (!f.exists() || f.length() < 1_000_000) {
             ctx.assets.open("lexicon/lexicon.db").use { i -> f.outputStream().use { o -> i.copyTo(o) } }
         }
@@ -28,5 +28,6 @@ class LexiconDb(ctx: Context) : LexiconApi {
     override fun closedClass(form: String) = one("SELECT c FROM closed WHERE f=?", form)
     override fun weight(k1: String) = one("SELECT w FROM lex WHERE k1=?", k1)?.toIntOrNull() ?: 0
     override fun isSimple(k1: String) = one("SELECT s FROM lex WHERE k1=?", k1) == "1"
+    override fun category(k1: String) = one("SELECT g FROM lex WHERE k1=?", k1)
     override fun compound(k1: String): Pair<String, String>? = db.rawQuery("SELECT parent, second FROM cmp WHERE k1=?", arrayOf(k1)).use { if (it.moveToFirst()) it.getString(0) to it.getString(1) else null }
 }

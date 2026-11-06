@@ -24,6 +24,7 @@ class SandhiEngineTest {
                 override fun closedClass(form: String) = has("SELECT c FROM closed WHERE f=?", form)
                 override fun weight(k1: String) = has("SELECT w FROM lex WHERE k1=?", k1)?.toIntOrNull() ?: 0
                 override fun isSimple(k1: String) = has("SELECT s FROM lex WHERE k1=?", k1) == "1"
+                override fun category(k1: String) = has("SELECT g FROM lex WHERE k1=?", k1)
                 override fun compound(k1: String): Pair<String, String>? { val p = has("SELECT parent FROM cmp WHERE k1=?", k1) ?: return null; return p to (has("SELECT second FROM cmp WHERE k1=?", k1) ?: "") }
             })
         }
@@ -76,11 +77,11 @@ class SandhiEngineTest {
     @Test fun torli() { assertTrue("विद्वाँल्लिखति" in fwd("विद्वान्", "लिखति")) }
 
     // ---------- visarga
-    @Test fun visargaUtva() { assertEquals(setOf("रामोऽयम्"), fwd("रामः", "अयम्")); assertEquals(setOf("मनोरथः"), fwd("मनः", "रथः")); assertEquals(setOf("सोऽहम्"), fwd("सः", "अहम्")); assertEquals(setOf("रामोगच्छति"), fwd("रामः", "गच्छति")) }
+    @Test fun visargaUtva() { assertEquals(setOf("रामोऽयम्"), fwd("रामः", "अयम्")); assertEquals(setOf("मनोरथः"), fwd("मनः", "रथः")); assertEquals(setOf("सोऽहम्"), fwd("सः", "अहम्")); assertEquals(setOf("रामो गच्छति"), fwd("रामः", "गच्छति")) }
     @Test fun visargaSibilant() { assertEquals(setOf("रामश्च"), fwd("रामः", "च")); assertEquals(setOf("रामष्टीका"), fwd("रामः", "टीका")); assertEquals(setOf("रामस्तत्र"), fwd("रामः", "तत्र")); assertEquals(setOf("नमस्ते"), fwd("नमः", "ते")) }
-    @Test fun visargaRetained() { assertEquals(setOf("बालः क्रीडति"), fwd("बालः", "क्रीडति")); assertEquals(setOf("अन्तः पुरम्"), fwd("अन्तः", "पुरम्")) }
+    @Test fun visargaRetained() { assertEquals(setOf("बालः क्रीडति"), fwd("बालः", "क्रीडति")); assertEquals(setOf("अन्तःपुरम्"), fwd("अन्तः", "पुरम्")); assertEquals(setOf("बालः पुरम्"), fwd("बालः", "पुरम्")) }
     @Test fun visargaR() { assertEquals(setOf("मुनिरिति"), fwd("मुनिः", "इति")); assertEquals(setOf("नीरसः"), fwd("निः", "रसः")); assertEquals(setOf("पुनरपि"), fwd("पुनर्", "अपि")); assertEquals(setOf("प्रातरत्र"), fwd("प्रातर्", "अत्र")); assertEquals(setOf("मुनिर्गच्छति"), fwd("मुनिः", "गच्छति")) }
-    @Test fun visargaLopa() { val r = fwd("देवाः", "इह"); assertTrue("देवा इह" in r && "देवायिह" in r); assertEquals(setOf("देवा नन्दन्ति"), fwd("देवाः", "नन्दन्ति")); assertEquals(setOf("स गच्छति"), fwd("सः", "गच्छति")); assertTrue("राम इति" in fwd("रामः", "इति")) }
+    @Test fun visargaLopa() { val r = fwd("देवाः", "इह"); assertEquals(setOf("देवा इह"), r); assertEquals(setOf("देवा नन्दन्ति"), fwd("देवाः", "नन्दन्ति")); assertEquals(setOf("स गच्छति"), fwd("सः", "गच्छति")); assertTrue("राम इति" in fwd("रामः", "इति")) }
     @Test fun visargaSibilantOptional() { val r = fwd("हरिः", "शेते"); assertTrue("हरिश्शेते" in r && "हरिः शेते" in r) }
     @Test fun sRule() { assertEquals(setOf("रामश्च"), fwd("रामस्", "च")); assertEquals(setOf("रामोऽयम्"), fwd("रामस्", "अयम्")) }
 
