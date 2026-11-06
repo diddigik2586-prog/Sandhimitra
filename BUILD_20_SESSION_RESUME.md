@@ -2,9 +2,9 @@
 
 ## Project status
 
-Build 20 (versionName 0.1, versionCode 21 — second revision with the additional question formats) adds the Sandhicakram game, the question bank, bookmarks, the localized application
+Build 20 (versionName 0.1, versionCode 22 — second revision with the additional question formats) adds the Sandhicakram game, the question bank, bookmarks, the localized application
 name and the no-scroll Home page on top of Build 19. Engine, lexicon, lesson content, fonts and the info pages are unchanged.
-Deliverables: `dist/Sandhimitra-0.1-build21.apk` (versionCode 21, signed with the upload key) and `dist/Sandhimitra-source-0.1-build21.zip`.
+Deliverables: `dist/Sandhimitra-0.1-build22.apk` (versionCode 22, signed with the upload key) and `dist/Sandhimitra-source-0.1-build22.zip`.
 
 ## Architecture (where things live)
 
@@ -69,5 +69,5 @@ answer alternatives = option indices stored per question id; bookmarks keyed by 
 ```
 ROBOLECTRIC_DEPS_DIR=/path/to/android-all-jars ./gradlew :app:testDebugUnitTest     # full suite (needs offline Robolectric jars when Maven is unreachable)
 ./gradlew :app:assembleRelease                                                      # signed APK
-git archive --format=zip -o dist/Sandhimitra-source-0.1-build21.zip HEAD -- . ':(exclude)dist'
+git archive --format=zip -o dist/Sandhimitra-source-0.1-build22.zip HEAD -- . ':(exclude)dist'
 ```

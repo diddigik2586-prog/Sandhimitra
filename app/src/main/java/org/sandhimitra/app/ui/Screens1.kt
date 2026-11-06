@@ -4,7 +4,9 @@ import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -91,30 +93,33 @@ fun HomeScreen(app: SandhimitraApp, onMenu: () -> Unit, go: (String) -> Unit) {
     }
 }
 
-/** Sandhicakram card: fixed Copper fill and Indigo lettering in both themes, joystick before the title, centred, with a restrained moving light sweep. */
+/** Sandhicakram card: its own highlight in each theme (light: indigo-violet gradient with warm-gold lettering and border;
+ *  dark: gold gradient with deep-indigo lettering), joystick pinned at the far left, text centred on the card independently of the icon,
+ *  and a restrained moving light sweep (off when the system has animations disabled). */
 @Composable
 fun GamesCard(height: androidx.compose.ui.unit.Dp, onClick: () -> Unit) {
-    val copper = Color(0xFFC17B55); val indigo = Color(0xFF394B78)
+    val t = LocalTokens.current
+    val fill = if (t.dark) listOf(Color(0xFFF3C77E), Color(0xFFD08A4E)) else listOf(Color(0xFF4A3F8F), Color(0xFF2F3E6B))
+    val ink = if (t.dark) Color(0xFF1F2742) else Color(0xFFFFD88A)
+    val edge = if (t.dark) Color(0xFF1F2742).copy(alpha = 0.35f) else Color(0xFFFFD88A).copy(alpha = 0.9f)
     val ctx = androidx.compose.ui.platform.LocalContext.current
     val reduceMotion = remember { try { android.provider.Settings.Global.getFloat(ctx.contentResolver, android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f } catch (e: Exception) { false } }
     val shape = RoundedCornerShape(14.dp)
     val transition = rememberInfiniteTransition(label = "shimmer")
     val x by transition.animateFloat(initialValue = -1f, targetValue = 2f, animationSpec = infiniteRepeatable(tween<Float>(2600, easing = LinearEasing), RepeatMode.Restart), label = "sweep")
-    Box(Modifier.testTag("bar_games").fillMaxWidth().height(height).clip(shape).background(copper).clickable(onClick = onClick)
+    Box(Modifier.testTag("bar_games").fillMaxWidth().height(height).clip(shape).background(Brush.horizontalGradient(fill))
+        .border(BorderStroke(1.5.dp, edge), shape).clickable(onClick = onClick)
         .drawWithContent {
             drawContent()
             if (!reduceMotion) {
                 val w = size.width; val sx = x * w
-                drawRect(brush = Brush.linearGradient(colors = listOf(Color.Transparent, Color.White.copy(alpha = 0.26f), Color.Transparent), start = Offset(sx, 0f), end = Offset(sx + w * 0.45f, size.height)))
+                drawRect(brush = Brush.linearGradient(colors = listOf(Color.Transparent, Color.White.copy(alpha = 0.22f), Color.Transparent), start = Offset(sx, 0f), end = Offset(sx + w * 0.45f, size.height)))
             }
-        }.padding(horizontal = 14.dp, vertical = 8.dp), contentAlignment = Alignment.Center) {
-        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.Center) {
-            Icon(painterResource(R.drawable.ic_gamepad), contentDescription = null, tint = indigo, modifier = Modifier.testTag("games_icon").size(34.dp))
-            Spacer(Modifier.width(12.dp))
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Sx(tr("games"), size = 22.sp, weight = FontWeight.SemiBold, color = indigo, align = TextAlign.Center, lineHeight = 28.sp)
-                Sx(tr("games_sub"), size = 13.sp, color = indigo, align = TextAlign.Center, lineHeight = 17.sp)
-            }
+        }) {
+        Icon(painterResource(R.drawable.ic_gamepad), contentDescription = null, tint = ink, modifier = Modifier.testTag("games_icon").align(Alignment.CenterStart).padding(start = 18.dp).size(34.dp))
+        Column(Modifier.align(Alignment.Center).fillMaxWidth().padding(horizontal = 64.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            Sx(tr("games"), size = 22.sp, weight = FontWeight.SemiBold, color = ink, align = TextAlign.Center, lineHeight = 28.sp)
+            Sx(tr("games_sub"), size = 13.sp, color = ink.copy(alpha = 0.9f), align = TextAlign.Center, lineHeight = 17.sp)
         }
     }
 }

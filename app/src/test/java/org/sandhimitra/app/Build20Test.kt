@@ -51,7 +51,8 @@ class Build20Test {
         // the joystick icon sits before the title (to its left)
         val title = rule.onNodeWithText("सन्धिचक्रम्").fetchSemanticsNode().boundsInRoot
         val icon = rule.onNodeWithTag("games_icon", useUnmergedTree = true).fetchSemanticsNode().boundsInRoot
-        assertTrue("icon before the title", icon.left >= games.left && icon.left < (title.left + title.right) / 2 && icon.top >= games.top && icon.bottom <= games.bottom)
+        assertTrue("icon at the far left of the card", icon.left >= games.left && icon.left < games.left + 80 && icon.top >= games.top && icon.bottom <= games.bottom)
+        assertEquals("title centred on the card", (games.left + games.right) / 2, (title.left + title.right) / 2, 6f)
         rule.onAllNodesWithText("/ ", substring = true).fetchSemanticsNodes().forEach { n -> assertTrue("no game progress on Home", n.boundsInRoot.bottom <= games.top) }
         // header: bookmark icon beside the menu icon
         val bm = rule.onNodeWithContentDescription("Bookmarks").fetchSemanticsNode().boundsInRoot

@@ -1,6 +1,6 @@
 # Sandhimitram — Build 20 Changelog
 
-Baseline: Build 19 (versionName 0.1, versionCode 19). This build: **versionName 0.1, versionCode 21** (Build 20, second
+Baseline: Build 19 (versionName 0.1, versionCode 19). This build: **versionName 0.1, versionCode 22** (Build 20, second
 revision: versionCode 20 was the first Build 20 delivery, before the additional question formats), applicationId unchanged
 (`org.sandhimitra.app`). Incremental upgrade: no screen, engine rule, lesson text, font or asset of Build 19 was removed or rewritten.
 
@@ -25,9 +25,11 @@ revision: versionCode 20 was the first Build 20 delivery, before the additional 
 - Rebuilt as a viewport-sized column: header, Introduction bar, the 2 × 2 category tiles, Sandhātrī bar, **Sandhicakram card**, attribution.
   Sizes are computed from the available height (system bars respected); nothing scrolls and nothing is clipped — tiles shrink
   (remaining square) and the bars use a compact height on short screens.
-- Sandhicakram card (`GamesCard`): fixed Copper `#C17B55` fill and Indigo `#394B78` lettering in both themes; joystick icon
-  (`res/drawable/ic_gamepad.xml`) immediately before the title; icon, title and supporting text centred as one composition; a slow
-  Copper light-sweep (`drawWithContent`, 2.6 s linear, restrained alpha 0.26) that is switched off when the system animator scale is 0
+- Sandhicakram card (`GamesCard`), revised at the author's request after the first Build 20 delivery: its own highlight in each
+  theme — light: indigo-violet gradient `#4A3F8F → #2F3E6B` with warm-gold `#FFD88A` lettering and border; dark: gold gradient
+  `#F3C77E → #D08A4E` with deep-indigo `#1F2742` lettering — so the card stands out from the neighbouring bars in both themes;
+  joystick icon (`res/drawable/ic_gamepad.xml`) pinned at the far left; title and supporting text centred on the card independently
+  of the icon; a slow light-sweep (`drawWithContent`, 2.6 s linear, alpha 0.22) switched off when the system animator scale is 0
   (reduced motion); no game progress is shown on Home.
 
 ## 3. Sandhicakram (Games.kt — new)
