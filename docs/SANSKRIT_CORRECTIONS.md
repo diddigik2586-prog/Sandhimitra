@@ -1,6 +1,8 @@
-# Sanskrit corrections applied to the lesson text
+# Lesson-text corrections
 
-Each correction is applied at build time by `tools/content/build_content.py` from `tools/content/sa_corrections.json`; the original extraction in `original_assets/legacy` is unchanged.
+Applied at build time by `tools/content/build_content.py` from `tools/content/sa_corrections.json` and `kn_corrections.json`; the original extraction is unchanged.
+
+## Sanskrit (136)
 
 | # | Location | Before | After | Reason |
 |---|---|---|---|---|
@@ -137,3 +139,39 @@ Each correction is applied at build time by `tools/content/build_content.py` fro
 | 131 | t43.s1.p2 | अस्याः 'बृहत्सन्धिप्रकरणस्य' | अस्य 'बृहत्सन्धिप्रकरणस्य' | Pronoun must agree with neuter प्रकरणस्य: अस्य, not feminine अस्याः |
 | 132 | t43.s9.p0 | अन्तितममूल्याङ्कन | अन्तिममूल्याङ्कन | Misspelling: अन्तिम (final), not अन्तितम |
 | 133 | t43.pr.r1.c2 | अक्षादूहिण्यामुपसङ्ख्यानम् | अक्षादूहिन्यामुपसङ्ख्यानम् | Vārttika reads अक्षादूहिन्याम् (stem ऊहिनी with न; णत्व only in the result अक्षौहिणी) |
+| 134 | t37.s10.p0 | वैदिकं आ- | वैदिकम् आ- | Final m before a vowel stays m (anusvāra only before a consonant) |
+| 135 | t41.s3.p0 | व्यञ्जनं इ/ई | व्यञ्जनम् इ/ई | Final m before a vowel stays m |
+| 136 | t41.s3.p0 | व्यञ्जनं उ/ऊ | व्यञ्जनम् उ/ऊ | Final m before a vowel stays m |
+
+## Kannada (28)
+
+| # | Location | Before | After | Reason |
+|---|---|---|---|---|
+| 1 | t04.s6.p0 | ఊಷ್ಮವರ್ಣಗಳು | ಊಷ್ಮವರ್ಣಗಳು | Telugu letter ఊ in place of Kannada ಊ |
+| 2 | t39.pr.r6.c1 | ಆديಶ | ಆದಿಶ | Arabic letters in place of Kannada ದಿ |
+| 3 | t39.pr.r6.c2 | ಆديಶ | ಆದಿಶ | Arabic letters in place of Kannada ದಿ |
+| 4 | t42.s11.p0 | ಅبيಮಾನಃ | ಅಭಿಮಾನಃ | Arabic letters in place of Kannada ಭಿ |
+| 5 | t04.s3.p0 | ಏಓঙ্ | ಏಓಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 6 | t04.s3.p0 | ঙ্, | ಙ್, | Bengali ঙ্ in place of Kannada ಙ್ |
+| 7 | t06.s5.p0 | ತಿঙ্ | ತಿಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 8 | t06.s7.p1 | ತಿঙ্ | ತಿಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 9 | t09.s3.p0 | ('ಅದೇঙ্ | ('ಅದೇಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 10 | t09.s5.p0 | ಏঙ্ | ಏಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 11 | t09.s5.p0 | ಅದೇঙ্ | ಅದೇಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 12 | t13.s3.p0 | (ಏঙ্). | (ಏಙ್). | Bengali ঙ্ in place of Kannada ಙ್ |
+| 13 | t13.s9.p0 | (ಅವঙ্) | (ಅವಙ್) | Bengali ঙ্ in place of Kannada ಙ್ |
+| 14 | t13.s9.p0 | 'ಅವঙ্ | 'ಅವಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 15 | t14.s6.p0 | 'ಆঙ্' | 'ಆಙ್' | Bengali ঙ্ in place of Kannada ಙ್ |
+| 16 | t14.ex.r3.c3 | (ಆঙ্ | (ಆಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 17 | t24.s5.p0 | 'ಆঙ্' | 'ಆಙ್' | Bengali ঙ্ in place of Kannada ಙ್ |
+| 18 | t24.s5.p0 | 'ಮಾঙ্' | 'ಮಾಙ್' | Bengali ঙ্ in place of Kannada ಙ್ |
+| 19 | t24.s6.p0 | 'ಆঙ্' | 'ಆಙ್' | Bengali ঙ্ in place of Kannada ಙ್ |
+| 20 | t24.s6.p0 | 'ಮಾঙ্' | 'ಮಾಙ್' | Bengali ঙ্ in place of Kannada ಙ್ |
+| 21 | t24.s7.p1 | ಆঙ্ | ಆಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 22 | t24.ex.r5.c3 | (ಆঙ্ | (ಆಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 23 | t24.ex.r6.c3 | (ಮಾঙ্ | (ಮಾಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 24 | t37.s3.p0 | ಏಕಾಜನಾঙ্' | ಏಕಾಜನಾಙ್' | Bengali ঙ্ in place of Kannada ಙ್ |
+| 25 | t37.ex.r7.c3 | ಏಕಾಜನಾঙ্') | ಏಕಾಜನಾಙ್') | Bengali ঙ্ in place of Kannada ಙ್ |
+| 26 | t38.s3.p0 | ಆঙ্ | ಆಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 27 | t38.s7.p2 | ಆঙ্ | ಆಙ್ | Bengali ঙ্ in place of Kannada ಙ್ |
+| 28 | t13.s9.p0 | ಅವঙ্ ಆದ | ಅವಙ್ ಆದ | Bengali ঙ্ in place of Kannada ಙ್ |

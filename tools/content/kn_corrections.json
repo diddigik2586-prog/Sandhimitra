@@ -1,1 +1,170 @@
-[]
+[
+ {
+  "id": "t04.s6.p0",
+  "old": "ఊಷ್ಮವರ್ಣಗಳು",
+  "new": "ಊಷ್ಮವರ್ಣಗಳು",
+  "reason": "Telugu letter ఊ in place of Kannada ಊ"
+ },
+ {
+  "id": "t39.pr.r6.c1",
+  "old": "ಆديಶ",
+  "new": "ಆದಿಶ",
+  "reason": "Arabic letters in place of Kannada ದಿ"
+ },
+ {
+  "id": "t39.pr.r6.c2",
+  "old": "ಆديಶ",
+  "new": "ಆದಿಶ",
+  "reason": "Arabic letters in place of Kannada ದಿ"
+ },
+ {
+  "id": "t42.s11.p0",
+  "old": "ಅبيಮಾನಃ",
+  "new": "ಅಭಿಮಾನಃ",
+  "reason": "Arabic letters in place of Kannada ಭಿ"
+ },
+ {
+  "id": "t04.s3.p0",
+  "old": "ಏಓঙ্",
+  "new": "ಏಓಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t04.s3.p0",
+  "old": "ঙ্,",
+  "new": "ಙ್,",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t06.s5.p0",
+  "old": "ತಿঙ্",
+  "new": "ತಿಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t06.s7.p1",
+  "old": "ತಿঙ্",
+  "new": "ತಿಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t09.s3.p0",
+  "old": "('ಅದೇঙ্",
+  "new": "('ಅದೇಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t09.s5.p0",
+  "old": "ಏঙ্",
+  "new": "ಏಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t09.s5.p0",
+  "old": "ಅದೇঙ্",
+  "new": "ಅದೇಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t13.s3.p0",
+  "old": "(ಏঙ্).",
+  "new": "(ಏಙ್).",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t13.s9.p0",
+  "old": "(ಅವঙ্)",
+  "new": "(ಅವಙ್)",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t13.s9.p0",
+  "old": "'ಅವঙ্",
+  "new": "'ಅವಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t14.s6.p0",
+  "old": "'ಆঙ্'",
+  "new": "'ಆಙ್'",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t14.ex.r3.c3",
+  "old": "(ಆঙ্",
+  "new": "(ಆಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t24.s5.p0",
+  "old": "'ಆঙ্'",
+  "new": "'ಆಙ್'",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t24.s5.p0",
+  "old": "'ಮಾঙ্'",
+  "new": "'ಮಾಙ್'",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t24.s6.p0",
+  "old": "'ಆঙ্'",
+  "new": "'ಆಙ್'",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t24.s6.p0",
+  "old": "'ಮಾঙ্'",
+  "new": "'ಮಾಙ್'",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t24.s7.p1",
+  "old": "ಆঙ্",
+  "new": "ಆಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t24.ex.r5.c3",
+  "old": "(ಆঙ্",
+  "new": "(ಆಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t24.ex.r6.c3",
+  "old": "(ಮಾঙ্",
+  "new": "(ಮಾಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t37.s3.p0",
+  "old": "ಏಕಾಜನಾঙ্'",
+  "new": "ಏಕಾಜನಾಙ್'",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t37.ex.r7.c3",
+  "old": "ಏಕಾಜನಾঙ্')",
+  "new": "ಏಕಾಜನಾಙ್')",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t38.s3.p0",
+  "old": "ಆঙ্",
+  "new": "ಆಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t38.s7.p2",
+  "old": "ಆঙ্",
+  "new": "ಆಙ್",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t13.s9.p0",
+  "old": "ಅವঙ্ ಆದ",
+  "new": "ಅವಙ್ ಆದ",
+  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+ }
+]

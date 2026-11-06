@@ -1,4 +1,7 @@
 # Changelog
+## 0.1 (build 14)
+- Sanskrit: 3 more anusvāra-before-vowel fixes (136 corrections in total).
+- Kannada: all stray Arabic, Telugu and Bengali letters replaced with the intended Kannada letters (28 corrections). Listed in docs/SANSKRIT_CORRECTIONS.md.
 ## 0.1 (release numbering restarted for Play; versionCode 13)
 - Fonts: Tiro Devanagari Hindi (Sanskrit), Noto Sans Kannada (Kannada), Andika (English); all SIL OFL 1.1, licence texts bundled. Kohinoor and Kannada MN removed.
 ## 1.1.2
