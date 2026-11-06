@@ -38,16 +38,16 @@ def clean_paras(ps):
 
 PREFIXES = ('प्रौढशास्त्रीयव्याख्यानम् — ', 'ವಿದ್ವತ್ಪೂರ್ಣ ಶಾಸ್ತ್ರೀಯ ವಿವರಣೆ — ')
 
-def load_corrections():
-    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sa_corrections.json')
+def load_corrections(lang='sa'):
+    f = os.path.join(os.path.dirname(os.path.abspath(__file__)), lang + '_corrections.json')
     return json.load(open(f, encoding='utf8')) if os.path.exists(f) else []
 
-def apply_corrections(d, corr):
+def apply_corrections(d, corr, lang='sa'):
     """Each correction names a Sanskrit line by id (tNN.sN.pK or tNN.ex|pr.rR.cC); 'old' must occur exactly once in it."""
     applied = 0
     for c in corr:
         parts = c['id'].split('.')
-        t = d['sa'][int(parts[0][1:])]
+        t = d[lang][int(parts[0][1:])]
         if parts[1] in ('ex', 'pr'):
             row = t['ex_table' if parts[1] == 'ex' else 'pr_table'][int(parts[2][1:])]
             ci = int(parts[3][1:]); text = row[ci]
@@ -63,7 +63,8 @@ def apply_corrections(d, corr):
 
 def main(parsed, outdir):
     d = json.load(open(parsed, encoding='utf8'))
-    print('Sanskrit corrections applied:', apply_corrections(d, load_corrections()))
+    print('Sanskrit corrections applied:', apply_corrections(d, load_corrections('sa'), 'sa'))
+    print('Kannada corrections applied:', apply_corrections(d, load_corrections('kn'), 'kn'))
     os.makedirs(os.path.join(outdir, 'topics'), exist_ok=True)
     index = {'groups': {g: [] for g in GROUPS}, 'section_labels': {str(k): v for k, v in LABELS.items()}}
     dropped = 0

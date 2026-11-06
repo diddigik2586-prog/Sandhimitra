@@ -796,5 +796,23 @@
   "old": "अक्षादूहिण्यामुपसङ्ख्यानम्",
   "new": "अक्षादूहिन्यामुपसङ्ख्यानम्",
   "reason": "Vārttika reads अक्षादूहिन्याम् (stem ऊहिनी with न; णत्व only in the result अक्षौहिणी)"
+ },
+ {
+  "id": "t37.s10.p0",
+  "old": "वैदिकं आ-",
+  "new": "वैदिकम् आ-",
+  "reason": "Final m before a vowel stays m (anusvāra only before a consonant)"
+ },
+ {
+  "id": "t41.s3.p0",
+  "old": "व्यञ्जनं इ/ई",
+  "new": "व्यञ्जनम् इ/ई",
+  "reason": "Final m before a vowel stays m"
+ },
+ {
+  "id": "t41.s3.p0",
+  "old": "व्यञ्जनं उ/ऊ",
+  "new": "व्यञ्जनम् उ/ऊ",
+  "reason": "Final m before a vowel stays m"
  }
 ]
