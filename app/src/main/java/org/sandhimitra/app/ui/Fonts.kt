@@ -23,16 +23,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.sandhimitra.app.R
 
-/** Fonts: Kohinoor Devanagari (Sanskrit), Kannada MN (Kannada), Andika (English/IAST). See FONT_INTEGRATION_REPORT.md. */
+/** Fonts: Tiro Devanagari Hindi (Sanskrit), Noto Sans Kannada (Kannada), Andika (English/IAST); all SIL OFL 1.1. See FONT_INTEGRATION_REPORT.md. */
 object Fonts {
     /** Latin text and IAST (English): Andika. */
     val latin = FontFamily(Font(R.font.andika_regular, FontWeight.Normal), Font(R.font.andika_italic, FontWeight.Normal, FontStyle.Italic),
         Font(R.font.andika_medium, FontWeight.Medium), Font(R.font.andika_semibold, FontWeight.SemiBold), Font(R.font.andika_bold, FontWeight.Bold))
-    /** Sanskrit (Devanagari): Kohinoor Devanagari. */
-    val devanagari = FontFamily(Font(R.font.kohinoor_deva_regular, FontWeight.Normal), Font(R.font.kohinoor_deva_medium, FontWeight.Medium),
-        Font(R.font.kohinoor_deva_semibold, FontWeight.SemiBold), Font(R.font.kohinoor_deva_bold, FontWeight.Bold))
-    /** Kannada: Kannada MN (single weight; bold is synthesised). */
-    val kannada = FontFamily(Font(R.font.kannada_mn, FontWeight.Normal))
+    /** Sanskrit (Devanagari): Tiro Devanagari Hindi (single weight; heavier weights are synthesised). */
+    val devanagari = FontFamily(Font(R.font.tiro_devanagari_regular, FontWeight.Normal))
+    /** Kannada: Noto Sans Kannada. */
+    val kannada = FontFamily(Font(R.font.noto_kannada_regular, FontWeight.Normal), Font(R.font.noto_kannada_medium, FontWeight.Medium),
+        Font(R.font.noto_kannada_semibold, FontWeight.SemiBold), Font(R.font.noto_kannada_bold, FontWeight.Bold))
 
     fun kindOf(c: Char): Int = when {
         c in '\u0900'..'\u097F' || c == '\u200D' || c == '\u200C' -> 1

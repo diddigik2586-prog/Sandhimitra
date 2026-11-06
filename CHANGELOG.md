@@ -1,4 +1,6 @@
 # Changelog
+## 0.1 (release numbering restarted for Play; versionCode 13)
+- Fonts: Tiro Devanagari Hindi (Sanskrit), Noto Sans Kannada (Kannada), Andika (English); all SIL OFL 1.1, licence texts bundled. Kohinoor and Kannada MN removed.
 ## 1.1.2
 - Compound first members in their stem form after न-लोप (8.2.7) are preferred: आत्मावलोकनम् → आत्म + अवलोकनम्, कर्मानुसारः → कर्म + अनुसारः (52 such stems: आत्म, कर्म, नाम …). Visarga-sandhi spellings such as मनो, तपो remain non-words (मनः + रथः).
 ## 1.1.1

@@ -33,7 +33,7 @@ fun AboutScreen(app: SandhimitraApp, onMenu: () -> Unit, onBack: () -> Unit) {
             "Learn in Sanskrit, Kannada or English", "Continue learning with your progress saved on your device").forEach { Sx(it, modifier = Modifier.padding(bottom = 4.dp)) }
         Sx("The app is designed to make learning and exploring Sanskrit Sandhi accessible and convenient.", modifier = Modifier.padding(top = 12.dp))
         SectionTitle("Font Credits")
-        listOf("Sanskrit: Kohinoor Devanagari", "Kannada: Kannada MN", "English: Andika").forEach { Sx(it, modifier = Modifier.padding(bottom = 2.dp)) }
+        listOf("Sanskrit: Tiro Devanagari Hindi", "Kannada: Noto Sans Kannada", "English: Andika", "All fonts are used under the SIL Open Font License 1.1.").forEach { Sx(it, modifier = Modifier.padding(bottom = 2.dp)) }
     } }
 }
 

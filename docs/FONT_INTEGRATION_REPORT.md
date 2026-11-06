@@ -1,7 +1,7 @@
-# Font integration report (v1.0.4-sample)
-Supplied and used:
-* Sanskrit (Devanagari): Kohinoor Devanagari Regular / Medium / Semibold / Bold — 507 glyphs, full Devanagari block, virama/ZWJ present. Licence text not included in the supplied files.
-* Kannada: Kannada MN (single weight, 204 glyphs, GSUB/GPOS present; conjuncts render correctly in screenshots). Copyright Murasu Systems Sdn. Bhd., "all rights reserved" — confirm redistribution rights. Bold is synthesised.
-* English / IAST: Andika 7.000 Regular, Medium, SemiBold, Bold, Italic (SIL OFL; contains all IAST letters). Supplied in the zip.
-Earlier Kohinoor Latin and Noto fonts are no longer bundled. Mapping: `ui/Fonts.kt` splits text into script runs (Devanagari -> Kohinoor Devanagari, Kannada -> Kannada MN, all else -> Andika); all UI text, text fields and PDF export use it. Verified by Robolectric screenshots (docs/screenshots).
-Kohinoor Devanagari and Kannada MN contain no IAST dot-below letters; IAST therefore always uses Andika.
+# Font integration report (v0.1)
+* Sanskrit (Devanagari): Tiro Devanagari Hindi Regular — SIL Open Font License 1.1 (Tiro Typeworks / Indigo Project). Single weight; bold is synthesised.
+* Kannada: Noto Sans Kannada Regular, Medium, SemiBold, Bold — SIL OFL 1.1 (Noto Project Authors).
+* English / IAST: Andika Regular, Medium, SemiBold, Bold, Italic — SIL OFL 1.1 (SIL International); covers every IAST letter.
+Licence texts: app/src/main/assets/licenses/ (shipped in the APK) and original_assets/fonts/release/.
+Mapping: ui/Fonts.kt splits each string into script runs (Devanagari → Tiro, Kannada → Noto Sans Kannada, everything else → Andika); text fields and PDF export use the same mapping.
+Earlier Kohinoor and Kannada MN files were removed from the app (their licences did not permit redistribution).

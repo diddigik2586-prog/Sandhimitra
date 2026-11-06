@@ -14,7 +14,7 @@ import java.io.File
 object PdfExport {
     fun write(ctx: Context, title: String, lines: List<String>): File {
         fun tf(id: Int): Typeface = ResourcesCompat.getFont(ctx, id) ?: Typeface.DEFAULT
-        val faces = listOf(tf(R.font.andika_regular), tf(R.font.kohinoor_deva_regular), tf(R.font.kannada_mn))
+        val faces = listOf(tf(R.font.andika_regular), tf(R.font.tiro_devanagari_regular), tf(R.font.noto_kannada_regular))
         val pw = 595; val ph = 842; val margin = 40f
         val doc = PdfDocument()
         var page = doc.startPage(PdfDocument.PageInfo.Builder(pw, ph, 1).create()); var canvas: Canvas = page.canvas
