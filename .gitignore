@@ -5,3 +5,4 @@ build/
 /release/*.jks
 .idea/
 __pycache__/
+/release/keystore.properties
