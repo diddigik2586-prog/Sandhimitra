@@ -1,170 +1,764 @@
 [
  {
-  "id": "t04.s6.p0",
-  "old": "ఊಷ್ಮವರ್ಣಗಳು",
-  "new": "ಊಷ್ಮವರ್ಣಗಳು",
-  "reason": "Telugu letter ఊ in place of Kannada ಊ"
+  "id": "t01.ex.r6.c2",
+  "old": "ಔ → ಆವ್",
+  "new": "ಓ → ಅವ್",
+  "reason": "ಗುರೋ + ಏಹಿ: ಓಕಾರಕ್ಕೆ ಅವ್ ಆದೇಶ (ಏಚೋಽಯವಾಯಾವಃ), ಔ/ಆವ್ ಅಲ್ಲ"
  },
  {
-  "id": "t39.pr.r6.c1",
-  "old": "ಆديಶ",
-  "new": "ಆದಿಶ",
-  "reason": "Arabic letters in place of Kannada ದಿ"
+  "id": "t01.pr.r3.c2",
+  "old": "ಅಯ್-ಆದೇಶೇ",
+  "new": "ಆಯ್-ಆದೇಶೇ",
+  "reason": "ತಸ್ಮೈ: ಐಕಾರಕ್ಕೆ ಆಯ್ ಆದೇಶ, ಅಯ್ ಅಲ್ಲ"
  },
  {
-  "id": "t39.pr.r6.c2",
-  "old": "ಆديಶ",
-  "new": "ಆದಿಶ",
-  "reason": "Arabic letters in place of Kannada ದಿ"
- },
- {
-  "id": "t42.s11.p0",
-  "old": "ಅبيಮಾನಃ",
-  "new": "ಅಭಿಮಾನಃ",
-  "reason": "Arabic letters in place of Kannada ಭಿ"
+  "id": "t03.pr.r4.c1",
+  "old": "ನಯಕಃ",
+  "new": "ನಾಯಕಃ",
+  "reason": "ನೈ + ಅಕಃ = ನಾಯಕಃ (ಐ → ಆಯ್)"
  },
  {
   "id": "t04.s3.p0",
   "old": "ಏಓঙ্",
   "new": "ಏಓಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Bengali ঙ্ → ಙ್"
  },
  {
   "id": "t04.s3.p0",
-  "old": "ঙ্,",
-  "new": "ಙ್,",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಕ್, ঙ্, ಚ್",
+  "new": "ಕ್, ಙ್, ಚ್",
+  "reason": "Bengali ঙ্ → ಙ್"
+ },
+ {
+  "id": "t04.s6.p0",
+  "old": "ಆ, ಈ, ಉ, ೠ",
+  "new": "ಆ, ಈ, ಊ, ೠ",
+  "reason": "ದೀರ್ಘ ಸ್ವರಗಳ ಪಟ್ಟಿಯಲ್ಲಿ ಹ್ರಸ್ವ ಉ ತಪ್ಪಾಗಿ ಬಂದಿದೆ; ಊ ಆಗಬೇಕು"
+ },
+ {
+  "id": "t04.s6.p0",
+  "old": "ఊಷ್ಮವರ್ಣಗಳು",
+  "new": "ಊಷ್ಮವರ್ಣಗಳು",
+  "reason": "Telugu ఊ → ಕನ್ನಡ ಊ"
+ },
+ {
+  "id": "t05.s3.p0",
+  "old": "ಸ್ಪಷ್ಟ (೨೫",
+  "new": "ಸ್ಪೃಷ್ಟ (೨೫",
+  "reason": "ಆಭ್ಯಂತರ ಪ್ರಯತ್ನದ ಹೆಸರು ಸ್ಪೃಷ್ಟ (ಉಳಿದೆಡೆ ಹಾಗೆಯೇ ಇದೆ)"
+ },
+ {
+  "id": "t05.s3.p0",
+  "old": "ಈಷತ್-ಸ್ಪಷ್ಟ",
+  "new": "ಈಷತ್-ಸ್ಪೃಷ್ಟ",
+  "reason": "ಈಷತ್ಸ್ಪೃಷ್ಟ ಎಂಬುದು ಸರಿಯಾದ ಪದ"
+ },
+ {
+  "id": "t05.pr.r6.c1",
+  "old": "ಸವರ್ಣದೀರ್ಘ ಭವತಿ",
+  "new": "ಸವರ್ಣದೀರ್ಘಃ ಭವತಿ",
+  "reason": "ಸಂಸ್ಕೃತ ವಾಕ್ಯದಲ್ಲಿ ಕರ್ತೃ ಪ್ರಥಮಾ ವಿಭಕ್ತಿ ಬೇಕು"
  },
  {
   "id": "t06.s5.p0",
   "old": "ತಿঙ্",
   "new": "ತಿಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Bengali ঙ্ → ಙ್"
  },
  {
   "id": "t06.s7.p1",
   "old": "ತಿঙ্",
   "new": "ತಿಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Bengali ঙ্ → ಙ್"
+ },
+ {
+  "id": "t06.s10.p0",
+  "old": "ತ್ವಂಕಂರೋಷಿ",
+  "new": "ತ್ವಙ್ಕರೋಷಿ",
+  "reason": "ಪರಸವರ್ಣ ರೂಪ ತ್ವಙ್ಕರೋಷಿ; 'ತ್ವಂಕಂರೋಷಿ' ವಿಕೃತ ಪದ"
+ },
+ {
+  "id": "t06.ex.r5.c1",
+  "old": "ತಾಁಸ್ತಾನ್ / ತಾನ್ತಾನ್",
+  "new": "ತಾಁಸ್ತಾನ್ / ತಾಂಸ್ತಾನ್",
+  "reason": "ನಶ್ಛವ್ಯಪ್ರಶಾನ್ ರುತ್ವ ನಿತ್ಯ; ವಿಕಲ್ಪ ಅನುನಾಸಿಕ/ಅನುಸ್ವಾರಕ್ಕೆ ಮಾತ್ರ (ತಾಁಸ್ತಾನ್ / ತಾಂಸ್ತಾನ್)"
+ },
+ {
+  "id": "t07.s9.p0",
+  "old": "ಸಮಗ್ರಲ್ಲಿ",
+  "new": "ಸಮಗ್ರವಾಗಿ",
+  "reason": "ಕನ್ನಡ ಪದರೂಪ ತಪ್ಪು"
+ },
+ {
+  "id": "t08.s13.p1",
+  "old": "= ಹೋತೃಕಾರಃ (",
+  "new": "= ಹೋತೄಕಾರಃ (",
+  "reason": "ಉತ್ತರದಂತೆ ೠ ಏಕಾದೇಶ; ಸಂಧಿರೂಪ ಹೋತೄಕಾರಃ"
+ },
+ {
+  "id": "t08.ex.r1.c1",
+  "old": "ಮುರಾರೀಃ (ಮುರಾರಿಃ)",
+  "new": "ಮುರಾರಿಃ",
+  "reason": "ಮುರ + ಅರಿಃ = ಮುರಾರಿಃ; 'ಮುರಾರೀಃ' ತಪ್ಪು"
  },
  {
   "id": "t09.s3.p0",
-  "old": "('ಅದೇঙ্",
-  "new": "('ಅದೇಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
- },
- {
-  "id": "t09.s5.p0",
-  "old": "ಏঙ্",
-  "new": "ಏಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಅದೇঙ্",
+  "new": "ಅದೇಙ್",
+  "reason": "Bengali ঙ্ → ಙ್"
  },
  {
   "id": "t09.s5.p0",
   "old": "ಅದೇঙ্",
   "new": "ಅದೇಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Bengali ঙ্ → ಙ್"
+ },
+ {
+  "id": "t09.s5.p0",
+  "old": "ಏঙ্",
+  "new": "ಏಙ್",
+  "reason": "Bengali ঙ্ → ಙ್"
+ },
+ {
+  "id": "t09.s9.p0",
+  "old": "ಅಕ್ಷಾದೂಹಿಣ್ಯಾಮುಪಸಂಖ್ಯಾನಮ್",
+  "new": "ಅಕ್ಷಾದೂಹಿನ್ಯಾಮುಪಸಂಖ್ಯಾನಮ್",
+  "reason": "ವಾರ್ತಿಕ ಪಾಠ 'ಅಕ್ಷಾದೂಹಿನ್ಯಾಮುಪಸಂಖ್ಯಾನಮ್' (ದಂತ್ಯ ನ; ಣತ್ವ ನಂತರ ಅಕ್ಷೌಹಿಣೀ ರೂಪದಲ್ಲಿ)"
+ },
+ {
+  "id": "t09.s11.p1",
+  "old": "ಗುಣ ಏಕಾದೇಶ ಭವತಿ",
+  "new": "ಗುಣ ಏಕಾದೇಶಃ ಭವತಿ",
+  "reason": "ಸಂಸ್ಕೃತ ವಾಕ್ಯದಲ್ಲಿ ಕರ್ತೃ ಪ್ರಥಮಾ ವಿಭಕ್ತಿ ಬೇಕು"
+ },
+ {
+  "id": "t10.s9.p0",
+  "old": "ಎಕಾರಾದಿ/ಓಕಾರಾದಿ",
+  "new": "ಏಕಾರಾದಿ/ಓಕಾರಾದಿ",
+  "reason": "ಸಂಸ್ಕೃತದಲ್ಲಿ ಹ್ರಸ್ವ ಎ ಇಲ್ಲ; ಪ್ರ + ಏಜತೇ — ಏಕಾರಾದಿ"
+ },
+ {
+  "id": "t11.s6.p0",
+  "old": "ಯಥಾಸಂಖ್ಯಮುದೇಶಃ",
+  "new": "ಯಥಾಸಂಖ್ಯಮನುದೇಶಃ",
+  "reason": "Sūtra 1.3.10 is yathāsaṅkhyam anudeśaḥ samānām (missing ನ)"
+ },
+ {
+  "id": "t12.s3.p0",
+  "old": "ಯಥಾಸಂಖ್ಯಮುದೇಶಃ",
+  "new": "ಯಥಾಸಂಖ್ಯಮನುದೇಶಃ",
+  "reason": "Sūtra 1.3.10 is yathāsaṅkhyam anudeśaḥ samānām (missing ನ)"
+ },
+ {
+  "id": "t12.s6.p0",
+  "old": "ಯಥಾಸಂಖ್ಯಮುದೇಶಃ",
+  "new": "ಯಥಾಸಂಖ್ಯಮನುದೇಶಃ",
+  "reason": "Sūtra 1.3.10 is yathāsaṅkhyam anudeśaḥ samānām (missing ನ)"
+ },
+ {
+  "id": "t12.s13.p0",
+  "old": "ಯಥಾಸಂಖ್ಯಮುದೇಶಃ",
+  "new": "ಯಥಾಸಂಖ್ಯಮನುದೇಶಃ",
+  "reason": "Sūtra 1.3.10 is yathāsaṅkhyam anudeśaḥ samānām (missing ನ)"
  },
  {
   "id": "t13.s3.p0",
-  "old": "(ಏঙ্).",
-  "new": "(ಏಙ್).",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಏঙ্",
+  "new": "ಏಙ್",
+  "reason": "Stray Bengali letters ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t13.s9.p0",
+  "old": "'ಅವঙ্ ಸ್ಫೋಟಾಯನಸ್ಯ'",
+  "new": "'ಅವಙ್ ಸ್ಫೋಟಾಯನಸ್ಯ'",
+  "reason": "Stray Bengali letters ঙ্ in place of Kannada ಙ್"
  },
  {
   "id": "t13.s9.p0",
   "old": "(ಅವঙ্)",
   "new": "(ಅವಙ್)",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Stray Bengali letters ঙ্ in place of Kannada ಙ್"
  },
  {
   "id": "t13.s9.p0",
-  "old": "'ಅವঙ্",
-  "new": "'ಅವಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ನಿತ್ಯವಾಗಿ ಅವঙ্",
+  "new": "ನಿತ್ಯವಾಗಿ ಅವಙ್",
+  "reason": "Stray Bengali letters ঙ্ in place of Kannada ಙ್"
  },
  {
   "id": "t14.s6.p0",
   "old": "'ಆঙ্'",
   "new": "'ಆಙ್'",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Stray Bengali letters ঙ্ in place of Kannada ಙ್"
  },
  {
   "id": "t14.ex.r3.c3",
-  "old": "(ಆঙ্",
-  "new": "(ಆಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಆঙ্",
+  "new": "ಆಙ್",
+  "reason": "Stray Bengali letters ঙ্ in place of Kannada ಙ್"
+ },
+ {
+  "id": "t13.ex.r1.c1",
+  "old": "ತೇಽಪೀ (ತೇಽಪಿ)",
+  "new": "ತೇಽಪಿ",
+  "reason": "te + api gives ತೇಽಪಿ (short i); ತೇಽಪೀ is wrong"
+ },
+ {
+  "id": "t13.pr.r6.c2",
+  "old": "('ಗವಾಕ್ಷಃ' ೬.೧.೧೨೫",
+  "new": "('ಅವಙ್ ಸ್ಫೋಟಾಯನಸ್ಯ' ೬.೧.೧೨೩",
+  "reason": "Gavākṣa is by avaṅ sphoṭāyanasya 6.1.123; 6.1.125 is plutapragṛhyā aci nityam and the quoted label was not a sūtra"
+ },
+ {
+  "id": "t14.s13.p2",
+  "old": "'ಎತಿ' (ಇಣ್ ಧಾತು)",
+  "new": "'ಏತಿ' (ಇಣ್ ಧಾತು)",
+  "reason": "Form of iṇ is eti with long ಏ, as in ಏತ್ಯೇಧತ್ಯೂಠ್ಸು"
+ },
+ {
+  "id": "t15.s11.p1",
+  "old": "ಸವರ್ಣದೀರ್ಘ ಯಣೋ",
+  "new": "ಸವರ್ಣದೀರ್ಘೋ ಯಣೋ",
+  "reason": "Subject needs nominative: dīrghaḥ + yaṇaḥ → ದೀರ್ಘೋ ಯಣೋ"
+ },
+ {
+  "id": "t16.s3.p0",
+  "old": "ಟ-ವರ್ಗ (ಟು): ಟ, ಠ್",
+  "new": "ಟ-ವರ್ಗ (ಟು): ಟ್, ಠ್",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t16.s6.p0",
+  "old": "ಚ್, ಟ, ತ್",
+  "new": "ಚ್, ಟ್, ತ್",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t16.ex.r3.c3",
+  "old": "ಚರ್ = ಟ,",
+  "new": "ಚರ್ = ಟ್,",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t17.s7.p3",
+  "old": "ಯಾಜ್ + ನಃ (ಯಜ್ + ನಃ)",
+  "new": "ಯಜ್ + ನಃ",
+  "reason": "Root is yaj; ಯಾಜ್ + ನಃ would give ಯಾಜ್ಞಃ, not ಯಜ್ಞಃ"
+ },
+ {
+  "id": "t17.s13.p1",
+  "old": "'ಯಾಚಞಾ' ಮತ್ತು",
+  "new": "'ಯಾಚ್ಞಾ' ಮತ್ತು",
+  "reason": "Misspelt: yācñā is ಯಾಚ್ಞಾ (as in t17.ex.r8.c1)"
+ },
+ {
+  "id": "t17.s13.p1",
+  "old": "('ಯಾಚಞಾ')",
+  "new": "('ಯಾಚ್ಞಾ')",
+  "reason": "Misspelt: yācñā is ಯಾಚ್ಞಾ"
+ },
+ {
+  "id": "t18.s2.p0",
+  "old": "(ಷ್, ಟ, ಠ್",
+  "new": "(ಷ್, ಟ್, ಠ್",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t18.s3.p0",
+  "old": "(ಟ, ಠ್, ಡ್, ಢ್, ಣ್) ವರ್ಣಗಳ",
+  "new": "(ಟ್, ಠ್, ಡ್, ಢ್, ಣ್) ವರ್ಣಗಳ",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t18.s3.p0",
+  "old": "(ಟ, ಠ್, ಡ್, ಢ್, ಣ್) ಎಂಬ",
+  "new": "(ಟ್, ಠ್, ಡ್, ಢ್, ಣ್) ಎಂಬ",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t18.s3.p0",
+  "old": "ತ್ → ಟ |",
+  "new": "ತ್ → ಟ್ |",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t18.s7.p2",
+  "old": "'ತ್'ಗೆ 'ಟ'",
+  "new": "'ತ್'ಗೆ 'ಟ್'",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t18.ex.r2.c3",
+  "old": "(ತ್ → ಟ)",
+  "new": "(ತ್ → ಟ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t18.ex.r5.c3",
+  "old": "(ತ್ → ಟ)",
+  "new": "(ತ್ → ಟ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t18.ex.r7.c3",
+  "old": "(ತ್ → ಟ)",
+  "new": "(ತ್ → ಟ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t18.s13.p2",
+  "old": "ಸಂಷಷ್ಠಃ",
+  "new": "ಸನ್ಷಷ್ಠಃ",
+  "reason": "Padānta n is retained (no anusvāra); cf. ಭವಾನ್ಷಷ್ಠಃ in t18.s9.p0"
+ },
+ {
+  "id": "t19.s3.p0",
+  "old": "(ಟ, ಠ್, ಡ್, ಢ್, ಷ್)",
+  "new": "(ಟ್, ಠ್, ಡ್, ಢ್, ಷ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t19.ex.r1.c0",
+  "old": "ದಿಕ + ಅಮ್ಬರಃ (ದಿಕ್ + ಅಮ್ಬರಃ)",
+  "new": "ದಿಕ್ + ಅಮ್ಬರಃ",
+  "reason": "Missing virama: the word is ದಿಕ್ (dik)"
+ },
+ {
+  "id": "t19.ex.r3.c3",
+  "old": "(ಟ → ಡ್)",
+  "new": "(ಟ್ → ಡ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t19.ex.r5.c0",
+  "old": "ಸುಪ + ಅನ್ತಃ (ಸುಪ್ + ಅನ್ತಃ)",
+  "new": "ಸುಪ್ + ಅನ್ತಃ",
+  "reason": "Missing virama: the word is ಸುಪ್ (sup)"
+ },
+ {
+  "id": "t20.s2.p0",
+  "old": "(ಕ್, ಚ್, ಟ, ತ್, ಪ್)",
+  "new": "(ಕ್, ಚ್, ಟ್, ತ್, ಪ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t20.s3.p0",
+  "old": "(ಕ್, ಚ್, ಟ, ತ್, ಪ್ —",
+  "new": "(ಕ್, ಚ್, ಟ್, ತ್, ಪ್ —",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t20.s3.p0",
+  "old": "ಡ್/ಢ್ → ಟ |",
+  "new": "ಡ್/ಢ್ → ಟ್ |",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t20.s9.p0",
+  "old": "ಚ್ ಅಥವಾ ಟ ಬಂದಾಗ",
+  "new": "ಚ್ ಅಥವಾ ಟ್ ಬಂದಾಗ",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t20.ex.r5.c3",
+  "old": "(ಡ್ → ಟ)",
+  "new": "(ಡ್ → ಟ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t21.s3.p0",
+  "old": "(ಟ/ಡ್)",
+  "new": "(ಟ್/ಡ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t21.s4.p0",
+  "old": "ಭಾಷಾಯಾಂ ನಿತ್ಯ.",
+  "new": "ಭಾಷಾಯಾಂ ನಿತ್ಯಮ್.",
+  "reason": "Vārttika reads pratyaye bhāṣāyāṃ nityam (as elsewhere in the text)"
+ },
+ {
+  "id": "t21.s11.p1",
+  "old": "ಭಾಷಾಯಾಂ ನಿತ್ಯ (ವಾರ್ತಿಕಮ್)",
+  "new": "ಭಾಷಾಯಾಂ ನಿತ್ಯಮ್ (ವಾರ್ತಿಕಮ್)",
+  "reason": "Vārttika reads pratyaye bhāṣāyāṃ nityam"
+ },
+ {
+  "id": "t21.s11.p1",
+  "old": "ನಿತ್ಯ ಅನುನಾಸಿಕಃ",
+  "new": "ನಿತ್ಯಮ್ ಅನುನಾಸಿಕಃ",
+  "reason": "Bare stem ನಿತ್ಯ is ungrammatical in Sanskrit; adverb nityam"
+ },
+ {
+  "id": "t21.pr.r1.c2",
+  "old": "ನಿತ್ಯ ಅನುನಾಸಿಕಃ",
+  "new": "ನಿತ್ಯಮ್ ಅನುನಾಸಿಕಃ",
+  "reason": "Bare stem ನಿತ್ಯ is ungrammatical in Sanskrit; adverb nityam"
+ },
+ {
+  "id": "t21.ex.r3.c3",
+  "old": "(ಟ → ಣ್ / ಡ್)",
+  "new": "(ಟ್ → ಣ್ / ಡ್)",
+  "reason": "Missing virama: ṭ should be ಟ್ (consonant), not ಟ (ṭa)"
+ },
+ {
+  "id": "t21.pr.r3.c2",
+  "old": "ಉದನಯನಮ್ (ಉದ್ನಯನಮ್)",
+  "new": "ಉದ್ನಯನಮ್",
+  "reason": "Jaśtva alternant is ಉದ್ನಯನಮ್; ಉದನಯನಮ್ is a misspelling"
+ },
+ {
+  "id": "t22.pr.r5.c1",
+  "old": "ಕಿಂ ಅತ್ರ",
+  "new": "ಕಿಮ್ ಅತ್ರ",
+  "reason": "Anusvāra before a vowel contradicts the lesson's own rule; kim + atra = kimatra"
+ },
+ {
+  "id": "t23.s6.p0",
+  "old": "ತ/ದ್ ಗೆ",
+  "new": "ತ್/ದ್ ಗೆ",
+  "reason": "Missing virama on ತ್ (consonant t, parallel to ದ್)"
  },
  {
   "id": "t24.s5.p0",
   "old": "'ಆঙ্'",
   "new": "'ಆಙ್'",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Bengali ঙ্ replaced with Kannada ಙ್"
  },
  {
   "id": "t24.s5.p0",
   "old": "'ಮಾঙ্'",
   "new": "'ಮಾಙ್'",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Bengali ঙ্ replaced with Kannada ಙ್"
  },
  {
   "id": "t24.s6.p0",
   "old": "'ಆঙ্'",
   "new": "'ಆಙ್'",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Bengali ঙ্ replaced with Kannada ಙ್"
  },
  {
   "id": "t24.s6.p0",
   "old": "'ಮಾঙ্'",
   "new": "'ಮಾಙ್'",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "reason": "Bengali ঙ্ replaced with Kannada ಙ್"
  },
  {
   "id": "t24.s7.p1",
-  "old": "ಆঙ্",
-  "new": "ಆಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಆঙ্ ಉಪಸರ್ಗದ",
+  "new": "ಆಙ್ ಉಪಸರ್ಗದ",
+  "reason": "Bengali ঙ্ replaced with Kannada ಙ್"
  },
  {
   "id": "t24.ex.r5.c3",
-  "old": "(ಆঙ্",
-  "new": "(ಆಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಆঙ্",
+  "new": "ಆಙ್",
+  "reason": "Bengali ঙ্ replaced with Kannada ಙ್"
  },
  {
   "id": "t24.ex.r6.c3",
-  "old": "(ಮಾঙ্",
-  "new": "(ಮಾಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಮಾঙ্",
+  "new": "ಮಾಙ್",
+  "reason": "Bengali ঙ্ replaced with Kannada ಙ್"
+ },
+ {
+  "id": "t25.s2.p1",
+  "old": "ಙಮುಣ್ನಿತ್ಯ (",
+  "new": "ಙಮುಣ್ನಿತ್ಯಮ್ (",
+  "reason": "Sūtra 8.3.32 is 'ಙಮೋ ಹ್ರಸ್ವಾದಚಿ ಙಮುಣ್ನಿತ್ಯಮ್' (final -ಮ್ missing)"
+ },
+ {
+  "id": "t25.s4.p0",
+  "old": "ಙಮುಣ್ನಿತ್ಯ (",
+  "new": "ಙಮುಣ್ನಿತ್ಯಮ್ (",
+  "reason": "Sūtra 8.3.32 is 'ಙಮೋ ಹ್ರಸ್ವಾದಚಿ ಙಮುಣ್ನಿತ್ಯಮ್' (final -ಮ್ missing)"
+ },
+ {
+  "id": "t25.s11.p0",
+  "old": "ಙಮುಣ್ನಿತ್ಯ (",
+  "new": "ಙಮುಣ್ನಿತ್ಯಮ್ (",
+  "reason": "Sūtra 8.3.32 is 'ಙಮೋ ಹ್ರಸ್ವಾದಚಿ ಙಮುಣ್ನಿತ್ಯಮ್' (final -ಮ್ missing)"
+ },
+ {
+  "id": "t25.s11.p2",
+  "old": "ವಿದ್ವಾನಾತ್ರ",
+  "new": "ವಿದ್ವಾನತ್ರ",
+  "reason": "vidvān + atra = vidvānatra (as given in t25.s9.p0); spurious long ā"
+ },
+ {
+  "id": "t27.s3.p0",
+  "old": "೩) ಟ/ಡ್",
+  "new": "೩) ಟ್/ಡ್",
+  "reason": "Missing virama on ಟ್ (consonant ṭ)"
+ },
+ {
+  "id": "t27.ex.r3.c3",
+  "old": "(ಟ→ಡ್",
+  "new": "(ಟ್→ಡ್",
+  "reason": "Missing virama on ಟ್ (consonant ṭ)"
+ },
+ {
+  "id": "t27.pr.r3.c2",
+  "old": "ಸಮಿಧ್ಹೋಮಃ (ಸಮಿದ್ಹೋಮಃ)",
+  "new": "ಸಮಿದ್ಹೋಮಃ",
+  "reason": "After jaśtva the optional form is samidhomaḥ (ದ್ಹ), not ಧ್ಹ; parenthetical already gives the correct form"
+ },
+ {
+  "id": "t28.s2.p0",
+  "old": "ಛ್, ಟ, ಠ್",
+  "new": "ಛ್, ಟ್, ಠ್",
+  "reason": "Missing virama on ಟ್ in list of consonants"
+ },
+ {
+  "id": "t28.s3.p0",
+  "old": "ಛ್, ಟ, ಠ್",
+  "new": "ಛ್, ಟ್, ಠ್",
+  "reason": "Missing virama on ಟ್ in list of consonants"
+ },
+ {
+  "id": "t28.s3.p0",
+  "old": "ನ್ + ಟ/ಠ್",
+  "new": "ನ್ + ಟ್/ಠ್",
+  "reason": "Missing virama on ಟ್"
+ },
+ {
+  "id": "t28.s5.p0",
+  "old": "ಛ್, ಟ, ಠ್",
+  "new": "ಛ್, ಟ್, ಠ್",
+  "reason": "Missing virama on ಟ್ in list of consonants"
+ },
+ {
+  "id": "t28.s6.p0",
+  "old": "ಟ/ಠ್ ಇದ್ದರೆ",
+  "new": "ಟ್/ಠ್ ಇದ್ದರೆ",
+  "reason": "Missing virama on ಟ್"
+ },
+ {
+  "id": "t28.ex.r1.c1",
+  "old": "ತಾಁಸ್ತಾನ್ / ತಾನ್ತಾನ್ (ತಾಂಸ್ತಾನ್)",
+  "new": "ತಾಁಸ್ತಾನ್ / ತಾಂಸ್ತಾನ್",
+  "reason": "'ನಶ್ಛವ್ಯಪ್ರಶಾನ್' is obligatory here; 'ತಾನ್ತಾನ್' is not a valid form (cf. t28.s6.p0)"
+ },
+ {
+  "id": "t28.ex.r7.c0",
+  "old": "ನೃನ್",
+  "new": "ನೄನ್",
+  "reason": "Word is nṝn (acc. pl. of nṛ) with long ṝ, as in sūtra 'ನೄನ್ಪೇ' and c1"
+ },
+ {
+  "id": "t28.ex.r7.c1",
+  "old": "ನೃನ್ಪಾಹಿ",
+  "new": "ನೄನ್ಪಾಹಿ",
+  "reason": "Word is nṝn with long ṝ (consistent with the other forms in the cell)"
+ },
+ {
+  "id": "t28.ex.r7.c3",
+  "old": "'ನೃನ್'",
+  "new": "'ನೄನ್'",
+  "reason": "Word is nṝn with long ṝ, as in sūtra 'ನೄನ್ಪೇ'"
+ },
+ {
+  "id": "t28.pr.r1.c2",
+  "old": "ಜನೋಂಶ್ಚ (ಜನಾಂಶ್ಚ)",
+  "new": "ಜನಾಂಶ್ಚ",
+  "reason": "Typo 'ಜನೋಂಶ್ಚ' (wrong vowel sign); correct form is ಜನಾಂಶ್ಚ"
+ },
+ {
+  "id": "t31.ex.r3.c1",
+  "old": "ವೃಕ್ಷಾ ಫಲನ್ತಿ",
+  "new": "ವೃಕ್ಷಾಃ ಫಲನ್ತಿ",
+  "reason": "ಫ is khar, not haś: visarga stays (vṛkṣāḥ phalanti); c2 itself notes lopa only before haś"
+ },
+ {
+  "id": "t31.ex.r8.c0",
+  "old": "ರಾಷ್ಟ್ರಿಯಃ",
+  "new": "ರಾಷ್ಟ್ರೀಯಃ",
+  "reason": "Word is rāṣṭrīya (long ī), as in c3 and t31.s10.p0"
+ },
+ {
+  "id": "t31.ex.r8.c1",
+  "old": "ಅನ್ತಾರಾಷ್ಟ್ರಿಯಃ",
+  "new": "ಅನ್ತಾರಾಷ್ಟ್ರೀಯಃ",
+  "reason": "Word is rāṣṭrīya (long ī), as in c3 and t31.s10.p0"
+ },
+ {
+  "id": "t34.s3.p0",
+  "old": "ವಿಸರ್ಗ + ಟ / ಠ್",
+  "new": "ವಿಸರ್ಗ + ಟ್ / ಠ್",
+  "reason": "missing virama on ಟ (consistent with ಚ್ / ಛ್, ತ್ / ಥ್)"
+ },
+ {
+  "id": "t34.s13.p2",
+  "old": "'ವಾರ್ಶರಿ'",
+  "new": "'ವಾ ಶರಿ'",
+  "reason": "sūtra 8.3.36 is 'ವಾ ಶರಿ'"
+ },
+ {
+  "id": "t35.s13.p2",
+  "old": "ೱಕ್ ೲಪೌ",
+  "new": "ೱಕ ೲಪೌ",
+  "reason": "sūtra is ≍ಕ≍ಪೌ (dual of ≍ಕ, ≍ಪ); stray virama on ಕ"
+ },
+ {
+  "id": "t36.s3.p0",
+  "old": "ವಿಸರ್ಗ + ಟ, ಠ್",
+  "new": "ವಿಸರ್ಗ + ಟ್, ಠ್",
+  "reason": "missing virama on ಟ"
+ },
+ {
+  "id": "t36.pr.r3.c2",
+  "old": "ಭೋ ಛಾತ್ರಾಃ ('ಭೋಭಗೋಅಘೋಅಪೂರ್ವಸ್ಯ ಯೋಽಶಿ' + 'ಹಲಿ ಸರ್ವೇಷಾಮ್')",
+  "new": "ಭೋಶ್ಛಾತ್ರಾಃ ('ವಿಸರ್ಜನೀಯಸ್ಯ ಸಃ' + 'ಸ್ತೋಃ ಶ್ಚುನಾ ಶ್ಚುಃ')",
+  "reason": "ಛ is khar, not aś, so 8.3.17 does not apply; visarga → ಸ್ → ಶ್ (bhoś chātrāḥ)"
+ },
+ {
+  "id": "t37.s2.p1",
+  "old": "ಅಚಿ ನಿತ್ಯ (",
+  "new": "ಅಚಿ ನಿತ್ಯಮ್ (",
+  "reason": "sūtra 6.1.125 is 'ಪ್ಲುತಪ್ರಗೃಹ್ಯಾ ಅಚಿ ನಿತ್ಯಮ್'"
  },
  {
   "id": "t37.s3.p0",
-  "old": "ಏಕಾಜನಾঙ্'",
-  "new": "ಏಕಾಜನಾಙ್'",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಏಕಾಜನಾঙ্",
+  "new": "ಏಕಾಜನಾಙ್",
+  "reason": "Bengali ঙ্ → Kannada ಙ್"
+ },
+ {
+  "id": "t37.s4.p0",
+  "old": "ಅಚಿ ನಿತ್ಯ (",
+  "new": "ಅಚಿ ನಿತ್ಯಮ್ (",
+  "reason": "sūtra 6.1.125 is 'ಪ್ಲುತಪ್ರಗೃಹ್ಯಾ ಅಚಿ ನಿತ್ಯಮ್'"
+ },
+ {
+  "id": "t37.s11.p0",
+  "old": "ಅಚಿ ನಿತ್ಯ (",
+  "new": "ಅಚಿ ನಿತ್ಯಮ್ (",
+  "reason": "sūtra 6.1.125 is 'ಪ್ಲುತಪ್ರಗೃಹ್ಯಾ ಅಚಿ ನಿತ್ಯಮ್'"
+ },
+ {
+  "id": "t37.s13.p2",
+  "old": "'ಈದೂದೇದ್ವಿವಚನಂ",
+  "new": "'ಈದೂದೇದ್ದ್ವಿವಚನಂ",
+  "reason": "sūtra 1.1.11 is ಈದೂದೇದ್ದ್ವಿವಚನಂ (ದ್ದ್ವಿ)"
  },
  {
   "id": "t37.ex.r7.c3",
-  "old": "ಏಕಾಜನಾঙ্')",
-  "new": "ಏಕಾಜನಾಙ್')",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಏಕಾಜನಾঙ্",
+  "new": "ಏಕಾಜನಾಙ್",
+  "reason": "Bengali ঙ্ → Kannada ಙ್"
+ },
+ {
+  "id": "t37.pr.r4.c1",
+  "old": "ಸವರ್ಣದೀರ್ಘ ಕಿಮರ್ಥಂ",
+  "new": "ಸವರ್ಣದೀರ್ಘಃ ಕಿಮರ್ಥಂ",
+  "reason": "Sanskrit subject of ಜಾತಃ needs nominative ಸವರ್ಣದೀರ್ಘಃ"
+ },
+ {
+  "id": "t37.pr.r4.c2",
+  "old": "ಅತಃ ಪ್ರಕೃತಿಭಾವ.",
+  "new": "ಅತಃ ಪ್ರಕೃತಿಭಾವಃ.",
+  "reason": "Sanskrit sentence needs nominative ಪ್ರಕೃತಿಭಾವಃ"
+ },
+ {
+  "id": "t38.s2.p1",
+  "old": "'ಅವಗ್ರಹ ಚಿಹ್ನೆಯ' ಎಂಬ",
+  "new": "'ಅವಗ್ರಹ ಚಿಹ್ನೆ' ಎಂಬ",
+  "reason": "genitive -ಯ before ಎಂಬ ಈ ಪ್ರಕರಣ is ungrammatical"
  },
  {
   "id": "t38.s3.p0",
-  "old": "ಆঙ্",
-  "new": "ಆಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಆঙ্ ಉಪಸರ್ಗದ",
+  "new": "ಆಙ್ ಉಪಸರ್ಗದ",
+  "reason": "Bengali ঙ্ → Kannada ಙ್"
  },
  {
   "id": "t38.s7.p2",
-  "old": "ಆঙ্",
-  "new": "ಆಙ್",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "old": "ಆঙ্ ಉಪಸರ್ಗದ",
+  "new": "ಆಙ್ ಉಪಸರ್ಗದ",
+  "reason": "Bengali ঙ্ → Kannada ಙ್"
  },
  {
-  "id": "t13.s9.p0",
-  "old": "ಅವঙ্ ಆದ",
-  "new": "ಅವಙ್ ಆದ",
-  "reason": "Bengali ঙ্ in place of Kannada ಙ್"
+  "id": "t39.s9.p0",
+  "old": "'ವನೇ ವಸಂತಿ → ವನ ಇತಿ'",
+  "new": "'ವನೇ + ಇತಿ → ವನ ಇತಿ'",
+  "reason": "wrong example: ವನ ಇತಿ comes from ವನೇ + ಇತಿ"
+ },
+ {
+  "id": "t39.pr.r6.c1",
+  "old": "ಗುರೋ ಆديಶ",
+  "new": "ಗುರ ಆದಿಶ",
+  "reason": "Arabic دي → ದಿ; the form to be split is the lopa form ಗುರ ಆದಿಶ (ಗುರೋ ಆದಿಶ is not a sandhi form)"
+ },
+ {
+  "id": "t39.pr.r6.c2",
+  "old": "ಗುರ ಆديಶ",
+  "new": "ಗುರ ಆದಿಶ",
+  "reason": "Arabic دي → ದಿ"
+ },
+ {
+  "id": "t40.s3.p0",
+  "old": "ಷ್ಟ, ಟ್ಟ, ಡ್ದ",
+  "new": "ಷ್ಟ, ಟ್ಟ, ಡ್ಡ",
+  "reason": "ṣṭutva gives ಡ್ಡ, not ಡ್ದ"
+ },
+ {
+  "id": "t40.pr.r6.c2",
+  "old": "ಅಚಿ ನಿತ್ಯ'",
+  "new": "ಅಚಿ ನಿತ್ಯಮ್'",
+  "reason": "sūtra 6.1.125 is 'ಪ್ಲುತಪ್ರಗೃಹ್ಯಾ ಅಚಿ ನಿತ್ಯಮ್'"
+ },
+ {
+  "id": "t41.s3.p0",
+  "old": "ಕ್, ಚ್, ಟ, ತ್, ಪ್",
+  "new": "ಕ್, ಚ್, ಟ್, ತ್, ಪ್",
+  "reason": "missing virama on ಟ"
+ },
+ {
+  "id": "t41.s13.p1",
+  "old": "'ಅಂತಾರಾಷ್ಟ್ರಿಯಃ' ಮತ್ತು",
+  "new": "'ಅಂತಾರಾಷ್ಟ್ರೀಯಃ' ಮತ್ತು",
+  "reason": "ರಾಷ್ಟ್ರೀಯ has long ಈ (-ಈಯ suffix)"
+ },
+ {
+  "id": "t41.s13.p1",
+  "old": "+ ರಾಷ್ಟ್ರಿಯಃ = ಅಂತಾರಾಷ್ಟ್ರಿಯಃ",
+  "new": "+ ರಾಷ್ಟ್ರೀಯಃ = ಅಂತಾರಾಷ್ಟ್ರೀಯಃ",
+  "reason": "ರಾಷ್ಟ್ರೀಯ has long ಈ (-ಈಯ suffix)"
+ },
+ {
+  "id": "t42.s11.p0",
+  "old": "ನಿಃ+ಅبيಮಾನಃ",
+  "new": "ನಿಃ+ಅಭಿಮಾನಃ",
+  "reason": "Arabic بي → ಭಿ"
+ },
+ {
+  "id": "t43.s11.p0",
+  "old": "೨. ಪ್ರಕೃತಿಭಾವ,",
+  "new": "೨. ಪ್ರಕೃತಿಭಾವಃ,",
+  "reason": "Sanskrit list of nominatives; visarga missing"
+ },
+ {
+  "id": "t43.s13.p0",
+  "old": "'ಯಥಾಸಂಖ್ಯಮುದೇಶಃ ಸಮಾನಾಮ್' (೧.೩.೧೦)",
+  "new": "'ಯಥಾಸಂಖ್ಯಮನುದೇಶಃ ಸಮಾನಾಮ್' (೧.೩.೧೦)",
+  "reason": "sūtra 1.3.10 is ಯಥಾಸಂಖ್ಯಮನುದೇಶಃ ಸಮಾನಾಮ್"
+ },
+ {
+  "id": "t43.s13.p0",
+  "old": "; 'ಯಥಾಸಂಖ್ಯಮುದೇಶಃ ಸಮಾನಾಮ್' ಪರಿಭಾಷೆಯು",
+  "new": "; 'ಯಥಾಸಂಖ್ಯಮನುದೇಶಃ ಸಮಾನಾಮ್' ಪರಿಭಾಷೆಯು",
+  "reason": "sūtra 1.3.10 is ಯಥಾಸಂಖ್ಯಮನುದೇಶಃ ಸಮಾನಾಮ್"
+ },
+ {
+  "id": "t43.pr.r1.c2",
+  "old": "ಅಕ್ಷಾದೂಹಿಣ್ಯಾಮುಪಸಙ್ಖ್ಯಾನಮ್",
+  "new": "ಅಕ್ಷಾದೂಹಿನ್ಯಾಮುಪಸಙ್ಖ್ಯಾನಮ್",
+  "reason": "vārttika reads ಅಕ್ಷಾದೂಹಿನ್ಯಾಮ್ (dental ನ), consistent with ಅಕ್ಷ+ಊಹಿನೀ"
+ },
+ {
+  "id": "t01.pr.r5.c1",
+  "old": "ಗುರವಾದೇಶಃ",
+  "new": "ಗುರಾವಾದೇಶಃ",
+  "reason": "ಗುರೌ + ಆದೇಶಃ gives ಗುರಾವಾದೇಶಃ (ಔ → ಆವ್), as in the Sanskrit lesson"
  }
 ]

@@ -1,4 +1,6 @@
 # Changelog
+## 0.1 (build 15)
+- Kannada lessons proof-read in full: 127 corrections (sūtra wording, missing viramas, wrong Sandhi results, Sanskrit agreement inside the Kannada text, stray letters). Listed in docs/SANSKRIT_CORRECTIONS.md.
 ## 0.1 (build 14)
 - Sanskrit: 3 more anusvāra-before-vowel fixes (136 corrections in total).
 - Kannada: all stray Arabic, Telugu and Bengali letters replaced with the intended Kannada letters (28 corrections). Listed in docs/SANSKRIT_CORRECTIONS.md.
