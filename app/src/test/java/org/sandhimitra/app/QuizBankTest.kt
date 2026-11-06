@@ -8,6 +8,7 @@ import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.sandhimitra.app.data.QuizBank
 import org.sandhimitra.app.engine.Ctx
+import org.sandhimitra.app.engine.Rules
 import org.sandhimitra.app.engine.Script
 import java.io.File
 
@@ -34,6 +35,28 @@ class QuizBankTest {
             assertTrue("${q.id} lesson ${q.lesson}", q.lesson in topicIds); assertTrue("${q.id} practice ${q.practice}", q.practice in topicIds)
             // prakṛtibhāva lessons present pragṛhya words: the engine is told so, exactly as the builder did; the plain-Sandhi form is then a wrong answer
             fun joins(l: String, r: String, pragrhya: Boolean): Set<String> = e.join(l, r, if (pragrhya) Ctx(leftPragrhya = true) else Ctx()).alts.map { ns(it.surface) }.toSet()
+            if (q.dir == "O") {
+                val applied = q.rules.mapNotNull { Rules.find(it) }
+                val target = applied.filter { it.topic == q.lesson }.distinctBy { it.name }
+                assertEquals("${q.id} exactly one named rule of the lesson", 1, target.size)
+                when (q.type) {
+                    "NAME" -> q.options.forEachIndexed { i, o -> assertEquals("${q.id} option $o", i in q.answers, o == target[0].name); if (i !in q.answers) assertTrue("${q.id} distractor $o is an applied rule", applied.none { it.name == o }) }
+                    "SUTRA" -> q.options.forEachIndexed { i, o -> assertEquals("${q.id} option $o", i in q.answers, o == "${target[0].sutraDeva} (${target[0].ref})"); if (i !in q.answers) assertTrue("${q.id} distractor $o", applied.none { o.startsWith(it.sutraDeva) }); assertTrue(target[0].verified) }
+                    "EXAMPLE" -> {
+                        assertEquals(q.id, 4, q.optionSources.size)
+                        q.options.forEachIndexed { i, o ->
+                            val (l, r) = q.optionSources[i].split(" + ").let { it[0] to it[1] }
+                            val jr = e.join(l, r); val alt = jr.alts.firstOrNull { ns(it.surface) == ns(Script.toSlp1(o)) } ?: (if (q.cat == "prakriti" || true) e.join(l, r, Ctx(leftPragrhya = true)).alts.firstOrNull { ns(it.surface) == ns(Script.toSlp1(o)) } else null)
+                            assertNotNull("${q.id} option $o is a documented, reproducible form", alt)
+                            val usesTarget = alt!!.steps.any { Rules.find(it.ruleId)?.topic == target[0].topic }
+                            assertEquals("${q.id} option $o", i in q.answers, usesTarget)
+                        }
+                    }
+                    else -> fail("${q.id} unknown type ${q.type}")
+                }
+                counts.getOrPut(q.cat) { IntArray(3) }[2]++
+                continue
+            }
             if (q.dir == "F") {
                 val (l, r) = q.prompt.split(" + ").let { it[0] to it[1] }
                 val plain = joins(l, r, false)
@@ -48,10 +71,11 @@ class QuizBankTest {
                     assertEquals("${q.id} option $o", i in q.answers, hit)
                 }
             }
-            counts.getOrPut(q.cat) { IntArray(2) }[if (q.dir == "F") 0 else 1]++
+            counts.getOrPut(q.cat) { IntArray(3) }[if (q.dir == "F") 0 else 1]++
         }
-        println("QUIZBANK_VERIFIED " + counts.toSortedMap().map { "${it.key}: F=${it.value[0]} R=${it.value[1]} total=${it.value[0] + it.value[1]}" })
-        assertTrue(counts.getValue("vowel").sum() >= 150); assertTrue(counts.getValue("consonant").sum() >= 150); assertTrue(counts.getValue("visarga").sum() >= 150)
+        println("QUIZBANK_VERIFIED " + counts.toSortedMap().map { "${it.key}: F=${it.value[0]} R=${it.value[1]} other=${it.value[2]} total=${it.value.sum()}" })
+        // the forward/reverse coverage alone meets the minimum; the additional formats are extra
+        for (c in listOf("vowel", "consonant", "visarga")) assertTrue(c, counts.getValue(c)[0] + counts.getValue(c)[1] >= 150)
         // both directions present in every category
         counts.values.forEach { assertTrue(it[0] > 0 && it[1] > 0) }
     }

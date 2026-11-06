@@ -72,7 +72,9 @@ class Build20Test {
     @Test fun quizAnswersPersistAndRestore() {
         // a fresh mixed round alternates the two directions
         val all = app.quiz.questions("vowel")
-        assertTrue(QuizSession.fresh("vowel", all, 7L).seq.map { app.quiz.byId(it)!!.dir }.windowed(2).all { it[0] != it[1] })
+        val dirs = QuizSession.fresh("vowel", all, 7L).seq.map { app.quiz.byId(it)!!.dir }
+        assertTrue(dirs.filter { it != "O" }.windowed(2).all { it[0] != it[1] }); assertTrue(dirs.count { it == "O" } == all.count { it.dir == "O" })
+        assertTrue("other formats spread, not bunched at the end", dirs.take(dirs.size / 2).count { it == "O" } > 0)
         // a controlled round of plain (non-vikalpa) questions: reverse, forward, reverse
         val plain = all.filter { !it.vikalpa }
         val s0 = QuizSession("vowel", listOf(plain.first { it.dir == "R" }.id, plain.first { it.dir == "F" }.id, plain.last { it.dir == "R" }.id))

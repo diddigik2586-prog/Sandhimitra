@@ -1,7 +1,7 @@
 # Sandhimitram — Build 20 Test Report
 
 Environment: Linux build container, JDK 17, Android SDK 35, Robolectric 4.14.1 (sdk 35, native graphics), no device or emulator.
-Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **75 tests, 75 passed, 0 failed** (final run before packaging).
+Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **76 tests, 76 passed, 0 failed** (final run before packaging).
 
 ## 1. Automated tests actually executed
 
@@ -9,20 +9,20 @@ Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **75 te
 |---|---|---|
 | Name / localization | `Build20Test.launcherLabelIsLocalized` — `app_name` is "Sandhimitram" (default) and "ಸಂಧಿಮಿತ್ರಂ" (kn locale); launcher label; package `org.sandhimitra.app` | pass |
 | Name / localization | `Build20Test.noOldNameInInterfaceStrings` — no "Sandhimitra" (without -m) in any interface string source | pass |
-| Name / localization | APK badging (`aapt2 dump badging`): `application-label:'Sandhimitram'`, `application-label-kn:'ಸಂಧಿಮಿತ್ರಂ'`, versionCode 20, versionName 0.1 | pass |
+| Name / localization | APK badging (`aapt2 dump badging`): `application-label:'Sandhimitram'`, `application-label-kn:'ಸಂಧಿಮಿತ್ರಂ'`, versionCode 21, versionName 0.1 | pass |
 | Home | `Build20Test.homeFitsWithoutScrollingAndGamesCardIsLast` — Sandhicakram card below Sandhātrī, card and attribution inside the 360×800 dp viewport, joystick icon before the title, no "n / m" progress text on Home, Bookmark icon beside the Menu icon | pass |
 | Home | `UiTest.splashThenHomeHasExactSixCardsInThreeTiers`, `UiTest.tilesAreSquareAndEqual` (Build 19 layout checks) | pass |
 | Home | Screenshots `01_home_sa_light`, `02_home_kn_light`, `03_home_en_light`, `04_home_en_dark`, `30_home_sa_dark` rendered and inspected: Copper/Indigo card identical in light and dark, centred composition, everything inside the viewport | pass (visual) |
 | Sandhicakram landing | `Build20Test.gamesLandingHasFourSquareTilesWithProgress` — four square tiles, 2 × 2, inside the viewport, "0 / total" inside the card | pass |
-| Quiz | `Build20Test.quizAnswersPersistAndRestore` — a fresh round alternates forward/reverse; wrong answer shows "Wrong Answer" and the two links; options lock after an answer; "Read the Lesson" opens the exact lesson and returning restores the same question with its wrong-answer view; "Next question" advances; a correct answer counts, marks the question completed and auto-advances; leaving and re-entering restores the position | pass |
+| Quiz | `Build20Test.quizAnswersPersistAndRestore` — a fresh round alternates forward/reverse with the additional formats spread between them (not bunched); wrong answer shows "Wrong Answer" and the two links; options lock after an answer; "Read the Lesson" opens the exact lesson and returning restores the same question with its wrong-answer view; "Next question" advances; a correct answer counts, marks the question completed and auto-advances; leaving and re-entering restores the position | pass |
 | Quiz (vikalpa) | `Build20Test.vikalpaQuestionNeedsBothForms` — first valid form Correct, same question re-presented, same form again → "Try Again", other form Correct, then next question; practised alternatives persisted | pass |
-| Question bank | `QuizBankTest.everyShippedQuestionIsVerified` — all 906 shipped questions: four options, every accepted answer reproduced by the engine, every distractor not reproducible, lesson/practice ids exist, ids unique, ≥150 in vowel/consonant/visarga, both directions in every category | pass |
+| Question bank | `QuizBankTest.everyShippedQuestionIsVerified` — all 1,519 shipped questions: four options; F/R: every accepted answer reproduced by the engine and every distractor not reproducible; NAME/SUTRA: exactly one named rule of the lesson applies, the accepted option is its name/sūtra, no distractor is an applied rule; EXAMPLE: every option re-derived from its documented pair, only the accepted one uses the lesson's rule; lesson/practice ids exist, ids unique, F+R ≥150 in vowel/consonant/visarga, both directions in every category | pass |
 | Question bank | `Build20Test.questionBankLoadsThroughAssets` — bank loads from the APK asset path | pass |
 | Bookmarks | `Build20Test.bookmarkToggleListAndRemove` — toggle in a lesson (three taps → on), no duplicate on repeated insert, My Bookmarks lists title + parent category, item opens the exact lesson, removal from the list, empty state | pass |
 | Database | `Build20Test.schemaMigrationKeepsBuild19Data` — a schema-1 database with lesson/bookmark/history rows upgraded through `Progress.upgrade`: rows intact, new tables present and empty | pass |
 | Regression: engine | `SandhiEngineTest` (51 tests), `CorpusTest`, `ProbeTest`, `AmbiguityDump` — unchanged results (corpus forward 264/281, reverse 64/81, identical to Build 19) | pass |
 | Regression: UI | `UiTest` (7 tests: menu order, category → lesson → practice → back, capsule rules, exit dialog, Sandhātrī run) | pass |
-| Regression: screens | `ScreenshotTest` (4 tests) renders splash, Home in three languages and dark theme, menu, lesson pages in sa/kn/en, practice, Sandhātrī, info pages, plus the new games/quiz/bookmarks screens (`31_games_sa`, `32_games_kn`, `33_quiz_sa`, `34_quiz_wrong_sa`, `35_quiz_wrong_en`, `36_bookmarks_sa`) | pass (visual) |
+| Regression: screens | `ScreenshotTest` (4 tests) renders splash, Home in three languages and dark theme, menu, lesson pages in sa/kn/en, practice, Sandhātrī, info pages, plus the new games/quiz/bookmarks screens (`31_games_sa`, `32_games_kn`, `33_quiz_sa`, `34_quiz_wrong_sa`, `35_quiz_wrong_en`, `36_bookmarks_sa`, `37_quiz_name_sa`, `38_quiz_sutra_sa`, `39_quiz_example_sa`) | pass (visual) |
 | Lexicon and content intact | `lexicon.db` in the APK is byte-identical to the source (md5 85eea63b…); content assets untouched (git) | pass |
 | Signing | `apksigner verify --print-certs`: signed with the upload key (CN=Dr. Diddigi Vamsi Krishna) | pass |
 

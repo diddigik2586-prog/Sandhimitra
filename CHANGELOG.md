@@ -3,7 +3,7 @@
 - Application name finalised: Sandhimitram (English/launcher), ಸಂಧಿಮಿತ್ರಂ (Kannada launcher), Sanskrit wordmark unchanged.
 - Home page fits the screen without scrolling; new Sandhicakram card (fixed Copper/Indigo, joystick icon, light sweep).
 - Sandhicakram: four category cards with progress; mixed forward/reverse quiz with four options, exact lesson/practice links on a wrong answer, vikalpa practice, full session persistence.
-- Question bank: 906 engine-verified questions from the lesson documents (vowel 362, consonant 350, visarga 168, prakṛtibhāva 26 — shortfall reported).
+- Question bank: 1,519 engine-verified questions from the lesson documents — forward/reverse 906 (vowel 362, consonant 350, visarga 168, prakṛtibhāva 26 — shortfall reported) plus identify-the-Sandhi, identify-the-sūtra and select-an-example formats (versionCode 21).
 - Bookmarks: lesson toggle, header icon, My Bookmarks page. Database schema 2 (additive migration).
 - See BUILD_20_CHANGELOG.md, BUILD_20_TEST_REPORT.md, SANDHICHAKRAM_QUESTION_AUDIT.md.
 ## 0.1 (build 19)

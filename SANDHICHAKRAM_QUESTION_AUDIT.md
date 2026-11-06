@@ -35,13 +35,48 @@ The regression test `QuizBankTest.everyShippedQuestionIsVerified` repeats checks
 
 ## 2. Verified question counts (actual, from the shipped bank)
 
-| Category | Forward (yojana) | Reverse (viccheda) | Total | Minimum required | Status |
+Required coverage (forward + reverse):
+
+| Category | Forward (yojana) | Reverse (viccheda) | F + R | Minimum required | Status |
 |---|---|---|---|---|---|
 | Vowel Sandhi | 181 | 181 | **362** | 150 | met |
 | Consonant Sandhi | 175 | 175 | **350** | 150 | met |
 | Visarga Sandhi | 84 | 84 | **168** | 150 | met |
 | Prakṛtibhāva | 13 | 13 | **26** | 150 | **shortfall of 124** |
 | **Total** | 453 | 453 | **906** | 600 | |
+
+Additional formats (section 5.3, optional; generated from the example rows only, never counted towards the minimum):
+
+| Category | Identify the Sandhi (NAME) | Identify the sūtra (SUTRA) | Select an example (EXAMPLE) | All formats total |
+|---|---|---|---|---|
+| Vowel Sandhi | 92 | 92 | 47 | **593** |
+| Consonant Sandhi | 100 | 100 | 52 | **602** |
+| Visarga Sandhi | 44 | 44 | 20 | **276** |
+| Prakṛtibhāva | 9 | 9 | 4 | **48** |
+| **Total** | 245 | 245 | 123 | **1519** |
+
+How the additional formats are verified:
+
+- **NAME** ("अत्र कः सन्धिः?" — the documented `L + R → form` is shown): the accepted name is the registry name of the rule
+  that the lesson teaches and that the engine actually applied in the derivation (exactly one such rule, otherwise the row is
+  skipped). Distractors are names of other registry rules that are **not** applied in the derivation, not from the same lesson,
+  and not sharing a sūtra with any applied rule — so no distractor can be a valid answer. The traditional name (e.g.
+  श्चुत्वम्, सवर्णदीर्घः) and the lesson title (e.g. श्चुत्वसन्धिः) denote the same Sandhi; the lesson title is shown in the
+  explanation.
+- **SUTRA** ("अत्र किं सूत्रं प्रवर्तते?"): the accepted option is the sūtra + Pāṇinian number of that same rule; generated only
+  for rules marked verified in the registry (sūtra wording and number present in the supplied source). Distractors are sūtras of
+  rules not applied in the derivation.
+- **EXAMPLE** ("अस्य सन्धेः उदाहरणं किम्?" with the Sandhi name as prompt): the accepted option is the row's documented form;
+  the three distractors are documented, engine-reproduced forms of other rows in whose derivation no rule of that lesson's
+  Sandhi occurs (`osrc` records the documented pair behind each option, and `QuizBankTest` re-derives every option).
+- Formats 5 and 6 of the specification (recognise the correct formation / separation) are the existing forward and reverse
+  questions.
+- 30 example rows yield no additional format (listed in `docs/quiz_bank_audit.txt`): their derivation uses no rule of their
+  own lesson (e.g. the "relations among rules" lessons t15/t29/t36, avagraha lesson t38, pararūpa rows derived through a
+  vārttika), or more than one named rule of the lesson applies, which would make "which Sandhi" ambiguous.
+
+Every question carries: `type`, `cat`, `rules` (registry ids), `lesson`, `practice`, `src` (document row) — the tags required
+by section 5.3.
 
 Vikalpa (more than one accepted answer): consonant 78, vowel 40, visarga 7, prakṛtibhāva 2.
 

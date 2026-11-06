@@ -109,15 +109,21 @@ class QuizSession(val cat: String, val seq: List<String>) {
             }
         } catch (e: Exception) { null }
 
-        /** A new mixed round: forward and reverse questions shuffled separately and interleaved so both directions alternate. */
+        /** A new mixed round: forward and reverse questions shuffled separately and interleaved so both directions alternate;
+         *  the additional formats (identify the Sandhi / the sūtra / select an example) are spread evenly between them. */
         fun fresh(cat: String, qs: List<QuizQuestion>, seed: Long = System.currentTimeMillis()): QuizSession {
             val rnd = java.util.Random(seed)
             val f = qs.filter { it.dir == "F" }.map { it.id }.shuffled(rnd); val r = qs.filter { it.dir == "R" }.map { it.id }.shuffled(rnd)
-            val seq = ArrayList<String>(); var i = 0; var j = 0; var takeF = rnd.nextBoolean()
+            val o = qs.filter { it.dir == "O" }.map { it.id }.shuffled(rnd)
+            val fr = ArrayList<String>(); var i = 0; var j = 0; var takeF = rnd.nextBoolean()
             while (i < f.size || j < r.size) {
-                if ((takeF && i < f.size) || j >= r.size) seq += f[i++] else seq += r[j++]
+                if ((takeF && i < f.size) || j >= r.size) fr += f[i++] else fr += r[j++]
                 takeF = !takeF
             }
+            if (o.isEmpty()) return QuizSession(cat, fr)
+            val seq = ArrayList<String>(); val step = maxOf(1, fr.size / (o.size + 1)); var k = 0
+            fr.forEachIndexed { idx, id -> seq += id; if ((idx + 1) % step == 0 && k < o.size) seq += o[k++] }
+            while (k < o.size) seq += o[k++]
             return QuizSession(cat, seq)
         }
     }
@@ -169,8 +175,8 @@ fun QuizScreen(app: SandhimitraApp, cat: String, onMenu: () -> Unit, onBack: () 
         LinearProgressIndicator(progress = { session.pos.toFloat() / session.seq.size }, modifier = Modifier.fillMaxWidth().height(5.dp).clip(RoundedCornerShape(3.dp)).padding(bottom = 0.dp), color = t.primary, trackColor = t.outline)
         Spacer(Modifier.height(12.dp))
         CardBox(Modifier.fillMaxWidth().testTag("quiz_prompt")) {
-            Sx(tr(if (q.dir == "F") "q_join" else "q_split"), size = 13.sp, color = t.accent, weight = FontWeight.SemiBold)
-            Sx(Script.render(q.prompt, lang), size = 24.sp, weight = FontWeight.SemiBold, color = t.primary, lineHeight = 34.sp)
+            Sx(tr(when (q.type) { "F" -> "q_join"; "R" -> "q_split"; "NAME" -> "q_name"; "SUTRA" -> "q_sutra"; else -> "q_example" }), size = 13.sp, color = t.accent, weight = FontWeight.SemiBold)
+            Sx(Script.render(q.prompt, lang), size = if (q.type == "F" || q.type == "R") 24.sp else 21.sp, weight = FontWeight.SemiBold, color = t.primary, lineHeight = 32.sp)
             if (q.vikalpa) Sx(tr("optional_form"), size = 12.sp, color = t.muted, italic = true)
         }
         Spacer(Modifier.height(12.dp))

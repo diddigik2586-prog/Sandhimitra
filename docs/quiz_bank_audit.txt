@@ -1,8 +1,39 @@
 rows considered: 493
-consonant: forward=175 reverse=175 total=350
-prakriti: forward=13 reverse=13 total=26
-visarga: forward=84 reverse=84 total=168
-vowel: forward=181 reverse=181 total=362
+consonant: forward=175 reverse=175 name=100 sutra=100 example=52 total=602
+prakriti: forward=13 reverse=13 name=9 sutra=9 example=4 total=48
+visarga: forward=84 reverse=84 name=44 sutra=44 example=20 total=276
+vowel: forward=181 reverse=181 name=92 sutra=92 example=47 total=593
+additional formats not generated (30):
+  t14 ex row 5: no rule of lesson t14 applies
+  t14 ex row 6: no rule of lesson t14 applies
+  t14 ex row 7: no rule of lesson t14 applies
+  t14 ex row 8: no rule of lesson t14 applies
+  t15 ex row 1: no rule of lesson t15 applies
+  t15 ex row 2: no rule of lesson t15 applies
+  t38 ex row 1: no rule of lesson t38 applies
+  t38 ex row 2: no rule of lesson t38 applies
+  t38 ex row 3: no rule of lesson t38 applies
+  t38 ex row 4: no rule of lesson t38 applies
+  t38 ex row 5: no rule of lesson t38 applies
+  t38 ex row 6: no rule of lesson t38 applies
+  t38 ex row 7: no rule of lesson t38 applies
+  t38 ex row 8: no rule of lesson t38 applies
+  t17 ex row 1: no rule of lesson t17 applies
+  t23 ex row 6: no rule of lesson t23 applies
+  t28 ex row 7: no rule of lesson t28 applies
+  t28 ex row 8: no rule of lesson t28 applies
+  t30 ex row 8: more than one named rule of the lesson applies
+  t31 ex row 3: more than one named rule of the lesson applies
+  t31 ex row 7: no rule of lesson t31 applies
+  t31 ex row 8: no rule of lesson t31 applies
+  t36 ex row 1: no rule of lesson t36 applies
+  t36 ex row 2: no rule of lesson t36 applies
+  t36 ex row 3: no rule of lesson t36 applies
+  t36 ex row 4: no rule of lesson t36 applies
+  t36 ex row 5: no rule of lesson t36 applies
+  t36 ex row 6: no rule of lesson t36 applies
+  t36 ex row 7: no rule of lesson t36 applies
+  t36 ex row 8: no rule of lesson t36 applies
 partially offered (16):
   t38 ex row 5: documented alternative नाऽस्ति is outside the engine (not offered, never a distractor); offered: नास्ति
   t38 ex row 6: documented alternative नाऽऽस्ते is outside the engine (not offered, never a distractor); offered: नास्ते

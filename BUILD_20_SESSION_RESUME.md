@@ -2,9 +2,9 @@
 
 ## Project status
 
-Build 20 (versionName 0.1, versionCode 20) adds the Sandhicakram game, the question bank, bookmarks, the localized application
+Build 20 (versionName 0.1, versionCode 21 — second revision with the additional question formats) adds the Sandhicakram game, the question bank, bookmarks, the localized application
 name and the no-scroll Home page on top of Build 19. Engine, lexicon, lesson content, fonts and the info pages are unchanged.
-Deliverables: `dist/Sandhimitra-0.1-build20.apk` (signed with the upload key) and `dist/Sandhimitra-source-0.1-build20.zip`.
+Deliverables: `dist/Sandhimitra-0.1-build21.apk` (versionCode 21, signed with the upload key) and `dist/Sandhimitra-source-0.1-build21.zip`.
 
 ## Architecture (where things live)
 
@@ -36,7 +36,7 @@ answer alternatives = option indices stored per question id; bookmarks keyed by 
 2. Home page without scrolling; Sandhicakram card (fixed Copper/Indigo, joystick before title, centred, shimmer, reduced-motion aware).
 3. Sandhicakram landing (2 × 2 squares with progress) and the mixed quiz (four options, auto-advance, wrong-answer links to the
    exact lesson and practice, vikalpa sequence, full persistence and restore).
-4. Question bank: 906 engine-verified questions (vowel 362, consonant 350, visarga 168, prakṛtibhāva 26), audit in
+4. Question bank: 1,519 engine-verified questions — 906 forward/reverse (vowel 362, consonant 350, visarga 168, prakṛtibhāva 26) plus 613 in the additional formats (identify the Sandhi, identify the sūtra, select an example), audit in
    `SANDHICHAKRAM_QUESTION_AUDIT.md` and `docs/quiz_bank_audit.txt`.
 5. Bookmarks: lesson toggle, header icon, My Bookmarks page, persistence without duplicates.
 6. Schema migration 1 → 2 with a test proving Build 19 rows survive.
@@ -69,5 +69,5 @@ answer alternatives = option indices stored per question id; bookmarks keyed by 
 ```
 ROBOLECTRIC_DEPS_DIR=/path/to/android-all-jars ./gradlew :app:testDebugUnitTest     # full suite (needs offline Robolectric jars when Maven is unreachable)
 ./gradlew :app:assembleRelease                                                      # signed APK
-git archive --format=zip -o dist/Sandhimitra-source-0.1-build20.zip HEAD -- . ':(exclude)dist'
+git archive --format=zip -o dist/Sandhimitra-source-0.1-build21.zip HEAD -- . ':(exclude)dist'
 ```

@@ -19,6 +19,7 @@ import java.io.File
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35])
 class QuizBankBuild {
+    private data class Admitted(val row: Row, val cat: String, val lesson: String, val practice: String, val form: String, val rules: List<String>, val exSa: String, val exKn: String, val exEn: String, val src: String)
     private data class Row(val topic: String, val group: String, val table: String, val row: Int, val left: String, val right: String, val form: String,
                            val exSa: String, val exKn: String)
 
@@ -85,7 +86,8 @@ class QuizBankBuild {
         if (System.getenv("QUIZ_BUILD") != "1") { println("QUIZBANK skipped (set QUIZ_BUILD=1)"); return }
         SandhiEngineTest.setup(); val e = SandhiEngineTest.engine
         val qs = JSONArray(); val audit = StringBuilder(); val counts = HashMap<String, IntArray>()
-        val excluded = mutableListOf<String>(); val partial = mutableListOf<String>()
+        val excluded = mutableListOf<String>(); val partial = mutableListOf<String>(); val extraSkipped = mutableListOf<String>()
+        val admitted = mutableListOf<Admitted>()
         val seenForms = HashMap<String, MutableSet<String>>()   // form -> accepted "L+R" (for reverse alternatives from other rows)
         val all = rows()
         // reverse alternatives come only from rows whose analysis the engine reproduces (a documented pair the engine rejects is never an answer)
@@ -137,31 +139,70 @@ class QuizBankBuild {
             if (fDis.size < 3) excluded += "$src (F): only ${fDis.size} safe distractors"
             else { val opts = (acceptedF.take(2) + fDis.take(4 - minOf(2, acceptedF.size))).shuffled(java.util.Random(src.hashCode().toLong()))
                 qs.put(q("${r.topic}-${r.table}${r.row}-F", cat, "F", lesson, practice, "${r.left} + ${r.right}", opts, opts.indices.filter { opts[it] in acceptedF }, exSa, exKn, exEn, ruleIds, src))
-                counts.getOrPut(cat) { IntArray(2) }[0]++ }
+                counts.getOrPut(cat) { IntArray(5) }[0]++ }
             // ---- reverse question
             val acceptedR = seenForms.getValue(ns(reproduced[0])).map { it.replace("+", " + ") }
             val rDis = reverseDistractors(e, L, R, F, acceptedR.map { ns(Script.toSlp1(it.replace(" + ", "+"))) }.toSet(), r.group == "prakriti")
             if (rDis.size < 3) excluded += "$src (R): only ${rDis.size} safe distractors"
             else { val opts = (acceptedR.take(2) + rDis.take(4 - minOf(2, acceptedR.size))).shuffled(java.util.Random(src.hashCode().toLong() + 1))
                 qs.put(q("${r.topic}-${r.table}${r.row}-R", cat, "R", lesson, practice, reproduced[0], opts, opts.indices.filter { opts[it] in acceptedR }, exSa, exKn, exEn, ruleIds, src))
-                counts.getOrPut(cat) { IntArray(2) }[1]++ }
+                counts.getOrPut(cat) { IntArray(5) }[1]++ }
+            admitted += Admitted(r, cat, lesson, practice, reproduced[0], ruleIds, exSa, exKn, exEn, src)
+        }
+        // ---- additional formats (example rows only): identify the Sandhi (NAME), identify the sūtra (SUTRA), select an example (EXAMPLE)
+        val named = Rules.all.filter { it.id != "C14" }    // C14 (ṇatva) is subset-implemented and never asked for
+        for (a in admitted) {
+            if (a.row.table != "ex") continue
+            val applied = a.rules.mapNotNull { Rules.find(it) }
+            val target = applied.filter { it.topic == a.lesson }.distinctBy { it.name }
+            if (target.size != 1) { extraSkipped += "${a.src}: ${if (target.isEmpty()) "no rule of lesson ${a.lesson} applies" else "more than one named rule of the lesson applies"}"; continue }
+            val t0 = target[0]
+            val appliedNames = applied.map { it.name }.toSet(); val appliedTopics = applied.map { it.topic }.toSet(); val appliedSutras = applied.map { it.sutraDeva }.toSet()
+            val rnd = java.util.Random(a.src.hashCode().toLong() + 7)
+            fun pool(same: Boolean) = named.filter { it.name !in appliedNames && it.topic !in appliedTopics && it.sutraDeva !in appliedSutras && (it.category == t0.category) == same }.distinctBy { it.name }.distinctBy { it.sutraDeva }.shuffled(rnd)
+            val dRules = (pool(true) + pool(false)).take(3)
+            val shown = "${a.row.left} + ${a.row.right} → ${a.form}"
+            val exRule = "${t0.name} — ${t0.sutraDeva} (${t0.ref})"
+            if (dRules.size == 3) {
+                val opts = (listOf(t0.name) + dRules.map { it.name }).shuffled(rnd)
+                qs.put(q("${a.row.topic}-${a.row.table}${a.row.row}-N", a.cat, "O", a.lesson, a.practice, shown, opts, listOf(opts.indexOf(t0.name)), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src).put("type", "NAME"))
+                counts.getOrPut(a.cat) { IntArray(5) }[2]++
+                if (t0.verified) {
+                    val sopts = (listOf(t0) + dRules).map { "${it.sutraDeva} (${it.ref})" }.shuffled(rnd)
+                    qs.put(q("${a.row.topic}-${a.row.table}${a.row.row}-S", a.cat, "O", a.lesson, a.practice, shown, sopts, listOf(sopts.indexOf("${t0.sutraDeva} (${t0.ref})")), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src).put("type", "SUTRA"))
+                    counts.getOrPut(a.cat) { IntArray(5) }[3]++
+                }
+            } else extraSkipped += "${a.src}: fewer than three other Sandhi names available"
+            if (a.row.row % 2 == 1) {
+                // forms of other admitted rows in which no rule of this lesson's Sandhi operates
+                val others = admitted.filter { o -> o !== a && o.form != a.form && o.rules.none { Rules.find(it)?.topic == t0.topic } && Rules.find(o.rules.firstOrNull())?.name != t0.name }
+                    .distinctBy { it.form }.shuffled(rnd).take(3)
+                if (others.size == 3) {
+                    val items = (listOf(a) + others).shuffled(rnd)
+                    val opts = items.map { it.form }
+                    qs.put(q("${a.row.topic}-${a.row.table}${a.row.row}-E", a.cat, "O", a.lesson, a.practice, t0.name, opts, listOf(items.indexOf(a)), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src)
+                        .put("type", "EXAMPLE").put("osrc", JSONArray(items.map { "${it.row.left} + ${it.row.right}" })))
+                    counts.getOrPut(a.cat) { IntArray(5) }[4]++
+                }
+            }
         }
         File("build/quiz").mkdirs()
         val meta = JSONObject().put("built_from", "example (ex) and exercise (pr) rows of the supplied documents; verified by the Sandhātrī engine").put("rows_considered", all.size)
-        counts.forEach { (c, n) -> meta.put("count_$c", JSONObject().put("forward", n[0]).put("reverse", n[1]).put("total", n[0] + n[1])) }
+        counts.forEach { (c, n) -> meta.put("count_$c", JSONObject().put("forward", n[0]).put("reverse", n[1]).put("name", n[2]).put("sutra", n[3]).put("example", n[4]).put("total", n.sum())) }
         File("build/quiz/questions.json").writeText(JSONObject().put("meta", meta).put("questions", qs).toString(1))
         audit.append("rows considered: ${all.size}\n")
-        counts.toSortedMap().forEach { (c, n) -> audit.append("$c: forward=${n[0]} reverse=${n[1]} total=${n[0] + n[1]}\n") }
+        counts.toSortedMap().forEach { (c, n) -> audit.append("$c: forward=${n[0]} reverse=${n[1]} name=${n[2]} sutra=${n[3]} example=${n[4]} total=${n.sum()}\n") }
+        audit.append("additional formats not generated (${extraSkipped.size}):\n"); extraSkipped.forEach { audit.append("  $it\n") }
         audit.append("partially offered (${partial.size}):\n"); partial.forEach { audit.append("  $it\n") }
         audit.append("excluded (${excluded.size}):\n"); excluded.forEach { audit.append("  $it\n") }
         File("build/quiz/audit.txt").writeText(audit.toString())
-        println("QUIZBANK " + counts.map { "${it.key}=${it.value[0]}+${it.value[1]}" })
+        println("QUIZBANK " + counts.map { "${it.key}=${it.value.toList()}" })
     }
 
     private fun q(id: String, cat: String, dir: String, lesson: String, practice: String, prompt: String, opts: List<String>, answers: List<Int>,
                   exSa: String, exKn: String, exEn: String, rules: List<String>, src: String) = JSONObject()
         .put("id", id).put("cat", cat).put("dir", dir).put("lesson", lesson).put("practice", practice).put("prompt", prompt)
-        .put("options", JSONArray(opts)).put("answers", JSONArray(answers)).put("ex_sa", exSa).put("ex_kn", exKn).put("ex_en", exEn).put("rules", JSONArray(rules)).put("src", src)
+        .put("options", JSONArray(opts)).put("answers", JSONArray(answers)).put("ex_sa", exSa).put("ex_kn", exKn).put("ex_en", exEn).put("rules", JSONArray(rules)).put("src", src).put("type", dir)
 
     /** Wrong joined forms: the plain concatenation and single-sound mutations at the junction, none reproducible by the engine. */
     private fun forwardDistractors(L: String, R: String, F: String, surfaces: List<String>, accepted: Set<String>, plainSurfaces: List<String>): List<String> {
