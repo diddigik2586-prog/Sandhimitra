@@ -103,12 +103,12 @@ class SandhiEngineTest {
     @Test fun bestAnalysisFirst() {
         val cases = mapOf("संहितापाठः" to "संहिता+पाठः", "हिमालयः" to "हिम+आलयः", "देवालयः" to "देव+आलयः", "विद्यालयः" to "विद्या+आलयः", "मनोरथः" to "मनः+रथः",
             "गणेशः" to "गण+ईशः", "अत्रैव" to "अत्र+एव", "तपोवनम्" to "तपः+वनम्", "स्वागतम्" to "सु+आगतम्", "परोपकारः" to "पर+उपकारः", "सप्तर्षयः" to "सप्त+ऋषयः",
-            "महर्षिः" to "महा+ऋषिः", "सदैव" to "सदा+एव", "सच्चित्" to "सत्+चित्", "वागीशः" to "वाक्+ईशः", "उत्पन्नः" to "उद्+पन्नः", "अन्तःकरणम्" to "अन्तः+करणम्", "आत्मावलोकनम्" to "आत्मा+अवलोकनम्")
+            "महर्षिः" to "महा+ऋषिः", "सदैव" to "सदा+एव", "सच्चित्" to "सत्+चित्", "वागीशः" to "वाक्+ईशः", "उत्पन्नः" to "उद्+पन्नः", "अन्तःकरणम्" to "अन्तः+करणम्", "आत्मावलोकनम्" to "आत्म+अवलोकनम्", "कर्मानुसारः" to "कर्म+अनुसारः")
         for ((w, want) in cases) { val a = splits(w).analyses.firstOrNull(); assertEquals(w, want, a?.let { d(it.left) + "+" + d(it.right) }) }
         assertTrue(splits("बुद्धिः").analyses.isEmpty()); assertTrue(splits("गङ्गा").analyses.none { d(it.left) == "गम्" })
     }
     @Test fun vowelLengthAmbiguity() {
-        assertEquals(listOf("आत्मा+अवलोकनम्"), splits("आत्मावलोकनम्").analyses.map { d(it.left) + "+" + d(it.right) })
+        assertEquals(listOf("आत्म+अवलोकनम्"), splits("आत्मावलोकनम्").analyses.map { d(it.left) + "+" + d(it.right) })
         assertTrue(hasSplit("देवालयः", "देव", "आलयः")); assertFalse(hasSplit("देवालयः", "देवा", "आलयः"))
         assertTrue(hasSplit("विद्यालयः", "विद्या", "आलयः")); assertFalse(hasSplit("विद्यालयः", "विद्य", "आलयः"))
     }

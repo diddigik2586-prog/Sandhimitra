@@ -1,4 +1,6 @@
 # Changelog
+## 1.1.2
+- Compound first members in their stem form after न-लोप (8.2.7) are preferred: आत्मावलोकनम् → आत्म + अवलोकनम्, कर्मानुसारः → कर्म + अनुसारः (52 such stems: आत्म, कर्म, नाम …). Visarga-sandhi spellings such as मनो, तपो remain non-words (मनः + रथः).
 ## 1.1.1
 - Sandhi Viccheda: the best analysis is shown first; other possible readings are under a collapsed "Other possible analyses".
 - Compound-only dictionary forms (आत्म, मनो, तपो …: "in comp. for …" in Monier-Williams) no longer count as words: आत्मावलोकनम् → आत्मा + अवलोकनम्, मनोरथः → मनः + रथः.
