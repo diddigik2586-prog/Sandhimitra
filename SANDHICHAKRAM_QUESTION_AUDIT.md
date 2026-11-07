@@ -41,21 +41,21 @@ Required coverage (forward + reverse):
 
 | Category | Forward (yojana) | Reverse (viccheda) | F + R | Minimum required | Status |
 |---|---|---|---|---|---|
-| Vowel Sandhi | 181 | 181 | **362** | 150 | met |
-| Consonant Sandhi | 175 | 175 | **350** | 150 | met |
-| Visarga Sandhi | 84 | 84 | **168** | 150 | met |
+| Vowel Sandhi | 148 | 151 | **299** | 150 | met |
+| Consonant Sandhi | 160 | 159 | **319** | 150 | met |
+| Visarga Sandhi | 82 | 82 | **164** | 150 | met |
 | Prakṛtibhāva | 13 | 13 | **26** | 150 | **shortfall of 124** |
-| **Total** | 453 | 453 | **906** | 600 | |
+| **Total** | 403 | 405 | **808** | 600 | |
 
 Additional formats (section 5.3, optional; generated from the example rows only, never counted towards the minimum):
 
 | Category | Identify the Sandhi (NAME) | Identify the sūtra (SUTRA) | Select an example (EXAMPLE) | All formats total |
 |---|---|---|---|---|
-| Vowel Sandhi | 92 | 92 | 47 | **593** |
-| Consonant Sandhi | 100 | 100 | 52 | **602** |
-| Visarga Sandhi | 44 | 44 | 20 | **276** |
+| Vowel Sandhi | 81 | 81 | 45 | **506** |
+| Consonant Sandhi | 94 | 94 | 48 | **555** |
+| Visarga Sandhi | 43 | 43 | 19 | **269** |
 | Prakṛtibhāva | 9 | 9 | 4 | **48** |
-| **Total** | 245 | 245 | 123 | **1519** |
+| **Total** | 227 | 227 | 116 | **1378** |
 
 How the additional formats are verified:
 
@@ -76,6 +76,12 @@ How the additional formats are verified:
 - 30 example rows yield no additional format (listed in `docs/quiz_bank_audit.txt`): their derivation uses no rule of their
   own lesson (e.g. the "relations among rules" lessons t15/t29/t36, avagraha lesson t38, pararūpa rows derived through a
   vārttika), or more than one named rule of the lesson applies, which would make "which Sandhi" ambiguous.
+
+**Duplicates removed.** The same example is often printed in more than one lesson (देव + इन्द्रः appears in the guṇa lesson, the
+introduction and a practice set). One question is kept per (format, prompt, accepted answers) across the whole bank; the copy kept
+is the one whose category is that of the first rule applied (प्रथमोऽध्यायः is kept as a visarga example), otherwise the rule
+lesson's copy. 141 duplicate questions were removed (listed in `docs/quiz_bank_audit.txt`); `QuizBankTest` fails if any
+duplicate question or any repeated option within a question ever reappears.
 
 Every question carries: `type`, `cat`, `rules` (registry ids), `lesson`, `practice`, `src` (document row) — the tags required
 by section 5.3.

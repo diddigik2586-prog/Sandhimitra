@@ -144,6 +144,8 @@ object S {
         "read_lesson" to Triple("पाठं पठत", "ಪಾಠ ಓದಿ", "Read the Lesson"),
         "view_practice" to Triple("अभ्यासं पश्यत", "ಅಭ್ಯಾಸ ನೋಡಿ", "View the Practice"),
         "next_q" to Triple("अग्रिमः प्रश्नः", "ಮುಂದಿನ ಪ್ರಶ್ನೆ", "Next question"),
+        "prev_q" to Triple("पूर्वः प्रश्नः", "ಹಿಂದಿನ ಪ್ರಶ್ನೆ", "Previous question"),
+        "reviewed" to Triple("पूर्वम् उत्तरितम्", "ಈಗಾಗಲೇ ಉತ್ತರಿಸಲಾಗಿದೆ", "Already answered"),
         "right_answer" to Triple("समीचीनम् उत्तरम्", "ಸರಿಯಾದ ಉತ್ತರ", "Correct answer"),
         "explanation" to Triple("विवरणम्", "ವಿವರಣೆ", "Explanation"),
         "quiz_done" to Triple("क्रीडा समाप्ता!", "ಆಟ ಮುಗಿಯಿತು!", "Round complete!"),

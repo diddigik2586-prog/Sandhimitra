@@ -27,6 +27,10 @@ class QuizBankTest {
         val idx = JSONObject(File("src/main/assets/content/index.json").readText()).getJSONObject("groups")
         val topicIds = idx.keys().asSequence().flatMap { g -> val a = idx.getJSONArray(g); (0 until a.length()).map { a.getJSONObject(it).getString("id") }.asSequence() }.toSet()
         assertEquals("duplicate ids", qs.size, qs.map { it.id }.toSet().size)
+        // no two questions ask the same thing: (format, prompt, accepted answers) is unique across the whole bank
+        val keys = qs.map { q -> q.type + "|" + ns(q.prompt) + "|" + q.answers.map { ns(q.options[it]) }.sorted().joinToString(",") }
+        assertEquals("duplicate questions: " + keys.groupBy { it }.filter { it.value.size > 1 }.keys.take(5), keys.size, keys.toSet().size)
+        qs.forEach { q -> assertEquals("${q.id} repeated option", 4, q.options.map { ns(it) }.toSet().size) }
         val counts = HashMap<String, IntArray>()
         for (q in qs) {
             assertEquals(q.id, 4, q.options.size)

@@ -1,8 +1,8 @@
 rows considered: 493
-consonant: forward=175 reverse=175 name=100 sutra=100 example=52 total=602
+consonant: forward=160 reverse=159 name=94 sutra=94 example=48 total=555
 prakriti: forward=13 reverse=13 name=9 sutra=9 example=4 total=48
-visarga: forward=84 reverse=84 name=44 sutra=44 example=20 total=276
-vowel: forward=181 reverse=181 name=92 sutra=92 example=47 total=593
+visarga: forward=82 reverse=82 name=43 sutra=43 example=19 total=269
+vowel: forward=148 reverse=151 name=81 sutra=81 example=45 total=506
 additional formats not generated (30):
   t14 ex row 5: no rule of lesson t14 applies
   t14 ex row 6: no rule of lesson t14 applies
@@ -34,6 +34,148 @@ additional formats not generated (30):
   t36 ex row 6: no rule of lesson t36 applies
   t36 ex row 7: no rule of lesson t36 applies
   t36 ex row 8: no rule of lesson t36 applies
+duplicates removed (141):
+  t15-ex2-F duplicate of t10-ex2-F
+  t15-ex2-R duplicate of t10-ex2-R
+  t15-pr4-F duplicate of t09-pr6-F
+  t15-pr4-R duplicate of t09-pr6-R
+  t15-pr5-F duplicate of t14-ex5-F
+  t15-pr5-R duplicate of t14-ex5-R
+  t38-pr2-F replaced by t32-ex3-F
+  t38-pr2-R replaced by t32-ex3-R
+  t17-ex1-R replaced by t34-ex6-R
+  t00-ex5-F duplicate of t21-ex4-F
+  t00-ex5-R duplicate of t21-ex4-R
+  t00-pr6-F duplicate of t09-ex3-F
+  t00-pr6-R duplicate of t09-ex3-R
+  t01-ex1-F duplicate of t11-ex1-F
+  t01-ex1-R duplicate of t11-ex1-R
+  t01-ex2-F duplicate of t12-ex5-F
+  t01-ex2-R duplicate of t12-ex5-R
+  t01-ex3-F duplicate of t24-ex1-F
+  t01-ex3-R duplicate of t24-ex1-R
+  t01-ex4-F duplicate of t25-ex1-F
+  t01-ex4-R duplicate of t25-ex1-R
+  t01-pr1-F duplicate of t24-ex4-F
+  t01-pr1-R duplicate of t24-ex4-R
+  t01-pr2-F duplicate of t08-ex5-F
+  t01-pr2-R duplicate of t08-ex5-R
+  t01-pr3-F duplicate of t12-ex6-F
+  t02-ex2-F duplicate of t00-pr3-F
+  t02-ex2-R duplicate of t00-pr3-R
+  t02-ex5-F duplicate of t10-ex2-F
+  t02-ex5-R duplicate of t10-ex2-R
+  t02-pr2-F duplicate of t11-ex4-F
+  t02-pr2-R duplicate of t11-ex4-R
+  t02-pr4-F duplicate of t09-ex1-F
+  t02-pr4-R duplicate of t09-ex1-R
+  t02-pr5-F duplicate of t11-ex6-F
+  t02-pr5-R duplicate of t11-ex6-R
+  t02-pr6-F duplicate of t10-ex7-F
+  t02-pr6-R duplicate of t10-ex7-R
+  t03-ex1-F duplicate of t12-pr1-F
+  t03-ex1-R duplicate of t12-pr1-R
+  t03-pr1-F duplicate of t12-ex3-F
+  t03-pr1-R duplicate of t12-ex3-R
+  t03-pr2-F duplicate of t11-pr4-F
+  t03-pr2-R duplicate of t11-pr4-R
+  t03-pr3-F duplicate of t09-ex1-F
+  t03-pr3-R duplicate of t09-ex1-R
+  t06-ex1-F duplicate of t38-ex2-F
+  t06-ex1-R duplicate of t38-ex2-R
+  t06-ex2-F duplicate of t12-ex3-F
+  t06-ex2-R duplicate of t12-ex3-R
+  t06-ex3-F duplicate of t02-pr3-F
+  t06-ex3-R duplicate of t02-pr3-R
+  t06-ex5-F duplicate of t28-ex1-F
+  t06-ex5-R duplicate of t28-ex1-R
+  t06-pr2-F duplicate of t12-ex4-F
+  t06-pr2-R duplicate of t12-ex4-R
+  t07-ex1-F duplicate of t15-ex1-F
+  t07-ex1-R duplicate of t15-ex1-R
+  t07-ex2-F duplicate of t10-ex2-F
+  t07-ex2-R duplicate of t10-ex2-R
+  t07-ex3-F duplicate of t17-ex4-F
+  t07-ex3-R duplicate of t17-ex4-R
+  t07-ex5-F duplicate of t32-ex5-F
+  t07-ex5-R duplicate of t32-ex5-R
+  t07-ex6-F duplicate of t34-ex6-F
+  t07-ex6-R duplicate of t34-ex6-R
+  t40-ex1-F duplicate of t00-pr1-F
+  t40-ex1-R duplicate of t00-pr1-R
+  t40-ex2-F duplicate of t09-ex5-F
+  t40-ex2-R duplicate of t09-ex5-R
+  t40-ex3-F duplicate of t10-ex5-F
+  t40-ex3-R duplicate of t10-ex5-R
+  t40-ex4-F duplicate of t03-ex4-F
+  t40-ex4-R duplicate of t03-ex4-R
+  t40-ex6-F duplicate of t23-pr2-F
+  t40-ex6-R duplicate of t23-pr2-R
+  t40-ex7-F duplicate of t25-ex1-F
+  t40-ex7-R duplicate of t25-ex1-R
+  t41-ex3-F duplicate of t09-ex4-F
+  t41-ex3-R duplicate of t09-ex4-R
+  t41-ex4-F duplicate of t11-ex3-F
+  t41-ex4-R duplicate of t11-ex3-R
+  t41-ex5-F duplicate of t39-pr3-F
+  t41-ex6-F duplicate of t19-pr2-F
+  t41-ex6-R duplicate of t19-pr2-R
+  t41-ex7-F duplicate of t26-pr3-F
+  t41-ex7-R duplicate of t26-pr3-R
+  t41-pr3-F duplicate of t39-ex5-F
+  t41-pr4-F duplicate of t26-pr5-F
+  t41-pr4-R duplicate of t26-pr5-R
+  t41-pr5-F duplicate of t23-pr3-F
+  t41-pr5-R duplicate of t23-pr3-R
+  t42-ex3-F duplicate of t09-ex6-F
+  t42-ex3-R duplicate of t09-ex6-R
+  t42-ex5-F duplicate of t19-ex3-F
+  t42-ex5-R duplicate of t19-ex3-R
+  t42-ex6-F duplicate of t07-ex4-F
+  t42-ex6-R duplicate of t07-ex4-R
+  t01-ex1-N duplicate of t11-ex1-N
+  t01-ex1-S duplicate of t11-ex1-S
+  t01-ex1-E duplicate of t11-ex1-E
+  t01-ex2-N duplicate of t12-ex5-N
+  t01-ex2-S duplicate of t12-ex5-S
+  t01-ex3-N duplicate of t24-ex1-N
+  t01-ex3-S duplicate of t24-ex1-S
+  t01-ex3-E duplicate of t24-ex1-E
+  t01-ex4-N duplicate of t25-ex1-N
+  t01-ex4-S duplicate of t25-ex1-S
+  t02-ex5-N duplicate of t10-ex2-N
+  t02-ex5-S duplicate of t10-ex2-S
+  t06-ex2-N duplicate of t12-ex3-N
+  t06-ex2-S duplicate of t12-ex3-S
+  t06-ex5-N duplicate of t28-ex1-N
+  t06-ex5-S duplicate of t28-ex1-S
+  t06-ex5-E duplicate of t28-ex1-E
+  t07-ex2-N duplicate of t10-ex2-N
+  t07-ex2-S duplicate of t10-ex2-S
+  t07-ex5-N duplicate of t32-ex5-N
+  t07-ex5-S duplicate of t32-ex5-S
+  t07-ex5-E duplicate of t32-ex5-E
+  t40-ex2-N duplicate of t09-ex5-N
+  t40-ex2-S duplicate of t09-ex5-S
+  t40-ex3-N duplicate of t10-ex5-N
+  t40-ex3-S duplicate of t10-ex5-S
+  t40-ex3-E duplicate of t10-ex5-E
+  t40-ex4-N duplicate of t03-ex4-N
+  t40-ex4-S duplicate of t03-ex4-S
+  t40-ex7-N duplicate of t25-ex1-N
+  t40-ex7-S duplicate of t25-ex1-S
+  t40-ex7-E duplicate of t25-ex1-E
+  t41-ex3-N duplicate of t09-ex4-N
+  t41-ex3-S duplicate of t09-ex4-S
+  t41-ex4-N duplicate of t11-ex3-N
+  t41-ex4-S duplicate of t11-ex3-S
+  t42-ex3-N duplicate of t09-ex6-N
+  t42-ex3-S duplicate of t09-ex6-S
+  t42-ex5-N duplicate of t19-ex3-N
+  t42-ex5-S duplicate of t19-ex3-S
+  t42-ex5-E duplicate of t19-ex3-E
+  t42-ex6-N duplicate of t07-ex4-N
+  t42-ex6-S duplicate of t07-ex4-S
 partially offered (16):
   t38 ex row 5: documented alternative नाऽस्ति is outside the engine (not offered, never a distractor); offered: नास्ति
   t38 ex row 6: documented alternative नाऽऽस्ते is outside the engine (not offered, never a distractor); offered: नास्ते

@@ -1,6 +1,6 @@
 # Sandhimitram — Build 20 Changelog
 
-Baseline: Build 19 (versionName 0.1, versionCode 19). This build: **versionName 0.1, versionCode 23** (Build 20, second
+Baseline: Build 19 (versionName 0.1, versionCode 19). This build: **versionName 0.1, versionCode 24** (Build 20, second
 revision: versionCode 20 was the first Build 20 delivery, before the additional question formats), applicationId unchanged
 (`org.sandhimitra.app`). Incremental upgrade: no screen, engine rule, lesson text, font or asset of Build 19 was removed or rewritten.
 
@@ -37,10 +37,9 @@ revision: versionCode 20 was the first Build 20 delivery, before the additional 
 - `GamesScreen`: exactly four square category cards in a 2 × 2 grid sized to the viewport (no scrolling), each with the category
   name, completed / total verified questions, and a progress bar in a theme-oriented accent.
 - `QuizScreen`: a category opens its **mixed quiz directly** — forward (yojana) and reverse (viccheda) questions shuffled
-  separately and interleaved so the two kinds alternate. Four options per question; correct → "Correct!" and automatic advance
-  (0.9 s); wrong → "Wrong Answer", the correct answer, the explanation (स्थानी-निमित्त-विधेय note of the document plus the sūtra
+  separately and interleaved so the two kinds alternate. Four options per question; correct → "Correct!" with the explanation and a **Next question** button; wrong → "Wrong Answer", the correct answer, the explanation (स्थानी-निमित्त-विधेय note of the document plus the sūtra
   and reference from the rule registry), and the two learning links **Read the Lesson** / **View the Practice** that open the
-  exact lesson/practice of the question's lesson id; then "Next question". Options lock after one answer (no double submission).
+  exact lesson/practice of the question's lesson id; then "Next question". Options lock after one answer (no double submission). A **Previous question** button re-opens earlier questions of the round read-only (recorded answer, verdict and explanation shown, options disabled), and Next returns to the current question.
 - Vikalpa questions (more than one verified valid form): the first valid choice is Correct; the same question is presented again
   for the other form; choosing the same form again shows "Wrong — Try Again (choose the other valid form)"; the other valid form
   is Correct; then the next question. The practised alternatives are persisted per question.
@@ -50,9 +49,9 @@ revision: versionCode 20 was the first Build 20 delivery, before the additional 
   wrong answer, the same wrong-answer view with its links. Completed questions are kept in `quiz_done` (primary key prevents
   duplicates) and feed the landing-page progress. "Play again" starts a fresh round when a round is finished.
 
-## 4. Question bank (new asset `assets/quiz/questions.json`, 1,519 questions)
+## 4. Question bank (new asset `assets/quiz/questions.json`, 1,378 questions after de-duplication)
 
-Formats: forward (453), reverse (453), identify the Sandhi (245), identify the sūtra (245), select an example (123). The
+Formats: forward (403), reverse (405), identify the Sandhi (227), identify the sūtra (227), select an example (116); one question per (format, prompt, accepted answers) — 141 duplicates arising from examples printed in several lessons were removed. The
 additional formats are spread evenly through the mixed round (`QuizSession.fresh`) and follow the same Correct / Wrong / Try
 Again / lesson-link / practice-link / persistence rules. Each record is tagged with `type`, `cat`, `rules`, `lesson`, `practice`.
 

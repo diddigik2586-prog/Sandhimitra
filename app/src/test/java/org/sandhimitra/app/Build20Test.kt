@@ -74,7 +74,8 @@ class Build20Test {
         // a fresh mixed round alternates the two directions
         val all = app.quiz.questions("vowel")
         val dirs = QuizSession.fresh("vowel", all, 7L).seq.map { app.quiz.byId(it)!!.dir }
-        assertTrue(dirs.filter { it != "O" }.windowed(2).all { it[0] != it[1] }); assertTrue(dirs.count { it == "O" } == all.count { it.dir == "O" })
+        val fr = dirs.filter { it != "O" }; val balanced = 2 * minOf(fr.count { it == "F" }, fr.count { it == "R" })
+        assertTrue("forward and reverse alternate while both remain", fr.take(balanced).windowed(2).all { it[0] != it[1] }); assertTrue(dirs.count { it == "O" } == all.count { it.dir == "O" })
         assertTrue("other formats spread, not bunched at the end", dirs.take(dirs.size / 2).count { it == "O" } > 0)
         // a controlled round of plain (non-vikalpa) questions: reverse, forward, reverse
         val plain = all.filter { !it.vikalpa }
@@ -97,15 +98,22 @@ class Build20Test {
         back()
         rule.onNodeWithTag("quiz_prompt").assertExists(); rule.onNodeWithTag("verdict_wrong").assertExists()
         assertEquals(0, QuizSession.fromJson(app.progress.quizSession("vowel")!!)!!.pos)
-        rule.onNodeWithText("अग्रिमः प्रश्नः").performClick(); rule.waitForIdle()
+        rule.onNodeWithTag("next_q").performClick(); rule.waitForIdle()
         val s2 = QuizSession.fromJson(app.progress.quizSession("vowel")!!)!!
         assertEquals(1, s2.pos)
+        // previous question: read-only review of the first question with its recorded (wrong) answer, then back to the current one
+        rule.onNodeWithTag("prev_q").performClick(); rule.waitForIdle()
+        rule.onNodeWithTag("review_mode").assertExists(); rule.onNodeWithTag("verdict_wrong").assertExists(); rule.onNodeWithText("1 / 3", substring = true).assertExists()
+        rule.onNodeWithTag("opt_${q.answers[0]}").performClick(); rule.waitForIdle()
+        assertEquals("answers are disabled on an earlier question", 1, QuizSession.fromJson(app.progress.quizSession("vowel")!!)!!.history.length())
+        rule.onNodeWithTag("next_q").performClick(); rule.waitForIdle()
+        rule.onAllNodesWithTag("review_mode").assertCountEquals(0); rule.onNodeWithText("2 / 3", substring = true).assertExists()
         // the correct answer of the second question advances and counts as completed
         val q2 = app.quiz.byId(s2.seq[1])!!
         rule.onNodeWithTag("quiz_prompt").assertExists()
         rule.onNodeWithTag("opt_${q2.answers[0]}").assertExists().performClick(); rule.waitForIdle()
-        if (rule.onAllNodesWithTag("verdict_ok").fetchSemanticsNodes().isEmpty()) { rule.onRoot().printToLog("QUIZ"); fail("no ok verdict after clicking opt_${q2.answers[0]} (q2=${q2.id} answers=${q2.answers}); session=" + app.progress.quizSession("vowel")) }
-        rule.mainClock.advanceTimeBy(1500); rule.waitForIdle()
+        rule.onNodeWithTag("verdict_ok").assertExists()
+        rule.onNodeWithTag("next_q").performClick(); rule.waitForIdle()
         val s3 = QuizSession.fromJson(app.progress.quizSession("vowel")!!)!!
         assertEquals(1, s3.correct); assertTrue(s3.pos >= 1); assertEquals(1, app.progress.quizDoneCount("vowel"))
         // leaving and re-entering restores the same position
@@ -127,7 +135,7 @@ class Build20Test {
         rule.onNodeWithText("असमीचीनम् — पुनः प्रयतध्वम्", substring = true).assertExists()
         rule.onNodeWithTag("opt_${v.answers[1]}").performClick(); rule.waitForIdle()
         rule.onNodeWithTag("verdict_ok").assertExists()
-        rule.mainClock.advanceTimeBy(1500); rule.waitForIdle()
+        rule.onNodeWithTag("next_q").performClick(); rule.waitForIdle()
         val st = QuizSession.fromJson(app.progress.quizSession("consonant")!!)!!
         assertEquals(1, st.pos); assertEquals(setOf(v.answers[0], v.answers[1]), st.vik[v.id])
     }

@@ -144,6 +144,7 @@ fun QuizScreen(app: SandhimitraApp, cat: String, onMenu: () -> Unit, onBack: () 
     @Suppress("UNUSED_VARIABLE") val revision = tick   // read so that every saved change recomposes this screen
     var chosen by remember(cat, session.pos) { mutableStateOf<Int?>(null) }
     var verdict by remember(cat, session.pos) { mutableStateOf("") }   // "", "ok", "ok_more", "wrong", "retry"
+    var review by remember(cat) { mutableStateOf<Int?>(null) }          // index of an earlier question being re-read (read-only)
     LaunchedEffect(cat) {
         if (session.navFrom.isNotEmpty() && !session.finished) {
             val last = if (session.history.length() > 0) session.history.getJSONObject(session.history.length() - 1) else null
@@ -161,15 +162,25 @@ fun QuizScreen(app: SandhimitraApp, cat: String, onMenu: () -> Unit, onBack: () 
                 Spacer(Modifier.height(8.dp))
                 Sx("${lab("score")}${session.score}", size = 17.sp)
                 Sx("${tr("correct_ans")} ${session.correct}   ·   ${tr("wrong_ans")} ${session.wrong}", size = 14.sp, color = t.muted)
-                PrimaryButton(tr("play_again"), { val n = QuizSession.fresh(cat, questions); app.progress.saveQuizSession(cat, n.toJson()); onBack(); go(Routes.quiz(cat)) }, Modifier.padding(top = 12.dp))
+                Row(Modifier.fillMaxWidth().padding(top = 12.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                    if (review == null) PrimaryButton(tr("prev_q"), { review = session.seq.size - 1 }, Modifier.weight(1f).testTag("prev_q"), filled = false)
+                    PrimaryButton(tr("play_again"), { val n = QuizSession.fresh(cat, questions); app.progress.saveQuizSession(cat, n.toJson()); onBack(); go(Routes.quiz(cat)) }, Modifier.weight(1f))
+                }
             }
-            return@Page
+            if (review == null) return@Page
         }
-        val q = byId.getValue(session.seq[session.pos])
+        val idx = review ?: session.pos
+        val reviewing = review != null
+        val q = byId.getValue(session.seq[idx])
         val practised = session.vik.getOrPut(q.id) { HashSet() }
+        // an earlier question is shown read-only with the answer that was recorded for it
+        val recorded = if (reviewing) (session.history.length() - 1 downTo 0).map { session.history.getJSONObject(it) }.firstOrNull { it.getString("q") == q.id } else null
+        val shownChosen = if (reviewing) recorded?.getInt("chosen") else chosen
+        val shownVerdict = if (reviewing) (if (recorded == null) "" else if (recorded.getBoolean("ok")) "ok" else "wrong") else verdict
         // header line: question number, score
         Row(Modifier.fillMaxWidth().padding(bottom = 8.dp), verticalAlignment = Alignment.CenterVertically) {
-            Sx("${tr("q_of")} ${session.pos + 1} / ${session.seq.size}", size = 14.sp, color = t.muted, modifier = Modifier.weight(1f))
+            Sx("${tr("q_of")} ${idx + 1} / ${session.seq.size}", size = 14.sp, color = t.muted, modifier = Modifier.weight(1f))
+            if (reviewing) Sx(tr("reviewed"), size = 12.sp, color = t.accent, modifier = Modifier.padding(end = 10.dp).testTag("review_mode"))
             Sx("${lab("score")}${session.score}", size = 14.sp, weight = FontWeight.SemiBold, color = t.accent)
         }
         LinearProgressIndicator(progress = { session.pos.toFloat() / session.seq.size }, modifier = Modifier.fillMaxWidth().height(5.dp).clip(RoundedCornerShape(3.dp)).padding(bottom = 0.dp), color = t.primary, trackColor = t.outline)
@@ -180,19 +191,19 @@ fun QuizScreen(app: SandhimitraApp, cat: String, onMenu: () -> Unit, onBack: () 
             if (q.vikalpa) Sx(tr("optional_form"), size = 12.sp, color = t.muted, italic = true)
         }
         Spacer(Modifier.height(12.dp))
-        val locked = verdict == "ok" || verdict == "wrong" || verdict == "ok_more"
+        val locked = reviewing || verdict == "ok" || verdict == "wrong" || verdict == "ok_more"
         q.options.forEachIndexed { i, opt ->
             val isAns = i in q.answers
             val col = when {
-                verdict.isEmpty() || verdict == "retry" && chosen != i -> t.outline
-                chosen == i && (verdict == "ok" || verdict == "ok_more") -> t.ok
-                chosen == i && (verdict == "wrong" || verdict == "retry") -> t.bad
-                verdict == "wrong" && isAns -> t.ok
-                i in practised && verdict != "retry" -> t.ok
+                shownVerdict.isEmpty() || shownVerdict == "retry" && shownChosen != i -> t.outline
+                shownChosen == i && (shownVerdict == "ok" || shownVerdict == "ok_more") -> t.ok
+                shownChosen == i && (shownVerdict == "wrong" || shownVerdict == "retry") -> t.bad
+                shownVerdict == "wrong" && isAns -> t.ok
+                !reviewing && i in practised && shownVerdict != "retry" -> t.ok
                 else -> t.outline
             }
             val shape = RoundedCornerShape(12.dp)
-            Box(Modifier.fillMaxWidth().padding(bottom = 8.dp).heightIn(min = 52.dp).clip(shape).background(t.card).border(BorderStroke(if (col == t.outline) 1.dp else 2.dp, col), shape)
+            Box(Modifier.fillMaxWidth().padding(bottom = 8.dp).heightIn(min = 52.dp).clip(shape).background(if (reviewing) t.bg else t.card).border(BorderStroke(if (col == t.outline) 1.dp else 2.dp, col), shape)
                 .testTag("opt_$i").semantics { contentDescription = "Option ${i + 1}" }
                 .clickable(enabled = !locked) {
                     if (locked) return@clickable
@@ -209,26 +220,40 @@ fun QuizScreen(app: SandhimitraApp, cat: String, onMenu: () -> Unit, onBack: () 
                         verdict = "wrong"; save()
                     }
                 }.padding(horizontal = 14.dp, vertical = 12.dp), contentAlignment = Alignment.CenterStart) {
-                Sx(Script.render(opt, lang), size = 19.sp, color = if (col == t.outline) t.text else col, weight = if (col == t.outline) FontWeight.Normal else FontWeight.SemiBold, lineHeight = 27.sp)
+                Sx(Script.render(opt, lang), size = 19.sp, color = if (col == t.outline) (if (reviewing) t.muted else t.text) else col, weight = if (col == t.outline) FontWeight.Normal else FontWeight.SemiBold, lineHeight = 27.sp)
             }
         }
+        val explanation = "${lab("explanation")}${when (lang) { "kn" -> q.exKn; "en" -> q.exEn; else -> q.exSa }}"
         // verdict
-        when (verdict) {
-            "ok" -> { Sx(tr("correct_ans"), size = 18.sp, weight = FontWeight.SemiBold, color = t.ok, modifier = Modifier.testTag("verdict_ok")); LaunchedEffect(q.id, practised.size) { delay(900); session.pos++; verdict = ""; chosen = null; save() } }
+        when (shownVerdict) {
+            "ok" -> {
+                Sx(tr("correct_ans"), size = 18.sp, weight = FontWeight.SemiBold, color = t.ok, modifier = Modifier.testTag("verdict_ok"))
+                Sx(explanation, size = 14.sp, color = t.muted)
+            }
             "ok_more" -> { Sx(tr("vik_next"), size = 16.sp, weight = FontWeight.SemiBold, color = t.ok); LaunchedEffect(q.id, practised.size) { delay(1100); verdict = ""; chosen = null } }
             "retry" -> Sx(tr("try_again"), size = 16.sp, weight = FontWeight.SemiBold, color = t.bad)
             "wrong" -> {
                 Sx(tr("wrong_ans"), size = 18.sp, weight = FontWeight.SemiBold, color = t.bad, modifier = Modifier.testTag("verdict_wrong"))
                 Sx("${lab("right_answer")}${q.answers.joinToString(" / ") { Script.render(q.options[it], lang) }}", size = 15.sp, color = t.ok)
                 Spacer(Modifier.height(6.dp))
-                Sx("${lab("explanation")}${when (lang) { "kn" -> q.exKn; "en" -> q.exEn; else -> q.exSa }}", size = 14.sp, color = t.muted)
+                Sx(explanation, size = 14.sp, color = t.muted)
                 Spacer(Modifier.height(10.dp))
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                    PrimaryButton(tr("read_lesson"), { session.navFrom = "lesson"; save(); go(Routes.topic(q.lesson)) }, Modifier.weight(1f))
-                    PrimaryButton(tr("view_practice"), { session.navFrom = "practice"; save(); go(Routes.pset(q.practice)) }, Modifier.weight(1f), filled = false)
+                    PrimaryButton(tr("read_lesson"), { if (!reviewing) { session.navFrom = "lesson"; save() }; go(Routes.topic(q.lesson)) }, Modifier.weight(1f))
+                    PrimaryButton(tr("view_practice"), { if (!reviewing) { session.navFrom = "practice"; save() }; go(Routes.pset(q.practice)) }, Modifier.weight(1f), filled = false)
                 }
-                Spacer(Modifier.height(8.dp))
-                PrimaryButton(tr("next_q"), { session.pos++; verdict = ""; chosen = null; save() }, Modifier.fillMaxWidth(), filled = false)
+            }
+        }
+        // navigation: back to earlier questions (read-only), forward once the current one is answered
+        val canNext = reviewing || verdict == "ok" || verdict == "wrong"
+        if (idx > 0 || canNext) {
+            Spacer(Modifier.height(10.dp))
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                if (idx > 0) PrimaryButton(tr("prev_q"), { review = idx - 1 }, Modifier.weight(1f).testTag("prev_q"), filled = false)
+                if (canNext) PrimaryButton(tr("next_q"), {
+                    if (reviewing) review = if (idx + 1 >= session.pos) null else idx + 1
+                    else { session.pos++; verdict = ""; chosen = null; save() }
+                }, Modifier.weight(1f).testTag("next_q"))
             }
         }
     }
