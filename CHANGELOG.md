@@ -9,6 +9,7 @@
 - Sandhicakram: prakṛtibhāva questions accept only the documented pragṛhya form; the ordinary-rule form (कवीमौ) is a wrong option (versionCode 23).
 - Sandhicakram: duplicates removed (one question per word, questions on one word kept apart); Next button after a correct answer; Previous button re-opens earlier questions read-only (versionCode 24).
 - Sandhicakram accuracy pass: ayādi examples out of prakṛtibhāva, no invented correct answers, no machine-made or non-word options (versionCode 25).
+- New app icon (supplied lotus artwork): launcher (adaptive, legacy square and round), header and splash; Play Store icon at docs/play_store_icon_512.png (versionCode 26).
 - See BUILD_20_CHANGELOG.md, BUILD_20_TEST_REPORT.md, SANDHICHAKRAM_QUESTION_AUDIT.md.
 ## 0.1 (build 19)
 - Sandhi Yojana: words stay separate when the junction leaves them separate (रामो गच्छति, रामेण सह, रामं पश्यति, पुना रमते) and close up when the whole is a dictionary word (मनोहरः, अन्तःकरणम्).

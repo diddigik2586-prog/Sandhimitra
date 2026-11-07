@@ -107,3 +107,7 @@ Modified: `AndroidManifest.xml`, `app/build.gradle.kts` (versionCode 20), `Sandh
 `test/UiTest.kt`, `test/ScreenshotTest.kt`, `test/SandhiEngineTest.kt` (driver loading), `CHANGELOG.md`, `KNOWN_LIMITATIONS.md`.
 
 Unchanged: engine (`engine/*`), lexicon database, lesson content, fonts and licences, themes, Sandhātrī screens, info pages.
+
+## 11. App icon (revision 26)
+
+The supplied lotus icon replaces the previous artwork everywhere: `drawable-nodpi/header_icon.png` (header and splash), legacy launcher icons `mipmap-*/ic_launcher.png` (rounded tile) and `ic_launcher_round.png` (circle), and the adaptive icon (`drawable/ic_launcher_background.xml` plum gradient + `mipmap-*/ic_launcher_foreground.png`, the lotus cut out of the artwork and scaled to the adaptive safe zone). `docs/play_store_icon_512.png` is the 512 × 512 Play Store icon.

@@ -41,8 +41,6 @@ Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **79 te
 ## 3. Known issues
 
 - Forward/reverse questions per category: vowel 220, consonant 167 (≥150 met); **visarga 90 and prakṛtibhāva 20 are below the original 150** — reported, not filled (see `SANDHICHAKRAM_QUESTION_AUDIT.md`). Consonant and visarga reverse questions are few (11 and 9) because honest real-word wrong analyses do not exist for most rows.
-- The supplied launcher/header icon artwork carries the lettering "Sandhimitra" inside the image. It is the author's approved
-  artwork and was not redrawn or retyped (project rule); it is the one remaining visual occurrence of the old spelling and needs
-  replacement artwork from the author if it is to change.
+- The launcher/header icon is the new supplied lotus artwork (plum tile, gold lotus) with no lettering; the former icon, which carried the old spelling, is gone.
 - On tall phones the four Sandhicakram squares are limited by the screen width (two squares across), so free space remains above
   and below the grid; the cards stay square as required.
