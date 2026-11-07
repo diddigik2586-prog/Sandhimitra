@@ -9,7 +9,7 @@ Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **76 te
 |---|---|---|
 | Name / localization | `Build20Test.launcherLabelIsLocalized` — `app_name` is "Sandhimitram" (default) and "ಸಂಧಿಮಿತ್ರಂ" (kn locale); launcher label; package `org.sandhimitra.app` | pass |
 | Name / localization | `Build20Test.noOldNameInInterfaceStrings` — no "Sandhimitra" (without -m) in any interface string source | pass |
-| Name / localization | APK badging (`aapt2 dump badging`): `application-label:'Sandhimitram'`, `application-label-kn:'ಸಂಧಿಮಿತ್ರಂ'`, versionCode 22, versionName 0.1 | pass |
+| Name / localization | APK badging (`aapt2 dump badging`): `application-label:'Sandhimitram'`, `application-label-kn:'ಸಂಧಿಮಿತ್ರಂ'`, versionCode 23, versionName 0.1 | pass |
 | Home | `Build20Test.homeFitsWithoutScrollingAndGamesCardIsLast` — Sandhicakram card below Sandhātrī, card and attribution inside the 360×800 dp viewport, joystick icon at the far left of the card, title centred on the card, no "n / m" progress text on Home, Bookmark icon beside the Menu icon | pass |
 | Home | `UiTest.splashThenHomeHasExactSixCardsInThreeTiers`, `UiTest.tilesAreSquareAndEqual` (Build 19 layout checks) | pass |
 | Home | Screenshots `01_home_sa_light`, `02_home_kn_light`, `03_home_en_light`, `04_home_en_dark`, `30_home_sa_dark` rendered and inspected: Sandhicakram card highlighted differently in light (indigo-violet, gold lettering) and dark (gold, indigo lettering), icon far left, text centred, everything inside the viewport | pass (visual) |

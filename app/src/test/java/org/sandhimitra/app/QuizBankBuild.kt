@@ -105,11 +105,14 @@ class QuizBankBuild {
             // the lessons on prakṛtibhāva present pragṛhya words; the engine is told so (as the user does in Sandhātrī)
             var jr = try { e.join(r.left, r.right) } catch (x: Exception) { null }
             var plainSurfaces = emptyList<String>()
-            if (r.group == "prakriti" && jr != null && jr.alts.none { a -> docForms.any { d -> ns(a.surface) == ns(Script.toSlp1(d)) } }) {
-                plainSurfaces = jr.alts.map { it.surface }
-                jr = try { e.join(r.left, r.right, Ctx(leftPragrhya = true)) } catch (x: Exception) { null }
+            if (r.group == "prakriti" && jr != null) {
+                // pragṛhya blocks the ordinary rules: whatever the ordinary rules would give (कवीमौ) is wrong here, so those forms
+                // become the natural distractors, and only the documented form(s) are accepted
+                val docSlp = docForms.map { ns(Script.toSlp1(it)) }
+                plainSurfaces = jr.alts.map { it.surface }.filter { ns(it) !in docSlp }
+                if (jr.alts.none { a -> ns(a.surface) in docSlp }) jr = try { e.join(r.left, r.right, Ctx(leftPragrhya = true)) } catch (x: Exception) { null }
             }
-            val surfaces = jr?.alts?.map { it.surface }.orEmpty()
+            val surfaces = if (r.group == "prakriti") jr?.alts?.map { it.surface }.orEmpty().filter { a -> docForms.any { ns(a) == ns(Script.toSlp1(it)) } } else jr?.alts?.map { it.surface }.orEmpty()
             val reproduced = docForms.filter { d -> Script.invalidChars(Script.toSlp1(d)).isEmpty() && surfaces.any { ns(it) == ns(Script.toSlp1(d)) } }
             val missing = docForms - reproduced.toSet()
             if (jr == null || reproduced.isEmpty()) { excluded += "$src: engine does not reproduce ${missing.joinToString("/")} from ${r.left} + ${r.right} (got ${surfaces.joinToString(" | ") { dev(it) }})"; continue }
@@ -134,7 +137,7 @@ class QuizBankBuild {
             val exEn = regNames.joinToString("; ") { "${Script.render(it.sutraDeva, "en")} (${it.ref}): ${it.scope}" }.ifEmpty { if (r.group == "prakriti") "No Sandhi change (prakṛtibhāva)." else "No Sandhi rule operates here: the two words stay as they are." }
             // ---- forward question
             val acceptedF = LinkedHashSet<String>(); acceptedF += reproduced
-            if (jr.status == Status.VERIFIED) jr.alts.forEach { a -> if (docForms.none { ns(Script.toSlp1(it)) == ns(a.surface) }) acceptedF += dev(a.surface) }
+            if (jr.status == Status.VERIFIED && r.group != "prakriti") jr.alts.forEach { a -> if (docForms.none { ns(Script.toSlp1(it)) == ns(a.surface) }) acceptedF += dev(a.surface) }
             val fDis = forwardDistractors(L, R, F, surfaces, (acceptedF + docForms).map { ns(Script.toSlp1(it)) }.toSet(), plainSurfaces)
             if (fDis.size < 3) excluded += "$src (F): only ${fDis.size} safe distractors"
             else { val opts = (acceptedF.take(2) + fDis.take(4 - minOf(2, acceptedF.size))).shuffled(java.util.Random(src.hashCode().toLong()))

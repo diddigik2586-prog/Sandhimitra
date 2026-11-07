@@ -27,6 +27,8 @@ in the supplied Sanskrit source.
    the engine does not join the distractor's two words into the given form. A row with fewer than three provably wrong distractors
    is excluded rather than padded;
 3. the lesson id and practice id must exist in the content index;
+   - prakṛtibhāva rows: only the documented form is accepted; a form the ordinary rules would give (कवी + इमौ → कवीमौ by
+     savarṇadīrgha) is never accepted — pragṛhya blocks the rule — and is used as a distractor instead;
 4. the forward question and the reverse question of the same row are independent records with stable ids
    (`<topic>-<table><row>-F|R`).
 

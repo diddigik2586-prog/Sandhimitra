@@ -82,7 +82,7 @@ excluded (40):
   t35 ex row 5: engine does not reproduce दुᳵखम्/दुःखम् from दुः + खम् (got दुष्खम्)
   t36 pr row 3: engine does not reproduce भो छात्राः from भोः + छात्राः (got भोश्छात्राः)
   t36 pr row 5: non-Devanagari characters
-  t37 pr row 5: engine does not reproduce राज ऋषिः from राजा + ऋषिः (got राजर्षिः)
+  t37 pr row 5: engine does not reproduce राज ऋषिः from राजा + ऋषिः (got )
   t03 ex row 3: no Sandhi rule operates (cannot be assigned to a category)
   t05 ex row 5: engine does not reproduce सवर्णौ from ऋ + ऌ (got ॠ | ऋ)
   t05 ex row 6: engine does not reproduce न सवर्णौ from इ + श् (got इश्)

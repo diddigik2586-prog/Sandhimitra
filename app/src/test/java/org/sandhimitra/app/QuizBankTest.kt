@@ -60,8 +60,12 @@ class QuizBankTest {
             if (q.dir == "F") {
                 val (l, r) = q.prompt.split(" + ").let { it[0] to it[1] }
                 val plain = joins(l, r, false)
-                val got = if (q.cat == "prakriti" && q.answers.any { ns(Script.toSlp1(q.options[it])) !in plain }) joins(l, r, true) else plain
-                q.options.forEachIndexed { i, o -> val hit = ns(Script.toSlp1(o)) in got; assertEquals("${q.id} option $o", i in q.answers, hit) }
+                if (q.cat == "prakriti") {
+                    // the accepted form is the documented pragṛhya form (unchanged words); a distractor is never that form
+                    val prag = joins(l, r, true)
+                    q.options.forEachIndexed { i, o -> val f = ns(Script.toSlp1(o)); if (i in q.answers) assertTrue("${q.id} answer $o", f in prag || f in plain && f.contains(ns(Script.toSlp1(l))) && f.endsWith(ns(Script.toSlp1(r)))) else assertTrue("${q.id} distractor $o", f !in prag && (f !in plain || f != ns(Script.toSlp1(l)) + ns(Script.toSlp1(r)))) }
+                    assertTrue("${q.id} a form the ordinary rules would give must not be accepted", q.answers.none { i -> val f = ns(Script.toSlp1(q.options[i])); f in plain && f !in prag && f != ns(Script.toSlp1(l)) + ns(Script.toSlp1(r)) })
+                } else q.options.forEachIndexed { i, o -> val hit = ns(Script.toSlp1(o)) in plain; assertEquals("${q.id} option $o", i in q.answers, hit) }
             } else {
                 val form = ns(Script.toSlp1(q.prompt))
                 val pragrhya = q.cat == "prakriti" && q.answers.any { a -> val (l, r) = q.options[a].split(" + ").let { it[0] to it[1] }; form !in joins(l, r, false) }

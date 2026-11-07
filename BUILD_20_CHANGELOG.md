@@ -1,6 +1,6 @@
 # Sandhimitram — Build 20 Changelog
 
-Baseline: Build 19 (versionName 0.1, versionCode 19). This build: **versionName 0.1, versionCode 22** (Build 20, second
+Baseline: Build 19 (versionName 0.1, versionCode 19). This build: **versionName 0.1, versionCode 23** (Build 20, second
 revision: versionCode 20 was the first Build 20 delivery, before the additional question formats), applicationId unchanged
 (`org.sandhimitra.app`). Incremental upgrade: no screen, engine rule, lesson text, font or asset of Build 19 was removed or rewritten.
 

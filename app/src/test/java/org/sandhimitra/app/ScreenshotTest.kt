@@ -73,6 +73,12 @@ class ScreenshotTest {
         rule.onNodeWithTag("opt_${(0..3).first { it !in q.answers }}").performClick(); shot("34_quiz_wrong_sa")
         app.prefs.chooseLang("en"); rule.waitForIdle(); shot("35_quiz_wrong_en"); app.prefs.chooseLang("sa"); rule.waitForIdle()
         app.progress.setBookmark("t09", true); rule.onNodeWithContentDescription("Bookmarks").performClick(); shot("36_bookmarks_sa")
+        // prakṛtibhāva forward question (pragṛhya blocks the ordinary rule)
+        app.progress.saveQuizSession("prakriti", org.sandhimitra.app.ui.QuizSession("prakriti", listOf("t37-ex2-F")).toJson())
+        repeat(6) { if (rule.onAllNodesWithTag("bar_games").fetchSemanticsNodes().isEmpty()) { rule.activityRule.scenario.onActivity { it.onBackPressedDispatcher.onBackPressed() }; rule.waitForIdle() } }
+        rule.onNodeWithTag("bar_games").performClick(); rule.onNodeWithTag("game_prakriti").performClick(); shot("40_quiz_prakriti_sa")
+        val pq = app.quiz.byId("t37-ex2-F")!!
+        rule.onNodeWithTag("opt_${pq.options.indexOf("कवीमौ")}").performClick(); shot("41_quiz_prakriti_wrong_sa")
         // the additional formats
         val cq = app.quiz.questions("consonant")
         for ((ty, name) in listOf("NAME" to "37_quiz_name_sa", "SUTRA" to "38_quiz_sutra_sa", "EXAMPLE" to "39_quiz_example_sa")) {

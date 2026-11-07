@@ -6,6 +6,7 @@
 - Question bank: 1,519 engine-verified questions from the lesson documents — forward/reverse 906 (vowel 362, consonant 350, visarga 168, prakṛtibhāva 26 — shortfall reported) plus identify-the-Sandhi, identify-the-sūtra and select-an-example formats (versionCode 21).
 - Bookmarks: lesson toggle, header icon, My Bookmarks page. Database schema 2 (additive migration).
 - Sandhicakram card restyled: distinct highlight per theme, joystick at the far left, text centred (versionCode 22).
+- Sandhicakram: prakṛtibhāva questions accept only the documented pragṛhya form; the ordinary-rule form (कवीमौ) is a wrong option (versionCode 23).
 - See BUILD_20_CHANGELOG.md, BUILD_20_TEST_REPORT.md, SANDHICHAKRAM_QUESTION_AUDIT.md.
 ## 0.1 (build 19)
 - Sandhi Yojana: words stay separate when the junction leaves them separate (रामो गच्छति, रामेण सह, रामं पश्यति, पुना रमते) and close up when the whole is a dictionary word (मनोहरः, अन्तःकरणम्).
