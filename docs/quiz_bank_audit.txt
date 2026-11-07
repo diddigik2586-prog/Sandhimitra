@@ -1,181 +1,94 @@
-rows considered: 493
-consonant: forward=160 reverse=159 name=94 sutra=94 example=48 total=555
-prakriti: forward=13 reverse=13 name=9 sutra=9 example=4 total=48
-visarga: forward=82 reverse=82 name=43 sutra=43 example=19 total=269
-vowel: forward=148 reverse=151 name=81 sutra=81 example=45 total=506
+rows considered: 493; one row kept per word: 402
+consonant: forward=156 reverse=11 name=89 sutra=89 example=45 total=390
+prakriti: forward=11 reverse=9 name=9 sutra=9 example=4 total=42
+visarga: forward=81 reverse=9 name=41 sutra=41 example=18 total=190
+vowel: forward=133 reverse=87 name=76 sutra=76 example=38 total=410
+rows refiled by the rule that applies (2):
+  t17 ex row 1 (consonant lesson): the rules that apply are H01,H02,H04 (visarga) — filed under visarga, lesson t30
+  t37 pr row 6 (prakriti lesson): the rules that apply are V06 (vowel) — filed under vowel, lesson t12
+same word in several lessons — later copies dropped (51):
+  t15 ex row 2: सदा + एव → सदैव (same word as a row already kept)
+  t15 pr row 4: अक्ष + ऊहिनी → अक्षौहिणी (same word as a row already kept)
+  t15 pr row 5: शक + अन्धुः → शकन्धुः (same word as a row already kept)
+  t38 pr row 2: प्रथमः + अध्यायः → प्रथमोऽध्यायः (same word as a row already kept)
+  t17 ex row 1: हरिस् + शेते → हरिश्शेते (same word as a row already kept)
+  t00 ex row 5: जगत् + नाथः → जगन्नाथः (same word as a row already kept)
+  t01 ex row 1: यदि + अपि → यद्यपि (same word as a row already kept)
+  t01 ex row 2: गै + अकः → गायकः (same word as a row already kept)
+  t01 ex row 3: वृक्ष + छाया → वृक्षच्छाया (same word as a row already kept)
+  t01 ex row 4: प्रत्यङ् + आत्मा → प्रत्यङ्ङात्मा (same word as a row already kept)
+  t02 ex row 5: सदा + एव → सदैव (same word as a row already kept)
+  t03 ex row 1: चे + अनम् → चयनम् (same word as a row already kept)
+  t06 ex row 1: विष्णो + अव → विष्णोऽव (same word as a row already kept)
+  t06 ex row 2: भो + अनम् → भवनम् (same word as a row already kept)
+  t06 ex row 5: तान् + तान् → ताँस्तान् (same word as a row already kept)
+  t07 ex row 1: कवि + इन्द्रः → कवीन्द्रः (same word as a row already kept)
+  t07 ex row 2: सदा + एव → सदैव (same word as a row already kept)
+  t07 ex row 3: सत् + जनः → सज्जनः (same word as a row already kept)
+  t07 ex row 5: मनः + हरः → मनोहरः (same word as a row already kept)
+  t07 ex row 6: हरिः + शेते → हरिश्शेते (same word as a row already kept)
+  t40 ex row 2: देव + ऋषिः → देवर्षिः (same word as a row already kept)
+  t40 ex row 3: जल + ओघः → जलौघः (same word as a row already kept)
+  t40 ex row 4: अनु + एषणम् → अन्वेषणम् (same word as a row already kept)
+  t40 ex row 6: उद् + लेखः → उल्लेखः (same word as a row already kept)
+  t40 ex row 7: प्रत्यङ् + आत्मा → प्रत्यङ्ङात्मा (same word as a row already kept)
+  t41 ex row 3: गङ्गा + ऊर्मिः → गङ्गोर्मिः (same word as a row already kept)
+  t41 ex row 4: नदी + अम्बु → नद्यम्बु (same word as a row already kept)
+  t41 ex row 5: उभौ + अपि → उभावपि (same word as a row already kept)
+  t41 ex row 6: षट् + दर्शनम् → षड्दर्शनम् (same word as a row already kept)
+  t41 ex row 7: जगत् + शान्तिः → जगच्छान्तिः (same word as a row already kept)
+  t42 ex row 3: महा + ऋषिः → महर्षिः (same word as a row already kept)
+  t42 ex row 5: षट् + आननः → षडाननः (same word as a row already kept)
+  t42 ex row 6: षट् + मासः → षण्मासः (same word as a row already kept)
+  t00 pr row 1: कवि + ईश्वरः → कवीश्वरः (same word as a row already kept)
+  t00 pr row 3: मधु + अरिः → मध्वरिः (same word as a row already kept)
+  t00 pr row 6: सूर्य + उदयः → सूर्योदयः (same word as a row already kept)
+  t01 pr row 1: तरु + छाया → तरुच्छाया (same word as a row already kept)
+  t01 pr row 2: भानु + उदयः → भानूदयः (same word as a row already kept)
+  t01 pr row 3: तस्मै + इदम् → तस्मा इदम् (same word as a row already kept)
+  t02 pr row 2: अनु + अयः → अन्वयः (same word as a row already kept)
+  t02 pr row 3: वाक् + ईशः → वागीशः (same word as a row already kept)
+  t02 pr row 4: देव + इन्द्रः → देवेन्द्रः (same word as a row already kept)
+  t02 pr row 5: पितृ + आज्ञा → पित्राज्ञा (same word as a row already kept)
+  t02 pr row 6: वन + औषधिः → वनौषधिः (same word as a row already kept)
+  t03 pr row 1: भो + अनम् → भवनम् (same word as a row already kept)
+  t03 pr row 2: सु + आगतम् → स्वागतम् (same word as a row already kept)
+  t03 pr row 3: देव + इन्द्रः → देवेन्द्रः (same word as a row already kept)
+  t06 pr row 2: पो + अनः → पवनः (same word as a row already kept)
+  t41 pr row 3: तौ + इमौ → ताविमौ (same word as a row already kept)
+  t41 pr row 4: तत् + श्रुत्वा → तच्छ्रुत्वा (same word as a row already kept)
+  t41 pr row 5: तान् + लोकान् → ताँल्लोकान् (same word as a row already kept)
 additional formats not generated (30):
-  t14 ex row 5: no rule of lesson t14 applies
-  t14 ex row 6: no rule of lesson t14 applies
-  t14 ex row 7: no rule of lesson t14 applies
-  t14 ex row 8: no rule of lesson t14 applies
-  t15 ex row 1: no rule of lesson t15 applies
-  t15 ex row 2: no rule of lesson t15 applies
-  t38 ex row 1: no rule of lesson t38 applies
-  t38 ex row 2: no rule of lesson t38 applies
-  t38 ex row 3: no rule of lesson t38 applies
-  t38 ex row 4: no rule of lesson t38 applies
-  t38 ex row 5: no rule of lesson t38 applies
-  t38 ex row 6: no rule of lesson t38 applies
-  t38 ex row 7: no rule of lesson t38 applies
-  t38 ex row 8: no rule of lesson t38 applies
-  t17 ex row 1: no rule of lesson t17 applies
-  t23 ex row 6: no rule of lesson t23 applies
-  t28 ex row 7: no rule of lesson t28 applies
-  t28 ex row 8: no rule of lesson t28 applies
-  t30 ex row 8: more than one named rule of the lesson applies
+  t14 ex row 5: no askable rule of lesson t14 applies
+  t14 ex row 6: no askable rule of lesson t14 applies
+  t14 ex row 7: no askable rule of lesson t14 applies
+  t14 ex row 8: no askable rule of lesson t14 applies
+  t15 ex row 1: no askable rule of lesson t15 applies
+  t38 ex row 1: no askable rule of lesson t38 applies
+  t38 ex row 2: no askable rule of lesson t38 applies
+  t38 ex row 3: no askable rule of lesson t38 applies
+  t38 ex row 4: no askable rule of lesson t38 applies
+  t38 ex row 5: no askable rule of lesson t38 applies
+  t38 ex row 6: no askable rule of lesson t38 applies
+  t38 ex row 7: no askable rule of lesson t38 applies
+  t38 ex row 8: no askable rule of lesson t38 applies
+  t23 ex row 6: no askable rule of lesson t23 applies
+  t28 ex row 7: no askable rule of lesson t28 applies
+  t28 ex row 8: no askable rule of lesson t28 applies
   t31 ex row 3: more than one named rule of the lesson applies
-  t31 ex row 7: no rule of lesson t31 applies
-  t31 ex row 8: no rule of lesson t31 applies
-  t36 ex row 1: no rule of lesson t36 applies
-  t36 ex row 2: no rule of lesson t36 applies
-  t36 ex row 3: no rule of lesson t36 applies
-  t36 ex row 4: no rule of lesson t36 applies
-  t36 ex row 5: no rule of lesson t36 applies
-  t36 ex row 6: no rule of lesson t36 applies
-  t36 ex row 7: no rule of lesson t36 applies
-  t36 ex row 8: no rule of lesson t36 applies
-duplicates removed (141):
-  t15-ex2-F duplicate of t10-ex2-F
-  t15-ex2-R duplicate of t10-ex2-R
-  t15-pr4-F duplicate of t09-pr6-F
-  t15-pr4-R duplicate of t09-pr6-R
-  t15-pr5-F duplicate of t14-ex5-F
-  t15-pr5-R duplicate of t14-ex5-R
-  t38-pr2-F replaced by t32-ex3-F
-  t38-pr2-R replaced by t32-ex3-R
-  t17-ex1-R replaced by t34-ex6-R
-  t00-ex5-F duplicate of t21-ex4-F
-  t00-ex5-R duplicate of t21-ex4-R
-  t00-pr6-F duplicate of t09-ex3-F
-  t00-pr6-R duplicate of t09-ex3-R
-  t01-ex1-F duplicate of t11-ex1-F
-  t01-ex1-R duplicate of t11-ex1-R
-  t01-ex2-F duplicate of t12-ex5-F
-  t01-ex2-R duplicate of t12-ex5-R
-  t01-ex3-F duplicate of t24-ex1-F
-  t01-ex3-R duplicate of t24-ex1-R
-  t01-ex4-F duplicate of t25-ex1-F
-  t01-ex4-R duplicate of t25-ex1-R
-  t01-pr1-F duplicate of t24-ex4-F
-  t01-pr1-R duplicate of t24-ex4-R
-  t01-pr2-F duplicate of t08-ex5-F
-  t01-pr2-R duplicate of t08-ex5-R
-  t01-pr3-F duplicate of t12-ex6-F
-  t02-ex2-F duplicate of t00-pr3-F
-  t02-ex2-R duplicate of t00-pr3-R
-  t02-ex5-F duplicate of t10-ex2-F
-  t02-ex5-R duplicate of t10-ex2-R
-  t02-pr2-F duplicate of t11-ex4-F
-  t02-pr2-R duplicate of t11-ex4-R
-  t02-pr4-F duplicate of t09-ex1-F
-  t02-pr4-R duplicate of t09-ex1-R
-  t02-pr5-F duplicate of t11-ex6-F
-  t02-pr5-R duplicate of t11-ex6-R
-  t02-pr6-F duplicate of t10-ex7-F
-  t02-pr6-R duplicate of t10-ex7-R
-  t03-ex1-F duplicate of t12-pr1-F
-  t03-ex1-R duplicate of t12-pr1-R
-  t03-pr1-F duplicate of t12-ex3-F
-  t03-pr1-R duplicate of t12-ex3-R
-  t03-pr2-F duplicate of t11-pr4-F
-  t03-pr2-R duplicate of t11-pr4-R
-  t03-pr3-F duplicate of t09-ex1-F
-  t03-pr3-R duplicate of t09-ex1-R
-  t06-ex1-F duplicate of t38-ex2-F
-  t06-ex1-R duplicate of t38-ex2-R
-  t06-ex2-F duplicate of t12-ex3-F
-  t06-ex2-R duplicate of t12-ex3-R
-  t06-ex3-F duplicate of t02-pr3-F
-  t06-ex3-R duplicate of t02-pr3-R
-  t06-ex5-F duplicate of t28-ex1-F
-  t06-ex5-R duplicate of t28-ex1-R
-  t06-pr2-F duplicate of t12-ex4-F
-  t06-pr2-R duplicate of t12-ex4-R
-  t07-ex1-F duplicate of t15-ex1-F
-  t07-ex1-R duplicate of t15-ex1-R
-  t07-ex2-F duplicate of t10-ex2-F
-  t07-ex2-R duplicate of t10-ex2-R
-  t07-ex3-F duplicate of t17-ex4-F
-  t07-ex3-R duplicate of t17-ex4-R
-  t07-ex5-F duplicate of t32-ex5-F
-  t07-ex5-R duplicate of t32-ex5-R
-  t07-ex6-F duplicate of t34-ex6-F
-  t07-ex6-R duplicate of t34-ex6-R
-  t40-ex1-F duplicate of t00-pr1-F
-  t40-ex1-R duplicate of t00-pr1-R
-  t40-ex2-F duplicate of t09-ex5-F
-  t40-ex2-R duplicate of t09-ex5-R
-  t40-ex3-F duplicate of t10-ex5-F
-  t40-ex3-R duplicate of t10-ex5-R
-  t40-ex4-F duplicate of t03-ex4-F
-  t40-ex4-R duplicate of t03-ex4-R
-  t40-ex6-F duplicate of t23-pr2-F
-  t40-ex6-R duplicate of t23-pr2-R
-  t40-ex7-F duplicate of t25-ex1-F
-  t40-ex7-R duplicate of t25-ex1-R
-  t41-ex3-F duplicate of t09-ex4-F
-  t41-ex3-R duplicate of t09-ex4-R
-  t41-ex4-F duplicate of t11-ex3-F
-  t41-ex4-R duplicate of t11-ex3-R
-  t41-ex5-F duplicate of t39-pr3-F
-  t41-ex6-F duplicate of t19-pr2-F
-  t41-ex6-R duplicate of t19-pr2-R
-  t41-ex7-F duplicate of t26-pr3-F
-  t41-ex7-R duplicate of t26-pr3-R
-  t41-pr3-F duplicate of t39-ex5-F
-  t41-pr4-F duplicate of t26-pr5-F
-  t41-pr4-R duplicate of t26-pr5-R
-  t41-pr5-F duplicate of t23-pr3-F
-  t41-pr5-R duplicate of t23-pr3-R
-  t42-ex3-F duplicate of t09-ex6-F
-  t42-ex3-R duplicate of t09-ex6-R
-  t42-ex5-F duplicate of t19-ex3-F
-  t42-ex5-R duplicate of t19-ex3-R
-  t42-ex6-F duplicate of t07-ex4-F
-  t42-ex6-R duplicate of t07-ex4-R
-  t01-ex1-N duplicate of t11-ex1-N
-  t01-ex1-S duplicate of t11-ex1-S
-  t01-ex1-E duplicate of t11-ex1-E
-  t01-ex2-N duplicate of t12-ex5-N
-  t01-ex2-S duplicate of t12-ex5-S
-  t01-ex3-N duplicate of t24-ex1-N
-  t01-ex3-S duplicate of t24-ex1-S
-  t01-ex3-E duplicate of t24-ex1-E
-  t01-ex4-N duplicate of t25-ex1-N
-  t01-ex4-S duplicate of t25-ex1-S
-  t02-ex5-N duplicate of t10-ex2-N
-  t02-ex5-S duplicate of t10-ex2-S
-  t06-ex2-N duplicate of t12-ex3-N
-  t06-ex2-S duplicate of t12-ex3-S
-  t06-ex5-N duplicate of t28-ex1-N
-  t06-ex5-S duplicate of t28-ex1-S
-  t06-ex5-E duplicate of t28-ex1-E
-  t07-ex2-N duplicate of t10-ex2-N
-  t07-ex2-S duplicate of t10-ex2-S
-  t07-ex5-N duplicate of t32-ex5-N
-  t07-ex5-S duplicate of t32-ex5-S
-  t07-ex5-E duplicate of t32-ex5-E
-  t40-ex2-N duplicate of t09-ex5-N
-  t40-ex2-S duplicate of t09-ex5-S
-  t40-ex3-N duplicate of t10-ex5-N
-  t40-ex3-S duplicate of t10-ex5-S
-  t40-ex3-E duplicate of t10-ex5-E
-  t40-ex4-N duplicate of t03-ex4-N
-  t40-ex4-S duplicate of t03-ex4-S
-  t40-ex7-N duplicate of t25-ex1-N
-  t40-ex7-S duplicate of t25-ex1-S
-  t40-ex7-E duplicate of t25-ex1-E
-  t41-ex3-N duplicate of t09-ex4-N
-  t41-ex3-S duplicate of t09-ex4-S
-  t41-ex4-N duplicate of t11-ex3-N
-  t41-ex4-S duplicate of t11-ex3-S
-  t42-ex3-N duplicate of t09-ex6-N
-  t42-ex3-S duplicate of t09-ex6-S
-  t42-ex5-N duplicate of t19-ex3-N
-  t42-ex5-S duplicate of t19-ex3-S
-  t42-ex5-E duplicate of t19-ex3-E
-  t42-ex6-N duplicate of t07-ex4-N
-  t42-ex6-S duplicate of t07-ex4-S
+  t31 ex row 7: no askable rule of lesson t31 applies
+  t31 ex row 8: no askable rule of lesson t31 applies
+  t34 ex row 6: no askable rule of lesson t34 applies
+  t36 ex row 1: no askable rule of lesson t36 applies
+  t36 ex row 2: no askable rule of lesson t36 applies
+  t36 ex row 3: no askable rule of lesson t36 applies
+  t36 ex row 4: no askable rule of lesson t36 applies
+  t36 ex row 5: no askable rule of lesson t36 applies
+  t36 ex row 6: no askable rule of lesson t36 applies
+  t36 ex row 7: no askable rule of lesson t36 applies
+  t36 ex row 8: no askable rule of lesson t36 applies
+  t42 ex row 4: no askable rule of lesson t10 applies
+  t42 ex row 7: no askable rule of lesson t30 applies
 partially offered (16):
   t38 ex row 5: documented alternative नाऽस्ति is outside the engine (not offered, never a distractor); offered: नास्ति
   t38 ex row 6: documented alternative नाऽऽस्ते is outside the engine (not offered, never a distractor); offered: नास्ते
@@ -193,7 +106,7 @@ partially offered (16):
   t35 pr row 2: documented alternative मनᳵकल्पितम् is outside the engine (not offered, never a distractor); offered: मनःकल्पितम्
   t35 pr row 3: documented alternative पयᳶपानम् is outside the engine (not offered, never a distractor); offered: पयःपानम्
   t03 ex row 6: documented alternative बालकः गच्छति is outside the engine (not offered, never a distractor); offered: बालको गच्छति
-excluded (40):
+excluded (347):
   t12 pr row 3: engine does not reproduce श्रावणम् from श्रौ + अनम् (got श्रावनम् | श्रा अनम्)
   t12 pr row 4: engine does not reproduce सञ्चयः from सञ्चे + अः (got सञ्चेऽः)
   t14 pr row 5: engine does not reproduce हलीषा from हल + ईषा (got हलेषा)
@@ -212,25 +125,332 @@ excluded (40):
   t22 pr row 3: engine does not reproduce मनांसि from मनस् + सि (got मनः सि | मनस्सि)
   t22 pr row 6: engine does not reproduce हंसः from हन् + सः (got हन्सः)
   t27 ex row 8: engine does not reproduce उत्थम्भनम् from उद् + स्तम्भनम् (got उत्तम्भनम्)
-  t29 ex row 1: non-Devanagari characters
-  t29 ex row 2: non-Devanagari characters
-  t29 ex row 3: non-Devanagari characters
-  t29 ex row 4: non-Devanagari characters
-  t29 ex row 5: non-Devanagari characters
-  t29 ex row 6: non-Devanagari characters
-  t29 pr row 1: non-Devanagari characters
-  t29 pr row 2: non-Devanagari characters
-  t29 pr row 3: non-Devanagari characters
+  t29 ex row 1: not a plain example (notes, arrows or Latin text in the row)
+  t29 ex row 2: not a plain example (notes, arrows or Latin text in the row)
+  t29 ex row 3: not a plain example (notes, arrows or Latin text in the row)
+  t29 ex row 4: not a plain example (notes, arrows or Latin text in the row)
+  t29 ex row 5: not a plain example (notes, arrows or Latin text in the row)
+  t29 ex row 6: not a plain example (notes, arrows or Latin text in the row)
+  t29 pr row 1: not a plain example (notes, arrows or Latin text in the row)
+  t29 pr row 2: not a plain example (notes, arrows or Latin text in the row)
+  t29 pr row 3: not a plain example (notes, arrows or Latin text in the row)
   t35 ex row 5: engine does not reproduce दुᳵखम्/दुःखम् from दुः + खम् (got दुष्खम्)
   t36 pr row 3: engine does not reproduce भो छात्राः from भोः + छात्राः (got भोश्छात्राः)
-  t36 pr row 5: non-Devanagari characters
-  t37 pr row 5: engine does not reproduce राज ऋषिः from राजा + ऋषिः (got )
+  t36 pr row 5: not a plain example (notes, arrows or Latin text in the row)
+  t37 pr row 5: engine does not reproduce राज ऋषिः from राजा + ऋषिः (got राजर्षिः)
   t03 ex row 3: no Sandhi rule operates (cannot be assigned to a category)
   t05 ex row 5: engine does not reproduce सवर्णौ from ऋ + ऌ (got ॠ | ऋ)
   t05 ex row 6: engine does not reproduce न सवर्णौ from इ + श् (got इश्)
-  t05 pr row 6: non-Devanagari characters
+  t05 pr row 6: not a plain example (notes, arrows or Latin text in the row)
   t06 ex row 4: engine does not reproduce बुद्धिः from बुध् + तिः (got बुत्तिः)
   t06 pr row 4: engine does not reproduce लब्धः from लभ् + तः (got लप्तः)
-  t07 pr row 4: non-Devanagari characters
-  t07 pr row 5: non-Devanagari characters
-  t07 pr row 6: non-Devanagari characters
+  t07 pr row 4: not a plain example (notes, arrows or Latin text in the row)
+  t07 pr row 5: not a plain example (notes, arrows or Latin text in the row)
+  t07 pr row 6: not a plain example (notes, arrows or Latin text in the row)
+  t08 ex row 2 (R): fewer than three real-word wrong analyses (2 found)
+  t08 ex row 8 (R): fewer than three real-word wrong analyses (2 found)
+  t08 pr row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t08 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t08 pr row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t08 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t09 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t09 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t09 ex row 8 (R): fewer than three real-word wrong analyses (1 found)
+  t09 pr row 3 (R): fewer than three real-word wrong analyses (2 found)
+  t10 ex row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t10 ex row 6 (R): fewer than three real-word wrong analyses (1 found)
+  t10 pr row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t10 pr row 4 (R): fewer than three real-word wrong analyses (2 found)
+  t10 pr row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t10 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t11 ex row 4 (R): fewer than three real-word wrong analyses (2 found)
+  t11 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t11 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t11 pr row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t11 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t12 ex row 2 (R): fewer than three real-word wrong analyses (2 found)
+  t12 ex row 6 (R): fewer than three real-word wrong analyses (1 found)
+  t12 pr row 6 (R): fewer than three real-word wrong analyses (2 found)
+  t13 ex row 1 (F): fewer than three sound wrong forms (2 found: तैपि, तपि) for ते + अपि → तेऽपि
+  t13 ex row 1 (R): fewer than three real-word wrong analyses (2 found)
+  t13 ex row 2 (F): fewer than three sound wrong forms (2 found: ग्रामैस्मिन्, ग्रामस्मिन्) for ग्रामे + अस्मिन् → ग्रामेऽस्मिन्
+  t13 ex row 3 (F): fewer than three sound wrong forms (2 found: कवैत्र, कवत्र) for कवे + अत्र → कवेऽत्र
+  t13 ex row 5 (F): fewer than three sound wrong forms (2 found: साधौत्र, साधत्र) for साधो + अत्र → साधोऽत्र
+  t13 ex row 5 (R): fewer than three real-word wrong analyses (1 found)
+  t13 ex row 6 (F): fewer than three sound wrong forms (2 found: कौयम्, कयम्) for को + अयम् → कोऽयम्
+  t13 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t13 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t13 pr row 1 (F): fewer than three sound wrong forms (2 found: वृक्षैस्मिन्, वृक्षस्मिन्) for वृक्षे + अस्मिन् → वृक्षेऽस्मिन्
+  t13 pr row 2 (F): fewer than three sound wrong forms (2 found: भानौत्र, भानत्र) for भानो + अत्र → भानोऽत्र
+  t13 pr row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t13 pr row 4 (F): fewer than three sound wrong forms (2 found: विद्यालयौयम्, विद्यालययम्) for विद्यालयो + अयम् → विद्यालयोऽयम्
+  t13 pr row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t13 pr row 5 (F): fewer than three sound wrong forms (2 found: गृहैस्ति, गृहस्ति) for गृहे + अस्ति → गृहेऽस्ति
+  t14 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t14 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t14 ex row 4 (R): fewer than three real-word wrong analyses (2 found)
+  t14 ex row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t14 ex row 6 (R): fewer than three real-word wrong analyses (2 found)
+  t14 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t14 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t14 pr row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t38 ex row 1 (F): fewer than three sound wrong forms (2 found: गृहैस्मिन्, गृहस्मिन्) for गृहे + अस्मिन् → गृहेऽस्मिन्
+  t38 ex row 2 (F): fewer than three sound wrong forms (2 found: विष्णौव, विष्णव) for विष्णो + अव → विष्णोऽव
+  t38 ex row 3 (F): fewer than three sound wrong forms (2 found: नमौस्तु, नमस्तु) for नमो + अस्तु → नमोऽस्तु
+  t38 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t38 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t38 ex row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t38 ex row 6 (R): fewer than three real-word wrong analyses (2 found)
+  t38 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t38 ex row 8 (R): fewer than three real-word wrong analyses (1 found)
+  t38 pr row 1 (F): fewer than three sound wrong forms (2 found: लोकैस्मिन्, लोकस्मिन्) for लोके + अस्मिन् → लोकेऽस्मिन्
+  t38 pr row 4 (F): fewer than three sound wrong forms (2 found: धर्मैस्मिन्, धर्मस्मिन्) for धर्मे + अस्मिन् → धर्मेऽस्मिन्
+  t38 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t39 ex row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t39 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t39 pr row 1 (R): fewer than three real-word wrong analyses (2 found)
+  t39 pr row 3 (R): fewer than three real-word wrong analyses (2 found)
+  t39 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t17 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t17 ex row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t17 ex row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t17 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t17 ex row 6 (R): fewer than three real-word wrong analyses (2 found)
+  t17 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t17 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t17 pr row 2 (R): fewer than three real-word wrong analyses (2 found)
+  t17 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t18 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t18 ex row 2 (R): fewer than three real-word wrong analyses (1 found)
+  t18 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t18 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t18 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t18 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t18 pr row 6 (R): fewer than three real-word wrong analyses (2 found)
+  t19 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t19 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t19 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t19 ex row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t19 ex row 5 (F): fewer than three sound wrong forms (1 found: सुमन्तः) for सुप् + अन्तः → सुबन्तः
+  t19 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t19 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t19 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t19 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t19 pr row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t19 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t19 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t19 pr row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t19 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t20 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t20 ex row 2 (R): fewer than three real-word wrong analyses (2 found)
+  t20 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t20 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t20 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t20 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t20 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t20 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t20 pr row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t20 pr row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t20 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t20 pr row 6 (R): fewer than three real-word wrong analyses (1 found)
+  t21 ex row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t21 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t21 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t21 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t21 ex row 5 (R): fewer than three real-word wrong analyses (1 found)
+  t21 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t21 ex row 7 (F): fewer than three sound wrong forms (2 found: अमयम्, अंमयम्) for अप् + मयम् → अम्मयम्
+  t21 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t21 ex row 8 (F): fewer than three sound wrong forms (1 found: ककुमुखम्) for ककुभ् + मुखम् → ककुम्मुखम्/ककुब्मुखम्
+  t21 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t21 pr row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t21 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t21 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t21 pr row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t21 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t21 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t22 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t22 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t22 ex row 6 (R): fewer than three real-word wrong analyses (1 found)
+  t22 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t22 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t22 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t22 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t22 pr row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t22 pr row 5 (R): fewer than three real-word wrong analyses (1 found)
+  t23 ex row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t23 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t23 ex row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t23 ex row 4 (R): fewer than three real-word wrong analyses (2 found)
+  t23 ex row 5 (R): fewer than three real-word wrong analyses (1 found)
+  t23 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t23 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t23 ex row 8 (R): fewer than three real-word wrong analyses (1 found)
+  t23 pr row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t23 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t23 pr row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t23 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t24 ex row 1 (R): fewer than three real-word wrong analyses (2 found)
+  t24 ex row 3 (R): fewer than three real-word wrong analyses (2 found)
+  t24 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t24 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t24 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t24 pr row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t24 pr row 4 (R): fewer than three real-word wrong analyses (2 found)
+  t24 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t24 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t25 ex row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t25 ex row 2 (R): fewer than three real-word wrong analyses (1 found)
+  t25 ex row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t25 ex row 4 (R): fewer than three real-word wrong analyses (2 found)
+  t25 ex row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t25 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t25 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t25 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t25 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t25 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t25 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t25 pr row 6 (R): fewer than three real-word wrong analyses (1 found)
+  t26 ex row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t26 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t26 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t26 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t26 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t26 ex row 6 (R): fewer than three real-word wrong analyses (1 found)
+  t26 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t26 ex row 8 (R): fewer than three real-word wrong analyses (1 found)
+  t26 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t26 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t26 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t26 pr row 5 (R): fewer than three real-word wrong analyses (1 found)
+  t26 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t27 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t27 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t27 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t27 ex row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t27 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t27 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t27 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t27 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t27 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t27 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t27 pr row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t27 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t27 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t28 ex row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t28 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t28 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t28 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t28 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t28 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t28 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t28 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t28 pr row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t28 pr row 2 (R): fewer than three real-word wrong analyses (1 found)
+  t28 pr row 3 (R): fewer than three real-word wrong analyses (2 found)
+  t28 pr row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t28 pr row 5 (R): fewer than three real-word wrong analyses (1 found)
+  t28 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t30 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t30 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t30 pr row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t31 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t31 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t31 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t31 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t31 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t31 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t31 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t31 pr row 1 (R): fewer than three real-word wrong analyses (1 found)
+  t31 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t31 pr row 3 (R): fewer than three real-word wrong analyses (2 found)
+  t31 pr row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t32 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t32 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t32 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t32 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t32 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t32 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t32 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t32 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t32 pr row 2 (R): fewer than three real-word wrong analyses (1 found)
+  t32 pr row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t32 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t33 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t33 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t33 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t33 ex row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t33 ex row 6 (R): fewer than three real-word wrong analyses (2 found)
+  t33 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t33 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t33 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t33 pr row 2 (R): fewer than three real-word wrong analyses (1 found)
+  t33 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t33 pr row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t34 ex row 1 (R): fewer than three real-word wrong analyses (2 found)
+  t34 ex row 2 (R): fewer than three real-word wrong analyses (1 found)
+  t34 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t34 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t34 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t34 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t34 ex row 7 (R): fewer than three real-word wrong analyses (2 found)
+  t34 ex row 8 (R): fewer than three real-word wrong analyses (1 found)
+  t34 pr row 1 (R): fewer than three real-word wrong analyses (2 found)
+  t34 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t34 pr row 3 (R): fewer than three real-word wrong analyses (2 found)
+  t34 pr row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t34 pr row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t34 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t35 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t35 ex row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t35 ex row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t35 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t35 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t35 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t35 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t35 pr row 2 (R): fewer than three real-word wrong analyses (0 found)
+  t35 pr row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t35 pr row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t35 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t35 pr row 6 (R): fewer than three real-word wrong analyses (2 found)
+  t36 ex row 2 (R): fewer than three real-word wrong analyses (2 found)
+  t36 ex row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t36 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t36 ex row 5 (R): fewer than three real-word wrong analyses (1 found)
+  t36 ex row 6 (R): fewer than three real-word wrong analyses (1 found)
+  t36 ex row 7 (R): fewer than three real-word wrong analyses (0 found)
+  t37 ex row 1 (F): fewer than three sound wrong forms (0 found: ) for आगच्छ कृष्ण३ + अत्र → आगच्छ कृष्ण३ अत्र
+  t37 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t37 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t37 pr row 1 (R): fewer than three real-word wrong analyses (2 found)
+  t00 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t00 ex row 2 (R): fewer than three real-word wrong analyses (2 found)
+  t00 ex row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t00 ex row 4 (R): fewer than three real-word wrong analyses (1 found)
+  t00 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t00 pr row 5 (R): fewer than three real-word wrong analyses (2 found)
+  t01 pr row 4 (R): fewer than three real-word wrong analyses (2 found)
+  t02 ex row 2 (R): fewer than three real-word wrong analyses (2 found)
+  t02 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t02 ex row 6 (F): fewer than three sound wrong forms (2 found: हरैव, हरव) for हरे + अव → हरेऽव
+  t03 ex row 4 (R): fewer than three real-word wrong analyses (2 found)
+  t03 ex row 6 (F): fewer than three sound wrong forms (2 found: बालकगच्छति, बालकर्गच्छति) for बालकः + गच्छति → बालको गच्छति
+  t03 ex row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t06 ex row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t06 ex row 6 (R): fewer than three real-word wrong analyses (2 found)
+  t06 pr row 1 (F): fewer than three sound wrong forms (2 found: गुरौत्र, गुरत्र) for गुरो + अत्र → गुरोऽत्र
+  t06 pr row 3 (R): fewer than three real-word wrong analyses (1 found)
+  t06 pr row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t06 pr row 6 (R): fewer than three real-word wrong analyses (0 found)
+  t07 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t40 ex row 5 (R): fewer than three real-word wrong analyses (0 found)
+  t40 ex row 8 (R): fewer than three real-word wrong analyses (0 found)
+  t41 ex row 8 (R): fewer than three real-word wrong analyses (1 found)
+  t41 pr row 1 (R): fewer than three real-word wrong analyses (2 found)
+  t41 pr row 2 (R): fewer than three real-word wrong analyses (2 found)
+  t42 ex row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t42 ex row 4 (R): fewer than three real-word wrong analyses (0 found)
+  t42 ex row 7 (R): fewer than three real-word wrong analyses (1 found)
+  t42 pr row 1 (R): fewer than three real-word wrong analyses (0 found)
+  t42 pr row 3 (R): fewer than three real-word wrong analyses (0 found)
+  t42 pr row 4 (R): fewer than three real-word wrong analyses (0 found)

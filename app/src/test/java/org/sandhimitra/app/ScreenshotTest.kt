@@ -79,6 +79,12 @@ class ScreenshotTest {
         rule.onNodeWithTag("bar_games").performClick(); rule.onNodeWithTag("game_prakriti").performClick(); shot("40_quiz_prakriti_sa")
         val pq = app.quiz.byId("t37-ex2-F")!!
         rule.onNodeWithTag("opt_${pq.options.indexOf("कवीमौ")}").performClick(); shot("41_quiz_prakriti_wrong_sa")
+        // रामौ + अत्र (ayādi) is now in the vowel category; a visarga question with its sound options
+        for ((id, cat, name) in listOf(Triple("t37-pr6-F", "vowel", "42_ayadi_in_vowel_sa"), Triple("t31-ex1-F", "visarga", "43_visarga_f_sa"), Triple("t24-pr4-R", "consonant", "44_consonant_r_sa"))) {
+            app.progress.saveQuizSession(cat, org.sandhimitra.app.ui.QuizSession(cat, listOf(id)).toJson())
+            repeat(6) { if (rule.onAllNodesWithTag("bar_games").fetchSemanticsNodes().isEmpty()) { rule.activityRule.scenario.onActivity { it.onBackPressedDispatcher.onBackPressed() }; rule.waitForIdle() } }
+            rule.onNodeWithTag("bar_games").performClick(); rule.onNodeWithTag("game_$cat").performClick(); shot(name)
+        }
         // the additional formats
         val cq = app.quiz.questions("consonant")
         for ((ty, name) in listOf("NAME" to "37_quiz_name_sa", "SUTRA" to "38_quiz_sutra_sa", "EXAMPLE" to "39_quiz_example_sa")) {

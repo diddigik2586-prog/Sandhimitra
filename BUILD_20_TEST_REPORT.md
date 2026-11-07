@@ -1,7 +1,7 @@
 # Sandhimitram — Build 20 Test Report
 
 Environment: Linux build container, JDK 17, Android SDK 35, Robolectric 4.14.1 (sdk 35, native graphics), no device or emulator.
-Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **76 tests, 76 passed, 0 failed** (final run before packaging).
+Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **79 tests, 79 passed, 0 failed** (final run before packaging).
 
 ## 1. Automated tests actually executed
 
@@ -9,14 +9,14 @@ Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **76 te
 |---|---|---|
 | Name / localization | `Build20Test.launcherLabelIsLocalized` — `app_name` is "Sandhimitram" (default) and "ಸಂಧಿಮಿತ್ರಂ" (kn locale); launcher label; package `org.sandhimitra.app` | pass |
 | Name / localization | `Build20Test.noOldNameInInterfaceStrings` — no "Sandhimitra" (without -m) in any interface string source | pass |
-| Name / localization | APK badging (`aapt2 dump badging`): `application-label:'Sandhimitram'`, `application-label-kn:'ಸಂಧಿಮಿತ್ರಂ'`, versionCode 24, versionName 0.1 | pass |
+| Name / localization | APK badging (`aapt2 dump badging`): `application-label:'Sandhimitram'`, `application-label-kn:'ಸಂಧಿಮಿತ್ರಂ'`, versionCode 25, versionName 0.1 | pass |
 | Home | `Build20Test.homeFitsWithoutScrollingAndGamesCardIsLast` — Sandhicakram card below Sandhātrī, card and attribution inside the 360×800 dp viewport, joystick icon at the far left of the card, title centred on the card, no "n / m" progress text on Home, Bookmark icon beside the Menu icon | pass |
 | Home | `UiTest.splashThenHomeHasExactSixCardsInThreeTiers`, `UiTest.tilesAreSquareAndEqual` (Build 19 layout checks) | pass |
 | Home | Screenshots `01_home_sa_light`, `02_home_kn_light`, `03_home_en_light`, `04_home_en_dark`, `30_home_sa_dark` rendered and inspected: Sandhicakram card highlighted differently in light (indigo-violet, gold lettering) and dark (gold, indigo lettering), icon far left, text centred, everything inside the viewport | pass (visual) |
 | Sandhicakram landing | `Build20Test.gamesLandingHasFourSquareTilesWithProgress` — four square tiles, 2 × 2, inside the viewport, "0 / total" inside the card | pass |
 | Quiz | `Build20Test.quizAnswersPersistAndRestore` — a fresh round alternates forward/reverse with the additional formats spread between them (not bunched); wrong answer shows "Wrong Answer" and the two links; options lock after an answer; "Read the Lesson" opens the exact lesson and returning restores the same question with its wrong-answer view; "Next question" advances; "Previous question" shows the earlier question read-only with its recorded answer (an option tap adds nothing to the history) and Next returns; a correct answer shows Correct! and advances on Next, counting as completed; leaving and re-entering restores the position | pass |
 | Quiz (vikalpa) | `Build20Test.vikalpaQuestionNeedsBothForms` — first valid form Correct, same question re-presented, same form again → "Try Again", other form Correct, then next question; practised alternatives persisted | pass |
-| Question bank | `QuizBankTest.everyShippedQuestionIsVerified` — all 1,378 shipped questions: four options; no duplicate (format, prompt, answers) across the bank and no repeated option inside a question; F/R: every accepted answer reproduced by the engine and every distractor not reproducible; NAME/SUTRA: exactly one named rule of the lesson applies, the accepted option is its name/sūtra, no distractor is an applied rule; EXAMPLE: every option re-derived from its documented pair, only the accepted one uses the lesson's rule; lesson/practice ids exist, ids unique, F+R ≥150 in vowel/consonant/visarga, both directions in every category | pass |
+| Question bank | `QuizBankTest` (4 tests): **noQuestionIsRepeated** (one question per word and format, one forward question per analysis, no look-alike wrong options); **categoryAndLessonFollowTheRulesThatApply** (category equals a category of the applied rules; prakṛtibhāva questions apply only pragṛhya rules and nothing else does; exactly one askable rule of the lesson for name/sūtra/example); **acceptedAnswersAreTheDocumentsOwnForms** (every accepted form and prompt occurs in the lesson row it was made from); **everyShippedQuestionIsVerified** (all 1,032 questions re-derived by the engine: accepted forms produced, no wrong option derivable under any context, no adjacent vowels in wrong options, every wrong reverse part is a real word, name/sūtra distractors are not applied rules or generic entries, example options re-derived from their documented pairs) | pass |
 | Question bank | `Build20Test.questionBankLoadsThroughAssets` — bank loads from the APK asset path | pass |
 | Bookmarks | `Build20Test.bookmarkToggleListAndRemove` — toggle in a lesson (three taps → on), no duplicate on repeated insert, My Bookmarks lists title + parent category, item opens the exact lesson, removal from the list, empty state | pass |
 | Database | `Build20Test.schemaMigrationKeepsBuild19Data` — a schema-1 database with lesson/bookmark/history rows upgraded through `Progress.upgrade`: rows intact, new tables present and empty | pass |
@@ -40,7 +40,7 @@ Command: `ROBOLECTRIC_DEPS_DIR=… ./gradlew :app:testDebugUnitTest` — **76 te
 
 ## 3. Known issues
 
-- Prakṛtibhāva has 26 verified questions instead of 150 (see `SANDHICHAKRAM_QUESTION_AUDIT.md`).
+- Forward/reverse questions per category: vowel 220, consonant 167 (≥150 met); **visarga 90 and prakṛtibhāva 20 are below the original 150** — reported, not filled (see `SANDHICHAKRAM_QUESTION_AUDIT.md`). Consonant and visarga reverse questions are few (11 and 9) because honest real-word wrong analyses do not exist for most rows.
 - The supplied launcher/header icon artwork carries the lettering "Sandhimitra" inside the image. It is the author's approved
   artwork and was not redrawn or retyped (project rule); it is the one remaining visual occurrence of the old spelling and needs
   replacement artwork from the author if it is to change.

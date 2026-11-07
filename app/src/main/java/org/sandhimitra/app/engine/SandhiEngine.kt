@@ -30,6 +30,8 @@ class SandhiEngine(private val lexicon: LexiconApi? = null) {
     private val hasLexicon = lexicon != null
 
     fun lookup(word: String): SupportInfo = support.classify(Script.toSlp1(word).trim())
+    /** Dictionary weight (0 = unknown or compound-only) of a surface form; used by tools to keep only real words. */
+    fun wordWeight(word: String): Int = support.weight(Script.toSlp1(word).trim())
 
     // ------------------------------------------------------------------ forward
     fun joinAll(parts0: List<String>, ctx: Ctx = Ctx()): JoinResult {

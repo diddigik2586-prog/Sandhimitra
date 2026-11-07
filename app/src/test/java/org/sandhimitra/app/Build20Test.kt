@@ -74,8 +74,16 @@ class Build20Test {
         // a fresh mixed round alternates the two directions
         val all = app.quiz.questions("vowel")
         val dirs = QuizSession.fresh("vowel", all, 7L).seq.map { app.quiz.byId(it)!!.dir }
-        val fr = dirs.filter { it != "O" }; val balanced = 2 * minOf(fr.count { it == "F" }, fr.count { it == "R" })
-        assertTrue("forward and reverse alternate while both remain", fr.take(balanced).windowed(2).all { it[0] != it[1] }); assertTrue(dirs.count { it == "O" } == all.count { it.dir == "O" })
+        val fr = dirs.filter { it != "O" }
+        var run = 0; var maxRun = 0; var prev = ""
+        for (d in fr) { run = if (d == prev) run + 1 else 1; prev = d; maxRun = maxOf(maxRun, run) }
+        val ratio = maxOf(fr.count { it == "F" }, fr.count { it == "R" }).toDouble() / maxOf(1, minOf(fr.count { it == "F" }, fr.count { it == "R" }))
+        assertTrue("forward and reverse are spread evenly (longest run $maxRun for ratio $ratio)", maxRun <= Math.ceil(ratio).toInt() + 3)
+        assertTrue(dirs.count { it == "O" } == all.count { it.dir == "O" })
+        val sq = QuizSession.fresh("vowel", all, 7L).seq.map { app.quiz.byId(it)!! }
+        assertEquals("no question twice in a round", sq.size, sq.map { it.id }.toSet().size)
+        val gap = minOf(25, sq.size / 3)
+        sq.forEachIndexed { i, q -> for (j in (i + 1)..minOf(sq.size - 1, i + gap / 2)) assertNotEquals("same word ${q.word} within $gap questions", q.word, sq[j].word) }
         assertTrue("other formats spread, not bunched at the end", dirs.take(dirs.size / 2).count { it == "O" } > 0)
         // a controlled round of plain (non-vikalpa) questions: reverse, forward, reverse
         val plain = all.filter { !it.vikalpa }

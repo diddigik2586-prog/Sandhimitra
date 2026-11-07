@@ -26,7 +26,13 @@ data class QuizQuestion(
     val rules: List<String>,   // rule ids of the registry
     val source: String,        // provenance, e.g. "t08 ex row 3"
     val optionSources: List<String> = emptyList()   // EXAMPLE: the documented "L + R" behind each option
-) { val vikalpa get() = answers.size > 1 }
+
+) {
+    val vikalpa get() = answers.size > 1
+    /** The Sanskrit word the question is about (spaces, candrabindu and avagraha ignored): questions about one word are kept apart within a round. */
+    val word: String get() = when (type) { "F", "EXAMPLE" -> options[answers.first()]; "R" -> prompt; else -> prompt.substringAfterLast('→') }
+        .replace(" ", "").replace('ँ', 'ं').replace("ऽ", "")
+}
 
 /** Reads the bundled question bank (assets/quiz/questions.json). */
 class QuizBank(private val ctx: Context) {

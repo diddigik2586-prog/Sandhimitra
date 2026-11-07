@@ -2,9 +2,9 @@
 
 ## Project status
 
-Build 20 (versionName 0.1, versionCode 24 — second revision with the additional question formats) adds the Sandhicakram game, the question bank, bookmarks, the localized application
+Build 20 (versionName 0.1, versionCode 25 — second revision with the additional question formats) adds the Sandhicakram game, the question bank, bookmarks, the localized application
 name and the no-scroll Home page on top of Build 19. Engine, lexicon, lesson content, fonts and the info pages are unchanged.
-Deliverables: `dist/Sandhimitra-0.1-build24.apk` (versionCode 24, signed with the upload key) and `dist/Sandhimitra-source-0.1-build24.zip`.
+Deliverables: `dist/Sandhimitra-0.1-build25.apk` (versionCode 25, signed with the upload key) and `dist/Sandhimitra-source-0.1-build25.zip`.
 
 ## Architecture (where things live)
 
@@ -36,7 +36,7 @@ answer alternatives = option indices stored per question id; bookmarks keyed by 
 2. Home page without scrolling; Sandhicakram card (fixed Copper/Indigo, joystick before title, centred, shimmer, reduced-motion aware).
 3. Sandhicakram landing (2 × 2 squares with progress) and the mixed quiz (four options, auto-advance, wrong-answer links to the
    exact lesson and practice, vikalpa sequence, full persistence and restore).
-4. Question bank: 1,519 engine-verified questions — 906 forward/reverse (vowel 362, consonant 350, visarga 168, prakṛtibhāva 26) plus 613 in the additional formats (identify the Sandhi, identify the sūtra, select an example), audit in
+4. Question bank: 1,032 engine-verified questions (vowel 410, consonant 390, visarga 190, prakṛtibhāva 42; forward 381, reverse 116, name 215, sūtra 215, example 105), one per word, audit in
    `SANDHICHAKRAM_QUESTION_AUDIT.md` and `docs/quiz_bank_audit.txt`.
 5. Bookmarks: lesson toggle, header icon, My Bookmarks page, persistence without duplicates.
 6. Schema migration 1 → 2 with a test proving Build 19 rows survive.
@@ -44,8 +44,7 @@ answer alternatives = option indices stored per question id; bookmarks keyed by 
 
 ## Pending / known gaps
 
-- **Prakṛtibhāva has 26 verified questions (requirement 150).** The supplied documents do not contain more usable rows and no
-  additional authorised source was available offline. Not filled artificially.
+- **Visarga (90) and prakṛtibhāva (20) forward/reverse questions are below the original 150.** The lessons do not contain enough usable examples once every question must be accurate and unique; nothing was manufactured.
 - Engine does not model ऋत्यकः (6.1.128) and the pragṛhya dual in -ए/-ऊ when the stem is not recognised, so three documented
   prakṛtibhāva rows are not admitted.
 - Device installation and the device-restart persistence check could not be executed in this environment (no emulator/device);
@@ -69,5 +68,5 @@ answer alternatives = option indices stored per question id; bookmarks keyed by 
 ```
 ROBOLECTRIC_DEPS_DIR=/path/to/android-all-jars ./gradlew :app:testDebugUnitTest     # full suite (needs offline Robolectric jars when Maven is unreachable)
 ./gradlew :app:assembleRelease                                                      # signed APK
-git archive --format=zip -o dist/Sandhimitra-source-0.1-build24.zip HEAD -- . ':(exclude)dist'
+git archive --format=zip -o dist/Sandhimitra-source-0.1-build25.zip HEAD -- . ':(exclude)dist'
 ```

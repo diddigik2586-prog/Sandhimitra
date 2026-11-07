@@ -11,6 +11,7 @@ import java.sql.DriverManager
 class SandhiEngineTest {
     companion object {
         lateinit var engine: SandhiEngine
+        lateinit var lex: LexiconApi
         @BeforeClass @JvmStatic fun setup() {
             val db = File("src/main/assets/lexicon/lexicon.db")
             assertTrue("lexicon.db missing at ${db.absolutePath}", db.exists())
@@ -19,7 +20,7 @@ class SandhiEngineTest {
             fun has(sql: String, v: String): String? {
                 conn.prepareStatement(sql).use { ps -> ps.setString(1, v); ps.executeQuery().use { rs -> return if (rs.next()) rs.getString(1) else null } }
             }
-            engine = SandhiEngine(object : LexiconApi {
+            lex = object : LexiconApi {
                 override fun isHeadword(k1: String) = has("SELECT g FROM lex WHERE k1=?", k1) != null
                 override fun isAttested(form: String) = has("SELECT f FROM attested WHERE f=?", form) != null
                 override fun closedClass(form: String) = has("SELECT c FROM closed WHERE f=?", form)
@@ -27,7 +28,8 @@ class SandhiEngineTest {
                 override fun isSimple(k1: String) = has("SELECT s FROM lex WHERE k1=?", k1) == "1"
                 override fun category(k1: String) = has("SELECT g FROM lex WHERE k1=?", k1)
                 override fun compound(k1: String): Pair<String, String>? { val p = has("SELECT parent FROM cmp WHERE k1=?", k1) ?: return null; return p to (has("SELECT second FROM cmp WHERE k1=?", k1) ?: "") }
-            })
+            }
+            engine = SandhiEngine(lex)
         }
         fun d(s: String) = Script.slp1ToDevanagari(s)
     }

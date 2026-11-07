@@ -65,6 +65,7 @@ class Progress(ctx: Context) : SQLiteOpenHelper(ctx, "progress.db", null, 2) {
     fun markQuizDone(cat: String, qid: String) {
         writableDatabase.insertWithOnConflict("quiz_done", null, ContentValues().apply { put("cat", cat); put("qid", qid); put("ts", System.currentTimeMillis()) }, SQLiteDatabase.CONFLICT_IGNORE); bump()
     }
+    fun quizDoneIds(cat: String): Set<String> = readableDatabase.rawQuery("SELECT qid FROM quiz_done WHERE cat=?", arrayOf(cat)).use { c -> buildSet { while (c.moveToNext()) add(c.getString(0)) } }
     fun quizDoneCount(cat: String): Int = readableDatabase.rawQuery("SELECT COUNT(*) FROM quiz_done WHERE cat=?", arrayOf(cat)).use { it.moveToFirst(); it.getInt(0) }
 
     fun addHistory(kind: String, input: String) {

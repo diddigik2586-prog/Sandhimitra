@@ -19,7 +19,9 @@ import java.io.File
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [35])
 class QuizBankBuild {
-    private data class Admitted(val row: Row, val cat: String, val lesson: String, val practice: String, val form: String, val rules: List<String>, val exSa: String, val exKn: String, val exEn: String, val src: String)
+    private class Cand(val idx: Int, val row: Row, val cat: String, val lesson: String, val practice: String, val reproduced: List<String>, val rules: List<String>,
+                        val exSa: String, val exKn: String, val exEn: String, val src: String, val pairKey: String, val score: Int,
+                        val valid: Set<String>, val wrongPlain: List<String>, val prakriti: Boolean)
     private data class Row(val topic: String, val group: String, val table: String, val row: Int, val left: String, val right: String, val form: String,
                            val exSa: String, val exKn: String)
 
@@ -75,142 +77,255 @@ class QuizBankBuild {
     private val V = "aAiIuUfFxXeEoO"
     private fun adjVowels(s: String) = Regex("[$V][$V]").containsMatchIn(s)
 
-    private val SUB = mapOf(
-        'a' to "AeoiuEO", 'A' to "aeEoOiIuU", 'i' to "IeyaAE", 'I' to "ieyaAE", 'u' to "UovaAoO", 'U' to "uovaAO", 'f' to "FaraA", 'e' to "EoaAiI", 'E' to "eoAai", 'o' to "OeaAuU", 'O' to "oeAau",
-        'y' to "iIv", 'v' to "uUy", 'r' to "Hso", 'H' to "rsoM", 'M' to "nmNYR", 'n' to "MRYN", 'm' to "Mn", 'N' to "Mn", 'Y' to "Mn", 'R' to "nM",
-        't' to "dcwn", 'd' to "tjqn", 'c' to "tjS", 'j' to "dc", 'w' to "tq", 'q' to "dw", 'S' to "szC", 'z' to "sS", 's' to "SzH", 'C' to "cS", 'k' to "g", 'g' to "k", 'p' to "b", 'b' to "p", 'l' to "r", 'h' to "G"
-    )
+    private val VOW_FIN = "aAiIuUfeEoO"
+    private val VARGAS = listOf("kgN", "cjY", "wqR", "tdn", "pbm")
+    private val EXTRA = mapOf('t' to "cwk", 'T' to "CW", 'd' to "jqg", 'D' to "JQ", 'n' to "YR", 's' to "Sz", 'S' to "sz", 'z' to "sS", 'H' to "rsSz", 'r' to "Hs", 'M' to "mnNYR", 'm' to "Mn",
+        'k' to "ct", 'g' to "jd", 'c' to "kt", 'j' to "gd", 'w' to "t", 'q' to "d")
+    /** Sounds a learner confuses with c at a consonant junction: its own varga, the palatal/retroflex counterpart of a dental, the sibilants, visarga/r, anusvāra/nasals. */
+    private fun rel(c: Char): String = ((VARGAS.firstOrNull { c in it } ?: "").filter { it != c } + (EXTRA[c] ?: "")).filter { it != c }
+    /** y/v directly before a consonant, or a semivowel/visarga cluster no Sanskrit word has, marks a machine-made form. */
+    private val JUNK = Regex("[yv][kKgGNcCjJYwWqQRtTdDnpPbBmszSh]|HH|MM|Hr|rH|[rl][rl]|[HM]'|^[HM]" +
+        "|[sz][gGdDbBjJcCY]|S[kKgGpPbBwWqQR]|z[tTdD]|sh" +
+        "|[KGCJWQTDPB][kKgGcCjJwWqQtTdDpPbBnmszSh]" +          // an aspirate is never followed by another stop, a nasal or a sibilant
+        "|N(?![kKgGN]|$)|(?<!j)Y(?![cCjJY]|$)")                 // ṅ and ñ only before their own varga
+    private val CATS = listOf("vowel", "consonant", "visarga", "prakriti")
+    /** Rules that name a Sandhi a learner can be asked about (composite labels, the generic vārttika entry, an optionality label and the generic "visarga" are not). */
+    private val NOT_ASKABLE = setOf("V04", "V10", "C14", "H02", "H04")
+
+    private fun catOf(c: Category?) = when (c) { Category.VOWEL -> "vowel"; Category.CONSONANT -> "consonant"; Category.VISARGA -> "visarga"; Category.PRAKRITIBHAVA -> "prakriti"; null -> null }
+    /** Comparison key: spaces, candrabindu/anusvāra and the avagraha sign do not make two spellings different words. */
+    private fun normForm(s: String) = ns(s).replace('ँ', 'ं').replace("ऽ", "").replace("'", "")
+    private fun badOrth(slp: String) = Regex("[HM][$V]").containsMatchIn(ns(slp)) || ns(slp).startsWith("H") || ns(slp).startsWith("M")
+
+    /** Two spellings of the same analysis (देव/देवा + इन्द्रः, तत्/तद् + च, हरिः/हरिस् + शेते) share one key. */
+    private fun pairKey(L: String, R: String): String {
+        fun shortEnd(w: String) = if (w.isNotEmpty() && w.last() in "AIUF") w.dropLast(1) + "aiuf"["AIUF".indexOf(w.last())] else w
+        fun shortStart(w: String) = if (w.isNotEmpty() && w.first() in "AIUF") "aiuf"["AIUF".indexOf(w.first())] + w.drop(1) else w
+        fun consNorm(w: String) = when { w.isEmpty() -> w; w.last() in "rsH" -> w.dropLast(1) + "%"; Ph.varga(w.last()) >= 0 && w.last() !in "NYRnm" -> w.dropLast(1) + "#"; else -> w }
+        return consNorm(shortEnd(ns(L))) + "|" + shortStart(ns(R))
+    }
+
+    private fun lev(a: String, b: String): Int {
+        val d = Array(a.length + 1) { IntArray(b.length + 1) }
+        for (i in 0..a.length) d[i][0] = i; for (j in 0..b.length) d[0][j] = j
+        for (i in 1..a.length) for (j in 1..b.length) d[i][j] = minOf(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + if (a[i - 1] == b[j - 1]) 0 else 1)
+        return d[a.length][b.length]
+    }
+
+    private fun lastVariants(L: String): List<String> {
+        val last = L.last(); val base = L.dropLast(1)
+        val pool = if (last in V) (VOW_FIN + "Hm") else rel(last)
+        return pool.filter { it != last }.map { base + it }
+    }
+    private fun firstVariants(R: String): List<String> {
+        val first = R.first(); val rest = R.drop(1)
+        val pool = if (first in V) VOW_FIN else rel(first)
+        return pool.filter { it != first }.map { it + rest }
+    }
+    /** The mistakes learners make at a vowel junction: the results of the other vowel rules, as far as they are defined for these vowels. */
+    private fun vowelJunctionMistakes(L: String, R: String): List<String> {
+        val fv = L.last(); val iv = R.first(); val base = L.dropLast(1); val rest = R.drop(1)
+        val x = LinkedHashSet<String>()
+        x += Ph.longOf(fv).toString()                                              // savarṇadīrgha
+        when (fv) {
+            'a', 'A' -> { x += listOf("e", "o", "ar", "E", "O", "Ar", "al"); x += iv.toString() }   // guṇa, vṛddhi, pararūpa
+            'i', 'I' -> { x += "y$iv"; x += listOf("e", "E", "ay$iv") }
+            'u', 'U' -> { x += "v$iv"; x += listOf("o", "O", "av$iv") }
+            'f', 'F' -> { x += "r$iv"; x += listOf("ar", "Ar") }
+            'x', 'X' -> { x += "l$iv"; x += listOf("al", "Al") }
+            'e' -> { x += listOf("ay$iv", "a$iv", "E", iv.toString()); if (iv == 'a') x += "e'" }
+            'E' -> { x += listOf("Ay$iv", "A$iv", "e", iv.toString()) }
+            'o' -> { x += listOf("av$iv", "a$iv", "O", iv.toString()); if (iv == 'a') x += "o'" }
+            'O' -> { x += listOf("Av$iv", "A$iv", "o", iv.toString()) }
+        }
+        return x.map { base + it + rest }
+    }
 
     @Test fun build() {
         // a build tool, not a regression test: runs only when asked for (QUIZ_BUILD=1 ./gradlew :app:testDebugUnitTest --tests '*QuizBankBuild*')
         if (System.getenv("QUIZ_BUILD") != "1") { println("QUIZBANK skipped (set QUIZ_BUILD=1)"); return }
         SandhiEngineTest.setup(); val e = SandhiEngineTest.engine
-        val qs0 = JSONArray(); val audit = StringBuilder(); val counts = HashMap<String, IntArray>()
-        val excluded = mutableListOf<String>(); val partial = mutableListOf<String>(); val extraSkipped = mutableListOf<String>()
-        val admitted = mutableListOf<Admitted>()
-        val seenForms = HashMap<String, MutableSet<String>>()   // form -> accepted "L+R" (for reverse alternatives from other rows)
+        val audit = StringBuilder()
+        val excluded = mutableListOf<String>(); val partial = mutableListOf<String>(); val extraSkipped = mutableListOf<String>(); val reclass = mutableListOf<String>(); val dupes = mutableListOf<String>()
         val all = rows()
-        // reverse alternatives come only from rows whose analysis the engine reproduces (a documented pair the engine rejects is never an answer)
-        for (r in all) if (devOnly(r.left) && devOnly(r.right) && devOnly(r.form)) {
-            val forms = r.form.split('/').map { it.trim() }.filter { it.isNotEmpty() }
-            val got = try { e.join(r.left, r.right).alts.map { ns(it.surface) } + (if (r.group == "prakriti") e.join(r.left, r.right, Ctx(leftPragrhya = true)).alts.map { ns(it.surface) } else emptyList()) } catch (x: Exception) { emptyList() }
-            for (fm in forms) if (Script.invalidChars(Script.toSlp1(fm)).isEmpty() && ns(Script.toSlp1(fm)) in got) seenForms.getOrPut(ns(fm)) { LinkedHashSet() }.add("${r.left}+${r.right}")
+        fun outs(L: String, R: String, ctx: Ctx): List<String> = try { e.join(dev(L), dev(R), ctx).alts.map { ns(it.surface) } } catch (x: Exception) { emptyList() }
+        fun outsAll(L: String, R: String): Set<String> = (outs(L, R, Ctx()) + outs(L, R, Ctx(leftPada = false)) + outs(L, R, Ctx(leftPragrhya = true))).toSet()
+        /** a real word: a closed-class word, a form attested in the lessons, or a dictionary noun/adjective/indeclinable of some weight (never a verbal root, a compound-only stem or a fragment) */
+        fun meaningful(slp: String): Boolean {
+            if (slp.length < 2 || badOrth(slp) || Script.invalidChars(slp).isNotEmpty() || adjVowels(slp) || slp.none { it in V } || JUNK.containsMatchIn(slp)) return false
+            val d = dev(slp); val info = e.lookup(d)
+            if (info.level != Support.EXACT && info.level != Support.DERIVED) return false
+            if (info.detail in setOf("upasarga", "avyaya", "numeral", "cpd", "attested")) return true
+            val stem = if (info.level == Support.DERIVED) info.detail else slp
+            if (SandhiEngineTest.lex.category(stem) in setOf("r", "c", "x")) return false
+            return e.wordWeight(d) >= 3 && stem.length >= 3
         }
-        for (r in all) {
+        // ---- 1. every row the engine reproduces becomes a candidate; documented forms are the only accepted answers
+        val cands = mutableListOf<Cand>()
+        val docPairs = HashMap<String, MutableList<Pair<String, String>>>()      // normalised form -> documented (L, R) pairs the engine reproduces
+        for ((idx, r) in all.withIndex()) {
             val src = "${r.topic} ${r.table} row ${r.row}"
-            if (!devOnly(r.left) || !devOnly(r.right) || !devOnly(r.form)) { excluded += "$src: non-Devanagari characters"; continue }
+            if (!devOnly(r.left) || !devOnly(r.right) || !devOnly(r.form)) { excluded += "$src: not a plain example (notes, arrows or Latin text in the row)"; continue }
             val docForms = r.form.split('/').map { it.trim() }.filter { it.isNotEmpty() }
             val L = Script.toSlp1(r.left).trim(); val R = Script.toSlp1(r.right).trim()
             if (Script.invalidChars(L + R).isNotEmpty()) { excluded += "$src: unsupported characters"; continue }
-            // the lessons on prakṛtibhāva present pragṛhya words; the engine is told so (as the user does in Sandhātrī)
+            val docSlp = docForms.map { ns(Script.toSlp1(it)) }
+            val prakGroup = r.group == "prakriti"
             var jr = try { e.join(r.left, r.right) } catch (x: Exception) { null }
-            var plainSurfaces = emptyList<String>()
-            if (r.group == "prakriti" && jr != null) {
-                // pragṛhya blocks the ordinary rules: whatever the ordinary rules would give (कवीमौ) is wrong here, so those forms
-                // become the natural distractors, and only the documented form(s) are accepted
-                val docSlp = docForms.map { ns(Script.toSlp1(it)) }
-                plainSurfaces = jr.alts.map { it.surface }.filter { ns(it) !in docSlp }
+            var wrongPlain = emptyList<String>()
+            if (prakGroup && jr != null) {
+                // pragṛhya blocks the ordinary rules: what the ordinary rules would give (कवीमौ) is a wrong answer here
+                wrongPlain = jr.alts.map { ns(it.surface) }.filter { it !in docSlp }
                 if (jr.alts.none { a -> ns(a.surface) in docSlp }) jr = try { e.join(r.left, r.right, Ctx(leftPragrhya = true)) } catch (x: Exception) { null }
             }
-            val surfaces = if (r.group == "prakriti") jr?.alts?.map { it.surface }.orEmpty().filter { a -> docForms.any { ns(a) == ns(Script.toSlp1(it)) } } else jr?.alts?.map { it.surface }.orEmpty()
-            val reproduced = docForms.filter { d -> Script.invalidChars(Script.toSlp1(d)).isEmpty() && surfaces.any { ns(it) == ns(Script.toSlp1(d)) } }
+            if (jr == null) { excluded += "$src: engine cannot join ${r.left} + ${r.right}"; continue }
+            val reproduced = docForms.filter { d -> Script.invalidChars(Script.toSlp1(d)).isEmpty() && jr.alts.any { ns(it.surface) == ns(Script.toSlp1(d)) } }
+            if (reproduced.isEmpty()) { excluded += "$src: engine does not reproduce ${docForms.joinToString("/")} from ${r.left} + ${r.right} (got ${jr.alts.joinToString(" | ") { dev(it.surface) }})"; continue }
             val missing = docForms - reproduced.toSet()
-            if (jr == null || reproduced.isEmpty()) { excluded += "$src: engine does not reproduce ${missing.joinToString("/")} from ${r.left} + ${r.right} (got ${surfaces.joinToString(" | ") { dev(it) }})"; continue }
             if (missing.isNotEmpty()) partial += "$src: documented alternative ${missing.joinToString("/")} is outside the engine (not offered, never a distractor); offered: ${reproduced.joinToString("/")}"
-            val F = Script.toSlp1(reproduced[0]).trim()
-            val primary = jr.alts.first { ns(it.surface) == ns(F) }
+            val primary = jr.alts.first { ns(it.surface) == ns(Script.toSlp1(reproduced[0])) }
             val ruleIds = primary.steps.map { it.ruleId }.distinct()
-            val cat = when (r.group) {
-                "vowel", "consonant", "visarga", "prakriti" -> r.group
-                else -> when (ruleIds.firstOrNull()?.let { Rules.find(it)?.category }) {
-                    Category.VOWEL -> "vowel"; Category.CONSONANT -> "consonant"; Category.VISARGA -> "visarga"; Category.PRAKRITIBHAVA -> "prakriti"; null -> null
+            val ruleCats = ruleIds.mapNotNull { catOf(Rules.find(it)?.category) }.toSet()
+            // ---- category and lesson come from the rules that actually apply
+            val groupCat = if (r.group in CATS) r.group else null
+            var cat: String; var lesson: String; var practice: String
+            if (groupCat != null && (ruleCats.isEmpty() || groupCat in ruleCats)) { cat = groupCat; lesson = r.topic; practice = r.topic }
+            else if (ruleCats.isNotEmpty()) {
+                val first = Rules.find(ruleIds.first())!!
+                cat = catOf(first.category)!!; lesson = first.topic; practice = if (r.group == "practice") r.topic else first.topic
+                if (groupCat != null) reclass += "$src ($groupCat lesson): the rules that apply are ${ruleIds.joinToString(",")} ($cat) — filed under $cat, lesson ${first.topic}"
+            } else { excluded += "$src: no Sandhi rule operates (cannot be assigned to a category)"; continue }
+            if (r.group in listOf("intro", "practice")) { lesson = Rules.find(ruleIds.firstOrNull())?.topic ?: r.topic; practice = if (r.group == "practice") r.topic else lesson }
+            val prak = cat == "prakriti"
+            val regs = ruleIds.mapNotNull { Rules.find(it) }
+            val exSa = (if (r.exSa.isNotBlank()) r.exSa + " — " else "") + regs.joinToString("; ") { "${it.sutraDeva} (${it.ref})" }
+            val exKn = (if (r.exKn.isNotBlank()) r.exKn + " — " else "") + regs.joinToString("; ") { "${Script.render(it.sutraDeva, "kn")} (${it.ref})" }
+            val exEn = regs.joinToString("; ") { "${Script.render(it.sutraDeva, "en")} (${it.ref}): ${it.scope}" }.ifEmpty { if (prak) "No Sandhi change (prakṛtibhāva)." else "No Sandhi rule operates here: the two words stay as they are." }
+            // every form the engine can derive from this pair is "valid": it is never offered as a wrong option
+            val valid = if (prak) outs(L, R, Ctx(leftPragrhya = true)).toSet() + docSlp else outsAll(L, R) + docSlp
+            val wrong = if (prak) wrongPlain.filter { it !in valid } else emptyList()
+            val score = (if (groupCat != null && groupCat in ruleCats) 8 else 0) + (if (r.table == "ex") 4 else 0) + (if (groupCat != null) 2 else 0)
+            cands += Cand(idx, r, cat, lesson, practice, reproduced, ruleIds, exSa, exKn, exEn, src, pairKey(L, R), score, valid, wrong, prak)
+            for (fm in reproduced) docPairs.getOrPut(normForm(fm)) { mutableListOf() }.add(r.left to r.right)
+        }
+        // ---- 2. one row per word: same analysis (pair key) or a shared documented form counts as the same word; the row from the lesson that teaches it is kept
+        val kept = mutableListOf<Cand>(); val seenKeys = HashSet<String>(); val seenForms = HashSet<String>()
+        for (c in cands.sortedWith(compareByDescending<Cand> { it.score }.thenBy { it.idx })) {
+            val forms = c.reproduced.map { normForm(it) }
+            if (c.pairKey in seenKeys || forms.any { it in seenForms }) { dupes += "${c.src}: ${c.row.left} + ${c.row.right} → ${c.reproduced[0]} (same word as a row already kept)"; continue }
+            seenKeys += c.pairKey; seenForms += forms; kept += c
+        }
+        kept.sortBy { it.idx }
+        // ---- 3. questions
+        val qs = JSONArray(); val counts = HashMap<String, IntArray>()
+        fun bump(cat: String, k: Int) { counts.getOrPut(cat) { IntArray(5) }[k]++ }
+        for (c in kept) {
+            val r = c.row; val L = Script.toSlp1(r.left).trim(); val R = Script.toSlp1(r.right).trim(); val F = Script.toSlp1(c.reproduced[0]).trim()
+            val rnd0 = c.src.hashCode().toLong()
+            // forward: join the pair
+            run {
+                val acc = c.reproduced.take(2).toList(); val accN = c.reproduced.map { normForm(it) }.toSet()
+                val cand = ArrayList<Pair<String, Int>>()
+                fun consider(slp: String, bias: Int, plain: Boolean = false) {
+                    val n = ns(slp); val raw = slp.trim().replace(Regex(" +"), " ")
+                    if (n.isEmpty() || n in c.valid || normForm(dev(n)) in accN || badOrth(raw) || adjVowels(raw) || Script.invalidChars(n).isNotEmpty() || n.startsWith("'") || (!plain && JUNK.containsMatchIn(n))) return
+                    cand += dev(raw) to (lev(n, ns(F)) + bias)
                 }
+                val f = ns(F)
+                for (w in c.wrongPlain) consider(w, -6)                                  // prakṛtibhāva: what the ordinary rules would wrongly give
+                if (L.last() in V && R.first() in V) for (m in vowelJunctionMistakes(L, R)) consider(m, 0)   // wrong rule at a vowel junction
+                if (!(L.last() in V && R.first() in V)) {
+                    consider(L + R, 0, plain = true)                                     // no Sandhi applied
+                    val lc = L.last(); val base = L.dropLast(1)
+                    if (lc == 'H') {
+                        // visarga: the classic mistakes
+                        consider(base + R, 2)                                            // visarga simply dropped
+                        if (base.isNotEmpty() && base.last() in "iu") consider(base.dropLast(1) + Ph.longOf(base.last()) + R, 2)   // r lost with lengthening where it does not apply
+                        if (base.endsWith("a")) { consider(base.dropLast(1) + "o" + R, 1); consider(base.dropLast(1) + "o " + R, 1) }   // ः → o where it is not the rule (स/सः, before a vowel)
+                        if (base.endsWith("A")) { consider(base.dropLast(1) + "o" + R, 2); consider(base.dropLast(1) + "o " + R, 2) }
+                        for (f2 in (if (R.first() in V) "rs" else "rsSz")) consider(base + f2 + R, 2)
+                        if (R.first() in V && base.isNotEmpty() && base.last() in V) for (m in vowelJunctionMistakes(base, R)) consider(m, 3)   // a vowel Sandhi wrongly applied across the lost visarga
+                        if (R.first() in V && base.last() !in "aA") consider(base + "y" + R, 3)                                                   // the य् of 8.3.17 where it does not apply
+                    }
+                    if (lc == 's' || lc == 'r') consider(base + "H" + R, 1, plain = true)    // the visarga kept
+                    if (lc !in V && lc != 'H') {
+                        val wrongFinals = rel(lc)
+                        for (f2 in wrongFinals) consider(base + f2 + R, 1)               // the wrong final sound, nothing else changed
+                        consider(base + R, 2)                                            // the final sound dropped
+                        // the second word's first sound changes only where phonetics allows it: h takes the aspirate of the preceding stop, ś/s/ṣ and ch
+                        val inits = when (R.first()) { 'h' -> "GJQDB"; 'S' -> "Cs"; 's' -> "Sz"; else -> "" }
+                        for (f2 in wrongFinals + lc) for (i2 in inits) consider(base + f2 + i2 + R.drop(1), 2)   // a wrong assimilation
+                        for (L2 in lastVariants(L)) for (o in outs(L2, R, Ctx())) consider(o, 3)                 // correct Sandhi of a mistaken stem
+                    }
+                    if (lc in V) for (ins in "tckdjgnm") consider(L + ins + R, 2)       // a consonant wrongly inserted
+                }
+                val dis = cand.sortedBy { it.second }.map { it.first }.distinctBy { normForm(it) }.take(4 - acc.size)
+                if (dis.size < 4 - acc.size) excluded += "${c.src} (F): fewer than three sound wrong forms (${dis.size} found: ${dis.joinToString(", ")}) for ${r.left} + ${r.right} → ${c.reproduced.joinToString("/")}"
+                else { val opts = (acc + dis).shuffled(java.util.Random(rnd0)); qs.put(q("${r.topic}-${r.table}${r.row}-F", c.cat, "F", c.lesson, c.practice, "${r.left} + ${r.right}", opts, opts.indices.filter { opts[it] in acc }, c.exSa, c.exKn, c.exEn, c.rules, c.src)); bump(c.cat, 0) }
             }
-            if (cat == null) { excluded += "$src: no Sandhi rule operates (cannot be assigned to a category)"; continue }
-            val ruleTopic = ruleIds.firstOrNull()?.let { Rules.find(it)?.topic }
-            val lesson = if (r.group in listOf("intro", "practice")) (ruleTopic ?: r.topic) else r.topic
-            val practice = if (r.group == "practice") r.topic else lesson
-            // explanations
-            val regNames = ruleIds.mapNotNull { Rules.find(it) }
-            val exSa = (if (r.exSa.isNotBlank()) r.exSa + " — " else "") + regNames.joinToString("; ") { "${it.sutraDeva} (${it.ref})" }
-            val exKn = (if (r.exKn.isNotBlank()) r.exKn + " — " else "") + regNames.joinToString("; ") { "${Script.render(it.sutraDeva, "kn")} (${it.ref})" }
-            val exEn = regNames.joinToString("; ") { "${Script.render(it.sutraDeva, "en")} (${it.ref}): ${it.scope}" }.ifEmpty { if (r.group == "prakriti") "No Sandhi change (prakṛtibhāva)." else "No Sandhi rule operates here: the two words stay as they are." }
-            // ---- forward question
-            val acceptedF = LinkedHashSet<String>(); acceptedF += reproduced
-            if (jr.status == Status.VERIFIED && r.group != "prakriti") jr.alts.forEach { a -> if (docForms.none { ns(Script.toSlp1(it)) == ns(a.surface) }) acceptedF += dev(a.surface) }
-            val fDis = forwardDistractors(L, R, F, surfaces, (acceptedF + docForms).map { ns(Script.toSlp1(it)) }.toSet(), plainSurfaces)
-            if (fDis.size < 3) excluded += "$src (F): only ${fDis.size} safe distractors"
-            else { val opts = (acceptedF.take(2) + fDis.take(4 - minOf(2, acceptedF.size))).shuffled(java.util.Random(src.hashCode().toLong()))
-                qs0.put(q("${r.topic}-${r.table}${r.row}-F", cat, "F", lesson, practice, "${r.left} + ${r.right}", opts, opts.indices.filter { opts[it] in acceptedF }, exSa, exKn, exEn, ruleIds, src))
-                counts.getOrPut(cat) { IntArray(5) }[0]++ }
-            // ---- reverse question
-            val acceptedR = seenForms.getValue(ns(reproduced[0])).map { it.replace("+", " + ") }
-            val rDis = reverseDistractors(e, L, R, F, acceptedR.map { ns(Script.toSlp1(it.replace(" + ", "+"))) }.toSet(), r.group == "prakriti")
-            if (rDis.size < 3) excluded += "$src (R): only ${rDis.size} safe distractors"
-            else { val opts = (acceptedR.take(2) + rDis.take(4 - minOf(2, acceptedR.size))).shuffled(java.util.Random(src.hashCode().toLong() + 1))
-                qs0.put(q("${r.topic}-${r.table}${r.row}-R", cat, "R", lesson, practice, reproduced[0], opts, opts.indices.filter { opts[it] in acceptedR }, exSa, exKn, exEn, ruleIds, src))
-                counts.getOrPut(cat) { IntArray(5) }[1]++ }
-            admitted += Admitted(r, cat, lesson, practice, reproduced[0], ruleIds, exSa, exKn, exEn, src)
+            // reverse: separate the form (all documented, engine-reproduced analyses with a different stem/ending are accepted; citation variants are one analysis)
+            run {
+                val own = pairKey(L, R)
+                val accPairs = LinkedHashMap<String, Pair<String, String>>(); accPairs[own] = r.left to r.right
+                for ((l2, r2) in docPairs[normForm(c.reproduced[0])].orEmpty()) { val k = pairKey(Script.toSlp1(l2), Script.toSlp1(r2)); if (k !in accPairs) accPairs[k] = l2 to r2 }
+                val acc = accPairs.values.take(2).map { "${it.first} + ${it.second}" }
+                val accKeys = accPairs.keys
+                val cand = ArrayList<Pair<String, Int>>()
+                fun consider(l: String, rr: String, changedLeft: Boolean) {
+                    val changed = if (changedLeft) l else rr
+                    if (!meaningful(changed)) return
+                    if (pairKey(l, rr) in accKeys) return
+                    if (ns(F) in outsAll(l, rr)) return
+                    cand += "${dev(l)} + ${dev(rr)}" to lev(ns(l + rr), ns(L + R))
+                }
+                for (l2 in lastVariants(L)) consider(l2, R, true)
+                for (r2 in firstVariants(R)) consider(L, r2, false)
+                val dis = cand.sortedBy { it.second }.map { it.first }.distinct().take(4 - acc.size)
+                if (dis.size < 4 - acc.size) excluded += "${c.src} (R): fewer than three real-word wrong analyses (${dis.size} found)"
+                else { val opts = (acc + dis).shuffled(java.util.Random(rnd0 + 1)); qs.put(q("${r.topic}-${r.table}${r.row}-R", c.cat, "R", c.lesson, c.practice, c.reproduced[0], opts, opts.indices.filter { opts[it] in acc }, c.exSa, c.exKn, c.exEn, c.rules, c.src)); bump(c.cat, 1) }
+            }
         }
         // ---- additional formats (example rows only): identify the Sandhi (NAME), identify the sūtra (SUTRA), select an example (EXAMPLE)
-        val named = Rules.all.filter { it.id != "C14" }    // C14 (ṇatva) is subset-implemented and never asked for
-        for (a in admitted) {
+        val askable = Rules.all.filter { it.id !in NOT_ASKABLE }
+        for (a in kept) {
             if (a.row.table != "ex") continue
             val applied = a.rules.mapNotNull { Rules.find(it) }
-            val target = applied.filter { it.topic == a.lesson }.distinctBy { it.name }
-            if (target.size != 1) { extraSkipped += "${a.src}: ${if (target.isEmpty()) "no rule of lesson ${a.lesson} applies" else "more than one named rule of the lesson applies"}"; continue }
+            val target = applied.filter { it.topic == a.lesson && it.id !in NOT_ASKABLE }.distinctBy { it.name }
+            if (target.size != 1) { extraSkipped += "${a.src}: ${if (target.isEmpty()) "no askable rule of lesson ${a.lesson} applies" else "more than one named rule of the lesson applies"}"; continue }
             val t0 = target[0]
             val appliedNames = applied.map { it.name }.toSet(); val appliedTopics = applied.map { it.topic }.toSet(); val appliedSutras = applied.map { it.sutraDeva }.toSet()
             val rnd = java.util.Random(a.src.hashCode().toLong() + 7)
-            fun pool(same: Boolean) = named.filter { it.name !in appliedNames && it.topic !in appliedTopics && it.sutraDeva !in appliedSutras && (it.category == t0.category) == same }.distinctBy { it.name }.distinctBy { it.sutraDeva }.shuffled(rnd)
+            // every visarga/ru derivation starts from ससजुषो रुः (8.2.66): it is never offered as "not applying" there
+            val viaRu = applied.any { it.category == Category.VISARGA } || Script.toSlp1(a.row.left).trim().last() in "Hsr"
+            fun pool(same: Boolean) = askable.filter { !(viaRu && it.id in setOf("H01", "H12")) }.filter { it.name !in appliedNames && it.topic !in appliedTopics && it.sutraDeva !in appliedSutras && (it.category == t0.category) == same }.distinctBy { it.name }.distinctBy { it.sutraDeva }.shuffled(rnd)
             val dRules = (pool(true) + pool(false)).take(3)
-            val shown = "${a.row.left} + ${a.row.right} → ${a.form}"
+            val shown = "${a.row.left} + ${a.row.right} → ${a.reproduced[0]}"
             val exRule = "${t0.name} — ${t0.sutraDeva} (${t0.ref})"
             if (dRules.size == 3) {
                 val opts = (listOf(t0.name) + dRules.map { it.name }).shuffled(rnd)
-                qs0.put(q("${a.row.topic}-${a.row.table}${a.row.row}-N", a.cat, "O", a.lesson, a.practice, shown, opts, listOf(opts.indexOf(t0.name)), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src).put("type", "NAME"))
-                counts.getOrPut(a.cat) { IntArray(5) }[2]++
-                if (t0.verified) {
-                    val sopts = (listOf(t0) + dRules).map { "${it.sutraDeva} (${it.ref})" }.shuffled(rnd)
-                    qs0.put(q("${a.row.topic}-${a.row.table}${a.row.row}-S", a.cat, "O", a.lesson, a.practice, shown, sopts, listOf(sopts.indexOf("${t0.sutraDeva} (${t0.ref})")), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src).put("type", "SUTRA"))
-                    counts.getOrPut(a.cat) { IntArray(5) }[3]++
-                }
+                qs.put(q("${a.row.topic}-${a.row.table}${a.row.row}-N", a.cat, "O", a.lesson, a.practice, shown, opts, listOf(opts.indexOf(t0.name)), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src).put("type", "NAME")); bump(a.cat, 2)
+                val sopts = (listOf(t0) + dRules).map { "${it.sutraDeva} (${it.ref})" }.shuffled(rnd)
+                qs.put(q("${a.row.topic}-${a.row.table}${a.row.row}-S", a.cat, "O", a.lesson, a.practice, shown, sopts, listOf(sopts.indexOf("${t0.sutraDeva} (${t0.ref})")), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src).put("type", "SUTRA")); bump(a.cat, 3)
             } else extraSkipped += "${a.src}: fewer than three other Sandhi names available"
             if (a.row.row % 2 == 1) {
-                // forms of other admitted rows in which no rule of this lesson's Sandhi operates
-                val others = admitted.filter { o -> o !== a && o.form != a.form && o.rules.none { Rules.find(it)?.topic == t0.topic } && Rules.find(o.rules.firstOrNull())?.name != t0.name }
-                    .distinctBy { it.form }.shuffled(rnd).take(3)
+                // forms of other kept rows in which no rule of this lesson's Sandhi operates
+                val others = kept.filter { o -> o !== a && o.rules.none { Rules.find(it)?.topic == t0.topic || Rules.find(it)?.name == t0.name } }.shuffled(rnd).take(3)
                 if (others.size == 3) {
                     val items = (listOf(a) + others).shuffled(rnd)
-                    val opts = items.map { it.form }
-                    qs0.put(q("${a.row.topic}-${a.row.table}${a.row.row}-E", a.cat, "O", a.lesson, a.practice, t0.name, opts, listOf(items.indexOf(a)), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src)
-                        .put("type", "EXAMPLE").put("osrc", JSONArray(items.map { "${it.row.left} + ${it.row.right}" })))
-                    counts.getOrPut(a.cat) { IntArray(5) }[4]++
+                    qs.put(q("${a.row.topic}-${a.row.table}${a.row.row}-E", a.cat, "O", a.lesson, a.practice, t0.name, items.map { it.reproduced[0] }, listOf(items.indexOf(a)), exRule, Script.render(exRule, "kn"), a.exEn, a.rules, a.src)
+                        .put("type", "EXAMPLE").put("osrc", JSONArray(items.map { "${it.row.left} + ${it.row.right}" }))); bump(a.cat, 4)
                 }
             }
         }
-        // ---- the same example occurs in several lessons (देव + इन्द्रः in the guṇa lesson, the introduction and a practice set):
-        // one question per (format, prompt, accepted answers). The copy kept is the one whose category is that of the first rule
-        // applied (प्रथमोऽध्यायः is a visarga example), otherwise the first generated (the rule lesson precedes intro/practice rows).
-        val qs = JSONArray(); val seen = HashMap<String, Int>(); val kept = ArrayList<JSONObject>(); val dupes = mutableListOf<String>()
-        fun keyOf(o: JSONObject): String { val opts = o.getJSONArray("options"); val ans = o.getJSONArray("answers"); return o.getString("type") + "|" + ns(o.getString("prompt")) + "|" + (0 until ans.length()).map { ns(opts.getString(ans.getInt(it))) }.sorted().joinToString(",") }
-        fun prefCat(o: JSONObject): String? = o.getJSONArray("rules").let { if (it.length() == 0) null else when (Rules.find(it.getString(0))?.category) { Category.VOWEL -> "vowel"; Category.CONSONANT -> "consonant"; Category.VISARGA -> "visarga"; Category.PRAKRITIBHAVA -> "prakriti"; null -> null } }
-        for (i in 0 until qs0.length()) {
-            val o = qs0.getJSONObject(i); val k = keyOf(o); val prev = seen[k]
-            if (prev == null) { seen[k] = kept.size; kept += o }
-            else { val p = kept[prev]; if (p.getString("cat") != prefCat(p) && o.getString("cat") == prefCat(o)) { dupes += "${p.getString("id")} replaced by ${o.getString("id")}"; kept[prev] = o } else dupes += "${o.getString("id")} duplicate of ${p.getString("id")}" }
-        }
-        kept.forEach { qs.put(it) }
-        counts.clear()
-        for (i in 0 until qs.length()) { val o = qs.getJSONObject(i); counts.getOrPut(o.getString("cat")) { IntArray(5) }[when (o.getString("type")) { "F" -> 0; "R" -> 1; "NAME" -> 2; "SUTRA" -> 3; else -> 4 }]++ }
         File("build/quiz").mkdirs()
-        val meta = JSONObject().put("built_from", "example (ex) and exercise (pr) rows of the supplied documents; verified by the Sandhātrī engine").put("rows_considered", all.size)
+        val meta = JSONObject().put("built_from", "example (ex) and exercise (pr) rows of the supplied documents; verified by the Sandhātrī engine").put("rows_considered", all.size).put("rows_kept", kept.size)
         counts.forEach { (c, n) -> meta.put("count_$c", JSONObject().put("forward", n[0]).put("reverse", n[1]).put("name", n[2]).put("sutra", n[3]).put("example", n[4]).put("total", n.sum())) }
         File("build/quiz/questions.json").writeText(JSONObject().put("meta", meta).put("questions", qs).toString(1))
-        audit.append("rows considered: ${all.size}\n")
+        audit.append("rows considered: ${all.size}; one row kept per word: ${kept.size}\n")
         counts.toSortedMap().forEach { (c, n) -> audit.append("$c: forward=${n[0]} reverse=${n[1]} name=${n[2]} sutra=${n[3]} example=${n[4]} total=${n.sum()}\n") }
+        audit.append("rows refiled by the rule that applies (${reclass.size}):\n"); reclass.forEach { audit.append("  $it\n") }
+        audit.append("same word in several lessons — later copies dropped (${dupes.size}):\n"); dupes.forEach { audit.append("  $it\n") }
         audit.append("additional formats not generated (${extraSkipped.size}):\n"); extraSkipped.forEach { audit.append("  $it\n") }
-        audit.append("duplicates removed (${dupes.size}):\n"); dupes.forEach { audit.append("  $it\n") }
         audit.append("partially offered (${partial.size}):\n"); partial.forEach { audit.append("  $it\n") }
         audit.append("excluded (${excluded.size}):\n"); excluded.forEach { audit.append("  $it\n") }
         File("build/quiz/audit.txt").writeText(audit.toString())
@@ -221,51 +336,4 @@ class QuizBankBuild {
                   exSa: String, exKn: String, exEn: String, rules: List<String>, src: String) = JSONObject()
         .put("id", id).put("cat", cat).put("dir", dir).put("lesson", lesson).put("practice", practice).put("prompt", prompt)
         .put("options", JSONArray(opts)).put("answers", JSONArray(answers)).put("ex_sa", exSa).put("ex_kn", exKn).put("ex_en", exEn).put("rules", JSONArray(rules)).put("src", src).put("type", dir)
-
-    /** Wrong joined forms: the plain concatenation and single-sound mutations at the junction, none reproducible by the engine. */
-    private fun forwardDistractors(L: String, R: String, F: String, surfaces: List<String>, accepted: Set<String>, plainSurfaces: List<String>): List<String> {
-        val bad = surfaces.map { ns(it) }.toSet() + accepted
-        val out = LinkedHashSet<String>()
-        fun ok(c: String) = c.isNotEmpty() && ns(c) !in bad && Script.invalidChars(c).isEmpty() && !adjVowels(ns(c)) && c.first() != '\''
-        val f = ns(F)
-        // prakṛtibhāva: the forms the ordinary Sandhi rules would give are the natural wrong answers
-        for (p in plainSurfaces) if (ok(p)) out += p
-        if (ok(L + R)) out += L + R
-        if (F.contains(' ')) {
-            // words left apart (देवा इह, स गच्छति): wrong forms keep or replace the lost sound at the gap
-            if (ok(ns(F))) out += ns(F)
-            val g = F.indexOf(' ')
-            for (ins in listOf("y", "r", "H", "s", "v", "M")) { val c = F.substring(0, g) + ins + F.substring(g + 1); if (ok(c)) out += c }
-            if (g > 0) for (sv in SUB[F[g - 1]] ?: "") { val c = F.substring(0, g - 1) + sv + F.substring(g); if (ok(c)) out += c; val c2 = F.substring(0, g - 1) + sv + F.substring(g + 1); if (ok(c2)) out += c2 }
-        }
-        val j = (L.length - 1).coerceIn(0, f.length - 1)
-        val order = listOf(j, j + 1, j - 1, j + 2, j - 2).filter { it in f.indices }
-        for (p in order) for (s in SUB[f[p]] ?: "") { val c = f.substring(0, p) + s + f.substring(p + 1); if (ok(c)) out += c }
-        if (f.contains('\'')) { val c = f.replace("'", "a"); if (ok(c)) out += c }
-        return out.map { dev(it) }.distinct()
-    }
-
-    /** Wrong analyses: mutations of the final sound of the first word, the initial sound of the second, or the boundary; none joins to the form. */
-    private fun reverseDistractors(e: SandhiEngine, L: String, R: String, F: String, accepted: Set<String>, pragrhya: Boolean): List<String> {
-        val f = ns(F); val out = LinkedHashSet<String>()
-        fun ok(l: String, r: String): Boolean {
-            if (l.isEmpty() || r.isEmpty() || ns(l + "+" + r) in accepted) return false
-            if (l.none { it in V } || r.none { it in V } || adjVowels(l) || adjVowels(r)) return false
-            if (Script.invalidChars(l + r).isNotEmpty()) return false
-            val alts = try { e.join(dev(l), dev(r)).alts + (if (pragrhya) e.join(dev(l), dev(r), Ctx(leftPragrhya = true)).alts else emptyList()) } catch (x: Exception) { return false }
-            return alts.none { ns(it.surface) == f }
-        }
-        fun add(l: String, r: String) { if (ok(l, r)) out += "${dev(l)} + ${dev(r)}" }
-        val lastL = L.last(); val firstR = R.first()
-        for (s in SUB[lastL] ?: "") add(L.dropLast(1) + s, R)
-        for (s in SUB[firstR] ?: "") add(L, s + R.drop(1))
-        if (R.length > 2) add(L + R.first(), R.drop(1))
-        if (L.length > 2) add(L.dropLast(1), L.last() + R)
-        if (lastL in V && lastL !in "aA") add(L.dropLast(1) + "a", R)
-        if (lastL == 'H' || lastL == 'M') add(L.dropLast(1), R)
-        if (lastL in V) { add(L + "H", R); add(L + "m", R) }
-        if (firstR in V && R.length > 2) add(L, R.drop(1))
-        if (firstR !in V) for (v in "aAiu") add(L, v + R)
-        return out.toList()
-    }
 }

@@ -70,7 +70,9 @@ private fun catColor(t: Tokens, cat: String): Color = when (cat) {
 private fun GameTile(app: SandhimitraApp, cat: String, side: androidx.compose.ui.unit.Dp, accent: Color, onClick: () -> Unit) {
     val t = LocalTokens.current
     val total = remember(cat) { app.quiz.count(cat) }
-    val done = app.progress.version.let { app.progress.quizDoneCount(cat) }
+    // only questions that still exist count (a bank change can never push the figure above the total)
+    val ids = remember(cat) { app.quiz.questions(cat).map { it.id }.toSet() }
+    val done = app.progress.version.let { app.progress.quizDoneIds(cat).count { it in ids } }
     val shape = RoundedCornerShape(18.dp)
     Column(Modifier.testTag("game_$cat").size(side).clip(shape).background(t.card).border(BorderStroke(2.dp, accent), shape).clickable(onClick = onClick).padding(14.dp),
         horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
@@ -115,15 +117,27 @@ class QuizSession(val cat: String, val seq: List<String>) {
             val rnd = java.util.Random(seed)
             val f = qs.filter { it.dir == "F" }.map { it.id }.shuffled(rnd); val r = qs.filter { it.dir == "R" }.map { it.id }.shuffled(rnd)
             val o = qs.filter { it.dir == "O" }.map { it.id }.shuffled(rnd)
-            val fr = ArrayList<String>(); var i = 0; var j = 0; var takeF = rnd.nextBoolean()
+            // forward and reverse questions spread evenly through the round (in proportion to how many of each there are)
+            val fr = ArrayList<String>(); var i = 0; var j = 0
             while (i < f.size || j < r.size) {
-                if ((takeF && i < f.size) || j >= r.size) fr += f[i++] else fr += r[j++]
-                takeF = !takeF
+                val fFrac = if (f.isEmpty()) 1.0 else i.toDouble() / f.size; val rFrac = if (r.isEmpty()) 1.0 else j.toDouble() / r.size
+                if (j >= r.size || (i < f.size && fFrac <= rFrac)) fr += f[i++] else fr += r[j++]
             }
-            if (o.isEmpty()) return QuizSession(cat, fr)
-            val seq = ArrayList<String>(); val step = maxOf(1, fr.size / (o.size + 1)); var k = 0
-            fr.forEachIndexed { idx, id -> seq += id; if ((idx + 1) % step == 0 && k < o.size) seq += o[k++] }
-            while (k < o.size) seq += o[k++]
+            val mixed = ArrayList<String>()
+            if (o.isEmpty()) mixed += fr else {
+                val step = maxOf(1, fr.size / (o.size + 1)); var k = 0
+                fr.forEachIndexed { idx, id -> mixed += id; if ((idx + 1) % step == 0 && k < o.size) mixed += o[k++] }
+                while (k < o.size) mixed += o[k++]
+            }
+            // several questions can be about one word (join it, separate it, name its Sandhi …): never close together
+            val word = qs.associate { it.id to it.word }
+            val gap = minOf(25, mixed.size / 3)
+            val remaining = ArrayList(mixed); val seq = ArrayList<String>(); val recent = java.util.ArrayDeque<String>()
+            while (remaining.isNotEmpty()) {
+                val pick = remaining.indexOfFirst { word[it] !in recent }.let { if (it < 0) 0 else it }
+                val id = remaining.removeAt(pick); seq += id
+                recent.addLast(word.getValue(id)); if (recent.size > gap) recent.removeFirst()
+            }
             return QuizSession(cat, seq)
         }
     }
